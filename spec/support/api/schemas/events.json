@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "required": ["events"],
+  "properties": {
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "account_id", "name"],
+        "properties": {
+          "id": { "type": "integer" },
+          "account_id": { "type": "integer" },
+          "name": { "type": "string" },
+          "description": { "type": ["null", "string"] },
+          "cover_photo": { "type": ["null", "string"] },
+          "created_at": { "type": "string" },
+          "updated_at": { "type": "string" }
+        }
+      }
+    }
+  }
+}
