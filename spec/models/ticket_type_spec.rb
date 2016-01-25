@@ -10,5 +10,6 @@ RSpec.describe TicketType, type: :model do
 
   describe 'relationships' do
     it { should belong_to(:event) }
+    it { should have_many(:tickets) }
   end
 end
