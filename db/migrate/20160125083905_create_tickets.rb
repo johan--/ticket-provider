@@ -3,6 +3,7 @@ class CreateTickets < ActiveRecord::Migration
     create_table :tickets do |t|
       t.references :ticket_type, index: true, foreign_key: true
       t.references :user, index: true
+      t.string :uid, null: false
       t.string :zone
       t.string :row
       t.string :column
