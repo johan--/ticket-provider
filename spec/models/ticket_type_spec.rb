@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Event, type: :model do
+RSpec.describe TicketType, type: :model do
 
   describe 'db' do
     context 'columns' do
@@ -9,6 +9,6 @@ RSpec.describe Event, type: :model do
   end
 
   describe 'relationships' do
-    it { should belong_to(:account) }
+    it { should belong_to(:event) }
   end
 end

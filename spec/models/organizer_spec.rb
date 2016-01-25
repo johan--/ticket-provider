@@ -12,4 +12,8 @@ RSpec.describe Organizer, type: :model do
       it { should have_db_index(:email).unique(true) }
     end
   end
+
+  describe 'relationships' do
+    it { should belong_to(:account) }
+  end
 end
