@@ -5,4 +5,8 @@ Rails.application.routes.draw do
   devise_for :organizers
 
   use_doorkeeper
+
+  scope 'api/v1', module: 'api/v1' do
+    resources :events, only: :index
+  end
 end
