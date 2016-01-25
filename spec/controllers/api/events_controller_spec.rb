@@ -56,11 +56,22 @@ RSpec.describe Api::V1::EventsController, type: :controller do
       before do
         account_owner = Fabricate(:account_owner, account: account)
         sign_in :organizer, account_owner
-        post :create, event: Fabricate.attributes_for(:event)
       end
 
-      it { expect(response).to have_http_status(:created) }
-      it { expect(response).to match_response_schema('event') }
+      context 'when cover photo does not exist' do
+        before { post :create, event: Fabricate.attributes_for(:event) }
+
+        it { expect(response).to have_http_status(:created) }
+        it { expect(response).to match_response_schema('event') }
+      end
+
+      context 'when cover photo exists' do
+        before { post :create, event: Fabricate.attributes_for(:event_with_cover_photo) }
+
+        it { expect(response).to have_http_status(:created) }
+        it { expect(response).to match_response_schema('event') }
+        it { expect(JSON.parse(response.body)['event']['cover_photo_url']).not_to be_nil }
+      end
     end
   end
 end
