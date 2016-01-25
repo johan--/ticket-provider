@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   use_doorkeeper
 
   scope 'api/v1', module: 'api/v1' do
-    resources :events, only: [:index, :create]
+    resources :events, only: [:index, :create, :update]
   end
 end

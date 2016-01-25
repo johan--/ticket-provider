@@ -74,4 +74,23 @@ RSpec.describe Api::V1::EventsController, type: :controller do
       end
     end
   end
+
+  describe 'PUT #update' do
+    let(:account) { Fabricate(:account) }
+    let!(:event) { Fabricate(:event, account: account) }
+    let(:organizer) { Fabricate(:account_owner, account: account) }
+    let(:update_event_params) { Fabricate.attributes_for(:event_with_cover_photo) }
+
+    before { sign_in :organizer, organizer }
+
+    context 'when update success' do
+      before { put :update, id: event.uid, event: update_event_params }
+
+      it { expect(response).to have_http_status(:ok) }
+      it { expect(response).to match_response_schema('event') }
+      it { expect(JSON.parse(response.body)['event']['name']).to eq update_event_params['name'] }
+      it { expect(JSON.parse(response.body)['event']['description']).to eq update_event_params['description'] }
+      it { expect(JSON.parse(response.body)['event']['cover_photo_url']).not_to be_nil }
+    end
+  end
 end
