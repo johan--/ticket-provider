@@ -1,0 +1,12 @@
+# Development configuration
+
+development:
+  DEFAULT_HOST: "http://localhost:3000"
+  S3_AWS_ACCESS_KEY: AKIAJAFVHPR53Y2XQSCQ
+  S3_BUCKET_NAME: ticket-provider-development
+  S3_HOST_ALIAS: https://d171m6wnqwtjdj.cloudfront.net
+  S3_REGION: ap-southeast-1
+  S3_SECRET_ACCESS_KEY: FVECR1FZMdGduun5nI6XWFY6JlS+ovoS317JExZ9
+
+test:
+  DEFAULT_HOST: "http://localhost:3000"
