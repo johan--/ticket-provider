@@ -6,6 +6,7 @@ class Ability
 
     if user.role == 'god'
       can :manage, :all
+      can :access, :rails_admin
     elsif user.role == 'account_owner'
       can :manage, Event, account: user.account
       can :manage, TicketType, event_id: user.account.event_ids
