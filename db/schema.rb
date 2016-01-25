@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20160125073902) do
   enable_extension "plpgsql"
 
   create_table "accounts", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",        null: false
     t.text     "description"
     t.string   "logo"
     t.string   "cover_photo"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20160125073902) do
 
   create_table "events", force: :cascade do |t|
     t.integer  "account_id"
-    t.string   "name"
+    t.string   "name",                     null: false
     t.text     "description"
     t.string   "cover_photo"
     t.text     "tags",        default: [],              array: true
@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(version: 20160125073902) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.integer  "account_id"
-    t.string   "name"
-    t.string   "role"
+    t.string   "name",                                null: false
+    t.string   "role",                                null: false
   end
 
   add_index "organizers", ["account_id"], name: "index_organizers_on_account_id", using: :btree
