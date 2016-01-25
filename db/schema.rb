@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160125072255) do
+ActiveRecord::Schema.define(version: 20160125073902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,18 @@ ActiveRecord::Schema.define(version: 20160125072255) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "events", force: :cascade do |t|
+    t.integer  "account_id"
+    t.string   "name"
+    t.text     "description"
+    t.string   "cover_photo"
+    t.text     "tags",        default: [],              array: true
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "events", ["account_id"], name: "index_events_on_account_id", using: :btree
 
   create_table "organizers", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -47,5 +59,6 @@ ActiveRecord::Schema.define(version: 20160125072255) do
   add_index "organizers", ["email"], name: "index_organizers_on_email", unique: true, using: :btree
   add_index "organizers", ["reset_password_token"], name: "index_organizers_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "events", "accounts"
   add_foreign_key "organizers", "accounts"
 end
