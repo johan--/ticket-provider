@@ -16,4 +16,12 @@ RSpec.describe Organizer, type: :model do
   describe 'relationships' do
     it { should belong_to(:account) }
   end
+
+  describe 'validation' do
+    let(:organizer) { Fabricate.build(:god) }
+
+    subject { organizer }
+
+    it { is_expected.to validate_presence_of(:name) }
+  end
 end

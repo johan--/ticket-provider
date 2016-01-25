@@ -12,4 +12,12 @@ RSpec.describe Account, type: :model do
     it { should have_many(:organizers) }
     it { should have_many(:events) }
   end
+
+  describe 'validation' do
+    let(:account) { Fabricate.build(:account) }
+
+    subject { account }
+
+    it { is_expected.to validate_presence_of(:name) }
+  end
 end
