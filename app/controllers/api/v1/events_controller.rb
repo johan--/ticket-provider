@@ -1,5 +1,5 @@
 class Api::V1::EventsController < Api::V1::ApiController
-  before_action :authenticate_organizer!
+  before_action :authenticate_organizer!, except: :index
 
   load_and_authorize_resource
 

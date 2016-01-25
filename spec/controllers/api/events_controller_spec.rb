@@ -48,4 +48,19 @@ RSpec.describe Api::V1::EventsController, type: :controller do
       it { expect(JSON.parse(response.body)['events'].count).to eq Event.count }
     end
   end
+
+  describe 'POST #create' do
+    let(:account) { Fabricate(:account) }
+
+    context 'when request is created by organizer' do
+      before do
+        account_owner = Fabricate(:account_owner, account: account)
+        sign_in :organizer, account_owner
+        post :create, event: Fabricate.attributes_for(:event)
+      end
+
+      it { expect(response).to have_http_status(:created) }
+      it { expect(response).to match_response_schema('event') }
+    end
+  end
 end
