@@ -3,6 +3,10 @@ class Api::V1::ApiController < ActionController::Base
 
   respond_to :json
 
+  rescue_from CanCan::AccessDenied do |exception|
+    render json: { message: t('authorization.unauthorized') }, status: :unauthorized
+  end
+
   def authenticate_user!
     head :unauthorized unless current_user
   end
