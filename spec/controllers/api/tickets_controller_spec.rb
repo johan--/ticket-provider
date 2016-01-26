@@ -51,4 +51,32 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
       it { expect(JSON.parse(response.body)['errors']).to match_array(I18n.t('backend.ticket.cannot_transition_to', state: 'refunded')) }
     end
   end
+
+  describe 'DELETE #destroy' do
+    let(:account) { Fabricate(:account) }
+    let(:event) { Fabricate(:event, account: account) }
+    let(:ticket_type) { Fabricate(:ticket_type, event: event) }
+    let(:organizer) { Fabricate(:account_owner, account: account) }
+    let(:user) { Fabricate(:user) }
+
+    before { sign_in :organizer, organizer }
+
+    context 'when ticket user does not exist' do
+      let (:ticket) { Fabricate(:ticket, ticket_type: ticket_type) }
+      before { delete :destroy, id: ticket.uid }
+
+      it { expect(response).to have_http_status(:no_content) }
+      it { expect { Ticket.find(ticket.id) }.to raise_error(ActiveRecord::RecordNotFound) }
+    end
+
+    context 'when ticket user exists' do
+      before do
+        ticket = Fabricate(:ticket, ticket_type: ticket_type, user: user)
+        delete :destroy, id: ticket.uid
+      end
+
+      it { expect(response).to have_http_status(:unprocessable_entity) }
+      it { expect(response).to match_response_schema('errors') }
+    end
+  end
 end
