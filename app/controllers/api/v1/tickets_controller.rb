@@ -23,6 +23,14 @@ class Api::V1::TicketsController < Api::V1::ApiController
     end
   end
 
+  def destroy
+    if @ticket.destroy
+      head :no_content
+    else
+      render json: { errors: [I18n.t('backend.ticket.cannot_destroy')] }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def ticket_params
