@@ -16,7 +16,7 @@ class Ability
         elsif user.role == 'team_member'
           can [:read, :create, :update], Event, account: user.account
           can [:read, :create, :update], TicketType, event_id: user.account.event_ids
-          can [:read, :create, :update], Ticket, ticket_Type: { event_id: user.account.event_ids }
+          can :manage, Ticket, ticket_Type: { event_id: user.account.event_ids }
         end
       else
         can :read, Event
