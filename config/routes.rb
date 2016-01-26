@@ -10,5 +10,7 @@ Rails.application.routes.draw do
     resources :events, only: [:index, :create, :update, :destroy]
 
     resources :ticket_types, only: [:create, :update, :destroy]
+
+    resources :tickets, only: :create
   end
 end
