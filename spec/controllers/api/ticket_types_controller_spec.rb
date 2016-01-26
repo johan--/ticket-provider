@@ -47,4 +47,32 @@ RSpec.describe Api::V1::TicketTypesController, type: :controller do
       it { expect(response).to match_response_schema('errors') }
     end
   end
+
+  describe 'DELETE #destroy' do
+    let(:account) { Fabricate(:account) }
+    let(:event) { Fabricate(:event, account: account) }
+    let(:ticket_type) { Fabricate(:ticket_type, event: event) }
+
+    context 'when request is created by account_owner' do
+      before do
+        account_owner = Fabricate(:account_owner, account: account)
+        sign_in :organizer, account_owner
+        delete :destroy, id: ticket_type.uid
+      end
+
+      it { expect(response).to have_http_status(:no_content) }
+      it { expect { TicketType.find(ticket_type.id) }.to raise_error(ActiveRecord::RecordNotFound) }
+    end
+
+    context 'when request is created by team_member' do
+      before do
+        team_member = Fabricate(:team_member, account: account)
+        sign_in :organizer, team_member
+        delete :destroy, id: ticket_type.uid
+      end
+
+      it { expect(response).to have_http_status(:unauthorized) }
+      it { expect(response).to match_response_schema('errors') }
+    end
+  end
 end
