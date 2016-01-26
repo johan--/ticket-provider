@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160125120013) do
+ActiveRecord::Schema.define(version: 20160126125835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,19 @@ ActiveRecord::Schema.define(version: 20160125120013) do
   add_index "organizers", ["email"], name: "index_organizers_on_email", unique: true, using: :btree
   add_index "organizers", ["reset_password_token"], name: "index_organizers_on_reset_password_token", unique: true, using: :btree
 
+  create_table "ticket_transitions", force: :cascade do |t|
+    t.string   "to_state",                   null: false
+    t.text     "metadata",    default: "{}"
+    t.integer  "sort_key",                   null: false
+    t.integer  "ticket_id",                  null: false
+    t.boolean  "most_recent",                null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "ticket_transitions", ["ticket_id", "most_recent"], name: "index_ticket_transitions_parent_most_recent", unique: true, where: "most_recent", using: :btree
+  add_index "ticket_transitions", ["ticket_id", "sort_key"], name: "index_ticket_transitions_parent_sort", unique: true, using: :btree
+
   create_table "ticket_types", force: :cascade do |t|
     t.integer  "event_id"
     t.string   "name",          null: false
@@ -140,6 +153,7 @@ ActiveRecord::Schema.define(version: 20160125120013) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "uid",                                 null: false
     t.string   "name"
     t.date     "birthdate"
   end

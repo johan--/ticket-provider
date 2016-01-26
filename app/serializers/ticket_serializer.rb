@@ -4,7 +4,8 @@ class TicketSerializer < ActiveModel::Serializer
              :zone,
              :row,
              :column,
-             :price
+             :price,
+             :state
 
   def id
     object.uid
@@ -12,5 +13,9 @@ class TicketSerializer < ActiveModel::Serializer
 
   def ticket_type_id
     object.ticket_type.uid
+  end
+
+  def state
+    object.current_state
   end
 end
