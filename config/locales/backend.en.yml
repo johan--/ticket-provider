@@ -1,0 +1,4 @@
+en:
+  backend:
+    ticket:
+      cannot_transition_to: can't transition to %{state}
