@@ -72,6 +72,13 @@ RSpec.describe Api::V1::EventsController, type: :controller do
         it { expect(response).to match_response_schema('event') }
         it { expect(JSON.parse(response.body)['event']['cover_photo_url']).not_to be_nil }
       end
+
+      context 'when event params is not valid' do
+        before { post :create, event: { description: 'something'} }
+
+        it { expect(response).to have_http_status(:unprocessable_entity) }
+        it { expect(response).to match_response_schema('errors') }
+      end
     end
   end
 
@@ -83,7 +90,7 @@ RSpec.describe Api::V1::EventsController, type: :controller do
 
     before { sign_in :organizer, organizer }
 
-    context 'when update success' do
+    context 'when update params is valid' do
       before { put :update, id: event.uid, event: update_event_params }
 
       it { expect(response).to have_http_status(:ok) }
@@ -91,6 +98,13 @@ RSpec.describe Api::V1::EventsController, type: :controller do
       it { expect(JSON.parse(response.body)['event']['name']).to eq update_event_params['name'] }
       it { expect(JSON.parse(response.body)['event']['description']).to eq update_event_params['description'] }
       it { expect(JSON.parse(response.body)['event']['cover_photo_url']).not_to be_nil }
+    end
+
+    context 'when update params is invalid' do
+      before { put :update, id: event.uid, event: { name: '' } }
+
+      it { expect(response).to have_http_status(:unprocessable_entity) }
+      it { expect(response).to match_response_schema('errors') }
     end
   end
 
