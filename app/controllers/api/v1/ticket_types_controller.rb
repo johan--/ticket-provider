@@ -22,6 +22,14 @@ class Api::V1::TicketTypesController < Api::V1::ApiController
     end
   end
 
+  def destroy
+    if @ticket_type.destroy
+      head :no_content
+    else
+      render json: { errors: [@ticket_type.errors.full_messages.to_sentence] }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def ticket_type_params
