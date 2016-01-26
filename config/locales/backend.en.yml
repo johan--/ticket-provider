@@ -1,4 +1,5 @@
 en:
   backend:
     ticket:
+      cannot_destroy: purchased ticket can not be destroy
       cannot_transition_to: can't transition to %{state}
