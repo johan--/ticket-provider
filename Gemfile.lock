@@ -278,6 +278,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    statesman (2.0.0)
     temple (0.7.6)
     thor (0.19.1)
     thread_safe (0.3.5)
@@ -341,6 +342,7 @@ DEPENDENCIES
   shoulda-matchers
   slim (>= 3.0.6)
   spring
+  statesman (~> 2.0)
   uglifier
 
 BUNDLED WITH

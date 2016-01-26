@@ -14,6 +14,7 @@ gem 'paranoia', '>= 2.1.5'     # Paranoia is a re-implementation of acts_as_para
 gem 'ffaker'                   # A library for generating fake data such as names, addresses, and phone numbers.
 gem 'fabrication'              # Fabrication generates objects in Ruby. Fabricators are schematics for your objects, and can be created as needed anywhere in your app or specs.
 gem 'slim', '>= 3.0.6'         # Slim is a template language whose goal is reduce the syntax to the essential parts without becoming cryptic
+gem 'statesman', '~> 2.0'      # An opinionated state machine library
 
 # Admin
 gem 'rails_admin',             # RailsAdmin is a Rails engine that provides an easy-to-use interface for managing your data.
