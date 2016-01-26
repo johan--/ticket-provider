@@ -8,6 +8,7 @@ class Ticket < ActiveRecord::Base
   validates :ticket_type, presence: true
 
   before_create :set_uid
+  before_destroy -> { false }, if: :user_id?
 
   def state_machine
     @state_machine ||= TicketStateMachine.new(self, transition_class: TicketTransition)
