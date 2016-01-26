@@ -25,6 +25,14 @@ class Api::V1::EventsController < Api::V1::ApiController
     end
   end
 
+  def destroy
+    if @event.destroy
+      head :no_content
+    else
+      render json: { errors: [@event.errors.full_messages.to_sentence] }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def event_params
