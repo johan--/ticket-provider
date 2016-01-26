@@ -11,6 +11,6 @@ Rails.application.routes.draw do
 
     resources :ticket_types, only: [:create, :update, :destroy]
 
-    resources :tickets, only: [:create, :update]
+    resources :tickets, only: [:create, :update, :destroy]
   end
 end
