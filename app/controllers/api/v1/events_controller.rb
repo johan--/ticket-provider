@@ -7,6 +7,10 @@ class Api::V1::EventsController < Api::V1::ApiController
     render json: @events, status: :ok
   end
 
+  def show
+    render json: @event, status: :ok
+  end
+
   def create
     @event = Event.new(event_params.merge(account: current_organizer.account))
 
