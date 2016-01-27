@@ -4,6 +4,10 @@ class Api::V1::TicketTypesController < Api::V1::ApiController
   load_resource find_by: :uid, except: :create
   authorize_resource
 
+  def show
+    render json: @ticket_type, status: :ok
+  end
+
   def create
     @ticket_type = TicketType.new(ticket_type_params.merge(event: Event.find_by_uid(params[:ticket_type][:event_id])))
 
