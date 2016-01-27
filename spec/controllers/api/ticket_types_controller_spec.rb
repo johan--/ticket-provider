@@ -18,6 +18,25 @@ RSpec.describe Api::V1::TicketTypesController, type: :controller do
     end
   end
 
+  describe 'GET #index' do
+    let(:account) { Fabricate(:account) }
+    let(:event) { Fabricate(:event, account: account) }
+
+    before { Fabricate.times(5, :ticket_type, event: event) }
+
+    context 'when request is created by user' do
+      let(:application) { Fabricate(:origin_application) }
+      let(:user) { Fabricate(:user) }
+      let(:access_token) { Fabricate(:access_token, resource_owner_id: user.id, application: application) }
+
+      before { get :index, event_id: event.uid, format: :json, access_token: access_token.token }
+
+      it { expect(response).to have_http_status(:ok) }
+      it { expect(response).to match_response_schema('ticket_types') }
+    end
+  end
+
+
   describe 'POST #create' do
     let(:account) { Fabricate(:account) }
     let(:event) { Fabricate(:event, account: account) }
