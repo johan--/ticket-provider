@@ -1,8 +1,15 @@
 class Api::V1::TicketTypesController < Api::V1::ApiController
-  before_action :authenticate_organizer!
+  before_action :authenticate_organizer!, except: :index
+  before_action :authenticate!
 
-  load_resource find_by: :uid, except: :create
+  load_resource find_by: :uid, except: [:index, :create]
   authorize_resource
+
+  def index
+    @ticket_types = TicketType.where(event: Event.find_by_uid(params[:event_id]))
+
+    render json: @ticket_types, status: :ok
+  end
 
   def show
     render json: @ticket_type, status: :ok

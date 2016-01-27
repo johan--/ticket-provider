@@ -11,6 +11,14 @@ class Api::V1::ApiController < ActionController::Base
     head :unauthorized unless current_user
   end
 
+  def authenticate!
+    if current_organizer
+      authenticate_organizer!
+    else
+      authenticate_user!
+    end
+  end
+
   def current_ability
     if organizer_signed_in?
       @current_ability ||= Ability.new(current_organizer)
