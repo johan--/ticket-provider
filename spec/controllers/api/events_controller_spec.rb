@@ -49,6 +49,24 @@ RSpec.describe Api::V1::EventsController, type: :controller do
     end
   end
 
+  describe 'GET #show' do
+    let(:account) { Fabricate(:account) }
+    let!(:event) { Fabricate(:event, account: account) }
+    let(:event) { Fabricate(:event, account: account) }
+    let(:organizer) { Fabricate(:account_owner, account: account) }
+
+    before { sign_in :organizer, organizer }
+
+    context 'when organizer request for particular event' do
+      let(:account_owner) { Fabricate(:account_owner, account: account) }
+
+      before { get :show, id: event.uid }
+
+      it { expect(response).to have_http_status(:ok) }
+      it { expect(response).to match_response_schema('event') }
+    end
+  end
+
   describe 'POST #create' do
     let(:account) { Fabricate(:account) }
 
