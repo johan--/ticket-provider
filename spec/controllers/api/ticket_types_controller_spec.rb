@@ -2,6 +2,22 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::TicketTypesController, type: :controller do
 
+  describe 'GET #show' do
+    let(:account) { Fabricate(:account) }
+    let(:event) { Fabricate(:event, account: account) }
+    let(:ticket_type) { Fabricate(:ticket_type, event: event) }
+    let(:organizer) { Fabricate(:account_owner, account: account) }
+
+    before { sign_in :organizer, organizer }
+
+    context 'when organizer retrieve particular ticket type' do
+      before { get :show, id: ticket_type.uid }
+
+      it { expect(response).to have_http_status(:ok) }
+      it { expect(response).to match_response_schema('ticket_type') }
+    end
+  end
+
   describe 'POST #create' do
     let(:account) { Fabricate(:account) }
     let(:event) { Fabricate(:event, account: account) }
