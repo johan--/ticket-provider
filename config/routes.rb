@@ -15,4 +15,10 @@ Rails.application.routes.draw do
 
     resources :tickets, only: [:create, :update, :destroy]
   end
+<<<<<<< Updated upstream
 end
+=======
+
+  root 'backend#index'
+end
+>>>>>>> Stashed changes

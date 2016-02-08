@@ -1,3 +1,5 @@
 en:
+  application:
+    name: ticket provider
   authorization:
     unauthorized: unauthorized
