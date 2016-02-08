@@ -6,5 +6,5 @@ class EventStateMachine
   state :closed
 
   transition from: :draft, to: [:publish]
-  transition from: :publish, to: [:closed]
+  transition from: :publish, to: [:draft, :closed]
 end
