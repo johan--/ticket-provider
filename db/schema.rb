@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160126125835) do
+ActiveRecord::Schema.define(version: 20160208073744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,19 @@ ActiveRecord::Schema.define(version: 20160126125835) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "event_transitions", force: :cascade do |t|
+    t.string   "to_state",                   null: false
+    t.text     "metadata",    default: "{}"
+    t.integer  "sort_key",                   null: false
+    t.integer  "event_id",                   null: false
+    t.boolean  "most_recent",                null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "event_transitions", ["event_id", "most_recent"], name: "index_event_transitions_parent_most_recent", unique: true, where: "most_recent", using: :btree
+  add_index "event_transitions", ["event_id", "sort_key"], name: "index_event_transitions_parent_sort", unique: true, using: :btree
 
   create_table "events", force: :cascade do |t|
     t.integer  "account_id"
@@ -153,7 +166,6 @@ ActiveRecord::Schema.define(version: 20160126125835) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "uid",                                 null: false
     t.string   "name"
     t.date     "birthdate"
   end
