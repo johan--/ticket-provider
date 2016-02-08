@@ -29,7 +29,7 @@ RSpec.describe Event, type: :model do
     context 'initial state' do
       subject { event.current_state }
 
-      it { is_expected.to eq 'Draft' }
+      it { is_expected.to eq 'draft' }
     end
   end
 end

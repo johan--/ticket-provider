@@ -1,10 +1,10 @@
 class EventStateMachine
   include Statesman::Machine
 
-  state :Draft, initial: true
-  state :Publish
-  state :Closed
+  state :draft, initial: true
+  state :publish
+  state :closed
 
-  transition from: :Draft, to: [:Publish]
-  transition from: :Publish, to: [:Closed]
+  transition from: :draft, to: [:publish]
+  transition from: :publish, to: [:closed]
 end
