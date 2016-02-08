@@ -16,6 +16,9 @@ class Event < ActiveRecord::Base
     @state_machine ||= EventStateMachine.new(self, transition_class: EventTransition)
   end
 
+  delegate :can_transition_to?, :transition_to!, :transition_to, :current_state, :allowed_transitions,
+           to: :state_machine
+
   private
 
   def set_uid
