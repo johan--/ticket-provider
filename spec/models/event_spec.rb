@@ -21,4 +21,15 @@ RSpec.describe Event, type: :model do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:account) }
   end
+
+  describe 'state' do
+    let(:account) { Fabricate(:account) }
+    let(:event) { Fabricate.build(:event, account: account) }
+
+    context 'initial state' do
+      subject { event.current_state }
+
+      it { is_expected.to eq 'Draft' }
+    end
+  end
 end
