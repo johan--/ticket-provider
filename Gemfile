@@ -4,6 +4,7 @@ ruby '2.3.0'
 
 # Backend
 gem 'rails', '4.2.5'           # Latest Stable
+gem 'puma'                     # Web server
 gem 'pg', '~> 0.15'            # Use PostgreSQL as database
 gem 'active_model_serializers' # ActiveModel::Serializer implementation and Rails hooks
 gem 'carrierwave'              # Classier solution for file uploads for Rails
