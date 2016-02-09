@@ -191,6 +191,7 @@ GEM
       cliver (~> 0.3.1)
       multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
+    puma (2.16.0)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.4)
@@ -331,6 +332,7 @@ DEPENDENCIES
   pg (~> 0.15)
   phrase
   poltergeist
+  puma
   quiet_assets
   rack-timeout
   rails (= 4.2.5)
