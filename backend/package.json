@@ -5,7 +5,8 @@
   "main": "app.jsx",
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "./node_modules/webpack/bin/webpack.js --progress --watch"
+    "build": "./node_modules/webpack/bin/webpack.js --progress --watch",
+    "build-production": "./node_modules/webpack/bin/webpack.js --progress"
   },
   "author": "Suwijak Chaipipat",
   "license": "ISC",
