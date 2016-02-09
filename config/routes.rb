@@ -15,4 +15,6 @@ Rails.application.routes.draw do
 
     resources :tickets, only: [:create, :update, :destroy]
   end
+
+  root 'backend#index'
 end
