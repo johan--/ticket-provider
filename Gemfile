@@ -33,6 +33,8 @@ gem 'sass-rails'               # SASS
 gem 'i18n-js',                 # Bring the Rails I18n translations to Javascript
     git: 'git://github.com/fnando/i18n-js'
 gem 'uglifier'                 # Use Uglifier as compressor for JavaScript assets
+gem 'bootstrap',               # Bootstrap 4
+    '~> 4.0.0.alpha3'
 
 # Localization
 gem 'phrase'
