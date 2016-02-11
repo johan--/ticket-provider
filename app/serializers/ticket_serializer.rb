@@ -1,7 +1,6 @@
 class TicketSerializer < ActiveModel::Serializer
   attributes :id,
              :ticket_type_id,
-             :zone,
              :row,
              :column,
              :price,
