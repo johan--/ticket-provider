@@ -135,7 +135,7 @@ ActiveRecord::Schema.define(version: 20160211142054) do
     t.decimal  "current_price"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.integer  "seat_type"
+    t.integer  "seat_type",     null: false
   end
 
   add_index "ticket_types", ["event_id"], name: "index_ticket_types_on_event_id", using: :btree
