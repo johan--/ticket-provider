@@ -7,7 +7,7 @@ class TicketType < ActiveRecord::Base
 
   before_create :set_uid, :set_default_seat_type
 
-  enum seat_type: [ :fix_seat, :non_fix_seat ]
+  enum seat_type: [:fix_seat, :non_fix_seat]
 
   private
 
