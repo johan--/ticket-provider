@@ -43,8 +43,7 @@ class Api::V1::TicketsController < Api::V1::ApiController
   def ticket_params
     params
       .require(:ticket)
-      .permit(:zone,
-              :row,
+      .permit(:row,
               :column,
               :price)
   end
