@@ -8,12 +8,12 @@
         "type": "object",
         "required": ["id", "event_id", "name"],
         "properties": {
-          "id": {"type": "string"},
-          "event_id": {"type": "string"},
-          "name": {"type": "string"},
-          "description": {"type":  ["null", "string"] },
-          "current_price": {"type":  ["null", "string"] },
-          "seat_type": {"type":  ["null", "string"] }
+          "id": { "type": "string" },
+          "event_id": { "type": "string" },
+          "name": { "type": "string" },
+          "description": { "type": ["null", "string"] },
+          "current_price": { "type": ["null", "string"] },
+          "seat_type": { "type": "string" }
         }
       }
     }
