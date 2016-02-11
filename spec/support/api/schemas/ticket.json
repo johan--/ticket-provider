@@ -11,7 +11,8 @@
         "zone": { "type": ["null", "string"] },
         "row": { "type": ["null", "string"] },
         "column": { "type": ["null", "string"] },
-        "price": { "type": ["null", "string"] }
+        "price": { "type": ["null", "string"] },
+        "state": { "type": ["null", "string"] }
       }
     }
   }

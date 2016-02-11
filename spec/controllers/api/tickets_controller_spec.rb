@@ -2,6 +2,27 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::TicketsController, type: :controller do
 
+  describe 'GET #index' do
+    let(:application) { Fabricate(:origin_application) }
+    let(:account) { Fabricate(:account) }
+    let(:organizer) { Fabricate(:account_owner, account: account) }
+    let(:event) { Fabricate(:event, account: account) }
+    let(:ticket_type) { Fabricate(:ticket_type, event: event) }
+    let(:user) { Fabricate(:user) }
+    let(:ticket) { Fabricate(:ticket, ticket_type: ticket_type, user: user) }
+    let(:access_token) { Fabricate(:access_token, resource_owner_id: user.id, application: application) }
+
+    before { ticket.transition_to(:sold) }
+
+    context 'when user get all purchased ticket' do
+      before { get :index, format: :json, access_token: access_token.token }
+
+      it { expect(response).to have_http_status(:ok) }
+      it { expect(response).to match_response_schema('tickets') }
+      it { expect(JSON.parse(response.body)['tickets'].first['state']).to eq 'sold' }
+    end
+  end
+
   describe 'POST #create' do
     let(:account) { Fabricate(:account) }
     let(:event) { Fabricate(:event, account: account) }

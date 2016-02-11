@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "required": ["tickets"],
+  "properties": {
+    "tickets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "ticket_type_id"],
+        "properties": {
+          "id": { "type": "string"},
+          "ticket_type_id": { "type": "string" },
+          "zone": { "type": ["null", "string"] },
+          "row": { "type": ["null", "string"] },
+          "column": { "type": ["null", "string"] },
+          "price": { "type": ["null", "string"] },
+          "state": { "type": ["null", "string"] }
+        }
+      }
+    }
+  }
+}
