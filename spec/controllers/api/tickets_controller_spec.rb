@@ -18,10 +18,9 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
       before { get :index, format: :json, access_token: access_token.token }
 
       it { expect(response).to have_http_status(:ok) }
-
+      it { expect(response).to match_response_schema('tickets') }
       it { expect(JSON.parse(response.body)['tickets'][0]['state']).to eq 'sold' }
     end
-
   end
 
   describe 'POST #create' do
