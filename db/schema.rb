@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160211135830) do
+ActiveRecord::Schema.define(version: 20160211142054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,6 +135,7 @@ ActiveRecord::Schema.define(version: 20160211135830) do
     t.decimal  "current_price"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "seat_type"
   end
 
   add_index "ticket_types", ["event_id"], name: "index_ticket_types_on_event_id", using: :btree
