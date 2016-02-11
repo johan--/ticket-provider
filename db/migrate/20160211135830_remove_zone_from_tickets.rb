@@ -1,5 +1,9 @@
 class RemoveZoneFromTickets < ActiveRecord::Migration
-  def change
-    remove_column :tickets, :zone, :string
+  def up
+    remove_column :tickets, :zone
+  end
+
+  def down
+    add_column :tickets, :zone, :string
   end
 end
