@@ -19,7 +19,7 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
 
       it { expect(response).to have_http_status(:ok) }
       it { expect(response).to match_response_schema('tickets') }
-      it { expect(JSON.parse(response.body)['tickets'][0]['state']).to eq 'sold' }
+      it { expect(JSON.parse(response.body)['tickets'].first['state']).to eq 'sold' }
     end
   end
 
