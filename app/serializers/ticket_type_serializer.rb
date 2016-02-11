@@ -3,7 +3,8 @@ class TicketTypeSerializer < ActiveModel::Serializer
              :event_id,
              :name,
              :description,
-             :current_price
+             :current_price,
+             :seat_type
 
   def id
     object.uid
