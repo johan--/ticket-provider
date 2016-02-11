@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
     resources :ticket_types, only: [:index, :show, :create, :update, :destroy]
 
-    resources :tickets, only: [:create, :update, :destroy]
+    resources :tickets, only: [:index, :create, :update, :destroy]
   end
 
   root 'backend#index'
