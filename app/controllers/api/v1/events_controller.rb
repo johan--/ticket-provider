@@ -1,9 +1,12 @@
 class Api::V1::EventsController < Api::V1::ApiController
   before_action :authenticate_organizer!, except: :index
+  before_action :page_params, only: :index
 
   load_and_authorize_resource find_by: :uid
 
   def index
+    @events = @events.page(@page).per(@per_page)
+
     render json: @events, status: :ok
   end
 

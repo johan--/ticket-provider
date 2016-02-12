@@ -1,12 +1,17 @@
 class Api::V1::TicketsController < Api::V1::ApiController
   before_action :authenticate_organizer!, except: :index
   before_action :authenticate!, only: :index
+  before_action :page_params, only: :index
 
   load_resource find_by: :uid, except: [:index, :create]
   authorize_resource
 
   def index
-    @tickets = Ticket.includes(:ticket_type).accessible_by(@current_ability)
+    @tickets = Ticket
+                 .includes(:ticket_type)
+                 .accessible_by(@current_ability)
+                 .page(@page)
+                 .per(@per_page)
 
     render json: @tickets, status: :ok
   end
