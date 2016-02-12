@@ -31,4 +31,9 @@ class Api::V1::ApiController < ActionController::Base
     return unless doorkeeper_token
     @current_user ||= User.where(id: doorkeeper_token.resource_owner_id).first
   end
+
+  def page_params
+    @page = params[:page] || 1
+    @per_page = params[:per_page] || 20
+  end
 end
