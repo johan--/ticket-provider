@@ -2,6 +2,18 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::UsersController, type: :controller do
 
+  describe 'GET #me' do
+    context 'when user get profile' do
+      let(:application) { Fabricate(:origin_application) }
+      let(:user) { Fabricate(:user) }
+      let(:access_token) { Fabricate(:access_token, resource_owner_id: user.id, application: application) }
+
+      before { get :me, format: :json, access_token: access_token.token }
+
+      it { expect(response).to have_http_status(:ok) }
+    end
+  end
+
   describe 'POST #create' do
     context 'when user is valid' do
       before { post :create, user: Fabricate.attributes_for(:user) }
