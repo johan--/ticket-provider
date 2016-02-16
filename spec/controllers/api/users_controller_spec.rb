@@ -3,6 +3,12 @@ require 'rails_helper'
 RSpec.describe Api::V1::UsersController, type: :controller do
 
   describe 'POST #create' do
+    context 'when user is valid' do
+      before { post :create, user: Fabricate.attributes_for(:user) }
+
+      it { expect(response).to have_http_status(:created) }
+    end
+
     context 'when user params is invalid' do
       before do
         Fabricate(:user, email: 'earth@earth.com')
