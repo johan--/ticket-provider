@@ -10,7 +10,9 @@ Rails.application.routes.draw do
     resources :accounts, only: [:show, :update]
 
     resources :users, only: [:create] do
-      get 'me', on: :collection
+      collection do
+        get 'me'
+      end
     end
 
     resources :events, only: [:index, :show, :create, :update, :destroy]
