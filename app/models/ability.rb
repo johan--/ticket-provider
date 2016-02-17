@@ -21,6 +21,7 @@ class Ability
           can :manage, Ticket, ticket_Type: { event_id: user.account.event_ids }
         end
       else
+        can :manage, User, id: user.id
         can :read, Event
         can :read, TicketType
         can [:read, :update], Ticket, user: user
