@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   scope 'api/v1', module: 'api/v1' do
     resources :accounts, only: [:show, :update]
 
-    resources :users, only: [:create] do
+    resources :users, only: [:create, :destroy] do
       collection do
         get 'me'
       end
