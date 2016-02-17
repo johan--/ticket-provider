@@ -1,22 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Navbar from './components/navbar.jsx';
+import Backbone from 'backbone';
+import Router from './router.jsx';
+import InterfaceComponent from './components/interface-component.jsx'
 
-class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <Navbar/>
-        <form>
-          <fieldset className="form-group">
-            <label htmlFor="exampleInputEmail1">Email address</label>
-            <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Enter email" />
-          </fieldset>
-        </form>
-        <button className="btn btn-primary">Create New Event</button>
-      </div>
-    );
-  }
-}
+// Initialize app router.
+let router = new Router();
 
-ReactDOM.render(<App/>, document.getElementById('app'));
+ReactDOM.render(<InterfaceComponent router={router} />, document.getElementById('app'));
+
+Backbone.history.start({ pushState: true });
