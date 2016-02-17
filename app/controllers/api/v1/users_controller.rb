@@ -2,6 +2,8 @@ class Api::V1::UsersController < Api::V1::ApiController
 
   before_action 'authenticate_user!', only: [:me]
 
+  load_and_authorize_resource find_by: :uid
+
   def me
     @user = current_user
 
