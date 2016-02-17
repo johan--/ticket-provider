@@ -11,6 +11,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       before { get :me, format: :json, access_token: access_token.token }
 
       it { expect(response).to have_http_status(:ok) }
+      it { expect(response).to match_response_schema('user') }
     end
   end
 
