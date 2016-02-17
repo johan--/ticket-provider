@@ -34,6 +34,15 @@ class Api::V1::UsersController < Api::V1::ApiController
     end
   end
 
+  def update
+    @user = current_user
+    if @user.update_attributes(user_params)
+      render json: @user, status: :ok
+    else
+      render json: { errors: [@user.errors.full_messages.to_sentence] }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def user_params
