@@ -33,6 +33,20 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     end
   end
 
+  describe 'PUT #update' do
+    context 'when user update profile' do
+      let(:application) { Fabricate(:origin_application) }
+      let(:user) { Fabricate(:user) }
+      let(:access_token) { Fabricate(:access_token, resource_owner_id: user.id, application: application) }
+
+      before { put :update,id: user.id, user: { name: 'aun' }, format: :json, access_token: access_token.token }
+
+      it { expect(response).to have_http_status(:ok) }
+      it { expect(response).to match_response_schema('user') }
+      it { expect(JSON.parse(response.body)['user']['name']).to eq 'aun' }
+      end
+  end
+
   describe 'DELETE #destroy' do
     let(:application) { Fabricate(:origin_application) }
     let(:user) { Fabricate(:user) }
