@@ -10,7 +10,6 @@ var Router = Backbone.Router.extend({
   },
 
   events: function() {
-    console.log('events');
     this.current = 'events';
   }
 });
