@@ -32,6 +32,16 @@ class Api::V1::UsersController < Api::V1::ApiController
     end
   end
 
+  def destroy
+    @user = current_user
+
+    if @user.destroy
+      head :no_content
+    else
+      render json: { errors: [@user.errors.full_messages.to_sentence] }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def user_params
