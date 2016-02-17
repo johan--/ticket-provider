@@ -1,0 +1,18 @@
+a {
+  color: $link-color;
+
+  &:hover {
+    background-color: $link-hover-color;
+    border-radius: $border-radius;
+  }
+
+  &:active {
+    background-color: $link-active-color;
+    border-radius: $border-radius;
+  }
+}
+
+// from: http://foundation.zurb.com/forum/posts/19393-avoiding-the-unexpected-outlining-in-chrome
+:focus {
+  outline: none;
+}

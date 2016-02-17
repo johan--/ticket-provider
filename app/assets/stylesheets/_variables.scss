@@ -1,0 +1,39 @@
+// Fonts
+$font-family-sans-serif: 'THSarabunNewRegular', Helvetica, sans-serif;
+$font-family-sans-serif-alt: 'THSarabunNewBold', Helvetica, sans-serif;
+
+$headings-font-family: $font-family-sans-serif-alt;
+
+// Colors
+$brand-sunflower: #ffca0a;
+$brand-golden: #f4bf00;
+$brand-light-grey: #eff3f1;
+$brand-warm-grey: #9b9b9b;
+$brand-pale-peach: #ffeeb1;
+
+$body-color: $brand-warm-grey;
+
+$brand-primary: $brand-sunflower;
+
+// Base
+$border-radius: 0.3125rem;
+$border-radius-lg: $border-radius;
+$border-radius-sm: $border-radius;
+
+$box-shadow: 0 2px 0.25rem rgba(0, 0, 0, 0.5);
+
+// Form inputs
+$input-height: 1.875rem;
+$input-color: $brand-warm-grey;
+$input-color-placeholder: $brand-warm-grey;
+$input-box-shadow: $box-shadow;
+
+// Buttons
+$btn-font-height: 1em;
+$btn-primary-border: transparent;
+$btn-box-shadow: $box-shadow;
+
+// Links
+$link-color: $brand-warm-grey;
+$link-hover-color: $brand-golden;
+$link-active-color: $brand-golden;
