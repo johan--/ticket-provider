@@ -56,9 +56,9 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _Navbar = __webpack_require__(403);
+	var _navbar = __webpack_require__(404);
 
-	var _Navbar2 = _interopRequireDefault(_Navbar);
+	var _navbar2 = _interopRequireDefault(_navbar);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -83,7 +83,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_Navbar2.default, null),
+	        _react2.default.createElement(_navbar2.default, null),
 	        _react2.default.createElement(
 	          'form',
 	          null,
@@ -19958,7 +19958,8 @@
 /* 400 */,
 /* 401 */,
 /* 402 */,
-/* 403 */
+/* 403 */,
+/* 404 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
