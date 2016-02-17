@@ -39,10 +39,10 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     let(:access_token) { Fabricate(:access_token, resource_owner_id: user.id, application: application) }
 
     context 'when user delete profile' do
-      before { delete :destroy, id: user.id, format: :json, access_token: access_token.token }
+      before { delete :destroy, id: user.uid, format: :json, access_token: access_token.token }
 
       it { expect(response).to have_http_status(:no_content) }
-      it { expect { User.find(user.id) }.to raise_error(ActiveRecord::RecordNotFound) }
+      it { expect { User.find(user.uid) }.to raise_error(ActiveRecord::RecordNotFound) }
     end
   end
 end
