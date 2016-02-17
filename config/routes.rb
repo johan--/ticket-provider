@@ -18,5 +18,10 @@ Rails.application.routes.draw do
     resources :tickets, only: [:index, :create, :update, :destroy]
   end
 
+  scope 'app' do
+    get '/', to: 'backend#index', as: :app
+    get '/*path', to: 'backend#index'
+  end
+
   root 'backend#index'
 end
