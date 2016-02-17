@@ -1,0 +1,24 @@
+.btn {
+  font-size: 1.25em;
+  height: $grid-gutter-width;
+  box-shadow: $btn-box-shadow;
+  padding: 0;
+
+  &:focus {
+    outline: 0 !important;
+  }
+
+  &[type='submit'] {
+    text-transform: capitalize;
+  }
+
+  @include media-breakpoint-up(md) {
+    height: 1.75rem;
+    line-height: 1;
+  }
+}
+
+.btn-primary {
+  width: 100%;
+  text-align: center;
+}

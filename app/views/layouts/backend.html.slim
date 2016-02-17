@@ -5,6 +5,7 @@ doctype html
 head
   title = t('application.name')
   meta name="viewport" content="width=device-width, initial-scale=1"
+  == render partial: 'application/font'
   == stylesheet_link_tag 'backend/application', media: 'all'
   == csrf_meta_tags
 
