@@ -1,11 +1,22 @@
 class Api::V1::EventsController < Api::V1::ApiController
   before_action :authenticate_organizer!, except: :index
+  before_action :authenticate!, only: :index
   before_action :page_params, only: :index
 
-  load_and_authorize_resource find_by: :uid
+  load_resource find_by: :uid, except: :index
+  authorize_resource
 
   def index
-    @events = @events.page(@page).per(@per_page)
+    @events = Event
+                  .includes(:account)
+                  .accessible_by(@current_ability)
+                  .page(@page)
+                  .per(@per_page)
+
+    case current_user
+      when User
+        @events = @events.order('random()')
+    end
 
     render json: @events, status: :ok
   end
