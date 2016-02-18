@@ -11,10 +11,14 @@ RSpec.describe Api::V1::TicketTypesController, type: :controller do
     before { sign_in :organizer, organizer }
 
     context 'when organizer retrieve particular ticket type' do
-      before { get :show, id: ticket_type.uid }
+      before do
+        Fabricate.times(5, :ticket, ticket_type: ticket_type)
+        get :show, id: ticket_type.uid
+      end
 
       it { expect(response).to have_http_status(:ok) }
       it { expect(response).to match_response_schema('ticket_type') }
+      it { expect(JSON.parse(response.body)['ticket_type']['tickets'].size).to eq ticket_type.tickets.count }
     end
   end
 

@@ -4,7 +4,10 @@ class TicketTypeSerializer < ActiveModel::Serializer
              :name,
              :description,
              :current_price,
-             :seat_type
+             :seat_type,
+             :tickets
+
+  has_many :tickets
 
   def id
     object.uid
