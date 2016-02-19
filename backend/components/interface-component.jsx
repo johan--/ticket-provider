@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from './navbar.jsx'
+import EventContainer from './events/container.jsx'
 
 class InterfaceComponent extends React.Component {
 
@@ -26,7 +26,7 @@ class InterfaceComponent extends React.Component {
      */
 
     if (this.props.router.current === 'events') {
-      return (<Navbar />);
+      return (<EventContainer />);
     }
     return (<div />);
   }
