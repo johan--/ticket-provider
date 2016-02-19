@@ -1,17 +1,19 @@
 // Fonts
-$font-family-sans-serif: 'THSarabunNewRegular', Helvetica, sans-serif;
-$font-family-sans-serif-alt: 'THSarabunNewBold', Helvetica, sans-serif;
-
-$headings-font-family: $font-family-sans-serif-alt;
+$font-family-sans-serif: 'THSarabunNewBold', Helvetica, sans-serif;
 
 // Colors
 $brand-sunflower: #ffca0a;
 $brand-golden: #f4bf00;
 $brand-light-grey: #eff3f1;
-$brand-warm-grey: #9b9b9b;
 $brand-pale-peach: #ffeeb1;
 
-$body-color: $brand-warm-grey;
+$brand-warm-grey: (
+  primary: #9b9b9b,
+  light: #979797
+);
+
+
+$body-color: map_get($brand-warm-grey, 'primary');
 
 $brand-primary: $brand-sunflower;
 
@@ -24,8 +26,8 @@ $box-shadow: 0 2px 0.25rem rgba(0, 0, 0, 0.5);
 
 // Form inputs
 $input-height: 1.875rem;
-$input-color: $brand-warm-grey;
-$input-color-placeholder: $brand-warm-grey;
+$input-color: map_get($brand-warm-grey, 'primary');
+$input-color-placeholder: map_get($brand-warm-grey, 'primary');
 $input-box-shadow: $box-shadow;
 
 // Buttons
@@ -34,6 +36,6 @@ $btn-primary-border: transparent;
 $btn-box-shadow: $box-shadow;
 
 // Links
-$link-color: $brand-warm-grey;
+$link-color: map_get($brand-warm-grey, 'primary');
 $link-hover-color: $brand-golden;
 $link-active-color: $brand-golden;
