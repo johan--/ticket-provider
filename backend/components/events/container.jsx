@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from '../navbar.jsx';
-import ListItem from './list-item.jsx';
+import List from './list.jsx';
 
 class Container extends React.Component {
 
@@ -9,9 +9,7 @@ class Container extends React.Component {
       <div>
         <Navbar />
         <div className="events-container">
-          <ListItem />
-          <ListItem />
-          <ListItem />
+          <List />
         </div>
       </div>
     );
