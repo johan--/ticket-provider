@@ -11,9 +11,4 @@ class BackendController < ApplicationController
     I18n.locale = params[:locale] || I18n.default_locale
     Rails.application.config.i18n.default_locale = I18n.locale
   end
-
-  def default_url_options(options = {})
-    { locale: I18n.locale }.merge options
-  end
-
 end
