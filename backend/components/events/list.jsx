@@ -6,24 +6,11 @@ class List extends React.Component {
   render() {
     return (
       <div className="event-list-container">
-        <div className="col-md-4">
-          <ListItem />
-        </div>
-        <div className="col-md-4">
-          <ListItem />
-        </div>
-        <div className="col-md-4">
-          <ListItem />
-        </div>
-        <div className="col-md-4">
-          <ListItem />
-        </div>
-        <div className="col-md-4">
-          <ListItem />
-        </div>
-        <div className="col-md-4">
-          <ListItem />
-        </div>
+        {this.props.store.map(event =>
+          <div key={event.id} className="col-md-4">
+            <ListItem event={event} />
+          </div>
+        )}
       </div>
     );
   }

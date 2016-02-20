@@ -6,12 +6,12 @@ class ListItem extends React.Component {
     return (
       <div className="event-item">
         <div className="event-image">
-          <img src="http://www.thaiticketmajor.com/concert/images/single-festival-2015/seating.gif" />
-          <p>Single Festival 2016</p>
+          <img src={this.props.event.get('cover_photo_url')} />
+          <p>{this.props.event.get('name')}</p>
         </div>
         <div className="event-info">
           <div className="event-info-item event-date">
-            23 MAY 2016
+            {this.props.event.get('date')}
           </div>
           <div className="event-info-item event-tickets">
             53%
