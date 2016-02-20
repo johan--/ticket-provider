@@ -14,7 +14,7 @@ body
     == yield
 
   javascript:
-    //Use when initialize application
+    // Use to set javascipt locale when initialize react app
     window.locale = "#{I18n.locale}";
   == javascript_include_tag 'backend/application', async: Rails.env.production?
 | </html>
