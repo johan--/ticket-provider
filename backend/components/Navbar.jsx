@@ -1,7 +1,10 @@
 import React from 'react';
+import ReactI18n from 'react-i18n';
+import ReactMixin from 'react-mixin';
 
 class Navbar extends React.Component {
   render() {
+    let t = this.getIntlMessage;
     return (
       <nav className="app-navbar navbar navbar-light bg-faded">
         <button className="navbar-toggler hidden-md-up"
@@ -16,10 +19,10 @@ class Navbar extends React.Component {
           </a>
           <ul className="nav navbar-nav">
             <li className="nav-item">
-              <a className="nav-link" href="#">Event</a>
+              <a className="nav-link" href="#">{t('backend.navbar.event')}</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Log Out</a>
+              <a className="nav-link" href="#">{t('backend.authentication.logout')}</a>
             </li>
           </ul>
         </div>
@@ -27,5 +30,7 @@ class Navbar extends React.Component {
     );
   }
 }
+
+ReactMixin(Navbar.prototype, ReactI18n);
 
 export default Navbar;
