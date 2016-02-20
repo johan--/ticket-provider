@@ -13,5 +13,10 @@ body
   main id="app"
     == yield
 
+  javascript:
+    //Use when initialize application
+    window.locale = "#{I18n.locale}";
   == javascript_include_tag 'backend/application', async: Rails.env.production?
 | </html>
+
+
