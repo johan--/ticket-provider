@@ -4,6 +4,7 @@ class EventSerializer < ActiveModel::Serializer
              :name,
              :description,
              :cover_photo_url,
+             :date,
              :created_at,
              :updated_at
 
@@ -13,5 +14,9 @@ class EventSerializer < ActiveModel::Serializer
 
   def account_id
     object.account.uid
+  end
+
+  def date
+    object.date.strftime(Date::DATE_FORMATS[:rfc822])
   end
 end
