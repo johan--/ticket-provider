@@ -1,0 +1,5 @@
+th:
+  application:
+    name: แจกบัตรค่ะ
+  authorization:
+    unauthorized: อย่าลืมเข้าสู่ระบบนะค่ะ
