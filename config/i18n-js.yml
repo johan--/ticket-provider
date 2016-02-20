@@ -1,0 +1,6 @@
+translations:
+- file: 'app/assets/javascripts/backend/en.js'
+  only: 'en.*'
+  pretty_print: true
+- file: 'app/assets/javascripts/backend/th.js'
+  only: 'th.*'
