@@ -10,7 +10,7 @@ Fabricate(:account_owner, account: account)
 Fabricate(:team_member, account: account)
 
 # Event
-events = Fabricate.times(4, :event) do
+events = Fabricate.times(4, :event_with_cover_photo) do
   account accounts.sample
 end
 
