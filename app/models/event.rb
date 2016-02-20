@@ -12,6 +12,8 @@ class Event < ActiveRecord::Base
 
   before_create :set_uid
 
+  default_scope { order('date DESC') }
+
   def state_machine
     @state_machine ||= EventStateMachine.new(self, transition_class: EventTransition)
   end
