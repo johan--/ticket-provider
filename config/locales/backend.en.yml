@@ -3,3 +3,9 @@ en:
     ticket:
       cannot_destroy: purchased ticket can not be destroy
       cannot_transition_to: can't transition to %{state}
+    navbar:
+      event: Event
+    authentication:
+      login: Login
+      logout: Logout
+      sign_up: Sign up
