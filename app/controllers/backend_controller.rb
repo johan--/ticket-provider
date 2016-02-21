@@ -9,6 +9,5 @@ class BackendController < ApplicationController
 
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
-    Rails.application.config.i18n.default_locale = I18n.locale
   end
 end
