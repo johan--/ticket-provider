@@ -9,3 +9,8 @@ en:
       login: Login
       logout: Logout
       sign_up: Sign up
+    events:
+      available: available
+      create_new_event: Create New Event
+      header: Event
+      search: Search events

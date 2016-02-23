@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactI18n from 'react-i18n';
+import ReactMixin from 'react-mixin';
 import Action from './action.jsx';
 import Search from './search.jsx';
 import List from './list.jsx';
@@ -22,9 +24,10 @@ class Container extends React.Component {
   }
 
   render() {
+    let t = this.getIntlMessage;
     return (
       <div className="event-panel">
-        <header>>> event</header>
+        <header>>> {t('backend.events.header')}</header>
         <div className="events-actions">
           <Search />
           <Action />
@@ -34,5 +37,7 @@ class Container extends React.Component {
     );
   }
 }
+
+ReactMixin(Container.prototype, ReactI18n);
 
 export default Container;

@@ -1,4 +1,5 @@
 import Backbone from 'backbone';
+import Dispatcher from '../dispatcher.jsx';
 
 var baseStore = {
   /**
