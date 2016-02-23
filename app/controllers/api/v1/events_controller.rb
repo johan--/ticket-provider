@@ -8,10 +8,10 @@ class Api::V1::EventsController < Api::V1::ApiController
 
   def index
     @events = Event
-                  .includes(:account)
-                  .accessible_by(@current_ability)
-                  .page(@page)
-                  .per(@per_page)
+                .includes(:account)
+                .accessible_by(@current_ability)
+                .page(@page)
+                .per(@per_page)
 
     case current_user
       when User
@@ -59,6 +59,7 @@ class Api::V1::EventsController < Api::V1::ApiController
       .permit(:name,
               :description,
               :logo,
-              :cover_photo)
+              :cover_photo,
+              :date)
   end
 end
