@@ -59,6 +59,7 @@ class Api::V1::EventsController < Api::V1::ApiController
       .permit(:name,
               :description,
               :logo,
-              :cover_photo)
+              :cover_photo,
+              :date)
   end
 end
