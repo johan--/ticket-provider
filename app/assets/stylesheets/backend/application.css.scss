@@ -1,7 +1,10 @@
+
 @import '../variables';
 @import './variables';
 
 @import 'bootstrap';
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 // Shared
 @import '../shared/mixin/*';
@@ -12,4 +15,7 @@
 
 // Module
 @import './module/app_navbar';
-@import './module/list_events';
+@import './module/event_list';
+@import './module/event_action';
+@import './module/event_search';
+@import './module/event_panel';

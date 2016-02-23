@@ -4,7 +4,7 @@ class ListItem extends React.Component {
 
   render() {
     return (
-      <div className="event-item">
+      <div className="event-item col-md-4">
         <div className="event-image">
           <img src={this.props.event.get('cover_photo_url')} />
           <p>{this.props.event.get('name')}</p>

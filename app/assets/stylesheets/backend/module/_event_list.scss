@@ -1,15 +1,8 @@
-.events-container {
-  margin: $grid-gutter-width/2 auto;
-}
-
-.events-container .event-list-container {
+.events-list-container {
   width: $grid-gutter-width*11;
-  margin: 0 auto;
-
-  .col-md-4 {
-    width: initial;
-    padding: 0;
-  }
+  position: relative;
+  margin: $grid-gutter-width/2 auto;
+  padding: 0;
 
   @include media-breakpoint-up(md) {
     width: $grid-gutter-width*22;
@@ -20,13 +13,14 @@
   }
 }
 
-.events-container .event-item {
+.events-list-container .event-item {
   height: 15.875rem;
   width: $grid-gutter-width*10;
   box-shadow: $box-shadow;
   border-radius: $border-radius;
   margin: $grid-gutter-width/2;
   float: left;
+  padding: 0;
 
   .event-image {
     position: relative;

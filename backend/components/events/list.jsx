@@ -5,11 +5,9 @@ class List extends React.Component {
 
   render() {
     return (
-      <div className="event-list-container">
+      <div className="container-fluid events-list-container">
         {this.props.store.map(event =>
-          <div key={event.id} className="col-md-4">
-            <ListItem event={event} />
-          </div>
+          <ListItem key={event.id} event={event} />
         )}
       </div>
     );

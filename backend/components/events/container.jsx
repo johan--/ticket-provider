@@ -1,5 +1,6 @@
 import React from 'react';
-import Navbar from '../navbar.jsx';
+import Action from './action.jsx';
+import Search from './search.jsx';
 import List from './list.jsx';
 import Store from '../../stores/event-store.jsx';
 
@@ -22,11 +23,13 @@ class Container extends React.Component {
 
   render() {
     return (
-      <div>
-        <Navbar />
-        <div className="events-container">
-          <List store={Store}/>
+      <div className="event-panel">
+        <header>>> event</header>
+        <div className="events-actions">
+          <Search />
+          <Action />
         </div>
+        <List store={Store} />
       </div>
     );
   }
