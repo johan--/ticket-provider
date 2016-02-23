@@ -1,0 +1,16 @@
+doctype html
+| <html class="layout-auth"
+== yield :html_classes
+| ">
+head
+  title = t('application.name')
+  meta name="viewport" content="width=device-width, initial-scale=1"
+  == render partial: 'application/font'
+  == stylesheet_link_tag 'backend/application', media: 'all'
+  == csrf_meta_tags
+
+body
+  == yield
+| </html>
+
+
