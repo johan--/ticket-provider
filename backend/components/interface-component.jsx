@@ -34,6 +34,14 @@ class InterfaceComponent extends React.Component {
         </div>
       );
     }
+
+    if (this.props.router.current === 'events/new') {
+      return (
+        <div>
+          <Navbar />
+        </div>
+      );
+    }
     return (<div />);
   }
 }

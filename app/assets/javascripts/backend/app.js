@@ -32992,6 +32992,7 @@
 
 	  routes: {
 	    'app/events': 'events',
+	    'app/events/new': 'newEvent',
 
 	    // fallback path
 	    'app/*path': 'events'
@@ -32999,6 +33000,10 @@
 
 	  events: function events() {
 	    this.current = 'events';
+	  },
+
+	  newEvent: function newEvent() {
+	    this.current = 'events/new';
 	  }
 	});
 
@@ -33079,6 +33084,14 @@
 	          _react2.default.createElement(_container2.default, null)
 	        );
 	      }
+
+	      if (this.props.router.current === 'events/new') {
+	        return _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(_navbar2.default, null)
+	        );
+	      }
 	      return _react2.default.createElement('div', null);
 	    }
 	  }]);
@@ -33112,6 +33125,14 @@
 
 	var _reactMixin2 = _interopRequireDefault(_reactMixin);
 
+	var _jquery = __webpack_require__(161);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	var _backbone = __webpack_require__(159);
+
+	var _backbone2 = _interopRequireDefault(_backbone);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -33130,6 +33151,12 @@
 	  }
 
 	  _createClass(Navbar, [{
+	    key: 'handleClick',
+	    value: function handleClick(e) {
+	      e.preventDefault();
+	      _backbone2.default.history.navigate((0, _jquery2.default)(e.currentTarget).attr('href'), true);
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var t = this.getIntlMessage;
@@ -33160,7 +33187,7 @@
 	              { className: 'nav-item' },
 	              _react2.default.createElement(
 	                'a',
-	                { className: 'nav-link', href: '#' },
+	                { className: 'nav-link', onClick: this.handleClick, href: '/app/events' },
 	                t('backend.navbar.event')
 	              )
 	            ),
@@ -33169,7 +33196,7 @@
 	              { className: 'nav-item' },
 	              _react2.default.createElement(
 	                'a',
-	                { className: 'nav-link', href: '#' },
+	                { className: 'nav-link', onClick: this.handleClick, href: '/organizers/sign_out' },
 	                t('backend.authentication.logout')
 	              )
 	            )
@@ -34637,6 +34664,14 @@
 
 	var _reactMixin2 = _interopRequireDefault(_reactMixin);
 
+	var _jquery = __webpack_require__(161);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	var _backbone = __webpack_require__(159);
+
+	var _backbone2 = _interopRequireDefault(_backbone);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -34655,6 +34690,12 @@
 	  }
 
 	  _createClass(Action, [{
+	    key: 'handleClick',
+	    value: function handleClick(e) {
+	      e.preventDefault();
+	      _backbone2.default.history.navigate((0, _jquery2.default)(e.currentTarget).attr('href'), true);
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var t = this.getIntlMessage;
@@ -34663,7 +34704,7 @@
 	        { className: 'events-action-container' },
 	        _react2.default.createElement(
 	          'a',
-	          { className: 'btn btn-primary create-button' },
+	          { className: 'btn btn-primary create-button', onClick: this.handleClick, href: '/app/events/new' },
 	          t('backend.events.create_new_event')
 	        )
 	      );
