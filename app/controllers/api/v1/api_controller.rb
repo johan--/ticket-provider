@@ -12,10 +12,10 @@ class Api::V1::ApiController < ActionController::Base
   end
 
   def authenticate!
-    if current_organizer
-      authenticate_organizer!
-    else
+    if doorkeeper_token
       authenticate_user!
+    else
+      authenticate_organizer!
     end
   end
 
