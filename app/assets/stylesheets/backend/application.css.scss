@@ -14,6 +14,7 @@
 
 // Layout
 @import './layout/default';
+@import 'layout/layout_auth';
 
 // Module
 @import './module/app_navbar';
@@ -26,3 +27,4 @@
 
 // Theme
 @import './theme/react_datetime';
+@import 'module/auth';
