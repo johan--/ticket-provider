@@ -5,10 +5,13 @@ en:
       cannot_transition_to: can't transition to %{state}
     navbar:
       event: Event
+      brand: SQUARE
     authentication:
       login: Login
       logout: Logout
       sign_up: Sign up
+      email: E-mail address
+      password: Password
     events:
       available: available
       create_event: Create Event
@@ -24,3 +27,4 @@ en:
         dropzone_title: Try dropping an image here, or click to select image to upload.
       name: name
       search: Search events
+
