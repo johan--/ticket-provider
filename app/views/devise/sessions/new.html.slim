@@ -15,6 +15,7 @@ div.devise-container
           i class=['fa', 'fa-lock']
           = f.password_field :password, autocomplete: "off", placeholder: t('backend.authentication.password'), class: 'form-control'
         div.actions
-          = f.submit t('backend.authentication.login'), class: 'btn btn-primary'
+          button type="submit" class="btn btn-primary"
+            = t('backend.authentication.login')
       div.link-components
         = render "devise/shared/links"

@@ -17,8 +17,8 @@ div.devise-container
           = password_field_tag :password, nil, autocomplete: "off", placeholder: t('backend.authentication.password'), class: 'form-control'
         div.field
           = password_field_tag :password_confirmation, nil, autocomplete: "off", placeholder: t('backend.authentication.password_confirm'), class: 'form-control'
-
         div.actions
-          = submit_tag t('backend.authentication.register'), class: 'btn btn-primary'
+          button type="submit" class="btn btn-primary"
+            = t('backend.authentication.register')
       div.link-components
         = render "devise/shared/links"
