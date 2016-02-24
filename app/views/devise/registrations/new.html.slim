@@ -1,0 +1,24 @@
+div.devise-container
+  div.logo-container
+    div.logo
+      = image_tag('square.svg', height: '100%', width: '100%')
+    h2 = t('backend.navbar.brand')
+  div class="devise-form-container is-register"
+    header
+      h2 = t('backend.authentication.organizer_regist_header')
+    div.form-content
+      = form_tag('/organizers/sign_up', method: :post)
+        = devise_error_messages!
+        div.field
+          = email_field_tag :email, nil, autofocus: true, placeholder: t('backend.authentication.email'), class: 'form-control'
+        div.field
+          = text_field_tag :organizer_name, nil,  placeholder: t('backend.authentication.organizer_name'), class: 'form-control'
+        div.field
+          = password_field_tag :password, nil, autocomplete: "off", placeholder: t('backend.authentication.password'), class: 'form-control'
+        div.field
+          = password_field_tag :password_confirmation, nil, autocomplete: "off", placeholder: t('backend.authentication.password_confirm'), class: 'form-control'
+
+        div.actions
+          = submit_tag t('backend.authentication.register'), class: 'btn btn-primary'
+      div.link-components
+        = render "devise/shared/links"
