@@ -10,8 +10,13 @@ en:
       login: Login
       logout: Logout
       sign_up: Sign up
+      register: Register
       email: E-mail address
       password: Password
+      password_confirm: Confirm Password
+      organizer_name: Organizer Name
+      organizer_regist_header: Organizer Register
+      redirect_to_login: Already have an account?
     events:
       available: available
       create_event: Create Event
@@ -27,4 +32,5 @@ en:
         dropzone_title: Try dropping an image here, or click to select image to upload.
       name: name
       search: Search events
-
+      header: Event
+      search: Search events
