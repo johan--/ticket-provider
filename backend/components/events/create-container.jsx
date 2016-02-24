@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactI18n from 'react-i18n';
 import ReactMixin from 'react-mixin';
-import Action from './action.jsx';
-import Search from './search.jsx';
-import List from './list.jsx';
+import CreateForm from './create-form.jsx';
 import Store from '../../stores/event-store.jsx';
 
-class Container extends React.Component {
+class CreateContainer extends React.Component {
 
   constructor() {
     super();
@@ -27,17 +25,13 @@ class Container extends React.Component {
     let t = this.getIntlMessage;
     return (
       <div className="event-panel">
-        <header>>> {t('backend.events.headers.event')}</header>
-        <div className="events-actions">
-          <Search />
-          <Action />
-        </div>
-        <List store={this.state} />
+        <header>>> {t('backend.events.headers.new_event')}</header>
+        <CreateForm store={this.state}/>
       </div>
     );
   }
 }
 
-ReactMixin(Container.prototype, ReactI18n);
+ReactMixin(CreateContainer.prototype, ReactI18n);
 
-export default Container;
+export default CreateContainer;

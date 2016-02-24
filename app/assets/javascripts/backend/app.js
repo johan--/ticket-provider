@@ -33033,6 +33033,10 @@
 
 	var _container2 = _interopRequireDefault(_container);
 
+	var _createContainer = __webpack_require__(185);
+
+	var _createContainer2 = _interopRequireDefault(_createContainer);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -33089,7 +33093,8 @@
 	        return _react2.default.createElement(
 	          'div',
 	          null,
-	          _react2.default.createElement(_navbar2.default, null)
+	          _react2.default.createElement(_navbar2.default, null),
+	          _react2.default.createElement(_createContainer2.default, null)
 	        );
 	      }
 	      return _react2.default.createElement('div', null);
@@ -34620,7 +34625,7 @@
 	          'header',
 	          null,
 	          '>> ',
-	          t('backend.events.header')
+	          t('backend.events.headers.event')
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -34628,7 +34633,7 @@
 	          _react2.default.createElement(_search2.default, null),
 	          _react2.default.createElement(_action2.default, null)
 	        ),
-	        _react2.default.createElement(_list2.default, { store: _eventStore2.default })
+	        _react2.default.createElement(_list2.default, { store: this.state })
 	      );
 	    }
 	  }]);
@@ -34704,7 +34709,7 @@
 	        { className: 'events-action-container' },
 	        _react2.default.createElement(
 	          'a',
-	          { className: 'btn btn-primary create-button', onClick: this.handleClick, href: '/app/events/new' },
+	          { className: 'btn btn-primary', onClick: this.handleClick, href: '/app/events/new' },
 	          t('backend.events.create_new_event')
 	        )
 	      );
@@ -34950,6 +34955,14 @@
 
 	var _store2 = _interopRequireDefault(_store);
 
+	var _eventConstants = __webpack_require__(184);
+
+	var _eventConstants2 = _interopRequireDefault(_eventConstants);
+
+	var _jquery = __webpack_require__(161);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -34958,7 +34971,11 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var Event = _backbone2.default.Model;
+	var Event = _backbone2.default.Model.extend({
+	  url: function url() {
+	    return '/api/v1/events';
+	  }
+	});
 
 	var EventCollection = function (_Store$Collection) {
 	  _inherits(EventCollection, _Store$Collection);
@@ -34990,7 +35007,26 @@
 	    }
 	  }, {
 	    key: 'handleDispatch',
-	    value: function handleDispatch(payload) {}
+	    value: function handleDispatch(payload) {
+	      var _this2 = this;
+
+	      switch (payload.actionType) {
+	        case _eventConstants2.default.CREATE_EVENT:
+	          var jqXHR = this.fetch({
+	            data: {
+	              "authenticity_token": '' + (0, _jquery2.default)('meta[name="csrf-token"]').attr('content'),
+	              "event": payload.event
+	            },
+	            type: 'POST'
+	          });
+
+	          jqXHR.done(function () {
+	            _this2.getAll();
+	            _backbone2.default.history.navigate('/app/events', true);
+	          });
+	          break;
+	      }
+	    }
 	  }]);
 
 	  return EventCollection;
@@ -35359,6 +35395,280 @@
 
 	module.exports = invariant;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ },
+/* 184 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	  CREATE_EVENT: 'CREATE_EVENT'
+	};
+
+/***/ },
+/* 185 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactI18n = __webpack_require__(165);
+
+	var _reactI18n2 = _interopRequireDefault(_reactI18n);
+
+	var _reactMixin = __webpack_require__(170);
+
+	var _reactMixin2 = _interopRequireDefault(_reactMixin);
+
+	var _createForm = __webpack_require__(186);
+
+	var _createForm2 = _interopRequireDefault(_createForm);
+
+	var _eventStore = __webpack_require__(178);
+
+	var _eventStore2 = _interopRequireDefault(_eventStore);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var CreateContainer = function (_React$Component) {
+	  _inherits(CreateContainer, _React$Component);
+
+	  function CreateContainer() {
+	    _classCallCheck(this, CreateContainer);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(CreateContainer).call(this));
+
+	    _this.state = _eventStore2.default.getAll();
+	    return _this;
+	  }
+
+	  _createClass(CreateContainer, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.state.on('add remove reset change', function () {
+	        this.forceUpdate();
+	      }, this);
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      this.state.off(null, null, this);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var t = this.getIntlMessage;
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'event-panel' },
+	        _react2.default.createElement(
+	          'header',
+	          null,
+	          '>> ',
+	          t('backend.events.headers.new_event')
+	        ),
+	        _react2.default.createElement(_createForm2.default, { store: this.state })
+	      );
+	    }
+	  }]);
+
+	  return CreateContainer;
+	}(_react2.default.Component);
+
+	(0, _reactMixin2.default)(CreateContainer.prototype, _reactI18n2.default);
+
+	exports.default = CreateContainer;
+
+/***/ },
+/* 186 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactI18n = __webpack_require__(165);
+
+	var _reactI18n2 = _interopRequireDefault(_reactI18n);
+
+	var _reactMixin = __webpack_require__(170);
+
+	var _reactMixin2 = _interopRequireDefault(_reactMixin);
+
+	var _eventActions = __webpack_require__(187);
+
+	var _eventActions2 = _interopRequireDefault(_eventActions);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var CreateForm = function (_React$Component) {
+	  _inherits(CreateForm, _React$Component);
+
+	  function CreateForm() {
+	    _classCallCheck(this, CreateForm);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(CreateForm).call(this));
+
+	    _this.state = { name: '', description: '' };
+	    return _this;
+	  }
+
+	  _createClass(CreateForm, [{
+	    key: 'handleNameChange',
+	    value: function handleNameChange(e) {
+	      this.setState({ name: e.target.value, description: this.state.description });
+	    }
+	  }, {
+	    key: 'handleDescChange',
+	    value: function handleDescChange(e) {
+	      this.setState({ name: this.state.name, description: e.target.value });
+	    }
+	  }, {
+	    key: 'handleSubmit',
+	    value: function handleSubmit(e) {
+	      e.preventDefault();
+	      _eventActions2.default.add(this.state);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var t = this.getIntlMessage;
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'event-form-container' },
+	        _react2.default.createElement(
+	          'form',
+	          { className: 'form-horizontal', ref: 'eventForm' },
+	          _react2.default.createElement(
+	            'fieldset',
+	            null,
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'form-group' },
+	              _react2.default.createElement(
+	                'label',
+	                { htmlFor: 'name' },
+	                t('backend.events.name')
+	              ),
+	              _react2.default.createElement('input', {
+	                name: t('backend.events.name'),
+	                className: 'form-control',
+	                onChange: this.handleNameChange.bind(this) })
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'form-group' },
+	              _react2.default.createElement(
+	                'label',
+	                { htmlFor: 'description' },
+	                t('backend.events.description')
+	              ),
+	              _react2.default.createElement('textarea', {
+	                name: t('backend.events.description'),
+	                className: 'form-control',
+	                onChange: this.handleDescChange.bind(this) })
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            {
+	              type: 'submit',
+	              className: 'btn btn-primary',
+	              onClick: this.handleSubmit.bind(this) },
+	            t('backend.events.create_event')
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return CreateForm;
+	}(_react2.default.Component);
+
+	(0, _reactMixin2.default)(CreateForm.prototype, _reactI18n2.default);
+
+	exports.default = CreateForm;
+
+/***/ },
+/* 187 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _dispatch = __webpack_require__(188);
+
+	var _dispatch2 = _interopRequireDefault(_dispatch);
+
+	var _eventConstants = __webpack_require__(184);
+
+	var _eventConstants2 = _interopRequireDefault(_eventConstants);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = {
+	  add: function add(event) {
+	    (0, _dispatch2.default)(_eventConstants2.default.CREATE_EVENT, { event: event });
+	  }
+	};
+
+/***/ },
+/* 188 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports.default = function (actionType, payload) {
+	  payload = payload || {};
+	  payload.actionType = actionType;
+	  return _dispatcher2.default.dispatch(payload);
+	};
+
+	var _dispatcher = __webpack_require__(180);
+
+	var _dispatcher2 = _interopRequireDefault(_dispatcher);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }
 /******/ ]);

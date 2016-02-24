@@ -15,7 +15,7 @@ class Action extends React.Component {
     let t = this.getIntlMessage;
     return (
       <div className="events-action-container">
-        <a className="btn btn-primary create-button" onClick={this.handleClick} href='/app/events/new'>{t('backend.events.create_new_event')}</a>
+        <a className="btn btn-primary" onClick={this.handleClick} href='/app/events/new'>{t('backend.events.create_new_event')}</a>
       </div>
     );
   }

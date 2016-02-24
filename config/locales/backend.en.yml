@@ -11,6 +11,11 @@ en:
       sign_up: Sign up
     events:
       available: available
+      create_event: Create Event
       create_new_event: Create New Event
-      header: Event
+      description: description
+      headers:
+        event: Event
+        new_event: New Event
+      name: name
       search: Search events

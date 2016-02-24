@@ -1,3 +1,3 @@
 export default {
-  EVENT_ADD: 'EVENT_ADD'
+  CREATE_EVENT: 'CREATE_EVENT'
 };
