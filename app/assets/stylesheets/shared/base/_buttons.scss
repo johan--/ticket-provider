@@ -1,4 +1,5 @@
 .btn {
+  display: block;
   font-size: 1.25em;
   height: $grid-gutter-width;
   box-shadow: $btn-box-shadow;
@@ -21,4 +22,9 @@
 .btn-primary {
   width: 100%;
   text-align: center;
+
+  @include media-breakpoint-up(sm) {
+    width: 22.5rem;
+    margin: 0 auto;
+  }
 }

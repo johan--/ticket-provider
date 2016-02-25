@@ -3,10 +3,6 @@ form label {
   font-size: 1.25em;
   text-transform: uppercase;
   margin: 0;
-
-  @include media-breakpoint-up(md) {
-    font-size: 1.25em;
-  }
 }
 
 form input.form-control,
@@ -19,13 +15,6 @@ form textarea.form-control {
   @include input-placeholder() {
     color: $input-color-placeholder;
     text-transform: capitalize;
-  }
-
-  @include media-breakpoint-up(md) {
-    padding: .5rem $grid-gutter-width/3;
-    font-size: 1em;
-    height: 1.75rem;
-    line-height: 1.5;
   }
 }
 

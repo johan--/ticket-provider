@@ -1,11 +1,12 @@
 .event-form-container {
   margin: 3rem 2.5rem;
+  padding-bottom: $grid-gutter-width;
 
   .form-group {
     margin-bottom: 1.25rem;
   }
 
   button[type="submit"] {
-    margin-top: $grid-gutter-width;
+    margin: $grid-gutter-width auto 1.25rem;
   }
 }
