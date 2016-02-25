@@ -33,11 +33,6 @@
     input {
       width: 80%;
     }
-
-    button {
-      height: 1.75rem;
-      line-height: 1.75;
-    }
   }
 
   @include media-breakpoint-up(lg) {

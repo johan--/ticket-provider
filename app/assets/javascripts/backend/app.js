@@ -33029,9 +33029,9 @@
 
 	var _navbar2 = _interopRequireDefault(_navbar);
 
-	var _container = __webpack_require__(173);
+	var _listContainer = __webpack_require__(299);
 
-	var _container2 = _interopRequireDefault(_container);
+	var _listContainer2 = _interopRequireDefault(_listContainer);
 
 	var _createContainer = __webpack_require__(185);
 
@@ -33085,7 +33085,7 @@
 	          'div',
 	          null,
 	          _react2.default.createElement(_navbar2.default, null),
-	          _react2.default.createElement(_container2.default, null)
+	          _react2.default.createElement(_listContainer2.default, null)
 	        );
 	      }
 
@@ -33201,7 +33201,7 @@
 	              { className: 'nav-item' },
 	              _react2.default.createElement(
 	                'a',
-	                { className: 'nav-link', onClick: this.handleClick, href: '/organizers/sign_out' },
+	                { className: 'nav-link', href: '/organizers/sign_out' },
 	                t('backend.authentication.logout')
 	              )
 	            )
@@ -34543,109 +34543,7 @@
 
 
 /***/ },
-/* 173 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactI18n = __webpack_require__(165);
-
-	var _reactI18n2 = _interopRequireDefault(_reactI18n);
-
-	var _reactMixin = __webpack_require__(170);
-
-	var _reactMixin2 = _interopRequireDefault(_reactMixin);
-
-	var _action = __webpack_require__(174);
-
-	var _action2 = _interopRequireDefault(_action);
-
-	var _search = __webpack_require__(175);
-
-	var _search2 = _interopRequireDefault(_search);
-
-	var _list = __webpack_require__(176);
-
-	var _list2 = _interopRequireDefault(_list);
-
-	var _eventStore = __webpack_require__(178);
-
-	var _eventStore2 = _interopRequireDefault(_eventStore);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Container = function (_React$Component) {
-	  _inherits(Container, _React$Component);
-
-	  function Container() {
-	    _classCallCheck(this, Container);
-
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Container).call(this));
-
-	    _this.state = _eventStore2.default.getAll();
-	    return _this;
-	  }
-
-	  _createClass(Container, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      this.state.on('add remove reset change', function () {
-	        this.forceUpdate();
-	      }, this);
-	    }
-	  }, {
-	    key: 'componentWillUnmount',
-	    value: function componentWillUnmount() {
-	      this.state.off(null, null, this);
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var t = this.getIntlMessage;
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'event-panel' },
-	        _react2.default.createElement(
-	          'header',
-	          null,
-	          '>> ',
-	          t('backend.events.headers.event')
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'events-actions' },
-	          _react2.default.createElement(_search2.default, null),
-	          _react2.default.createElement(_action2.default, null)
-	        ),
-	        _react2.default.createElement(_list2.default, { store: this.state })
-	      );
-	    }
-	  }]);
-
-	  return Container;
-	}(_react2.default.Component);
-
-	(0, _reactMixin2.default)(Container.prototype, _reactI18n2.default);
-
-	exports.default = Container;
-
-/***/ },
+/* 173 */,
 /* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -49825,6 +49723,111 @@
 	var _dispatcher2 = _interopRequireDefault(_dispatcher);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ },
+/* 297 */,
+/* 298 */,
+/* 299 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactI18n = __webpack_require__(165);
+
+	var _reactI18n2 = _interopRequireDefault(_reactI18n);
+
+	var _reactMixin = __webpack_require__(170);
+
+	var _reactMixin2 = _interopRequireDefault(_reactMixin);
+
+	var _action = __webpack_require__(174);
+
+	var _action2 = _interopRequireDefault(_action);
+
+	var _search = __webpack_require__(175);
+
+	var _search2 = _interopRequireDefault(_search);
+
+	var _list = __webpack_require__(176);
+
+	var _list2 = _interopRequireDefault(_list);
+
+	var _eventStore = __webpack_require__(178);
+
+	var _eventStore2 = _interopRequireDefault(_eventStore);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Container = function (_React$Component) {
+	  _inherits(Container, _React$Component);
+
+	  function Container() {
+	    _classCallCheck(this, Container);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Container).call(this));
+
+	    _this.state = _eventStore2.default.getAll();
+	    return _this;
+	  }
+
+	  _createClass(Container, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.state.on('add remove reset change', function () {
+	        this.forceUpdate();
+	      }, this);
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      this.state.off(null, null, this);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var t = this.getIntlMessage;
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'event-panel' },
+	        _react2.default.createElement(
+	          'header',
+	          null,
+	          '>> ',
+	          t('backend.events.headers.event')
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'events-actions' },
+	          _react2.default.createElement(_search2.default, null),
+	          _react2.default.createElement(_action2.default, null)
+	        ),
+	        _react2.default.createElement(_list2.default, { store: this.state })
+	      );
+	    }
+	  }]);
+
+	  return Container;
+	}(_react2.default.Component);
+
+	(0, _reactMixin2.default)(Container.prototype, _reactI18n2.default);
+
+	exports.default = Container;
 
 /***/ }
 /******/ ]);

@@ -1,7 +1,7 @@
 .btn {
   display: block;
   font-size: 1.25em;
-  height: $grid-gutter-width;
+  height: 2rem;
   box-shadow: $btn-box-shadow;
   padding: 0;
 
@@ -11,11 +11,6 @@
 
   &[type='submit'] {
     text-transform: capitalize;
-  }
-
-  @include media-breakpoint-up(md) {
-    height: 1.75rem;
-    line-height: 1;
   }
 }
 
