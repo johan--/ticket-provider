@@ -1,0 +1,33 @@
+.image-upload {
+  display: table;
+  position: relative;
+
+  img {
+    position: absolute;
+    top: $grid-gutter-width;
+    left: 0;
+    height: 12.5rem;
+    width: 12.5rem;
+    border: none;
+    z-index: -1;
+    background-color: #fff;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+  }
+
+  img.blur {
+    opacity: .3;
+  }
+
+  .dropzone {
+    display: table-cell;
+    padding: $grid-gutter-width/2;
+    height: 12.25rem;
+    vertical-align: middle;
+  }
+
+  button {
+    width: 12.5rem;
+    margin-top: $grid-gutter-width/3;
+  }
+}

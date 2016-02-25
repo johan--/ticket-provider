@@ -18,5 +18,9 @@ en:
       headers:
         event: Event
         new_event: New Event
+      image: Image
+      image_upload:
+        delete: Delete
+        dropzone_title: Try dropping an image here, or click to select image to upload.
       name: name
       search: Search events

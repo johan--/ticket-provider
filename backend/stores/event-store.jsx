@@ -31,13 +31,22 @@ class EventCollection extends Store.Collection {
   handleDispatch(payload) {
     switch (payload.actionType) {
       case constant.CREATE_EVENT:
-        var jqXHR = this
+        let formData = new FormData();
+
+        // Add CSRF-TOKEN to form data.
+        formData.append('authenticity_token', `${$('meta[name="csrf-token"]').attr('content')}`);
+
+        // Iterate through event object and add it to form data.
+        $.each(payload.event, function(key) {
+          formData.append(`event[${key}]`, payload.event[key]);
+        });
+
+        let jqXHR = this
                       .fetch({
-                        data: {
-                          "authenticity_token": `${$('meta[name="csrf-token"]').attr('content')}`,
-                          "event": payload.event
-                        },
-                        type: 'POST'
+                        data: formData,
+                        type: 'POST',
+                        processData: false,
+                        contentType: false
                       });
 
         jqXHR.done(() => {

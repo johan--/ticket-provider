@@ -27,6 +27,7 @@
     "react": "^0.14.7",
     "react-datetime": "^2.0.3",
     "react-dom": "^0.14.7",
+    "react-dropzone": "^3.3.2",
     "react-i18n": "0.0.5",
     "react-mixin": "^2.0.2",
     "webpack": "^1.12.12",
