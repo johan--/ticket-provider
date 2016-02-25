@@ -13,6 +13,7 @@ en:
       available: available
       create_event: Create Event
       create_new_event: Create New Event
+      date: date
       description: description
       headers:
         event: Event

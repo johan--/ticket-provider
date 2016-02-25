@@ -1,21 +1,39 @@
 import React from 'react';
 import ReactI18n from 'react-i18n';
 import ReactMixin from 'react-mixin';
+import DatePicker from 'react-datetime';
+import moment from 'moment';
 import EventAction from '../../actions/event-actions.jsx';
 
 class CreateForm extends React.Component {
 
   constructor() {
     super();
-    this.state = { name: '', description: '' };
+    this.state = { name: '', description: '', date: moment() };
   }
 
   handleNameChange(e) {
-    this.setState({ name: e.target.value, description: this.state.description });
+    this.setState({
+      name: e.target.value,
+      description: this.state.description,
+      date: this.state.date
+    });
   }
 
   handleDescChange(e) {
-    this.setState({ name: this.state.name, description: e.target.value });
+    this.setState({
+      name: this.state.name,
+      description: e.target.value,
+      date: this.state.date
+    });
+  }
+
+  handleDateChange(date) {
+    this.setState({
+      name: this.state.name,
+      description: this.state.description,
+      date: date._d
+    });
   }
 
   handleSubmit(e) {
@@ -42,6 +60,10 @@ class CreateForm extends React.Component {
                 name={t('backend.events.description')}
                 className="form-control"
                 onChange={this.handleDescChange.bind(this)}/>
+            </div>
+            <div className="form-group">
+              <label htmlFor="date">{t('backend.events.date')}</label>
+              <DatePicker onChange={this.handleDateChange.bind(this)}/>
             </div>
           </fieldset>
           <button
