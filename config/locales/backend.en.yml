@@ -14,6 +14,7 @@ en:
       email: E-mail address
       password: Password
       password_confirm: Confirm Password
+      name: Name
       organizer_name: Organizer Name
       organizer_regist_header: Organizer Register
       redirect_to_login: Already have an account?
