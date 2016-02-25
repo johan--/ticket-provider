@@ -14,11 +14,13 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) do |u|
-      u.permit(:email,
-               :name,
-               :password,
-               :password_confirmation)
+    devise_parameter_sanitizer.for(:sign_up) do |organizer|
+      organizer
+        .permit(:email,
+          :name,
+          :password,
+          :password_confirmation)
+        .merge(account: Account.new(name: params[:organizer][:account_name]))
     end
   end
 end
