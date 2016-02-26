@@ -1,8 +1,9 @@
 .event-panel {
+  margin-top: $grid-gutter-width;
 
   header {
     display: none;
-    margin: $grid-gutter-width/2 $grid-gutter-width/2 $grid-gutter-width/3;
+    margin: 0 $grid-gutter-width/2 $grid-gutter-width/3;
     border-bottom: 1px solid map_get($brand-warm-grey, 'lighter');
     text-transform: uppercase;
     color: $brand-primary;
@@ -13,7 +14,7 @@
   @include media-breakpoint-up(md) {
     width: $grid-gutter-width*24;
     padding: 0 $grid-gutter-width;
-    margin: 0 auto;
+    margin: $grid-gutter-width auto 0;
     background-color: rgba(255, 255, 255, 0.5);
 
     header {
