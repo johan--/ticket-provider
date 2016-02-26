@@ -10,7 +10,12 @@ head
   == csrf_meta_tags
 
 body
-  == yield
+  div.devise-form-container
+    div.logo-container
+      div.logo
+        = image_tag('square.svg', height: '100%', width: '100%')
+      h2 = t('backend.navbar.brand')
+    == yield
 | </html>
 
 
