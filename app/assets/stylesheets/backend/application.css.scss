@@ -14,7 +14,7 @@
 
 // Layout
 @import './layout/default';
-@import 'layout/layout_auth';
+@import './layout/layout_devise';
 
 // Module
 @import './module/app_navbar';
@@ -24,10 +24,8 @@
 @import './module/event_panel';
 @import './module/event_form';
 @import './module/image_upload';
+@import './module/devise_form';
 
 // Theme
 @import './theme/react_datetime';
-@import 'module/auth';
-
-//Theme
-@import 'theme/register';
+@import './theme/signup_form';
