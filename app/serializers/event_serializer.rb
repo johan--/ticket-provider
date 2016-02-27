@@ -17,6 +17,6 @@ class EventSerializer < ActiveModel::Serializer
   end
 
   def date
-    object.date.strftime(Date::DATE_FORMATS[:rfc822])
+    object.date.strftime(Date::DATE_FORMATS[:rfc822]) if object.date
   end
 end

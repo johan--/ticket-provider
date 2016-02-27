@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './navbar.jsx';
-import EventContainer from './events/container.jsx';
+import EventListContainer from './events/list-container.jsx';
+import EventCreateContainer from './events/create-container.jsx';
 
 class InterfaceComponent extends React.Component {
 
@@ -30,7 +31,16 @@ class InterfaceComponent extends React.Component {
       return (
         <div>
           <Navbar />
-          <EventContainer />
+          <EventListContainer />
+        </div>
+      );
+    }
+
+    if (this.props.router.current === 'events/new') {
+      return (
+        <div>
+          <Navbar />
+          <EventCreateContainer />
         </div>
       );
     }

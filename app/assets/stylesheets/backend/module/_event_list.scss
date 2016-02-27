@@ -1,7 +1,7 @@
 .events-list-container {
   width: $grid-gutter-width*11;
   position: relative;
-  margin: $grid-gutter-width/2 auto;
+  margin: 0 auto;
   padding: 0;
 
   @include media-breakpoint-up(md) {

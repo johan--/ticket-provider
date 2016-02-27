@@ -4,6 +4,7 @@ var Router = Backbone.Router.extend({
 
   routes: {
     'app/events': 'events',
+    'app/events/new': 'newEvent',
 
     // fallback path
     'app/*path': 'events'
@@ -11,6 +12,10 @@ var Router = Backbone.Router.extend({
 
   events: function() {
     this.current = 'events';
+  },
+
+  newEvent: function() {
+    this.current = 'events/new';
   }
 });
 

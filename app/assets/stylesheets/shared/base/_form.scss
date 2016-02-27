@@ -1,15 +1,16 @@
+form fieldset {
+  min-width: 100%;
+}
+
 form label {
   color: $brand-golden;
   font-size: 1.25em;
   text-transform: uppercase;
   margin: 0;
-
-  @include media-breakpoint-up(md) {
-    font-size: 1.25em;
-  }
 }
 
-form input.form-control {
+form input.form-control,
+form textarea.form-control {
   box-shadow: $input-box-shadow;
   font-size: 1.25em;
   padding: $grid-gutter-width/6 1.25rem;
@@ -19,11 +20,8 @@ form input.form-control {
     color: $input-color-placeholder;
     text-transform: capitalize;
   }
+}
 
-  @include media-breakpoint-up(md) {
-    padding: .5rem $grid-gutter-width/3;
-    font-size: 1em;
-    height: 1.75rem;
-    line-height: 1.5;
-  }
+form textarea.form-control {
+  height: 7.5rem;
 }

@@ -4,7 +4,7 @@ class Api::V1::EventsController < Api::V1::ApiController
   before_action :page_params, only: :index
 
   load_resource find_by: :uid, except: :index
-  authorize_resource
+  authorize_resource except: :create
 
   def index
     @events = Event

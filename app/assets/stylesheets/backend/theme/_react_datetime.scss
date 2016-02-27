@@ -1,0 +1,35 @@
+.rdtPicker {
+  margin-top: $grid-gutter-width/3;
+  border-color: #ccc;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+
+  .rdtDay:hover {
+    cursor: default;
+    color: #fff;
+    background-color: map_get($brand-warm-grey, 'lighter');
+  }
+
+  td.rdtToday {
+
+    &:hover {
+      cursor: default;
+      color: #fff;
+      background-color: map_get($brand-warm-grey, 'lighter');
+    }
+
+    &:before {
+      border-bottom-color: $brand-primary;
+    }
+  }
+
+  td.rdtActive {
+    color: #fff;
+    background-color: $brand-primary;
+
+    &:hover {
+      color: #fff;
+      background-color: $brand-primary;
+    }
+  }
+}

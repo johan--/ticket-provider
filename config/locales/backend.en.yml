@@ -11,6 +11,16 @@ en:
       sign_up: Sign up
     events:
       available: available
+      create_event: Create Event
       create_new_event: Create New Event
-      header: Event
+      date: date
+      description: description
+      headers:
+        event: Event
+        new_event: New Event
+      image: Image
+      image_upload:
+        delete: Delete
+        dropzone_title: Try dropping an image here, or click to select image to upload.
+      name: name
       search: Search events

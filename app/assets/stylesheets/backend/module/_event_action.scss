@@ -1,5 +1,6 @@
 .events-actions {
   margin: 0 auto;
+  height: $grid-gutter-width*2;
 
   @include media-breakpoint-up(md) {
     width: $grid-gutter-width*22;
@@ -34,7 +35,6 @@
     float: right;
 
     a {
-      line-height: 1.375;
       margin: $grid-gutter-width/2;
     }
   }

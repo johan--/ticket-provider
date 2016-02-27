@@ -1,8 +1,16 @@
 import React from 'react';
 import ReactI18n from 'react-i18n';
 import ReactMixin from 'react-mixin';
+import $ from 'jquery';
+import Backbone from 'backbone';
 
 class Navbar extends React.Component {
+
+  handleClick(e) {
+    e.preventDefault();
+    Backbone.history.navigate($(e.currentTarget).attr('href'), true);
+  }
+
   render() {
     let t = this.getIntlMessage;
     return (
@@ -19,10 +27,10 @@ class Navbar extends React.Component {
           </a>
           <ul className="nav navbar-nav">
             <li className="nav-item">
-              <a className="nav-link" href="#">{t('backend.navbar.event')}</a>
+              <a className="nav-link" onClick={this.handleClick} href="/app/events">{t('backend.navbar.event')}</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">{t('backend.authentication.logout')}</a>
+              <a className="nav-link" href="/organizers/sign_out">{t('backend.authentication.logout')}</a>
             </li>
           </ul>
         </div>
