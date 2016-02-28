@@ -10,8 +10,8 @@
     text-align: center;
     color: #fff;
     letter-spacing: 2px;
-    font-size: 1.7em;
-    padding: 0 0.625rem;
+    font-size: 1.75em;
+    padding: 0 $grid-gutter-with/3rem;
     text-transform: uppercase;
   }
 
@@ -25,7 +25,7 @@
 
         .form-control {
           background-color: $brand-white-grey;
-          margin-bottom: 0.625rem;
+          margin-bottom: $grid-gutter-with/3rem;
           box-shadow: none;
           border: none;
           border-radius: 0px;
@@ -46,7 +46,7 @@
       .btn {
         font-size: 1.25em;
         box-shadow: none;
-        margin: 0.625rem 0;
+        margin: $grid-gutter-with/3rem 0;
       }
     }
 
