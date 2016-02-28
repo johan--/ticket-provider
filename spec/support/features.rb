@@ -16,7 +16,7 @@ module Features
       visit new_organizer_session_path
       fill_in 'organizer[email]', with: organizer.email
       fill_in 'organizer[password]', with: organizer.password
-      click_button 'Login'
+      click_button I18n.t('backend.authentication.login')
       wait_for_async_request
     end
   end
