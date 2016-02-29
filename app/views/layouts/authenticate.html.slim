@@ -10,11 +10,12 @@ head
   == csrf_meta_tags
 
 body
-  div.logo-container
-    div.logo
-      = image_tag('square.svg', height: '100%', width: '100%')
-    h2 = t('backend.navbar.brand')
-  == yield
+  div
+    div.logo-container
+      div.logo
+        = image_tag('square.svg', height: '100%', width: '100%')
+      h2 = t('backend.navbar.brand')
+    == yield
 | </html>
 
 
