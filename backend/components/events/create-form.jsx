@@ -3,6 +3,7 @@ import ReactI18n from 'react-i18n';
 import ReactMixin from 'react-mixin';
 import Dropzone from 'react-dropzone';
 import DatePicker from 'react-datetime';
+import AlertMessages from '../shared/alert-messages.jsx';
 import moment from 'moment';
 import EventAction from '../../actions/event-actions.jsx';
 
@@ -81,6 +82,7 @@ class CreateForm extends React.Component {
     return (
       <div className="event-form-container">
         <form className="form-horizontal" ref="eventForm">
+          <AlertMessages alertType="danger" />
           <fieldset>
             <div className="form-group">
               <label htmlFor="name">{t('backend.events.name')}</label>

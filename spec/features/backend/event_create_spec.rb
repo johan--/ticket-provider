@@ -9,7 +9,7 @@ feature 'Organizer can create event' do
     sign_in_with(organizer)
   end
 
-  scenario 'Organizer create event', js: true do
+  scenario 'Organizer fill in all required information', js: true do
     visit '/app/events/new'
 
     within '.event-form-container' do
@@ -21,5 +21,14 @@ feature 'Organizer can create event' do
     wait_for_async_request
 
     expect(page).to have_content event[:name].capitalize
+  end
+
+  scenario 'Organizer missed some required information', js: true do
+    visit '/app/events/new'
+
+    click_button I18n.t('backend.events.create_event')
+    wait_for_async_request
+
+    expect(page).to have_css '.alert.alert-danger'
   end
 end

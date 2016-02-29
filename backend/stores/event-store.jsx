@@ -1,6 +1,7 @@
 import Backbone from 'backbone';
 import Store from './store.jsx';
 import constant from '../constants/event-constants.jsx';
+import emitter from '../emitter.jsx'
 import $ from 'jquery';
 
 var Event = Backbone.Model.extend({
@@ -52,6 +53,10 @@ class EventCollection extends Store.Collection {
         jqXHR.done(() => {
           this.getAll();
           Backbone.history.navigate('/app/events', true);
+        });
+
+        jqXHR.fail((jqXHR, textStatus, errorThrown) => {
+          emitter.emit('error', errorThrown);
         });
         break;
     }
