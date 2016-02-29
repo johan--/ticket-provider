@@ -15,7 +15,7 @@
     text-transform: uppercase;
     border-top-right-radius: $border-radius;
     border-top-left-radius: $border-radius;
-    height: 2rem;
+    height: 2.5rem;
   }
 
   .form-content {
@@ -72,9 +72,9 @@
     width: 27.5rem;
 
     header {
-      padding-top: 0.5rem;
       font-size: 2em;
       height: 3rem;
+      line-height: 3.25rem;
     }
   }
 }
