@@ -15,7 +15,7 @@
     text-transform: uppercase;
     border-top-right-radius: $border-radius;
     border-top-left-radius: $border-radius;
-    height: 2.5rem;
+    height: 2.25rem;
   }
 
   .form-content {
@@ -59,6 +59,7 @@
       text-align: right;
       a {
         font-size: 1.25em;
+        line-height: 1.25rem;
 
         &:hover , &:active {
           background-color: transparent;
@@ -68,13 +69,7 @@
     }
   }
 
-  @include  media-breakpoint-up(lg) {
+  @include  media-breakpoint-up(md) {
     width: 27.5rem;
-
-    header {
-      font-size: 2em;
-      height: 3rem;
-      line-height: 3.25rem;
-    }
   }
 }

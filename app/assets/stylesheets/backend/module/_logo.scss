@@ -21,12 +21,11 @@
   }
 }
 
-@include media-breakpoint-up(lg) {
+@include media-breakpoint-up(md) {
 
   .logo-container {
     width: 32.5rem;
     text-align: center;
-    margin-top: 1rem;
 
     .logo {
       width: 5rem;
