@@ -4,35 +4,15 @@
   margin:  3.5rem auto 0;
 
   img {
-    width: 3.125rem;
-    height: 3.125rem;
+    width: 5rem;
+    height: 5rem;
     box-shadow: $box-shadow;
-    border-radius: $border-radius;
+    border-radius: $grid-gutter-width/3;
   }
 
   h2 {
     color: $brand-sunflower;
     letter-spacing: 3px;
     margin: 1rem 0 1.875rem;
-  }
-
-  @include media-breakpoint-up(md) {
-
-    .logo-container {
-      width: 32.5rem;
-
-      .logo {
-        width: 5rem;
-        height: 5rem;
-
-        img {
-          border-radius: $grid-gutter-width/3;
-        }
-
-        h2 {
-          margin: 1rem 0 1rem;
-        }
-      }
-    }
   }
 }
