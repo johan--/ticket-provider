@@ -1,20 +1,20 @@
 div class=["devise-form-container","is-signup"]
   header
-    h2 = t('backend.authentication.organizer_regist_header')
-  div.form-content
+    = t('backend.authentication.organizer_regist_header')
+  div class="form-content"
     = form_tag('/organizers/', method: :post)
       = devise_error_messages!
-      div.field
+      div class="field"
         = email_field_tag 'organizer[email]', nil, autofocus: true, placeholder: t('backend.authentication.email'), class: 'form-control'
-      div.field
+      div class="field"
         = text_field_tag 'organizer[name]', nil,  placeholder: t('backend.authentication.name'), class: 'form-control'
-      div.field
+      div class="field"
         = text_field_tag 'organizer[account_name]', nil, placeholder: t('backend.authentication.organizer_name'), class: 'form-control'
-      div.field
+      div class="field"
         = password_field_tag 'organizer[password]', nil, autocomplete: "off", placeholder: t('backend.authentication.password'), class: 'form-control'
-      div.field
+      div class="field"
         = password_field_tag 'organizer[password_confirmation]', nil, autocomplete: "off", placeholder: t('backend.authentication.password_confirm'), class: 'form-control'
-      div.actions
+      div class="actions"
         button type="submit" class="btn btn-primary"
           = t('backend.authentication.register')
     div.link-components
