@@ -5,11 +5,11 @@
 
   .form-control {
     text-align: center;
-    padding:0.3125rem 1.25rem;
+    padding:$grid-gutter-width/6 1.25rem;
   }
 
   .link-components {
-    text-align: center !important;
+    text-align: center;
   }
 }
 
