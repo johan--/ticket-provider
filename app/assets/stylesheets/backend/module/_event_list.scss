@@ -22,6 +22,10 @@
   float: left;
   padding: 0;
 
+  &:hover, &:focus {
+    text-decoration: none;
+  }
+
   .event-image {
     position: relative;
   }
