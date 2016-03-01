@@ -10,6 +10,7 @@ class Ability
           can :manage, :all
           can :access, :rails_admin
         elsif user.role == 'account_owner'
+          can :manage, Organizer, id: user.id
           can :manage, Account, id: user.account_id
           can :manage, Event, account: user.account
           can :manage, TicketType, event_id: user.account.event_ids
