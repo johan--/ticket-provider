@@ -8,7 +8,7 @@ class Api::V1::OrganizersController < Api::V1::ApiController
   end
 
   def update
-    if @organizer.update_attributes(organizer_params)
+    if @organizer.update_with_password(organizer_params)
       render json: @organizer, status: :ok
     else
       render json: { errors: [@organizer.errors.full_messages.to_sentence] }, status: :unprocessable_entity
@@ -20,7 +20,9 @@ class Api::V1::OrganizersController < Api::V1::ApiController
   def organizer_params
     params
         .require(:organizer)
-        .permit(:email,
-                :name)
+        .permit(:name,
+                :current_password,
+                :password,
+                :password_confirmation)
   end
 end
