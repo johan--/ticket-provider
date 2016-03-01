@@ -9,7 +9,7 @@ class Organizer < ActiveRecord::Base
 
   belongs_to :account
 
-  before_create :set_default_role
+  before_create :set_default_role, :set_uid
 
   validates :name, presence: true
 
@@ -17,5 +17,11 @@ class Organizer < ActiveRecord::Base
 
   def set_default_role
     self.role = 'account_owner' unless self.role
+  end
+
+  def set_uid
+    begin
+      self.uid = SecureRandom.hex(4)
+    end while (self.class.exists?(uid: self.uid))
   end
 end
