@@ -1,0 +1,18 @@
+.logo-container {
+  text-align: center;
+  width: 18.75rem;
+  margin:  3.5rem auto 0;
+
+  img {
+    width: 5rem;
+    height: 5rem;
+    box-shadow: $box-shadow;
+    border-radius: $grid-gutter-width/3;
+  }
+
+  h2 {
+    color: $brand-sunflower;
+    letter-spacing: 3px;
+    margin: 1rem 0 1.875rem;
+  }
+}

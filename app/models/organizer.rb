@@ -9,5 +9,13 @@ class Organizer < ActiveRecord::Base
 
   belongs_to :account
 
+  before_create :set_default_role
+
   validates :name, presence: true
+
+  private
+
+  def set_default_role
+    self.role = 'account_owner' unless self.role
+  end
 end
