@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(version: 20160220081744) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.integer  "account_id"
+    t.string   "uid",                                 null: false
     t.string   "name",                                null: false
     t.string   "role",                                null: false
   end
