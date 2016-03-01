@@ -8,7 +8,6 @@ class Api::V1::OrganizersController < Api::V1::ApiController
   end
 
   def update
-    @organizer = current_organizer
     if @organizer.update_attributes(organizer_params)
       render json: @organizer, status: :ok
     else
