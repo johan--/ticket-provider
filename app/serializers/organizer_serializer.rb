@@ -5,6 +5,6 @@ class OrganizerSerializer < ActiveModel::Serializer
              :role
 
   def id
-    object.id
+    object.uid
   end
 end
