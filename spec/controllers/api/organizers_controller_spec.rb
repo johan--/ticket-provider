@@ -18,14 +18,13 @@ RSpec.describe Api::V1::OrganizersController, type: :controller do
   end
 
   describe 'PUT #update' do
-    context 'when organizer update profile' do
-      let(:account) { Fabricate(:account) }
-      let(:organizer) { Fabricate(:account_owner, account: account) }
+    let(:account) { Fabricate(:account) }
+    let(:organizer) { Fabricate(:account_owner, account: account) }
 
-      before do
-        sign_in :organizer, organizer
-        put :update, id: organizer.uid, organizer: { name: 'aun', current_password: organizer.password }
-      end
+    before { sign_in :organizer, organizer }
+
+    context 'when organizer update profile' do
+      before { put :update, id: organizer.uid, organizer: { name: 'aun', current_password: organizer.password } }
 
       it { expect(response).to have_http_status(:ok) }
       it { expect(response).to match_response_schema('organizer') }
@@ -33,28 +32,16 @@ RSpec.describe Api::V1::OrganizersController, type: :controller do
     end
 
     context 'when organizer update password' do
-      let(:account) { Fabricate(:account) }
-      let(:organizer) { Fabricate(:account_owner, account: account) }
-
-      before do
-        sign_in :organizer, organizer
-        put :update, id: organizer.uid, organizer: { current_password: organizer.password,
-                                                     password: '1q2w3e4r',
-                                                     password_confirmation: '1q2w3e4r' }
-      end
+      before { put :update, id: organizer.uid, organizer: { current_password: organizer.password,
+                                                            password: '1q2w3e4r',
+                                                            password_confirmation: '1q2w3e4r' } }
 
       it { expect(response).to have_http_status(:ok) }
       it { expect(response).to match_response_schema('organizer') }
     end
 
     context 'when organizer params is invalid' do
-      let(:account) { Fabricate(:account) }
-      let(:organizer) { Fabricate(:account_owner, account: account) }
-
-      before do
-        sign_in :organizer, organizer
-        put :update, id: organizer.uid, organizer: { name: '' }
-      end
+      before { put :update, id: organizer.uid, organizer: { name: '' } }
 
       it { expect(response).to have_http_status(:unprocessable_entity) }
       it { expect(response).to match_response_schema('errors') }
