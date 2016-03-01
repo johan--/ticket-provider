@@ -4,10 +4,15 @@ import ReactMixin from 'react-mixin';
 
 class ListItem extends React.Component {
 
+  handleClick(e) {
+    e.preventDefault();
+    Backbone.history.navigate($(e.currentTarget).attr('href'), true);
+  }
+
   render() {
     let t = this.getIntlMessage;
     return (
-      <div className="event-item col-md-4">
+      <a href={`/app/events/${this.props.event.id}/edit`} onClick={this.handleClick} className="event-item col-md-4">
         <div className="event-image">
           <img src={this.props.event.get('cover_photo_url')} />
           <p>{this.props.event.get('name')}</p>
@@ -21,7 +26,7 @@ class ListItem extends React.Component {
             <small>{t('backend.events.available')}</small>
           </div>
         </div>
-      </div>
+      </a>
     );
   }
 }

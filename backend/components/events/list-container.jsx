@@ -6,7 +6,7 @@ import Search from './search.jsx';
 import List from './list.jsx';
 import Store from '../../stores/event-store.jsx';
 
-class Container extends React.Component {
+class ListContainer extends React.Component {
 
   constructor() {
     super();
@@ -38,6 +38,6 @@ class Container extends React.Component {
   }
 }
 
-ReactMixin(Container.prototype, ReactI18n);
+ReactMixin(ListContainer.prototype, ReactI18n);
 
-export default Container;
+export default ListContainer;
