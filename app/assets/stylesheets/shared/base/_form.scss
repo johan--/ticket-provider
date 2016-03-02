@@ -2,13 +2,6 @@ form fieldset {
   min-width: 100%;
 }
 
-form label {
-  color: $brand-golden;
-  font-size: 1.25em;
-  text-transform: uppercase;
-  margin: 0;
-}
-
 form input.form-control,
 form textarea.form-control {
   box-shadow: $input-box-shadow;

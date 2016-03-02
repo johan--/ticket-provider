@@ -1,0 +1,113 @@
+.event-panel.is-show {
+  margin-top: 0;
+
+  @include media-breakpoint-up(md) {
+    margin-top: $grid-gutter-width;
+    padding-bottom: $grid-gutter-width;
+  }
+}
+
+.event-show-container {
+  width: 100%;
+
+  .event-image {
+    max-height: 18.75rem;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+    }
+
+    @include media-breakpoint-up(md) {
+      width: 22.5rem;
+      height: 15rem;
+      display: table-cell;
+      vertical-align: middle;
+      padding: 0 $grid-gutter-width;
+    }
+  }
+
+  .event-description {
+    margin: 1.25rem $grid-gutter-width;
+
+    p {
+      padding: .5rem 1.25rem;
+      border-radius: $border-radius;
+      background-color: #fff;
+      box-shadow: $box-shadow;
+    }
+
+    @include media-breakpoint-up(md) {
+      display: table-cell;
+      padding: 1.25rem $grid-gutter-width 0 0;
+    }
+  }
+
+  .event-info {
+    display: table;
+    height: $grid-gutter-width;
+    background-color: white;
+    width: 100%;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+    margin-bottom: 1rem;
+
+    label {
+      display: table-cell;
+      width: 6.25rem;
+      background-color: $brand-primary;
+      border-bottom-left-radius: $border-radius;
+      border-top-left-radius: $border-radius;
+      text-align: center;
+      color: white;
+    }
+
+    label + div {
+      display: table-cell;
+      text-align: center;
+    }
+
+    @include media-breakpoint-up(md) {
+      width: 15rem;
+    }
+  }
+
+  .event-action {
+    display: table;
+    width: 100%;
+
+    .btn-primary {
+      width: 48%;
+      display: table-cell;
+
+      @include media-breakpoint-up(md) {
+        width: 7.5rem;
+      }
+
+      @include media-breakpoint-up(lg) {
+        width: 11rem;
+      }
+    }
+
+    .btn-primary:first-of-type {
+      float: left;
+    }
+
+    .btn-primary:last-of-type {
+      float: right;
+    }
+
+    @include media-breakpoint-up(md) {
+      width: 16rem;
+    }
+
+    @include media-breakpoint-up(lg) {
+      width: 24rem;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    margin: 0 $grid-gutter-width/2;
+    display: table;
+  }
+}

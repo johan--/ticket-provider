@@ -14,6 +14,10 @@
     box-shadow: $box-shadow;
   }
 
+  .navbar-nav {
+    height: 9.25rem;
+  }
+
   .navbar-toggler {
     color: #fff;
     height: 2rem;
@@ -129,4 +133,5 @@
 // Override bootstrap 4 height animation on style tag
 .app-navbar .collapsing {
   height: 0 !important;
+  transition-duration: 0s;
 }
