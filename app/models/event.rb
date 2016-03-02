@@ -34,6 +34,6 @@ class Event < ActiveRecord::Base
   end
 
   def self.initial_state
-    :pending
+    :draft
   end
 end

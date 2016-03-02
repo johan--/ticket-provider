@@ -36,11 +36,18 @@ class Api::V1::EventsController < Api::V1::ApiController
   end
 
   def update
-    if @event.update_attributes(event_params)
+    @event.update_attributes(event_params)
+
+    if params[:event][:state] && !@event.transition_to(params[:event][:state])
+      @event.errors.add(:state, I18n.t('backend.events.cannot_transition_to', state: params[:event][:state]))
+    end
+
+    if @event.errors.blank?
       render json: @event, status: :ok
     else
       render json: { errors: [@event.errors.full_messages.to_sentence] }, status: :unprocessable_entity
     end
+
   end
 
   def destroy

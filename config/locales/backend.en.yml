@@ -33,6 +33,7 @@ en:
       search: Search events
       header: Event
       save_changes: Save Changes
+      cannot_transition_to: can't transition to %{state}
       success_delete: Successfully delete event.
     tickets:
       edit_ticket: Edit Ticket
