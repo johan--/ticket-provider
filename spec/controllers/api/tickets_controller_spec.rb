@@ -69,7 +69,7 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
 
       it { expect(response).to have_http_status(:unprocessable_entity) }
       it { expect(response).to match_response_schema('errors') }
-      it { expect(JSON.parse(response.body)['errors']).to match_array(I18n.t('backend.ticket.cannot_transition_to', state: 'refunded')) }
+      it { expect(JSON.parse(response.body)['errors']).to match_array(I18n.t('backend.tickets.cannot_transition_to', state: 'refunded')) }
     end
   end
 
