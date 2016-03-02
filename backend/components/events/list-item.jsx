@@ -12,7 +12,7 @@ class ListItem extends React.Component {
   render() {
     let t = this.getIntlMessage;
     return (
-      <a href={`/app/events/${this.props.event.id}/edit`} onClick={this.handleClick} className="event-item col-md-4">
+      <a href={`/app/events/${this.props.event.id}`} onClick={this.handleClick} className="event-item col-md-4">
         <div className="event-image">
           <img src={this.props.event.get('cover_photo_url')} />
           <p>{this.props.event.get('name')}</p>

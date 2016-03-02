@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './navbar.jsx';
 import EventListContainer from './events/list-container.jsx';
 import EventCreateContainer from './events/create-container.jsx';
+import EventShowContainer from './events/show-container.jsx';
 import EventEditContainer from './events/edit-container.jsx';
 
 class InterfaceComponent extends React.Component {
@@ -42,6 +43,15 @@ class InterfaceComponent extends React.Component {
         <div>
           <Navbar />
           <EventCreateContainer />
+        </div>
+      );
+    }
+
+    if (this.props.router.current === 'events/show') {
+      return (
+        <div>
+          <Navbar />
+          <EventShowContainer id={this.props.router.params._id} />
         </div>
       );
     }

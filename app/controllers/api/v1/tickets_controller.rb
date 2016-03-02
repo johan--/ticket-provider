@@ -31,7 +31,7 @@ class Api::V1::TicketsController < Api::V1::ApiController
     if @ticket.transition_to(ticket_state_params[:state])
       render json: @ticket, status: :ok
     else
-      render json: { errors: [I18n.t('backend.ticket.cannot_transition_to', state: ticket_state_params[:state])] }, status: :unprocessable_entity
+      render json: { errors: [I18n.t('backend.tickets.cannot_transition_to', state: ticket_state_params[:state])] }, status: :unprocessable_entity
     end
   end
 
@@ -39,7 +39,7 @@ class Api::V1::TicketsController < Api::V1::ApiController
     if @ticket.destroy
       head :no_content
     else
-      render json: { errors: [I18n.t('backend.ticket.cannot_destroy')] }, status: :unprocessable_entity
+      render json: { errors: [I18n.t('backend.tickets.cannot_destroy')] }, status: :unprocessable_entity
     end
   end
 

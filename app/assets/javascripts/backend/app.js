@@ -32993,6 +32993,7 @@
 	  routes: {
 	    'app/events': 'events',
 	    'app/events/new': 'newEvent',
+	    'app/events/(:id)': 'showEvent',
 	    'app/events/(:id)/edit': 'editEvent',
 
 	    // fallback path
@@ -33005,6 +33006,11 @@
 
 	  newEvent: function newEvent() {
 	    this.current = 'events/new';
+	  },
+
+	  showEvent: function showEvent(id) {
+	    this.current = 'events/show';
+	    this.params = { _id: id };
 	  },
 
 	  editEvent: function editEvent(id) {
@@ -33043,7 +33049,11 @@
 
 	var _createContainer2 = _interopRequireDefault(_createContainer);
 
-	var _editContainer = __webpack_require__(306);
+	var _showContainer = __webpack_require__(306);
+
+	var _showContainer2 = _interopRequireDefault(_showContainer);
+
+	var _editContainer = __webpack_require__(307);
 
 	var _editContainer2 = _interopRequireDefault(_editContainer);
 
@@ -33105,6 +33115,15 @@
 	          null,
 	          _react2.default.createElement(_navbar2.default, null),
 	          _react2.default.createElement(_createContainer2.default, null)
+	        );
+	      }
+
+	      if (this.props.router.current === 'events/show') {
+	        return _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(_navbar2.default, null),
+	          _react2.default.createElement(_showContainer2.default, { id: this.props.router.params._id })
 	        );
 	      }
 
@@ -34919,7 +34938,7 @@
 	      var t = this.getIntlMessage;
 	      return _react2.default.createElement(
 	        'a',
-	        { href: '/app/events/' + this.props.event.id + '/edit', onClick: this.handleClick, className: 'event-item col-md-4' },
+	        { href: '/app/events/' + this.props.event.id, onClick: this.handleClick, className: 'event-item col-md-4' },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'event-image' },
@@ -50548,7 +50567,162 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _editForm = __webpack_require__(307);
+	var _reactI18n = __webpack_require__(165);
+
+	var _reactI18n2 = _interopRequireDefault(_reactI18n);
+
+	var _reactMixin = __webpack_require__(170);
+
+	var _reactMixin2 = _interopRequireDefault(_reactMixin);
+
+	var _eventStore = __webpack_require__(178);
+
+	var _eventStore2 = _interopRequireDefault(_eventStore);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ShowContainer = function (_React$Component) {
+	  _inherits(ShowContainer, _React$Component);
+
+	  function ShowContainer(props) {
+	    _classCallCheck(this, ShowContainer);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ShowContainer).call(this, props));
+
+	    _this.state = _eventStore2.default.getModel(props.id);
+	    return _this;
+	  }
+
+	  _createClass(ShowContainer, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.state.on('add remove reset change', function () {
+	        this.forceUpdate();
+	      }, this);
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      this.state.off(null, null, this);
+	    }
+	  }, {
+	    key: 'handleClick',
+	    value: function handleClick(e) {
+	      e.preventDefault();
+	      Backbone.history.navigate($(e.currentTarget).attr('href'), true);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var t = this.getIntlMessage;
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'event-panel is-show' },
+	        _react2.default.createElement(
+	          'header',
+	          null,
+	          '>> ',
+	          this.state.get('name')
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'event-show-container' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'event-image' },
+	            _react2.default.createElement('img', { src: this.state.get('cover_photo_url') })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'event-description' },
+	            _react2.default.createElement(
+	              'label',
+	              { htmlFor: 'description' },
+	              t('backend.events.description')
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              this.state.get('description')
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'event-info' },
+	              _react2.default.createElement(
+	                'label',
+	                { htmlFor: 'date' },
+	                t('backend.events.date')
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                null,
+	                this.state.get('date')
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'event-info' },
+	              _react2.default.createElement(
+	                'label',
+	                { htmlFor: 'available' },
+	                t('backend.events.available')
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                null,
+	                '128/1000'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'event-action' },
+	              _react2.default.createElement(
+	                'a',
+	                { onClick: this.handleClick, className: 'btn btn-primary' },
+	                t('backend.tickets.edit_ticket')
+	              ),
+	              _react2.default.createElement(
+	                'a',
+	                { onClick: this.handleClick, className: 'btn btn-primary' },
+	                t('backend.tickets.new_ticket')
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return ShowContainer;
+	}(_react2.default.Component);
+
+	(0, _reactMixin2.default)(ShowContainer.prototype, _reactI18n2.default);
+
+	exports.default = ShowContainer;
+
+/***/ },
+/* 307 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _editForm = __webpack_require__(308);
 
 	var _editForm2 = _interopRequireDefault(_editForm);
 
@@ -50615,7 +50789,7 @@
 	exports.default = EditContainer;
 
 /***/ },
-/* 307 */
+/* 308 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50658,7 +50832,7 @@
 
 	var _eventActions2 = _interopRequireDefault(_eventActions);
 
-	var _underscore = __webpack_require__(308);
+	var _underscore = __webpack_require__(309);
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
@@ -50851,7 +51025,7 @@
 	exports.default = EditForm;
 
 /***/ },
-/* 308 */
+/* 309 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;//     Underscore.js 1.8.3

@@ -1,8 +1,5 @@
 en:
   backend:
-    ticket:
-      cannot_destroy: purchased ticket can not be destroy
-      cannot_transition_to: can't transition to %{state}
     navbar:
       event: Event
       brand: SQUARE
@@ -36,3 +33,8 @@ en:
       search: Search events
       header: Event
       save_changes: Save Changes
+    tickets:
+      edit_ticket: Edit Ticket
+      new_ticket: New Ticket
+      cannot_destroy: purchased ticket can not be destroy
+      cannot_transition_to: can't transition to %{state}
