@@ -21,6 +21,11 @@ class Event < ActiveRecord::Base
   delegate :can_transition_to?, :transition_to!, :transition_to, :current_state, :allowed_transitions,
            to: :state_machine
 
+  def self.update_attributes
+    if params[:event][:state] && !self.transition_to(params[:event][:state])
+     self.errors.add(:state, I18n.t('backend.events.cannot_transition_to', state: params[:event][:state]))
+    end
+  end
   private
 
   def set_uid
