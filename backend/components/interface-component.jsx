@@ -4,6 +4,7 @@ import EventListContainer from './events/list-container.jsx';
 import EventCreateContainer from './events/create-container.jsx';
 import EventShowContainer from './events/show-container.jsx';
 import EventEditContainer from './events/edit-container.jsx';
+import ContentContainer from './organizers/content-container.jsx';
 
 class InterfaceComponent extends React.Component {
 
@@ -62,6 +63,15 @@ class InterfaceComponent extends React.Component {
           <Navbar />
           <EventEditContainer id={this.props.router.params._id} />
         </div>
+      );
+    }
+
+    if(this.props.router.current === 'organizers') {
+      return (
+          <div>
+            <Navbar />
+            <ContentContainer />
+          </div>
       );
     }
     return (<div />);
