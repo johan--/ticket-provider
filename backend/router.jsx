@@ -32,8 +32,17 @@ var Router = Backbone.Router.extend({
     this.params = { _id: id };
   },
 
+<<<<<<< bc9c047ff03242729bc244a5dd6b0db5d52fac0c
   organizersSettings: function() {
     this.current = 'organizers/settings';
+=======
+  organizers: function() {
+    this.current = 'organizers';
+  },
+
+  organizersUpdate: function() {
+    this.current = 'organizers/update';
+>>>>>>> [#114474167] Add organizer path
   }
 });
 
