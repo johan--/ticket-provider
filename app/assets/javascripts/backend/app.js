@@ -34937,35 +34937,53 @@
 	    value: function render() {
 	      var t = this.getIntlMessage;
 	      return _react2.default.createElement(
-	        'a',
-	        { href: '/app/events/' + this.props.event.id, onClick: this.handleClick, className: 'event-item col-md-4' },
+	        'div',
+	        { className: 'event-item col-md-4' },
 	        _react2.default.createElement(
-	          'div',
-	          { className: 'event-image' },
-	          _react2.default.createElement('img', { src: this.props.event.get('cover_photo_url') }),
+	          'a',
+	          { href: '/app/events/' + this.props.event.id, onClick: this.handleClick },
 	          _react2.default.createElement(
-	            'p',
-	            null,
-	            this.props.event.get('name')
+	            'div',
+	            { className: 'event-image' },
+	            _react2.default.createElement('img', { src: this.props.event.get('cover_photo_url') }),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              this.props.event.get('name')
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'event-info' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'event-info-item event-date' },
+	              this.props.event.get('date')
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'event-info-item event-tickets' },
+	              '53%',
+	              _react2.default.createElement(
+	                'small',
+	                null,
+	                t('backend.events.available')
+	              )
+	            )
 	          )
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'event-info' },
+	          { className: 'event-item-action' },
 	          _react2.default.createElement(
-	            'div',
-	            { className: 'event-info-item event-date' },
-	            this.props.event.get('date')
+	            'a',
+	            { href: '/app/events/' + this.props.event.id + '/edit', className: 'action-container', onClick: this.handleClick },
+	            _react2.default.createElement('i', { className: 'icon icon-pencil' })
 	          ),
 	          _react2.default.createElement(
-	            'div',
-	            { className: 'event-info-item event-tickets' },
-	            '53%',
-	            _react2.default.createElement(
-	              'small',
-	              null,
-	              t('backend.events.available')
-	            )
+	            'a',
+	            { className: 'action-container', href: '#' },
+	            _react2.default.createElement('i', { className: 'icon icon-close' })
 	          )
 	        )
 	      );

@@ -12,21 +12,32 @@ class ListItem extends React.Component {
   render() {
     let t = this.getIntlMessage;
     return (
-      <a href={`/app/events/${this.props.event.id}`} onClick={this.handleClick} className="event-item col-md-4">
-        <div className="event-image">
-          <img src={this.props.event.get('cover_photo_url')} />
-          <p>{this.props.event.get('name')}</p>
-        </div>
-        <div className="event-info">
-          <div className="event-info-item event-date">
-            {this.props.event.get('date')}
+      <div className="event-item col-md-4">
+        <a href={`/app/events/${this.props.event.id}`} onClick={this.handleClick}>
+          <div className="event-image">
+            <img src={this.props.event.get('cover_photo_url')} />
+            <p>{this.props.event.get('name')}</p>
           </div>
-          <div className="event-info-item event-tickets">
-            53%
-            <small>{t('backend.events.available')}</small>
+          <div className="event-info">
+            <div className="event-info-item event-date">
+              {this.props.event.get('date')}
+            </div>
+            <div className="event-info-item event-tickets">
+              53%
+              <small>{t('backend.events.available')}</small>
+            </div>
           </div>
+        </a>
+
+        <div className="event-item-action">
+          <a href={`/app/events/${this.props.event.id}/edit`} className="action-container"  onClick={this.handleClick}>
+            <i className="icon icon-pencil" />
+          </a>
+          <a className="action-container" href="#">
+            <i className="icon icon-close" />
+          </a>
         </div>
-      </a>
+      </div>
     );
   }
 }
