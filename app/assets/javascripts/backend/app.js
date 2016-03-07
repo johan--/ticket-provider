@@ -53665,6 +53665,7 @@
 	        type: 'PUT'
 	      });
 
+<<<<<<< 67a51e2f32c2e05293bb48b88ddd17274e15bf07
 	      jqXHR.done(function () {
 	        _emitter2.default.emit('success', I18n.t('backend.organizers.success_update'));
 	      });
@@ -53674,6 +53675,27 @@
 	      });
 	    }
 	  }]);
+=======
+	            jqXHR.done(function () {
+<<<<<<< dacda88149ef3f1af7beb450a06df89742710cb8
+	                _this2.getAll();
+	                _backbone2.default.history.navigate('/app/organizers', true);
+	            });
+
+	            jqXHR.fail(function (jqXHR, textStatus, errorThrown) {
+	                emitter.emit('error', errorThrown);
+=======
+	                //Backbone.history.navigate('app/organizers', true);
+	                window.location.href = '/organizers/sign_in';
+	            });
+
+	            jqXHR.fail(function (jqXHR, textStatus, errorThrown) {
+	                _emitter2.default.emit('error', jqXHR.responseJSON.errors[0]);
+>>>>>>> [#114474167] Change error text
+	            });
+	        }
+	    }]);
+>>>>>>> [#114474167] Change error text
 
 	  return Organizer;
 	}(_store2.default.Model);

@@ -34,6 +34,6 @@ class Organizer extends Store.Model {
       emitter.emit('error', jqXHR.responseJSON.errors[0]);
     });
   }
-}
+};
 
 export default new Organizer();
