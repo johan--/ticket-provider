@@ -53145,6 +53145,10 @@
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
+	var _appConstant = __webpack_require__(313);
+
+	var _appConstant2 = _interopRequireDefault(_appConstant);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -53499,7 +53503,7 @@
 	                            _react2.default.createElement(
 	                                'h2',
 	                                null,
-	                                this.state.organizer.role
+	                                _appConstant2.default.roles[this.state.organizer.role]
 	                            )
 	                        ),
 	                        _react2.default.createElement(
@@ -53703,6 +53707,23 @@
 	exports.default = {
 	    edit: function edit(organizer) {
 	        (0, _dispatch2.default)(_organizerConstants2.default.UPDATE_ORGANIZER, { organizer: organizer });
+	    }
+	};
+
+/***/ },
+/* 313 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = {
+	    roles: {
+	        'god': 'God',
+	        'account_owner': 'Account owner',
+	        'team_member': 'Team member'
 	    }
 	};
 
