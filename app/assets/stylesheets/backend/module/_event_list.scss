@@ -21,8 +21,9 @@
   margin: $grid-gutter-width/2;
   float: left;
   padding: 0;
+  position: relative;
 
-  &:hover, &:focus {
+  a:hover, a:focus {
     text-decoration: none;
   }
 
@@ -85,5 +86,28 @@
     display: block;
     line-height: 0;
     text-transform: uppercase;
+  }
+
+  .event-item-action {
+    position: absolute;
+    top: .25rem;
+    right: .25rem;
+    width: 3.5rem;
+    z-index: 1;
+
+    a:hover {
+      background-color: $brand-golden;
+    }
+
+    .action-container {
+      display: inline-block;
+      border-radius: 50%;
+      background-color: $brand-primary;
+      width: 1.5rem;
+      height: 1.5rem;
+      box-shadow: $box-shadow;
+      text-align: center;
+      margin-left: .25rem;
+    }
   }
 }
