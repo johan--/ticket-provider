@@ -53389,21 +53389,22 @@
 
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ContentContainer).call(this));
 
-	        _this.state = { organizer: _organizerStore2.default.getModel().attributes };
+	        _this.model = _organizerStore2.default.getModel();
+	        _this.state = { organizer: _this.model.attributes };
 	        return _this;
 	    }
 
 	    _createClass(ContentContainer, [{
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
-	            this.state.on('add remove reset change', function () {
+	            this.model.on('add remove reset change', function () {
 	                this.forceUpdate();
 	            }, this);
 	        }
 	    }, {
 	        key: 'componentWillUnmount',
 	        value: function componentWillUnmount() {
-	            this.state.off(null, null, this);
+	            this.model.off(null, null, this);
 	        }
 	    }, {
 	        key: 'handleNameChange',
@@ -53423,7 +53424,7 @@
 	        key: 'handlePasswordConfirmChange',
 	        value: function handlePasswordConfirmChange(e) {
 	            var updateState = this.state;
-	            updateState.organizer.password_conformation = e.target.value;
+	            updateState.organizer.password_confirmation = e.target.value;
 	            this.setState(updateState);
 	        }
 	    }, {
@@ -53437,12 +53438,12 @@
 	        key: 'handleSubmit',
 	        value: function handleSubmit(e) {
 	            e.preventDefault();
-	            _organizerActions2.default.edit(_underscore2.default.pick(this.state.organizer, 'name', 'password', 'password_confirmation', 'current_password'));
+	            _organizerActions2.default.edit(_underscore2.default.pick(this.state.organizer, 'id', 'name', 'current_password', 'password', 'password_confirmation'));
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var t = this.getIntlMessage;console.log(this.state);
+	            var t = this.getIntlMessage;
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'organizer-container' },
@@ -53498,7 +53499,7 @@
 	                            _react2.default.createElement(
 	                                'h2',
 	                                null,
-	                                this.state.get('role')
+	                                this.state.organizer.role
 	                            )
 	                        ),
 	                        _react2.default.createElement(
@@ -53512,6 +53513,7 @@
 	                            _react2.default.createElement('input', {
 	                                name: t('backend.authentication.password'),
 	                                className: 'form-control',
+	                                type: 'password',
 	                                onChange: this.handlePasswordChange.bind(this) })
 	                        ),
 	                        _react2.default.createElement(
@@ -53525,6 +53527,7 @@
 	                            _react2.default.createElement('input', {
 	                                name: t('backend.authentication.password_confirmation'),
 	                                className: 'form-control',
+	                                type: 'password',
 	                                onChange: this.handlePasswordConfirmChange.bind(this) })
 	                        ),
 	                        _react2.default.createElement(
@@ -53538,6 +53541,7 @@
 	                            _react2.default.createElement('input', {
 	                                name: t('backend.authentication.current_password'),
 	                                className: 'form-control',
+	                                type: 'password',
 	                                onChange: this.handleCurrentPasswordChange.bind(this) })
 	                        ),
 	                        _react2.default.createElement(
@@ -53623,27 +53627,23 @@
 	    }, {
 	        key: 'getModel',
 	        value: function getModel() {
-	            var model = new Organizer();
-	            model.fetch();
-	            console.log(model.fetch().organizer);
-	            return model;
+	            var jqXHR = this.fetch();
+	            return this;
 	        }
 	    }, {
 	        key: 'handleDispatch',
 	        value: function handleDispatch(payload) {
-	            var _this2 = this;
-
 	            var formData = new FormData();
 
 	            // Add CSRF-TOKEN to form data.
 	            formData.append('authenticity_token', '' + (0, _jquery2.default)('meta[name="csrf-token"]').attr('content'));
-
 	            // Iterate through event object and add it to form data.
 	            _jquery2.default.each(payload.organizer, function (key) {
 	                formData.append('organizer[' + key + ']', payload.organizer[key]);
 	            });
-	            console.log(payload.organizer);
-	            var jqXHR = this.get(payload.organizer).fetch({
+
+	            var jqXHR = this.fetch({
+	                url: '/api/v1/organizers/' + payload.organizer.id,
 	                data: formData,
 	                type: 'PUT',
 	                processData: false,
@@ -53651,12 +53651,11 @@
 	            });
 
 	            jqXHR.done(function () {
-	                _this2.getAll();
-	                _backbone2.default.history.navigate('/app/organizers', true);
+	                _backbone2.default.history.navigate('app/organizers', true);
 	            });
 
 	            jqXHR.fail(function (jqXHR, textStatus, errorThrown) {
-	                emitter.emit('error', errorThrown);
+	                _emitter2.default.emit('error', errorThrown);
 	            });
 	        }
 	    }]);

@@ -9,17 +9,18 @@ import _ from 'underscore';
 class ContentContainer extends React.Component {
     constructor() {
         super();
-        this.state = { organizer: Store.getModel().attributes }
+        this.model = Store.getModel();
+        this.state = { organizer: this.model.attributes };
     }
 
     componentDidMount() {
-        this.state.on('add remove reset change', function() {
+        this.model.on('add remove reset change', function() {
             this.forceUpdate();
         }, this);
     }
 
     componentWillUnmount() {
-        this.state.off(null, null, this);
+        this.model.off(null, null, this);
     }
 
     handleNameChange(e) {
@@ -36,7 +37,7 @@ class ContentContainer extends React.Component {
 
     handlePasswordConfirmChange(e) {
         let updateState = this.state;
-        updateState.organizer.password_conformation = e.target.value;
+        updateState.organizer.password_confirmation = e.target.value;
         this.setState(updateState);
     }
 
@@ -48,11 +49,11 @@ class ContentContainer extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        OrganizerAction.edit(_.pick(this.state.organizer, 'name', 'password', 'password_confirmation', 'current_password'));
+        OrganizerAction.edit(_.pick(this.state.organizer, 'id', 'name', 'current_password', 'password', 'password_confirmation'));
     }
 
     render() {
-        let t = this.getIntlMessage; console.log(this.state);
+        let t = this.getIntlMessage;
         return (
             <div className="organizer-container">
                 <header>>> {t('backend.organizers.header')}</header>
@@ -73,13 +74,14 @@ class ContentContainer extends React.Component {
                         </div>
                         <div className="form-group">
                             <label htmlFor="role">{t('backend.organizers.role')}</label>
-                            <h2>{this.state.get('role')}</h2>
+                            <h2>{this.state.organizer.role}</h2>
                         </div>
                         <div className="form-group">
                             <label htmlFor="password">{t('backend.authentication.password')}</label>
                             <input
                                 name={t('backend.authentication.password')}
                                 className="form-control"
+                                type="password"
                                 onChange={this.handlePasswordChange.bind(this)}/>
                         </div>
                         <div className="form-group">
@@ -87,6 +89,7 @@ class ContentContainer extends React.Component {
                             <input
                                 name={t('backend.authentication.password_confirmation')}
                                 className="form-control"
+                                type="password"
                                 onChange={this.handlePasswordConfirmChange.bind(this)}/>
                         </div>
                         <div className="form-group">
@@ -94,6 +97,7 @@ class ContentContainer extends React.Component {
                             <input
                                 name={t('backend.authentication.current_password')}
                                 className="form-control"
+                                type="password"
                                 onChange={this.handleCurrentPasswordChange.bind(this)}/>
                         </div>
                         <button
