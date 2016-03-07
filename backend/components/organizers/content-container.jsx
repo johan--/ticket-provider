@@ -5,6 +5,7 @@ import Store from '../../stores/organizer-store.jsx';
 import AlertMessages from '../shared/alert-messages.jsx';
 import OrganizerAction from '../../actions/organizer-actions.jsx';
 import _ from 'underscore';
+import AppConst from '../../app-constant.jsx'
 
 class ContentContainer extends React.Component {
     constructor() {
@@ -74,6 +75,7 @@ class ContentContainer extends React.Component {
                         <div className="form-group">
                             <label htmlFor="role">{t('backend.organizers.role')}</label>
                             <h2>{this.state.get('role')}</h2>
+                            <h2>{AppConst.roles[this.state.organizer.role]}</h2>
                         </div>
                         <div className="form-group">
                             <label htmlFor="password">{t('backend.authentication.password')}</label>
