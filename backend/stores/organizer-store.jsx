@@ -38,11 +38,12 @@ class Organizer extends Store.Model {
             });
 
         jqXHR.done(() => {
-            Backbone.history.navigate('app/organizers', true);
+            //Backbone.history.navigate('app/organizers', true);
+            window.location.href = '/organizers/sign_in'
         });
 
         jqXHR.fail((jqXHR, textStatus, errorThrown) => {
-            emitter.emit('error', errorThrown);
+            emitter.emit('error', jqXHR.responseJSON.errors[0]);
         });
     }
 };

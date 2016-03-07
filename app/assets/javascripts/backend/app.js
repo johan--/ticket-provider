@@ -53655,11 +53655,12 @@
 	            });
 
 	            jqXHR.done(function () {
-	                _backbone2.default.history.navigate('app/organizers', true);
+	                //Backbone.history.navigate('app/organizers', true);
+	                window.location.href = '/organizers/sign_in';
 	            });
 
 	            jqXHR.fail(function (jqXHR, textStatus, errorThrown) {
-	                _emitter2.default.emit('error', errorThrown);
+	                _emitter2.default.emit('error', jqXHR.responseJSON.errors[0]);
 	            });
 	        }
 	    }]);
