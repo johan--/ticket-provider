@@ -2,6 +2,7 @@
   margin-top: $grid-gutter-width;
 
   header {
+    display: none;
     margin: 0 $grid-gutter-width/2 $grid-gutter-width/3;
     border-bottom: 1px solid map_get($brand-warm-grey, 'lighter');
     text-transform: uppercase;
