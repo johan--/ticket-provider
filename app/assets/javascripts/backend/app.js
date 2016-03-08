@@ -53145,10 +53145,6 @@
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
-	var _appConstant = __webpack_require__(313);
-
-	var _appConstant2 = _interopRequireDefault(_appConstant);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -53376,6 +53372,10 @@
 	var _underscore = __webpack_require__(191);
 
 	var _underscore2 = _interopRequireDefault(_underscore);
+
+	var _appConstant = __webpack_require__(316);
+
+	var _appConstant2 = _interopRequireDefault(_appConstant);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -53717,7 +53717,7 @@
 	};
 
 /***/ },
-/* 313 */
+/* 316 */
 /***/ function(module, exports) {
 
 	'use strict';

@@ -15,7 +15,6 @@ en:
       password_confirmation: Confirm Password
       current_password: Current Password
       change_password: Change Password
-      name: name
       organizer_name: Organizer Name
       redirect_to_login: Already have an account?
       headers:
