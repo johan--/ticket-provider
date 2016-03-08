@@ -33094,7 +33094,19 @@
 
 	var _editContainer2 = _interopRequireDefault(_editContainer);
 
+<<<<<<< d5f2d34963c12d45d5b67a8e1705d29253357dcb
 	var _settingContainer = __webpack_require__(317);
+=======
+<<<<<<< 3a3d48bca654222a57b7038e10222ef82ff6b1f8
+	var _settingContainer = __webpack_require__(316);
+=======
+<<<<<<< c2e12c57c506c46da49c0fa1abc54fea8cf702ab
+	var _contentContainer = __webpack_require__(312);
+=======
+	var _contentContainer = __webpack_require__(310);
+>>>>>>> [#114474167] Fix spec locale
+>>>>>>> [#114474167] Fix spec locale
+>>>>>>> [#114474167] Fix spec locale
 
 	var _settingContainer2 = _interopRequireDefault(_settingContainer);
 
@@ -53351,7 +53363,19 @@
 	exports.default = EditForm;
 
 /***/ },
+<<<<<<< d5f2d34963c12d45d5b67a8e1705d29253357dcb
 /* 317 */
+=======
+<<<<<<< 3a3d48bca654222a57b7038e10222ef82ff6b1f8
+/* 316 */
+=======
+<<<<<<< c2e12c57c506c46da49c0fa1abc54fea8cf702ab
+/* 312 */
+=======
+/* 310 */
+>>>>>>> [#114474167] Fix spec locale
+>>>>>>> [#114474167] Fix spec locale
+>>>>>>> [#114474167] Fix spec locale
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53374,7 +53398,19 @@
 
 	var _reactMixin2 = _interopRequireDefault(_reactMixin);
 
+<<<<<<< d5f2d34963c12d45d5b67a8e1705d29253357dcb
 	var _organizerStore = __webpack_require__(318);
+=======
+<<<<<<< 3a3d48bca654222a57b7038e10222ef82ff6b1f8
+	var _organizerStore = __webpack_require__(317);
+=======
+<<<<<<< c2e12c57c506c46da49c0fa1abc54fea8cf702ab
+	var _organizerStore = __webpack_require__(313);
+=======
+	var _organizerStore = __webpack_require__(311);
+>>>>>>> [#114474167] Fix spec locale
+>>>>>>> [#114474167] Fix spec locale
+>>>>>>> [#114474167] Fix spec locale
 
 	var _organizerStore2 = _interopRequireDefault(_organizerStore);
 
@@ -53382,6 +53418,7 @@
 
 	var _alertMessages2 = _interopRequireDefault(_alertMessages);
 
+<<<<<<< d5f2d34963c12d45d5b67a8e1705d29253357dcb
 	var _organizerActions = __webpack_require__(320);
 
 	var _organizerActions2 = _interopRequireDefault(_organizerActions);
@@ -53391,6 +53428,37 @@
 	var _underscore2 = _interopRequireDefault(_underscore);
 
 	var _appConstant = __webpack_require__(321);
+=======
+<<<<<<< 3a3d48bca654222a57b7038e10222ef82ff6b1f8
+	var _organizerActions = __webpack_require__(319);
+=======
+<<<<<<< c2e12c57c506c46da49c0fa1abc54fea8cf702ab
+	var _organizerActions = __webpack_require__(315);
+>>>>>>> [#114474167] Fix spec locale
+
+	var _organizerActions2 = _interopRequireDefault(_organizerActions);
+
+	var _underscore = __webpack_require__(191);
+=======
+	var _organizerActions = __webpack_require__(313);
+
+	var _organizerActions2 = _interopRequireDefault(_organizerActions);
+
+	var _underscore = __webpack_require__(309);
+>>>>>>> [#114474167] Fix spec locale
+
+	var _underscore2 = _interopRequireDefault(_underscore);
+
+<<<<<<< 3a3d48bca654222a57b7038e10222ef82ff6b1f8
+<<<<<<< 57b9602079a02bd81db4c2e4a98f2b1a298331c5
+	var _appConstant = __webpack_require__(320);
+=======
+	var _appConstant = __webpack_require__(313);
+>>>>>>> [#114474167] Add hash for organizer role
+=======
+	var _appConstant = __webpack_require__(314);
+>>>>>>> [#114474167] Fix spec locale
+>>>>>>> [#114474167] Fix spec locale
 
 	var _appConstant2 = _interopRequireDefault(_appConstant);
 
@@ -53592,7 +53660,19 @@
 	exports.default = SettingContainer;
 
 /***/ },
+<<<<<<< d5f2d34963c12d45d5b67a8e1705d29253357dcb
 /* 318 */
+=======
+<<<<<<< 3a3d48bca654222a57b7038e10222ef82ff6b1f8
+/* 317 */
+=======
+<<<<<<< c2e12c57c506c46da49c0fa1abc54fea8cf702ab
+/* 313 */
+=======
+/* 311 */
+>>>>>>> [#114474167] Fix spec locale
+>>>>>>> [#114474167] Fix spec locale
+>>>>>>> [#114474167] Fix spec locale
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53615,7 +53695,19 @@
 
 	var _emitter2 = _interopRequireDefault(_emitter);
 
+<<<<<<< d5f2d34963c12d45d5b67a8e1705d29253357dcb
 	var _organizerConstants = __webpack_require__(319);
+=======
+<<<<<<< 3a3d48bca654222a57b7038e10222ef82ff6b1f8
+	var _organizerConstants = __webpack_require__(318);
+=======
+<<<<<<< c2e12c57c506c46da49c0fa1abc54fea8cf702ab
+	var _organizerConstants = __webpack_require__(314);
+=======
+	var _organizerConstants = __webpack_require__(312);
+>>>>>>> [#114474167] Fix spec locale
+>>>>>>> [#114474167] Fix spec locale
+>>>>>>> [#114474167] Fix spec locale
 
 	var _organizerConstants2 = _interopRequireDefault(_organizerConstants);
 
@@ -53683,7 +53775,19 @@
 	exports.default = new Organizer();
 
 /***/ },
+<<<<<<< d5f2d34963c12d45d5b67a8e1705d29253357dcb
 /* 319 */
+=======
+<<<<<<< 3a3d48bca654222a57b7038e10222ef82ff6b1f8
+/* 318 */
+=======
+<<<<<<< c2e12c57c506c46da49c0fa1abc54fea8cf702ab
+/* 314 */
+=======
+/* 312 */
+>>>>>>> [#114474167] Fix spec locale
+>>>>>>> [#114474167] Fix spec locale
+>>>>>>> [#114474167] Fix spec locale
 /***/ function(module, exports) {
 
 	'use strict';
@@ -53696,7 +53800,19 @@
 	};
 
 /***/ },
+<<<<<<< d5f2d34963c12d45d5b67a8e1705d29253357dcb
 /* 320 */
+=======
+<<<<<<< 3a3d48bca654222a57b7038e10222ef82ff6b1f8
+/* 319 */
+=======
+<<<<<<< c2e12c57c506c46da49c0fa1abc54fea8cf702ab
+/* 315 */
+=======
+/* 313 */
+>>>>>>> [#114474167] Fix spec locale
+>>>>>>> [#114474167] Fix spec locale
+>>>>>>> [#114474167] Fix spec locale
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53709,7 +53825,19 @@
 
 	var _dispatch2 = _interopRequireDefault(_dispatch);
 
+<<<<<<< d5f2d34963c12d45d5b67a8e1705d29253357dcb
 	var _organizerConstants = __webpack_require__(319);
+=======
+<<<<<<< 3a3d48bca654222a57b7038e10222ef82ff6b1f8
+	var _organizerConstants = __webpack_require__(318);
+=======
+<<<<<<< c2e12c57c506c46da49c0fa1abc54fea8cf702ab
+	var _organizerConstants = __webpack_require__(314);
+=======
+	var _organizerConstants = __webpack_require__(312);
+>>>>>>> [#114474167] Fix spec locale
+>>>>>>> [#114474167] Fix spec locale
+>>>>>>> [#114474167] Fix spec locale
 
 	var _organizerConstants2 = _interopRequireDefault(_organizerConstants);
 
@@ -53738,5 +53866,25 @@
 	  }
 	};
 
+<<<<<<< d5f2d34963c12d45d5b67a8e1705d29253357dcb
+=======
+/***/ },
+/* 314 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = {
+	    roles: {
+	        'god': 'God',
+	        'account_owner': 'Account owner',
+	        'team_member': 'Team member'
+	    }
+	};
+
+>>>>>>> [#114474167] Fix spec locale
 /***/ }
 /******/ ]);
