@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactI18n from 'react-i18n';
 import ReactMixin from 'react-mixin';
+import DeleteModal from './delete-modal.jsx';
 import Action from './action.jsx';
 import Search from './search.jsx';
 import List from './list.jsx';
@@ -33,6 +34,9 @@ class ListContainer extends React.Component {
           <Action />
         </div>
         <List store={this.state} />
+        <DeleteModal
+          title={t('backend.modal.confirm.title.delete_event')}
+          description={t('backend.modal.confirm.description.delete_event')} />
       </div>
     );
   }

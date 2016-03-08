@@ -33,8 +33,17 @@ en:
       search: Search events
       header: Event
       save_changes: Save Changes
+      success_delete: Successfully delete event.
     tickets:
       edit_ticket: Edit Ticket
       new_ticket: New Ticket
       cannot_destroy: purchased ticket can not be destroy
       cannot_transition_to: can't transition to %{state}
+    modal:
+      confirm:
+        cancel: Cancel
+        delete: Delete
+        title:
+          delete_event: Confirm deletion
+        description:
+          delete_event: Are your sure to delete this event?

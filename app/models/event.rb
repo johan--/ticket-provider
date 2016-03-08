@@ -4,7 +4,7 @@ class Event < ActiveRecord::Base
   mount_uploader :cover_photo, CoverPhotoUploader
 
   belongs_to :account
-  has_many :ticket_types
+  has_many :ticket_types, dependent: :destroy
   has_many :event_transitions, autosave: false
 
   validates :name, presence: true

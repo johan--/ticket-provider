@@ -13,6 +13,10 @@
   }
 }
 
+.events-list-container .alert {
+  margin: 0 $grid-gutter-width/2;
+}
+
 .events-list-container .event-item {
   height: 15.875rem;
   width: $grid-gutter-width*10;

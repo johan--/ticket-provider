@@ -1,6 +1,6 @@
 class TicketType < ActiveRecord::Base
   belongs_to :event
-  has_many :tickets
+  has_many :tickets, dependent: :destroy
 
   validates :name, presence: true
   validates :event, presence: true

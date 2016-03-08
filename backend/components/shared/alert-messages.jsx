@@ -3,11 +3,11 @@ import emitter from '../../emitter.jsx';
 
 class AlertMessages extends React.Component {
 
-  constructor() {
+  constructor(props) {
     super();
     this.state = { messages: undefined };
 
-    this.subscription = emitter.addListener('error', this.setMessage.bind(this));
+    this.subscription = emitter.addListener(props.event, this.setMessage.bind(this));
   }
 
   setMessage(messages) {

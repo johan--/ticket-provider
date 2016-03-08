@@ -10,6 +10,8 @@ var Event = Backbone.Model.extend({
   },
 
   parse(resp, xhr) {
+    if (resp == undefined)
+      return {};
     if (resp.event != undefined)
       return resp.event;
     return resp;
@@ -46,6 +48,7 @@ class EventCollection extends Store.Collection {
     let formData = new FormData();
     switch (payload.actionType) {
       case constant.CREATE_EVENT: {
+        // TODO: Change the way to append CSRF-TOKEN to override Backbone.sync method.
         // Add CSRF-TOKEN to form data.
         formData.append('authenticity_token', `${$('meta[name="csrf-token"]').attr('content')}`);
 
@@ -94,6 +97,26 @@ class EventCollection extends Store.Collection {
         jqXHR.done(() => {
           this.getAll();
           Backbone.history.navigate('/app/events', true);
+        });
+
+        jqXHR.fail((jqXHR, textStatus, errorThrown) => {
+          emitter.emit('error', errorThrown);
+        });
+        break;
+      }
+      case constant.DELETE_EVENT: {
+        let params = $.param({ authenticity_token: `${$('meta[name="csrf-token"]').attr('content')}` });
+        let jqXHR = this
+                      .get(payload.event.id)
+                      .fetch({
+                        data: params,
+                        type: 'DELETE'
+                      });
+
+        jqXHR.done(() => {
+          this.reset();
+          this.getAll();
+          emitter.emit('success', I18n.t('backend.events.success_delete'));
         });
 
         jqXHR.fail((jqXHR, textStatus, errorThrown) => {
