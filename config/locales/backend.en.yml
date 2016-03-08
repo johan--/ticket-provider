@@ -33,6 +33,7 @@ en:
       search: Search events
       header: Event
       save_changes: Save Changes
+      success_delete: Successfully delete event.
     tickets:
       edit_ticket: Edit Ticket
       new_ticket: New Ticket

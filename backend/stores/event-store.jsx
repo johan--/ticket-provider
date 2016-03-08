@@ -116,6 +116,7 @@ class EventCollection extends Store.Collection {
         jqXHR.done(() => {
           this.reset();
           this.getAll();
+          emitter.emit('success', I18n.t('backend.events.success_delete'));
         });
 
         jqXHR.fail((jqXHR, textStatus, errorThrown) => {

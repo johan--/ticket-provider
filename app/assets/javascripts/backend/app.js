@@ -37557,6 +37557,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _alertMessages = __webpack_require__(308);
+
+	var _alertMessages2 = _interopRequireDefault(_alertMessages);
+
 	var _listItem = __webpack_require__(195);
 
 	var _listItem2 = _interopRequireDefault(_listItem);
@@ -37584,6 +37588,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'container-fluid events-list-container' },
+	        _react2.default.createElement(_alertMessages2.default, { event: 'success', alertType: 'success' }),
 	        this.props.store.map(function (event) {
 	          return _react2.default.createElement(_listItem2.default, { key: event.id, event: event });
 	        })
@@ -37885,6 +37890,7 @@
 	            jqXHR.done(function () {
 	              _this2.reset();
 	              _this2.getAll();
+	              _emitter2.default.emit('success', I18n.t('backend.events.success_delete'));
 	            });
 
 	            jqXHR.fail(function (jqXHR, textStatus, errorThrown) {

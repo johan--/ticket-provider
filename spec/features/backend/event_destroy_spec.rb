@@ -22,6 +22,8 @@ feature 'Organizer can delete particular event belongs to their account', js: tr
 
     find('.event-item .icon-close').click
     find('.modal .modal-content .btn-danger').click
+
+    expect(page).to have_content 'Successfully delete event.'
     expect(page).not_to have_css('.event-item')
     expect(Event.count).to eq 0
   end
