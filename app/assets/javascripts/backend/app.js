@@ -34795,16 +34795,25 @@
 	  _createClass(ConfirmModal, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      var _this2 = this;
-
 	      this.$modal = $('.modal');
-	      this.$modal.on('click', function () {
-	        _this2.$modal.modal('hide');
-	      });
+	    }
+	  }, {
+	    key: 'handleCancel',
+	    value: function handleCancel() {
+	      this.$modal.modal('hide');
+	    }
+	  }, {
+	    key: 'hideModal',
+	    value: function hideModal() {
+	      this.$modal.modal('hide');
+	    }
 
-	      $('.modal .modal-content').on('click', function (e) {
-	        e.stopPropagation();
-	      });
+	    // Prevent child modal from trigger hideModal on it's click event.
+
+	  }, {
+	    key: 'preventChildModalHide',
+	    value: function preventChildModalHide(e) {
+	      e.stopPropagation();
 	    }
 	  }, {
 	    key: 'render',
@@ -34812,7 +34821,12 @@
 	      var t = this.getIntlMessage;
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'modal fade', tabIndex: '-1', role: 'dialog', 'aria-labelledby': 'title', 'aria-hidden': 'true' },
+	        { className: 'modal fade',
+	          tabIndex: '-1',
+	          role: 'dialog',
+	          'aria-labelledby': 'title',
+	          'aria-hidden': 'true',
+	          onClick: this.hideModal.bind(this) },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'modal-internal-wrapper' },
@@ -34821,7 +34835,7 @@
 	            { className: 'modal-dialog modal-small-content', role: 'document' },
 	            _react2.default.createElement(
 	              'div',
-	              { className: 'modal-content' },
+	              { className: 'modal-content', onClick: this.preventChildModalHide },
 	              _react2.default.createElement(
 	                'div',
 	                { className: 'modal-header' },
@@ -34843,12 +34857,15 @@
 	                ),
 	                _react2.default.createElement(
 	                  'button',
-	                  { type: 'button', className: 'btn btn-danger' },
+	                  { type: 'button',
+	                    className: 'btn btn-danger' },
 	                  t('backend.modal.confirm.delete')
 	                ),
 	                _react2.default.createElement(
 	                  'button',
-	                  { type: 'button', className: 'btn btn-info' },
+	                  { type: 'button',
+	                    onClick: this.handleCancel.bind(this),
+	                    className: 'btn btn-info' },
 	                  t('backend.modal.confirm.cancel')
 	                )
 	              )
