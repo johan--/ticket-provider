@@ -1,12 +1,18 @@
 import React from 'react';
 import ReactI18n from 'react-i18n';
 import ReactMixin from 'react-mixin';
+import emitter from '../../emitter.jsx';
 
 class ListItem extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
     Backbone.history.navigate($(e.currentTarget).attr('href'), true);
+  }
+
+  handleDelete(e) {
+    e.preventDefault();
+    emitter.emit('showDeleteModal', this.props.event);
   }
 
   render() {
@@ -33,7 +39,7 @@ class ListItem extends React.Component {
           <a href={`/app/events/${this.props.event.id}/edit`} className="action-container"  onClick={this.handleClick}>
             <i className="icon icon-pencil" />
           </a>
-          <a className="action-container" href="#">
+          <a className="action-container" href="#" onClick={this.handleDelete.bind(this)}>
             <i className="icon icon-close" />
           </a>
         </div>
