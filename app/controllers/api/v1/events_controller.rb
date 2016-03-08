@@ -3,7 +3,7 @@ class Api::V1::EventsController < Api::V1::ApiController
   before_action :authenticate!, only: :index
   before_action :page_params, only: :index
 
-  load_resource find_by: :uid, except: :index
+  load_resource find_by: :uid, except: [:index, :destroy]
   authorize_resource except: :create
 
   def index
@@ -44,6 +44,11 @@ class Api::V1::EventsController < Api::V1::ApiController
   end
 
   def destroy
+    @event = Event
+               .includes(ticket_types: [:tickets])
+               .where({ events: { uid: params[:id] } })
+               .accessible_by(@current_ability).first
+
     if @event.destroy
       head :no_content
     else
