@@ -23,3 +23,17 @@
     margin: 0 auto;
   }
 }
+
+.btn-danger {
+  width: 100%;
+}
+
+.btn-info {
+  width: 100%;
+  background-color: $brand-grey;
+  border: none;
+
+  &:hover, &:focus {
+    background-color: darken($brand-grey, 10%);
+  }
+}
