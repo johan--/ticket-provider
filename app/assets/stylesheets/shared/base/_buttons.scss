@@ -33,7 +33,7 @@
   background-color: $brand-grey;
   border: none;
 
-  &:active, &:hover, &:focus {
+  &:active, &:hover, &:focus, &:active:hover, &:active:focus {
     background-color: darken($brand-grey, 10%);
   }
 }
