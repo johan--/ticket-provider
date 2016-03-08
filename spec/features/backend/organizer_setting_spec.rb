@@ -9,7 +9,7 @@ feature 'Organizer can update profile' do
   end
 
   scenario 'Organizer fill in all required information', js: true do
-    visit "/app/organizers"
+    visit "/app/organizers/settings"
 
     fill_in I18n.t('backend.events.name'), with: organizer.name
     fill_in I18n.t('backend.authentication.new_password'), with: '1q2w3e4r'
@@ -22,7 +22,7 @@ feature 'Organizer can update profile' do
   end
 
   scenario 'Organizer missed some required information', js: true do
-    visit "/app/organizers"
+    visit "/app/organizers/settings"
 
     fill_in I18n.t('backend.events.name'), with: organizer.name
     fill_in I18n.t('backend.authentication.new_password'), with: '1q2w3e4r'

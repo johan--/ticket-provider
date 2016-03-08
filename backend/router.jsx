@@ -7,8 +7,7 @@ var Router = Backbone.Router.extend({
     'app/events/new': 'newEvent',
     'app/events/(:id)': 'showEvent',
     'app/events/(:id)/edit': 'editEvent',
-    'app/organizers': 'organizers',
-    'app/organizers/update': 'organizersUpdate',
+    'app/organizers/settings': 'organizersSettings',
 
     // fallback path
     'app': 'events',
@@ -33,12 +32,8 @@ var Router = Backbone.Router.extend({
     this.params = { _id: id };
   },
 
-  organizers: function() {
-    this.current = 'organizers';
-  },
-
-  organizersUpdate: function() {
-    this.current = 'organizers/update';
+  organizersSettings: function() {
+    this.current = 'organizers/settings';
   }
 });
 

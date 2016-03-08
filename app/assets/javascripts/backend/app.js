@@ -32995,8 +32995,7 @@
 	    'app/events/new': 'newEvent',
 	    'app/events/(:id)': 'showEvent',
 	    'app/events/(:id)/edit': 'editEvent',
-	    'app/organizers': 'organizers',
-	    'app/organizers/update': 'organizersUpdate',
+	    'app/organizers/settings': 'organizersSettings',
 
 	    // fallback path
 	    'app': 'events',
@@ -33021,12 +33020,8 @@
 	    this.params = { _id: id };
 	  },
 
-	  organizers: function organizers() {
-	    this.current = 'organizers';
-	  },
-
-	  organizersUpdate: function organizersUpdate() {
-	    this.current = 'organizers/update';
+	  organizersSettings: function organizersSettings() {
+	    this.current = 'organizers/settings';
 	  }
 	});
 
@@ -33068,9 +33063,9 @@
 
 	var _editContainer2 = _interopRequireDefault(_editContainer);
 
-	var _contentContainer = __webpack_require__(312);
+	var _settingContainer = __webpack_require__(312);
 
-	var _contentContainer2 = _interopRequireDefault(_contentContainer);
+	var _settingContainer2 = _interopRequireDefault(_settingContainer);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33151,12 +33146,12 @@
 	        );
 	      }
 
-	      if (this.props.router.current === 'organizers') {
+	      if (this.props.router.current === 'organizers/settings') {
 	        return _react2.default.createElement(
 	          'div',
 	          null,
 	          _react2.default.createElement(_navbar2.default, null),
-	          _react2.default.createElement(_contentContainer2.default, null)
+	          _react2.default.createElement(_settingContainer2.default, null)
 	        );
 	      }
 	      return _react2.default.createElement('div', null);
@@ -33263,8 +33258,8 @@
 	              { className: 'nav-item' },
 	              _react2.default.createElement(
 	                'a',
-	                { className: 'nav-link', onClick: this.handleClick, href: '/app/organizers' },
-	                t('backend.navbar.organizer')
+	                { className: 'nav-link', onClick: this.handleClick, href: '/app/organizers/settings' },
+	                t('backend.navbar.setting')
 	              )
 	            ),
 	            _react2.default.createElement(
@@ -53340,7 +53335,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -53385,194 +53380,194 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var ContentContainer = function (_React$Component) {
-	    _inherits(ContentContainer, _React$Component);
+	var SettingContainer = function (_React$Component) {
+	  _inherits(SettingContainer, _React$Component);
 
-	    function ContentContainer() {
-	        _classCallCheck(this, ContentContainer);
+	  function SettingContainer() {
+	    _classCallCheck(this, SettingContainer);
 
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ContentContainer).call(this));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SettingContainer).call(this));
 
-	        _this.model = _organizerStore2.default.getModel();
-	        _this.state = { organizer: _this.model.attributes };
-	        return _this;
+	    _this.model = _organizerStore2.default.getModel();
+	    _this.state = { organizer: _this.model.attributes };
+	    return _this;
+	  }
+
+	  _createClass(SettingContainer, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.model.on('add remove reset change', function () {
+	        this.forceUpdate();
+	      }, this);
 	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      this.model.off(null, null, this);
+	    }
+	  }, {
+	    key: 'handleNameChange',
+	    value: function handleNameChange(e) {
+	      var updateState = this.state;
+	      updateState.organizer.name = e.target.value;
+	      this.setState(updateState);
+	    }
+	  }, {
+	    key: 'handlePasswordChange',
+	    value: function handlePasswordChange(e) {
+	      var updateState = this.state;
+	      updateState.organizer.password = e.target.value;
+	      this.setState(updateState);
+	    }
+	  }, {
+	    key: 'handlePasswordConfirmChange',
+	    value: function handlePasswordConfirmChange(e) {
+	      var updateState = this.state;
+	      updateState.organizer.password_confirmation = e.target.value;
+	      this.setState(updateState);
+	    }
+	  }, {
+	    key: 'handleCurrentPasswordChange',
+	    value: function handleCurrentPasswordChange(e) {
+	      var updateState = this.state;
+	      updateState.organizer.current_password = e.target.value;
+	      this.setState(updateState);
+	    }
+	  }, {
+	    key: 'handleSubmit',
+	    value: function handleSubmit(e) {
+	      e.preventDefault();
+	      _organizerActions2.default.edit(_underscore2.default.pick(this.state.organizer, 'id', 'name', 'current_password', 'password', 'password_confirmation'));
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var t = this.getIntlMessage;
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'organizer-settings-container' },
+	        _react2.default.createElement(
+	          'header',
+	          null,
+	          '>> ',
+	          t('backend.organizers.header')
+	        ),
+	        _react2.default.createElement(
+	          'form',
+	          { className: 'form-horizontal' },
+	          _react2.default.createElement(_alertMessages2.default, { alertType: 'danger' }),
+	          _react2.default.createElement(
+	            'fieldset',
+	            null,
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'form-group' },
+	              _react2.default.createElement(
+	                'label',
+	                { htmlFor: 'email' },
+	                t('backend.authentication.email')
+	              ),
+	              _react2.default.createElement(
+	                'h2',
+	                null,
+	                this.state.organizer.email
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'form-group' },
+	              _react2.default.createElement(
+	                'label',
+	                { htmlFor: 'name' },
+	                t('backend.events.name')
+	              ),
+	              _react2.default.createElement('input', {
+	                value: this.state.organizer.name,
+	                name: t('backend.events.name'),
+	                className: 'form-control',
+	                onChange: this.handleNameChange.bind(this) })
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'form-group' },
+	              _react2.default.createElement(
+	                'label',
+	                { htmlFor: 'role' },
+	                t('backend.organizers.role')
+	              ),
+	              _react2.default.createElement(
+	                'h2',
+	                null,
+	                _appConstant2.default.roles[this.state.organizer.role]
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'form-group' },
+	              _react2.default.createElement(
+	                'label',
+	                { htmlFor: 'current_password' },
+	                t('backend.authentication.current_password')
+	              ),
+	              _react2.default.createElement('input', {
+	                name: t('backend.authentication.current_password'),
+	                className: 'form-control',
+	                type: 'password',
+	                onChange: this.handleCurrentPasswordChange.bind(this) })
+	            ),
+	            _react2.default.createElement(
+	              'header',
+	              null,
+	              t('backend.authentication.change_password')
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'form-group' },
+	              _react2.default.createElement(
+	                'label',
+	                { htmlFor: 'password' },
+	                t('backend.authentication.new_password')
+	              ),
+	              _react2.default.createElement('input', {
+	                name: t('backend.authentication.new_password'),
+	                className: 'form-control',
+	                type: 'password',
+	                onChange: this.handlePasswordChange.bind(this) })
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'form-group' },
+	              _react2.default.createElement(
+	                'label',
+	                { htmlFor: 'password_confirmation' },
+	                t('backend.authentication.password_confirmation')
+	              ),
+	              _react2.default.createElement('input', {
+	                name: t('backend.authentication.password_confirmation'),
+	                className: 'form-control',
+	                type: 'password',
+	                onChange: this.handlePasswordConfirmChange.bind(this) })
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              {
+	                type: 'submit',
+	                className: 'btn btn-primary',
+	                onClick: this.handleSubmit.bind(this) },
+	              t('backend.organizers.update')
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
 
-	    _createClass(ContentContainer, [{
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {
-	            this.model.on('add remove reset change', function () {
-	                this.forceUpdate();
-	            }, this);
-	        }
-	    }, {
-	        key: 'componentWillUnmount',
-	        value: function componentWillUnmount() {
-	            this.model.off(null, null, this);
-	        }
-	    }, {
-	        key: 'handleNameChange',
-	        value: function handleNameChange(e) {
-	            var updateState = this.state;
-	            updateState.organizer.name = e.target.value;
-	            this.setState(updateState);
-	        }
-	    }, {
-	        key: 'handlePasswordChange',
-	        value: function handlePasswordChange(e) {
-	            var updateState = this.state;
-	            updateState.organizer.password = e.target.value;
-	            this.setState(updateState);
-	        }
-	    }, {
-	        key: 'handlePasswordConfirmChange',
-	        value: function handlePasswordConfirmChange(e) {
-	            var updateState = this.state;
-	            updateState.organizer.password_confirmation = e.target.value;
-	            this.setState(updateState);
-	        }
-	    }, {
-	        key: 'handleCurrentPasswordChange',
-	        value: function handleCurrentPasswordChange(e) {
-	            var updateState = this.state;
-	            updateState.organizer.current_password = e.target.value;
-	            this.setState(updateState);
-	        }
-	    }, {
-	        key: 'handleSubmit',
-	        value: function handleSubmit(e) {
-	            e.preventDefault();
-	            _organizerActions2.default.edit(_underscore2.default.pick(this.state.organizer, 'id', 'name', 'current_password', 'password', 'password_confirmation'));
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var t = this.getIntlMessage;
-	            return _react2.default.createElement(
-	                'div',
-	                { className: 'organizer-container' },
-	                _react2.default.createElement(
-	                    'header',
-	                    null,
-	                    '>> ',
-	                    t('backend.organizers.header')
-	                ),
-	                _react2.default.createElement(
-	                    'form',
-	                    { className: 'form-horizontal' },
-	                    _react2.default.createElement(_alertMessages2.default, { alertType: 'danger' }),
-	                    _react2.default.createElement(
-	                        'fieldset',
-	                        null,
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'form-group' },
-	                            _react2.default.createElement(
-	                                'label',
-	                                { htmlFor: 'email' },
-	                                t('backend.authentication.email')
-	                            ),
-	                            _react2.default.createElement(
-	                                'h2',
-	                                null,
-	                                this.state.organizer.email
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'form-group' },
-	                            _react2.default.createElement(
-	                                'label',
-	                                { htmlFor: 'name' },
-	                                t('backend.authentication.name')
-	                            ),
-	                            _react2.default.createElement('input', {
-	                                value: this.state.organizer.name,
-	                                name: t('backend.events.name'),
-	                                className: 'form-control',
-	                                onChange: this.handleNameChange.bind(this) })
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'form-group' },
-	                            _react2.default.createElement(
-	                                'label',
-	                                { htmlFor: 'role' },
-	                                t('backend.organizers.role')
-	                            ),
-	                            _react2.default.createElement(
-	                                'h2',
-	                                null,
-	                                _appConstant2.default.roles[this.state.organizer.role]
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'form-group' },
-	                            _react2.default.createElement(
-	                                'label',
-	                                { htmlFor: 'current_password' },
-	                                t('backend.authentication.current_password')
-	                            ),
-	                            _react2.default.createElement('input', {
-	                                name: t('backend.authentication.current_password'),
-	                                className: 'form-control',
-	                                type: 'password',
-	                                onChange: this.handleCurrentPasswordChange.bind(this) })
-	                        ),
-	                        _react2.default.createElement(
-	                            'header',
-	                            null,
-	                            t('backend.authentication.change_password')
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'form-group' },
-	                            _react2.default.createElement(
-	                                'label',
-	                                { htmlFor: 'password' },
-	                                t('backend.authentication.new_password')
-	                            ),
-	                            _react2.default.createElement('input', {
-	                                name: t('backend.authentication.new_password'),
-	                                className: 'form-control',
-	                                type: 'password',
-	                                onChange: this.handlePasswordChange.bind(this) })
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'form-group' },
-	                            _react2.default.createElement(
-	                                'label',
-	                                { htmlFor: 'password_confirmation' },
-	                                t('backend.authentication.password_confirmation')
-	                            ),
-	                            _react2.default.createElement('input', {
-	                                name: t('backend.authentication.password_confirmation'),
-	                                className: 'form-control',
-	                                type: 'password',
-	                                onChange: this.handlePasswordConfirmChange.bind(this) })
-	                        ),
-	                        _react2.default.createElement(
-	                            'button',
-	                            {
-	                                type: 'submit',
-	                                className: 'btn btn-primary',
-	                                onClick: this.handleSubmit.bind(this) },
-	                            t('backend.organizers.update')
-	                        )
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-
-	    return ContentContainer;
+	  return SettingContainer;
 	}(_react2.default.Component);
 
-	(0, _reactMixin2.default)(ContentContainer.prototype, _reactI18n2.default);
+	(0, _reactMixin2.default)(SettingContainer.prototype, _reactI18n2.default);
 
-	exports.default = ContentContainer;
+	exports.default = SettingContainer;
 
 /***/ },
 /* 313 */
@@ -53581,7 +53576,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -53615,62 +53610,61 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var Organizer = function (_Store$Model) {
-	    _inherits(Organizer, _Store$Model);
+	  _inherits(Organizer, _Store$Model);
 
-	    function Organizer() {
-	        _classCallCheck(this, Organizer);
+	  function Organizer() {
+	    _classCallCheck(this, Organizer);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Organizer).apply(this, arguments));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Organizer).apply(this, arguments));
+	  }
+
+	  _createClass(Organizer, [{
+	    key: 'url',
+	    value: function url() {
+	      return '/api/v1/organizers/me';
 	    }
+	  }, {
+	    key: 'parse',
+	    value: function parse(resp, xhr) {
+	      return resp.organizer;
+	    }
+	  }, {
+	    key: 'getModel',
+	    value: function getModel() {
+	      var jqXHR = this.fetch();
+	      return this;
+	    }
+	  }, {
+	    key: 'handleDispatch',
+	    value: function handleDispatch(payload) {
+	      var formData = new FormData();
 
-	    _createClass(Organizer, [{
-	        key: 'url',
-	        value: function url() {
-	            return '/api/v1/organizers/me';
-	        }
-	    }, {
-	        key: 'parse',
-	        value: function parse(resp, xhr) {
-	            return resp.organizer;
-	        }
-	    }, {
-	        key: 'getModel',
-	        value: function getModel() {
-	            var jqXHR = this.fetch();
-	            return this;
-	        }
-	    }, {
-	        key: 'handleDispatch',
-	        value: function handleDispatch(payload) {
-	            var formData = new FormData();
+	      // Add CSRF-TOKEN to form data.
+	      formData.append('authenticity_token', '' + (0, _jquery2.default)('meta[name="csrf-token"]').attr('content'));
+	      // Iterate through event object and add it to form data.
+	      _jquery2.default.each(payload.organizer, function (key) {
+	        formData.append('organizer[' + key + ']', payload.organizer[key]);
+	      });
 
-	            // Add CSRF-TOKEN to form data.
-	            formData.append('authenticity_token', '' + (0, _jquery2.default)('meta[name="csrf-token"]').attr('content'));
-	            // Iterate through event object and add it to form data.
-	            _jquery2.default.each(payload.organizer, function (key) {
-	                formData.append('organizer[' + key + ']', payload.organizer[key]);
-	            });
+	      var jqXHR = this.fetch({
+	        url: '/api/v1/organizers/' + payload.organizer.id,
+	        data: formData,
+	        type: 'PUT',
+	        processData: false,
+	        contentType: false
+	      });
 
-	            var jqXHR = this.fetch({
-	                url: '/api/v1/organizers/' + payload.organizer.id,
-	                data: formData,
-	                type: 'PUT',
-	                processData: false,
-	                contentType: false
-	            });
+	      jqXHR.done(function () {
+	        window.location.href = '/organizers/sign_in';
+	      });
 
-	            jqXHR.done(function () {
-	                //Backbone.history.navigate('app/organizers', true);
-	                window.location.href = '/organizers/sign_in';
-	            });
+	      jqXHR.fail(function (jqXHR, textStatus, errorThrown) {
+	        _emitter2.default.emit('error', jqXHR.responseJSON.errors[0]);
+	      });
+	    }
+	  }]);
 
-	            jqXHR.fail(function (jqXHR, textStatus, errorThrown) {
-	                _emitter2.default.emit('error', jqXHR.responseJSON.errors[0]);
-	            });
-	        }
-	    }]);
-
-	    return Organizer;
+	  return Organizer;
 	}(_store2.default.Model);
 
 	;
@@ -53697,7 +53691,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _dispatch = __webpack_require__(177);
@@ -53711,9 +53705,9 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = {
-	    edit: function edit(organizer) {
-	        (0, _dispatch2.default)(_organizerConstants2.default.UPDATE_ORGANIZER, { organizer: organizer });
-	    }
+	  edit: function edit(organizer) {
+	    (0, _dispatch2.default)(_organizerConstants2.default.UPDATE_ORGANIZER, { organizer: organizer });
+	  }
 	};
 
 /***/ },

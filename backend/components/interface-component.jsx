@@ -4,7 +4,7 @@ import EventListContainer from './events/list-container.jsx';
 import EventCreateContainer from './events/create-container.jsx';
 import EventShowContainer from './events/show-container.jsx';
 import EventEditContainer from './events/edit-container.jsx';
-import ContentContainer from './organizers/content-container.jsx';
+import SettingContainer from './organizers/setting-container.jsx';
 
 class InterfaceComponent extends React.Component {
 
@@ -66,11 +66,11 @@ class InterfaceComponent extends React.Component {
       );
     }
 
-    if(this.props.router.current === 'organizers') {
+    if(this.props.router.current === 'organizers/settings') {
       return (
           <div>
             <Navbar />
-            <ContentContainer />
+            <SettingContainer />
           </div>
       );
     }

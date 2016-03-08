@@ -3,7 +3,7 @@ en:
     navbar:
       event: Event
       brand: SQUARE
-      organizer: Organizer
+      setting: Setting
     authentication:
       login: Login
       logout: Logout
