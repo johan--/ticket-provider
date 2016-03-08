@@ -38175,7 +38175,7 @@
 	        _react2.default.createElement(
 	          'form',
 	          { className: 'form-horizontal', ref: 'eventForm' },
-	          _react2.default.createElement(_alertMessages2.default, { alertType: 'danger' }),
+	          _react2.default.createElement(_alertMessages2.default, { event: 'error', alertType: 'danger' }),
 	          _react2.default.createElement(
 	            'fieldset',
 	            null,
@@ -52337,14 +52337,14 @@
 	var AlertMessages = function (_React$Component) {
 	  _inherits(AlertMessages, _React$Component);
 
-	  function AlertMessages() {
+	  function AlertMessages(props) {
 	    _classCallCheck(this, AlertMessages);
 
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AlertMessages).call(this));
 
 	    _this.state = { messages: undefined };
 
-	    _this.subscription = _emitter2.default.addListener('error', _this.setMessage.bind(_this));
+	    _this.subscription = _emitter2.default.addListener(props.event, _this.setMessage.bind(_this));
 	    return _this;
 	  }
 
@@ -52757,7 +52757,7 @@
 	        _react2.default.createElement(
 	          'form',
 	          { className: 'form-horizontal', ref: 'eventForm' },
-	          _react2.default.createElement(_alertMessages2.default, { alertType: 'danger' }),
+	          _react2.default.createElement(_alertMessages2.default, { event: 'error', alertType: 'danger' }),
 	          _react2.default.createElement(
 	            'fieldset',
 	            null,
