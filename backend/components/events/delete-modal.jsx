@@ -1,5 +1,7 @@
 import ConfirmModal from '../shared/confirm-modal.jsx';
+import EventAction from '../../actions/event-actions.jsx';
 import emitter from '../../emitter.jsx';
+import _ from 'underscore';
 
 class DeleteModal extends ConfirmModal {
 
@@ -16,6 +18,10 @@ class DeleteModal extends ConfirmModal {
   showDeleteModal(model) {
     this.setState({ title: this.state.title, description: this.state.description, model: model });
     this.$modal.modal('show');
+  }
+
+  handleConfirm() {
+    EventAction.delete(_.pick(this.state.model, 'id'));
   }
 }
 

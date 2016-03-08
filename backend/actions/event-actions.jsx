@@ -8,5 +8,9 @@ export default {
 
   edit: function(event) {
     dispatch(constant.UPDATE_EVENT, { event: event });
+  },
+
+  delete: function(event) {
+    dispatch(constant.DELETE_EVENT, { event: event });
   }
 };

@@ -13,6 +13,9 @@ class ConfirmModal extends React.Component {
     this.$modal = $('.modal');
   }
 
+  // To be override.
+  handleConfirm() {}
+
   handleCancel() {
     this.$modal.modal('hide');
   }
@@ -45,6 +48,7 @@ class ConfirmModal extends React.Component {
                 <p>{this.state.description} {this.state.model ? this.state.model.get('name') : ''}</p>
 
                 <button type="button"
+                        onClick={this.handleConfirm.bind(this)}
                         className="btn btn-danger">
                   {t('backend.modal.confirm.delete')}
                 </button>
