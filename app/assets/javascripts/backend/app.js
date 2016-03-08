@@ -53511,11 +53511,30 @@
 	                            { className: 'form-group' },
 	                            _react2.default.createElement(
 	                                'label',
-	                                { htmlFor: 'password' },
-	                                t('backend.authentication.password')
+	                                { htmlFor: 'current_password' },
+	                                t('backend.authentication.current_password')
 	                            ),
 	                            _react2.default.createElement('input', {
-	                                name: t('backend.authentication.password'),
+	                                name: t('backend.authentication.current_password'),
+	                                className: 'form-control',
+	                                type: 'password',
+	                                onChange: this.handleCurrentPasswordChange.bind(this) })
+	                        ),
+	                        _react2.default.createElement(
+	                            'header',
+	                            null,
+	                            t('backend.authentication.change_password')
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'form-group' },
+	                            _react2.default.createElement(
+	                                'label',
+	                                { htmlFor: 'password' },
+	                                t('backend.authentication.new_password')
+	                            ),
+	                            _react2.default.createElement('input', {
+	                                name: t('backend.authentication.new_password'),
 	                                className: 'form-control',
 	                                type: 'password',
 	                                onChange: this.handlePasswordChange.bind(this) })
@@ -53533,20 +53552,6 @@
 	                                className: 'form-control',
 	                                type: 'password',
 	                                onChange: this.handlePasswordConfirmChange.bind(this) })
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'form-group' },
-	                            _react2.default.createElement(
-	                                'label',
-	                                { htmlFor: 'current_password' },
-	                                t('backend.authentication.current_password')
-	                            ),
-	                            _react2.default.createElement('input', {
-	                                name: t('backend.authentication.current_password'),
-	                                className: 'form-control',
-	                                type: 'password',
-	                                onChange: this.handleCurrentPasswordChange.bind(this) })
 	                        ),
 	                        _react2.default.createElement(
 	                            'button',

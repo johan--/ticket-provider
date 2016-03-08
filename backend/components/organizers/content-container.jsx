@@ -76,12 +76,20 @@ class ContentContainer extends React.Component {
                         <div className="form-group">
                             <label htmlFor="role">{t('backend.organizers.role')}</label>
                             <h2>{AppConst.roles[this.state.organizer.role]}</h2>
-
                         </div>
                         <div className="form-group">
-                            <label htmlFor="password">{t('backend.authentication.password')}</label>
+                            <label htmlFor="current_password">{t('backend.authentication.current_password')}</label>
                             <input
-                                name={t('backend.authentication.password')}
+                                name={t('backend.authentication.current_password')}
+                                className="form-control"
+                                type="password"
+                                onChange={this.handleCurrentPasswordChange.bind(this)}/>
+                        </div>
+                        <header>{t('backend.authentication.change_password')}</header>
+                        <div className="form-group">
+                            <label htmlFor="password">{t('backend.authentication.new_password')}</label>
+                            <input
+                                name={t('backend.authentication.new_password')}
                                 className="form-control"
                                 type="password"
                                 onChange={this.handlePasswordChange.bind(this)}/>
@@ -93,14 +101,6 @@ class ContentContainer extends React.Component {
                                 className="form-control"
                                 type="password"
                                 onChange={this.handlePasswordConfirmChange.bind(this)}/>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="current_password">{t('backend.authentication.current_password')}</label>
-                            <input
-                                name={t('backend.authentication.current_password')}
-                                className="form-control"
-                                type="password"
-                                onChange={this.handleCurrentPasswordChange.bind(this)}/>
                         </div>
                         <button
                             type="submit"
