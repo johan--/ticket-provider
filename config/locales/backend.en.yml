@@ -16,7 +16,7 @@ en:
       new_password: New Password
       password_confirmation: Confirm Password
       current_password: Current Password
-      change_password: Change Password
+      change_password: Change password
       name: Name
       organizer_name: Organizer Name
       redirect_to_login: Already have an account?
