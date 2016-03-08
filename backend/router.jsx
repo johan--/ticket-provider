@@ -34,7 +34,7 @@ var Router = Backbone.Router.extend({
 
   organizersSettings: function() {
     this.current = 'organizers/settings';
-  },
+  }
 });
 
 export default Router;

@@ -64,7 +64,6 @@ class SettingContainer extends React.Component {
           <fieldset>
             <div className="form-group">
               <label htmlFor="email">{t('backend.organizers.email')}</label>
-
               <h2>{this.state.organizer.email}</h2>
             </div>
             <div className="form-group">
