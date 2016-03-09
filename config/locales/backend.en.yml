@@ -10,12 +10,15 @@ en:
       register: Register
       email: E-mail address
       password: Password
+      new_password: Password(minimum 8 characters)
       password_confirmation: Confirm Password
       name: Name
       organizer_name: Organizer Name
       redirect_to_login: Already have an account?
       headers:
         registration: Organizer Register
+        forgot_password: Forgot your password?
+        change_password: Change password
     events:
       available: available
       create_event: Create Event

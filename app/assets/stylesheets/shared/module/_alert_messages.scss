@@ -3,4 +3,8 @@
   line-height: .875;
   padding: $grid-gutter-width/3 1.25rem;
   box-shadow: $box-shadow;
+
+  li {
+    list-style-type: none;
+  }
 }
