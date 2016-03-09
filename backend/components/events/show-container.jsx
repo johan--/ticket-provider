@@ -14,6 +14,7 @@ class ShowContainer extends React.Component {
     this.state.on('add remove reset change', function() {
       this.forceUpdate();
     }, this);
+    this.$modal = $('.modal');
   }
 
   componentWillUnmount() {
@@ -23,6 +24,11 @@ class ShowContainer extends React.Component {
   handleClick(e) {
     e.preventDefault();
     Backbone.history.navigate($(e.currentTarget).attr('href'), true);
+  }
+
+  showCreateTicketTypeModal(e) {
+    e.preventDefault();
+    this.$modal.modal('show');
   }
 
   render() {
@@ -51,7 +57,7 @@ class ShowContainer extends React.Component {
                 <a onClick={this.handleClick} className="btn btn-primary">
                   {t('backend.tickets.edit_ticket')}
                 </a>
-                <a onClick={this.handleClick} className="btn btn-primary">
+                <a onClick={this.showCreateTicketTypeModal.bind(this)} className="btn btn-primary">
                   {t('backend.tickets.new_ticket')}
                 </a>
               </div>

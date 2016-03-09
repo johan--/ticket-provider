@@ -52444,6 +52444,7 @@
 	      this.state.on('add remove reset change', function () {
 	        this.forceUpdate();
 	      }, this);
+	      this.$modal = $('.modal');
 	    }
 	  }, {
 	    key: 'componentWillUnmount',
@@ -52455,6 +52456,12 @@
 	    value: function handleClick(e) {
 	      e.preventDefault();
 	      Backbone.history.navigate($(e.currentTarget).attr('href'), true);
+	    }
+	  }, {
+	    key: 'showCreateTicketTypeModal',
+	    value: function showCreateTicketTypeModal(e) {
+	      e.preventDefault();
+	      this.$modal.modal('show');
 	    }
 	  }, {
 	    key: 'render',
@@ -52532,7 +52539,7 @@
 	                ),
 	                _react2.default.createElement(
 	                  'a',
-	                  { onClick: this.handleClick, className: 'btn btn-primary' },
+	                  { onClick: this.showCreateTicketTypeModal.bind(this), className: 'btn btn-primary' },
 	                  t('backend.tickets.new_ticket')
 	                )
 	              )
