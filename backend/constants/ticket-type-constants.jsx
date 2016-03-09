@@ -1,0 +1,3 @@
+export default {
+  CREATE_TICKET_TYPE: 'CREATE_TICKET_TYPE'
+};

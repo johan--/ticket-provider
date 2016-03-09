@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactI18n from 'react-i18n';
 import ReactMixin from 'react-mixin';
-import CreateTicketTypeModal from './create-ticket-type-modal.jsx';
+import CreateTicketTypeModal from '../ticket_types/create-modal.jsx';
 import Store from '../../stores/event-store.jsx';
+import emitter from '../../emitter.jsx';
 
 class ShowContainer extends React.Component {
   constructor(props) {
@@ -28,14 +29,14 @@ class ShowContainer extends React.Component {
 
   showCreateTicketTypeModal(e) {
     e.preventDefault();
-    this.$modal.modal('show');
+    emitter.emit('showCreateTicketTypeModal', this.props.event);
   }
 
   render() {
     let t = this.getIntlMessage;
     return (
       <div>
-        <CreateTicketTypeModal />
+        <CreateTicketTypeModal event_id={this.state.get('id')}/>
         <div className="event-panel is-show">
           <header>>> {this.state.get('name')}</header>
           <div className="event-show-container">

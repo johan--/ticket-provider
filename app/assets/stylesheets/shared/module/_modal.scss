@@ -53,3 +53,8 @@
     padding: 1.25rem $grid-gutter-width $grid-gutter-width;
   }
 }
+
+.modal .alert {
+  box-shadow: none;
+  border: none;
+}
