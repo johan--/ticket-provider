@@ -16,6 +16,7 @@ en:
       redirect_to_login: Already have an account?
       headers:
         registration: Organizer Register
+        forgot_password: Forgot your password?
     events:
       available: available
       create_event: Create Event
