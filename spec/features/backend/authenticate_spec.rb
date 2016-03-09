@@ -31,4 +31,17 @@ feature 'Organizer can register to their account', js: true do
     expect(Organizer.first.email).to eq organizer[:email]
     expect(Account.first.name).to eq account[:name]
   end
+
+  feature 'Organizer can ask to reset password', js: true do
+    let(:account) { Fabricate(:account) }
+    let(:organizer) { Fabricate(:account_owner, account: account) }
+
+    scenario 'Organizer fill email', js: true do
+      visit new_organizer_password_path
+      fill_in 'organizer[email]', with: organizer[:email]
+      click_button 'Send me reset password instructions'
+
+      expect(page).to have_content('LOGIN')
+    end
+  end
 end
