@@ -6,7 +6,9 @@ class EventSerializer < ActiveModel::Serializer
              :cover_photo_url,
              :date,
              :created_at,
-             :updated_at
+             :updated_at,
+             :state
+
 
   def id
     object.uid
@@ -18,5 +20,9 @@ class EventSerializer < ActiveModel::Serializer
 
   def date
     object.date.strftime(Date::DATE_FORMATS[:rfc822]) if object.date
+  end
+
+  def state
+    object.current_state
   end
 end

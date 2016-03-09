@@ -124,6 +124,21 @@ RSpec.describe Api::V1::EventsController, type: :controller do
       it { expect(response).to have_http_status(:unprocessable_entity) }
       it { expect(response).to match_response_schema('errors') }
     end
+
+    context 'when update state params is invalid' do
+      before {put :update, id: event.uid, event: { state: 'open' } }
+
+      it { expect(response).to have_http_status(:unprocessable_entity) }
+      it { expect(response).to match_response_schema('errors') }
+    end
+
+    context 'when update state params is valid' do
+      before { put :update, id: event.uid, event: { state: 'publish' } }
+
+      it { expect(response).to have_http_status(:ok) }
+      it { expect(response).to match_response_schema('event') }
+      it { expect(JSON.parse(response.body)['event']['state']).to eq 'publish' }
+    end
   end
 
   describe 'DELETE #destroy' do

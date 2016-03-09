@@ -36,7 +36,7 @@ class Api::V1::EventsController < Api::V1::ApiController
   end
 
   def update
-    if @event.update_attributes(event_params)
+    if @event.update(event_params, params[:event][:state])
       render json: @event, status: :ok
     else
       render json: { errors: [@event.errors.full_messages.to_sentence] }, status: :unprocessable_entity
