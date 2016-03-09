@@ -14,7 +14,8 @@
           "description": { "type": ["null", "string"] },
           "cover_photo_url": { "type": ["null", "string"] },
           "created_at": { "type": "string" },
-          "updated_at": { "type": "string" }
+          "updated_at": { "type": "string" },
+          "state": { "type": "string"}
         }
       }
     }
