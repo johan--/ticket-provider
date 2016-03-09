@@ -53490,7 +53490,7 @@
 	                t('backend.organizers.email')
 	              ),
 	              _react2.default.createElement(
-	                'h4',
+	                'h2',
 	                null,
 	                this.state.organizer.email
 	              )
