@@ -1,4 +1,6 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+require 'rspec/retry'
+
 RSpec.configure do |config|
 
   config.expect_with :rspec do |expectations|
@@ -25,4 +27,14 @@ RSpec.configure do |config|
   # test failures related to randomization by passing the same `--seed` value
   # as the one that triggered the failure.
   Kernel.srand config.seed
+
+  # show retry status in spec process
+  config.verbose_retry = true
+  # show exception that triggers a retry if verbose_retry is set to true
+  config.display_try_failure_messages = true
+
+  # run retry only on features
+  config.around :each, :js do |ex|
+    ex.run_with_retry retry: 3
+  end
 end
