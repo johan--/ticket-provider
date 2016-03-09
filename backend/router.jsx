@@ -9,6 +9,7 @@ var Router = Backbone.Router.extend({
     'app/events/(:id)/edit': 'editEvent',
 
     // fallback path
+    'app': 'events',
     'app/*path': 'events'
   },
 
