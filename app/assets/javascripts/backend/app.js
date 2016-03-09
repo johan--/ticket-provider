@@ -53490,7 +53490,7 @@
 	                t('backend.organizers.email')
 	              ),
 	              _react2.default.createElement(
-	                'h2',
+	                'h4',
 	                null,
 	                this.state.organizer.email
 	              )
@@ -53518,7 +53518,7 @@
 	                t('backend.organizers.role')
 	              ),
 	              _react2.default.createElement(
-	                'h2',
+	                'h4',
 	                null,
 	                _appConstant2.default.roles[this.state.organizer.role]
 	              )

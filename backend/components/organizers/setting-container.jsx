@@ -77,7 +77,7 @@ class SettingContainer extends React.Component {
             <div className="form-group">
               <label htmlFor="role">{t('backend.organizers.role')}</label>
 
-              <h2>{AppConst.roles[this.state.organizer.role]}</h2>
+              <h4>{AppConst.roles[this.state.organizer.role]}</h4>
             </div>
             <div className="form-group">
               <label htmlFor="current_password">{t('backend.organizers.current_password')}</label>
