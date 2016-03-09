@@ -34,9 +34,7 @@ class ListContainer extends React.Component {
           <Action />
         </div>
         <List store={this.state} />
-        <DeleteModal
-          title={t('backend.modal.confirm.title.delete_event')}
-          description={t('backend.modal.confirm.description.delete_event')} />
+        <DeleteModal />
       </div>
     );
   }

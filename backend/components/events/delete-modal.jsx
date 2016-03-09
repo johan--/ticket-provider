@@ -7,12 +7,18 @@ class DeleteModal extends ConfirmModal {
 
   constructor(props) {
     super(props);
-
-    this.subscription = emitter.addListener('showDeleteModal', this.showDeleteModal.bind(this));
+    let t = this.getIntlMessage;
+    this.state = {
+      title: t('backend.modal.confirm.title.delete_event'),
+      description: t('backend.modal.confirm.description.delete_event')
+    };
+    this.showModalSubscription = emitter.addListener('showDeleteModal', this.showDeleteModal.bind(this));
+    this.hideModelSubscription = emitter.addListener('hideDeleteModal', this.hideModal.bind(this));
   }
 
   componentWillUnmount() {
-    this.subscription.remove();
+    this.showModalSubscription.remove();
+    this.hideModelSubscription.remove();
   }
 
   showDeleteModal(model) {
