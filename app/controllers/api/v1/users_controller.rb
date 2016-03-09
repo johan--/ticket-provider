@@ -5,12 +5,10 @@ class Api::V1::UsersController < Api::V1::ApiController
   load_and_authorize_resource find_by: :uid
 
   def me
-    @user = current_user
-
-    if @user
-      render json: @user, status: :ok
+    if current_user
+      render json: current_user, status: :ok
     else
-      render json: { errors: [@user.errors.full_messages.to_sentence] }, status: :unprocessable_entity
+      render json: { errors: [current_user.errors.full_messages.to_sentence] }, status: :unprocessable_entity
     end
   end
 
@@ -24,20 +22,17 @@ class Api::V1::UsersController < Api::V1::ApiController
     end
   end
 
-  def destroy
-    @user = current_user
-
-    if @user.destroy
-      head :no_content
+  def update
+    if @user.update_attributes(user_params)
+      render json: @user, status: :ok
     else
       render json: { errors: [@user.errors.full_messages.to_sentence] }, status: :unprocessable_entity
     end
   end
 
-  def update
-    @user = current_user
-    if @user.update_attributes(user_params)
-      render json: @user, status: :ok
+  def destroy
+    if @user.destroy
+      head :no_content
     else
       render json: { errors: [@user.errors.full_messages.to_sentence] }, status: :unprocessable_entity
     end
