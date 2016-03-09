@@ -4,9 +4,8 @@ import ReactMixin from 'react-mixin';
 
 class ConfirmModal extends React.Component {
 
-  constructor(props) {
+  constructor() {
     super();
-    this.state = props;
   }
 
   componentDidMount() {
@@ -45,7 +44,7 @@ class ConfirmModal extends React.Component {
                 <h4 className="modal-title" id="title">{this.state.title}</h4>
               </div>
               <div className="modal-body">
-                <p>{this.state.description} {this.state.model ? this.state.model.get('name') : ''}</p>
+                <p>{this.state.description}</p>
 
                 <button type="button"
                         onClick={this.handleConfirm.bind(this)}

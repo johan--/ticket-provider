@@ -25,6 +25,7 @@ feature 'Organizer can delete particular event belongs to their account', js: tr
 
     expect(page).to have_content 'Successfully delete event.'
     expect(page).not_to have_css('.event-item')
+    expect(page).not_to have_content I18n.t('backend.modal.confirm.title.delete_event').upcase
     expect(Event.count).to eq 0
   end
 end
