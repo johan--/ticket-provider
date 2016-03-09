@@ -1,0 +1,13 @@
+.is-create-modal {
+
+  form input.form-control,
+  form textarea.form-control {
+    border: none;
+    box-shadow: none;
+    background-color: $brand-white-grey;
+  }
+
+  form textarea.form-control {
+    height: 4.5rem;
+  }
+}

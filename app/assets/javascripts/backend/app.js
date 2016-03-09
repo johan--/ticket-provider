@@ -33054,7 +33054,7 @@
 
 	var _showContainer2 = _interopRequireDefault(_showContainer);
 
-	var _editContainer = __webpack_require__(310);
+	var _editContainer = __webpack_require__(311);
 
 	var _editContainer2 = _interopRequireDefault(_editContainer);
 
@@ -52410,6 +52410,10 @@
 
 	var _reactMixin2 = _interopRequireDefault(_reactMixin);
 
+	var _createTicketTypeModal = __webpack_require__(310);
+
+	var _createTicketTypeModal2 = _interopRequireDefault(_createTicketTypeModal);
+
 	var _eventStore = __webpack_require__(197);
 
 	var _eventStore2 = _interopRequireDefault(_eventStore);
@@ -52458,74 +52462,79 @@
 	      var t = this.getIntlMessage;
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'event-panel is-show' },
-	        _react2.default.createElement(
-	          'header',
-	          null,
-	          '>> ',
-	          this.state.get('name')
-	        ),
+	        null,
+	        _react2.default.createElement(_createTicketTypeModal2.default, null),
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'event-show-container' },
+	          { className: 'event-panel is-show' },
 	          _react2.default.createElement(
-	            'div',
-	            { className: 'event-image' },
-	            _react2.default.createElement('img', { src: this.state.get('cover_photo_url') })
+	            'header',
+	            null,
+	            '>> ',
+	            this.state.get('name')
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'event-description' },
+	            { className: 'event-show-container' },
 	            _react2.default.createElement(
-	              'label',
-	              { htmlFor: 'description' },
-	              t('backend.events.description')
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              this.state.get('description')
+	              'div',
+	              { className: 'event-image' },
+	              _react2.default.createElement('img', { src: this.state.get('cover_photo_url') })
 	            ),
 	            _react2.default.createElement(
 	              'div',
-	              { className: 'event-info' },
+	              { className: 'event-description' },
 	              _react2.default.createElement(
 	                'label',
-	                { htmlFor: 'date' },
-	                t('backend.events.date')
+	                { htmlFor: 'description' },
+	                t('backend.events.description')
+	              ),
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                this.state.get('description')
 	              ),
 	              _react2.default.createElement(
 	                'div',
-	                null,
-	                this.state.get('date')
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'event-info' },
-	              _react2.default.createElement(
-	                'label',
-	                { htmlFor: 'available' },
-	                t('backend.events.available')
+	                { className: 'event-info' },
+	                _react2.default.createElement(
+	                  'label',
+	                  { htmlFor: 'date' },
+	                  t('backend.events.date')
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  null,
+	                  this.state.get('date')
+	                )
 	              ),
 	              _react2.default.createElement(
 	                'div',
-	                null,
-	                '128/1000'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'event-action' },
-	              _react2.default.createElement(
-	                'a',
-	                { onClick: this.handleClick, className: 'btn btn-primary' },
-	                t('backend.tickets.edit_ticket')
+	                { className: 'event-info' },
+	                _react2.default.createElement(
+	                  'label',
+	                  { htmlFor: 'available' },
+	                  t('backend.events.available')
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  null,
+	                  '128/1000'
+	                )
 	              ),
 	              _react2.default.createElement(
-	                'a',
-	                { onClick: this.handleClick, className: 'btn btn-primary' },
-	                t('backend.tickets.new_ticket')
+	                'div',
+	                { className: 'event-action' },
+	                _react2.default.createElement(
+	                  'a',
+	                  { onClick: this.handleClick, className: 'btn btn-primary' },
+	                  t('backend.tickets.edit_ticket')
+	                ),
+	                _react2.default.createElement(
+	                  'a',
+	                  { onClick: this.handleClick, className: 'btn btn-primary' },
+	                  t('backend.tickets.new_ticket')
+	                )
 	              )
 	            )
 	          )
@@ -52557,7 +52566,165 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _editForm = __webpack_require__(311);
+	var _reactI18n = __webpack_require__(165);
+
+	var _reactI18n2 = _interopRequireDefault(_reactI18n);
+
+	var _reactMixin = __webpack_require__(170);
+
+	var _reactMixin2 = _interopRequireDefault(_reactMixin);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var CreateTicketTypeModal = function (_React$Component) {
+	  _inherits(CreateTicketTypeModal, _React$Component);
+
+	  function CreateTicketTypeModal() {
+	    _classCallCheck(this, CreateTicketTypeModal);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(CreateTicketTypeModal).apply(this, arguments));
+	  }
+
+	  _createClass(CreateTicketTypeModal, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.$modal = $('.modal');
+	    }
+	  }, {
+	    key: 'handleCancel',
+	    value: function handleCancel() {
+	      this.$modal.modal('hide');
+	    }
+	  }, {
+	    key: 'hideModal',
+	    value: function hideModal() {
+	      this.$modal.modal('hide');
+	    }
+
+	    // Prevent child modal from trigger hideModal on it's click event.
+
+	  }, {
+	    key: 'preventChildModalHide',
+	    value: function preventChildModalHide(e) {
+	      e.stopPropagation();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var t = this.getIntlMessage;
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'modal fade is-create-modal',
+	          tabIndex: '-1',
+	          role: 'dialog',
+	          'aria-labelledby': 'title',
+	          'aria-hidden': 'true',
+	          onClick: this.hideModal.bind(this) },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'modal-internal-wrapper' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'modal-dialog modal-small-content', role: 'document' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'modal-content', onClick: this.preventChildModalHide },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'modal-header' },
+	                _react2.default.createElement(
+	                  'h4',
+	                  { className: 'modal-title', id: 'title' },
+	                  t('backend.ticket_types.headers.add_ticket')
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'modal-body' },
+	                _react2.default.createElement(
+	                  'form',
+	                  { className: 'form-horizontal' },
+	                  _react2.default.createElement(
+	                    'fieldset',
+	                    null,
+	                    _react2.default.createElement(
+	                      'div',
+	                      { className: 'form-group' },
+	                      _react2.default.createElement(
+	                        'label',
+	                        { htmlFor: t('backend.ticket_types.name') },
+	                        t('backend.ticket_types.name')
+	                      ),
+	                      _react2.default.createElement('input', { name: t('backend.ticket_types.name'), className: 'form-control' })
+	                    ),
+	                    _react2.default.createElement(
+	                      'div',
+	                      { className: 'form-group' },
+	                      _react2.default.createElement(
+	                        'label',
+	                        { htmlFor: t('backend.ticket_types.price') },
+	                        t('backend.ticket_types.price')
+	                      ),
+	                      _react2.default.createElement('input', { name: t('backend.ticket_types.price'), className: 'form-control' })
+	                    ),
+	                    _react2.default.createElement(
+	                      'div',
+	                      { className: 'form-group' },
+	                      _react2.default.createElement(
+	                        'label',
+	                        { htmlFor: t('backend.ticket_types.description') },
+	                        t('backend.ticket_types.description')
+	                      ),
+	                      _react2.default.createElement('textarea', {
+	                        name: t('backend.ticket_types.description'),
+	                        className: 'form-control' })
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    'button',
+	                    { type: 'button',
+	                      className: 'btn btn-primary' },
+	                    t('backend.ticket_types.save_changes')
+	                  )
+	                )
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return CreateTicketTypeModal;
+	}(_react2.default.Component);
+
+	(0, _reactMixin2.default)(CreateTicketTypeModal.prototype, _reactI18n2.default);
+
+	exports.default = CreateTicketTypeModal;
+
+/***/ },
+/* 311 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _editForm = __webpack_require__(312);
 
 	var _editForm2 = _interopRequireDefault(_editForm);
 
@@ -52624,7 +52791,7 @@
 	exports.default = EditContainer;
 
 /***/ },
-/* 311 */
+/* 312 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

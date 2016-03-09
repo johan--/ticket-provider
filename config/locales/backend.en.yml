@@ -38,6 +38,13 @@ en:
       save_changes: Save Changes
       cannot_transition_to: can't transition to %{state}
       success_delete: Successfully delete event.
+    ticket_types:
+      headers:
+        add_ticket: Add Ticket
+      name: name
+      description: description
+      price: price
+      save_changes: Save Changes
     tickets:
       edit_ticket: Edit Ticket
       new_ticket: New Ticket

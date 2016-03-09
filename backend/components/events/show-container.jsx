@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactI18n from 'react-i18n';
 import ReactMixin from 'react-mixin';
+import CreateTicketTypeModal from './create-ticket-type-modal.jsx';
 import Store from '../../stores/event-store.jsx';
 
 class ShowContainer extends React.Component {
@@ -27,30 +28,33 @@ class ShowContainer extends React.Component {
   render() {
     let t = this.getIntlMessage;
     return (
-      <div className="event-panel is-show">
-        <header>>> {this.state.get('name')}</header>
-        <div className="event-show-container">
-          <div className="event-image">
-            <img src={this.state.get('cover_photo_url')} />
-          </div>
-          <div className="event-description">
-            <label htmlFor="description">{t('backend.events.description')}</label>
-            <p>{this.state.get('description')}</p>
-            <div className="event-info">
-              <label htmlFor="date">{t('backend.events.date')}</label>
-              <div>{this.state.get('date')}</div>
+      <div>
+        <CreateTicketTypeModal />
+        <div className="event-panel is-show">
+          <header>>> {this.state.get('name')}</header>
+          <div className="event-show-container">
+            <div className="event-image">
+              <img src={this.state.get('cover_photo_url')} />
             </div>
-            <div className="event-info">
-              <label htmlFor="available">{t('backend.events.available')}</label>
-              <div>128/1000</div>
-            </div>
-            <div className="event-action">
-              <a onClick={this.handleClick} className="btn btn-primary">
-                {t('backend.tickets.edit_ticket')}
-              </a>
-              <a onClick={this.handleClick} className="btn btn-primary">
-                {t('backend.tickets.new_ticket')}
-              </a>
+            <div className="event-description">
+              <label htmlFor="description">{t('backend.events.description')}</label>
+              <p>{this.state.get('description')}</p>
+              <div className="event-info">
+                <label htmlFor="date">{t('backend.events.date')}</label>
+                <div>{this.state.get('date')}</div>
+              </div>
+              <div className="event-info">
+                <label htmlFor="available">{t('backend.events.available')}</label>
+                <div>128/1000</div>
+              </div>
+              <div className="event-action">
+                <a onClick={this.handleClick} className="btn btn-primary">
+                  {t('backend.tickets.edit_ticket')}
+                </a>
+                <a onClick={this.handleClick} className="btn btn-primary">
+                  {t('backend.tickets.new_ticket')}
+                </a>
+              </div>
             </div>
           </div>
         </div>
