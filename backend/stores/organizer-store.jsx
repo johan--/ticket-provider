@@ -19,21 +19,35 @@ class Organizer extends Store.Model {
   }
 
   handleDispatch(payload) {
-    let jqXHR = this
-      .fetch({
-        url: `/api/v1/organizers/${payload.organizer.id}`,
-        data: $.param({ organizer: payload.organizer }),
-        type: 'PUT'
-      });
+    switch(payload.actionType) {
+      case constant.UPDATE_ORGANIZER: {
+        let formData = new FormData();
+        // Add CSRF-TOKEN to form data.
+        formData.append('authenticity_token', `${$('meta[name="csrf-token"]').attr('content')}`);
+        // Iterate through event object and add it to form data.
+        $.each(payload.organizer, function (key) {
+          formData.append(`organizer[${key}]`, payload.organizer[key]);
+        });
 
-    jqXHR.done(() => {
-      emitter.emit('success', I18n.t('backend.organizers.success_update'));
-      window.location.href = '/organizers/sign_in'
-    });
+        let jqXHR = this
+          .fetch({
+            url: `/api/v1/organizers/${payload.organizer.id}`,
+            data: formData,
+            type: 'PUT',
+            processData: false,
+            contentType: false
+          });
 
-    jqXHR.fail((jqXHR, textStatus, errorThrown) => {
-      emitter.emit('error', jqXHR.responseJSON.errors[0]);
-    });
+        jqXHR.done(() => {
+          window.location.href = '/organizers/sign_in'
+        });
+
+        jqXHR.fail((jqXHR, textStatus, errorThrown) => {
+          emitter.emit('error', jqXHR.responseJSON.errors[0]);
+        });
+        break;
+      }
+    }
   }
 };
 

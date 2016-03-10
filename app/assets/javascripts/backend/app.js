@@ -53461,10 +53461,10 @@
 	      this.setState(updateState);
 	    }
 	  }, {
-	    key: 'handleSubmit',
-	    value: function handleSubmit(e) {
+	    key: 'handleProfileSubmit',
+	    value: function handleProfileSubmit(e) {
 	      e.preventDefault();
-	      _organizerActions2.default.edit(_underscore2.default.pick(this.state.organizer, 'id', 'name', 'current_password', 'password', 'password_confirmation'));
+	      _organizerActions2.default.editProfile(_underscore2.default.pick(this.state.organizer, 'id', 'name', 'current_password', 'password', 'password_confirmation'));
 	    }
 	  }, {
 	    key: 'render',
@@ -53492,10 +53492,10 @@
 	              _react2.default.createElement(
 	                'label',
 	                { htmlFor: 'email' },
-	                t('backend.organizers.email')
+	                t('backend.authentication.email')
 	              ),
 	              _react2.default.createElement(
-	                'h2',
+	                'h4',
 	                null,
 	                this.state.organizer.email
 	              )
@@ -53580,8 +53580,8 @@
 	              {
 	                type: 'submit',
 	                className: 'btn btn-primary',
-	                onClick: this.handleSubmit.bind(this) },
-	              t('backend.organizers.save_changes')
+	                onClick: this.handleProfileSubmit.bind(this) },
+	              t('backend.organizers.update')
 	            )
 	          )
 	        )
@@ -53664,20 +53664,41 @@
 	  }, {
 	    key: 'handleDispatch',
 	    value: function handleDispatch(payload) {
-	      var jqXHR = this.fetch({
-	        url: '/api/v1/organizers/' + payload.organizer.id,
-	        data: _jquery2.default.param({ organizer: payload.organizer }),
-	        type: 'PUT'
-	      });
+	      var _this2 = this;
 
-	      jqXHR.done(function () {
-	        _emitter2.default.emit('success', I18n.t('backend.organizers.success_update'));
-	        window.location.href = '/organizers/sign_in';
-	      });
+	      switch (payload.actionType) {
+	        case _organizerConstants2.default.UPDATE_ORGANIZER:
+	          {
+	            var _ret = function () {
+	              var formData = new FormData();
+	              // Add CSRF-TOKEN to form data.
+	              formData.append('authenticity_token', '' + (0, _jquery2.default)('meta[name="csrf-token"]').attr('content'));
+	              // Iterate through event object and add it to form data.
+	              _jquery2.default.each(payload.organizer, function (key) {
+	                formData.append('organizer[' + key + ']', payload.organizer[key]);
+	              });
 
-	      jqXHR.fail(function (jqXHR, textStatus, errorThrown) {
-	        _emitter2.default.emit('error', jqXHR.responseJSON.errors[0]);
-	      });
+	              var jqXHR = _this2.fetch({
+	                url: '/api/v1/organizers/' + payload.organizer.id,
+	                data: formData,
+	                type: 'PUT',
+	                processData: false,
+	                contentType: false
+	              });
+
+	              jqXHR.done(function () {
+	                window.location.href = '/organizers/sign_in';
+	              });
+
+	              jqXHR.fail(function (jqXHR, textStatus, errorThrown) {
+	                _emitter2.default.emit('error', jqXHR.responseJSON.errors[0]);
+	              });
+	              return 'break';
+	            }();
+
+	            if (_ret === 'break') break;
+	          }
+	      }
 	    }
 	  }]);
 
