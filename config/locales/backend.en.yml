@@ -54,8 +54,14 @@ en:
       cannot_transition_to: can't transition to %{state}
     organizers:
       header: Organizer information
-      role: Organizer role
-      update: Update profile
+      role: role
+      save_changes: Save changes
+      change_password: change password
+      confirm_password: confirm password
+      current_password: current password
+      new_password: new password
+      name: name
+      email: email
     modal:
       confirm:
         cancel: Cancel

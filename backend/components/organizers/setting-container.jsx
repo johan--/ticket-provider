@@ -62,15 +62,15 @@ class SettingContainer extends React.Component {
           <AlertMessages event="error" alertType="danger"/>
           <fieldset>
             <div className="form-group">
-              <label htmlFor="email">{t('backend.authentication.email')}</label>
+              <label htmlFor="email">{t('backend.organizers.email')}</label>
 
               <h2>{this.state.organizer.email}</h2>
             </div>
             <div className="form-group">
-              <label htmlFor="name">{t('backend.events.name')}</label>
+              <label htmlFor="name">{t('backend.organizers.name')}</label>
               <input
                 value={this.state.organizer.name}
-                name={t('backend.events.name')}
+                name={t('backend.organizers.name')}
                 className="form-control"
                 onChange={this.handleNameChange.bind(this)}/>
             </div>
@@ -80,26 +80,26 @@ class SettingContainer extends React.Component {
               <h2>{AppConst.roles[this.state.organizer.role]}</h2>
             </div>
             <div className="form-group">
-              <label htmlFor="current_password">{t('backend.authentication.current_password')}</label>
+              <label htmlFor="current_password">{t('backend.organizers.current_password')}</label>
               <input
-                name={t('backend.authentication.current_password')}
+                name="current_password"
                 className="form-control"
                 type="password"
                 onChange={this.handleCurrentPasswordChange.bind(this)}/>
             </div>
-            <header>{t('backend.authentication.change_password')}</header>
+            <header>{t('backend.organizers.change_password')}</header>
             <div className="form-group">
-              <label htmlFor="password">{t('backend.authentication.new_password')}</label>
+              <label htmlFor="password">{t('backend.organizers.new_password')}</label>
               <input
-                name={t('backend.authentication.new_password')}
+                name="password"
                 className="form-control"
                 type="password"
                 onChange={this.handlePasswordChange.bind(this)}/>
             </div>
             <div className="form-group">
-              <label htmlFor="password_confirmation">{t('backend.authentication.password_confirmation')}</label>
+              <label htmlFor="password_confirmation">{t('backend.organizers.confirm_password')}</label>
               <input
-                name={t('backend.authentication.password_confirmation')}
+                name="password_confirmation"
                 className="form-control"
                 type="password"
                 onChange={this.handlePasswordConfirmChange.bind(this)}/>
@@ -107,7 +107,7 @@ class SettingContainer extends React.Component {
             <button
               type="submit"
               className="btn btn-primary"
-              onClick={this.handleSubmit.bind(this)}>{t('backend.organizers.update')}</button>
+              onClick={this.handleSubmit.bind(this)}>{t('backend.organizers.save_changes')}</button>
           </fieldset>
         </form>
       </div>

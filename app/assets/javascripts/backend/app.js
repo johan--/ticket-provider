@@ -23140,7 +23140,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-	 * jQuery JavaScript Library v2.2.0
+	 * jQuery JavaScript Library v2.2.1
 	 * http://jquery.com/
 	 *
 	 * Includes Sizzle.js
@@ -23150,7 +23150,7 @@
 	 * Released under the MIT license
 	 * http://jquery.org/license
 	 *
-	 * Date: 2016-01-08T20:02Z
+	 * Date: 2016-02-22T19:11Z
 	 */
 
 	(function( global, factory ) {
@@ -23206,7 +23206,7 @@
 
 
 	var
-		version = "2.2.0",
+		version = "2.2.1",
 
 		// Define a local copy of jQuery
 		jQuery = function( selector, context ) {
@@ -27620,7 +27620,7 @@
 		if ( fn === false ) {
 			fn = returnFalse;
 		} else if ( !fn ) {
-			return this;
+			return elem;
 		}
 
 		if ( one === 1 ) {
@@ -28269,14 +28269,14 @@
 		rscriptTypeMasked = /^true\/(.*)/,
 		rcleanScript = /^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g;
 
+	// Manipulating tables requires a tbody
 	function manipulationTarget( elem, content ) {
-		if ( jQuery.nodeName( elem, "table" ) &&
-			jQuery.nodeName( content.nodeType !== 11 ? content : content.firstChild, "tr" ) ) {
+		return jQuery.nodeName( elem, "table" ) &&
+			jQuery.nodeName( content.nodeType !== 11 ? content : content.firstChild, "tr" ) ?
 
-			return elem.getElementsByTagName( "tbody" )[ 0 ] || elem;
-		}
-
-		return elem;
+			elem.getElementsByTagName( "tbody" )[ 0 ] ||
+				elem.appendChild( elem.ownerDocument.createElement( "tbody" ) ) :
+			elem;
 	}
 
 	// Replace/restore the type attribute of script elements for safe DOM manipulation
@@ -28783,7 +28783,7 @@
 			// FF meanwhile throws on frame elements through "defaultView.getComputedStyle"
 			var view = elem.ownerDocument.defaultView;
 
-			if ( !view.opener ) {
+			if ( !view || !view.opener ) {
 				view = window;
 			}
 
@@ -28932,15 +28932,18 @@
 			style = elem.style;
 
 		computed = computed || getStyles( elem );
+		ret = computed ? computed.getPropertyValue( name ) || computed[ name ] : undefined;
+
+		// Support: Opera 12.1x only
+		// Fall back to style even without computed
+		// computed is undefined for elems on document fragments
+		if ( ( ret === "" || ret === undefined ) && !jQuery.contains( elem.ownerDocument, elem ) ) {
+			ret = jQuery.style( elem, name );
+		}
 
 		// Support: IE9
 		// getPropertyValue is only needed for .css('filter') (#12537)
 		if ( computed ) {
-			ret = computed.getPropertyValue( name ) || computed[ name ];
-
-			if ( ret === "" && !jQuery.contains( elem.ownerDocument, elem ) ) {
-				ret = jQuery.style( elem, name );
-			}
 
 			// A tribute to the "awesome hack by Dean Edwards"
 			// Android Browser returns percentage for some values,
@@ -30990,7 +30993,7 @@
 					// But now, this "simulate" function is used only for events
 					// for which stopPropagation() is noop, so there is no need for that anymore.
 					//
-					// For the compat branch though, guard for "click" and "submit"
+					// For the 1.x branch though, guard for "click" and "submit"
 					// events is still used, but was moved to jQuery.event.stopPropagation function
 					// because `originalEvent` should point to the original event for the constancy
 					// with other events and for more focused logic
@@ -32760,11 +32763,8 @@
 				}
 
 				// Add offsetParent borders
-				// Subtract offsetParent scroll positions
-				parentOffset.top += jQuery.css( offsetParent[ 0 ], "borderTopWidth", true ) -
-					offsetParent.scrollTop();
-				parentOffset.left += jQuery.css( offsetParent[ 0 ], "borderLeftWidth", true ) -
-					offsetParent.scrollLeft();
+				parentOffset.top += jQuery.css( offsetParent[ 0 ], "borderTopWidth", true );
+				parentOffset.left += jQuery.css( offsetParent[ 0 ], "borderLeftWidth", true );
 			}
 
 			// Subtract parent offsets and element margins
@@ -33063,7 +33063,7 @@
 
 	var _editContainer2 = _interopRequireDefault(_editContainer);
 
-	var _settingContainer = __webpack_require__(312);
+	var _settingContainer = __webpack_require__(316);
 
 	var _settingContainer2 = _interopRequireDefault(_settingContainer);
 
@@ -38694,7 +38694,6 @@
 			// value: TYPES.object | TYPES.string,
 			// defaultValue: TYPES.object | TYPES.string,
 			closeOnSelect: TYPES.bool,
-			onFocus: TYPES.func,
 			onBlur: TYPES.func,
 			onChange: TYPES.func,
 			locale: TYPES.string,
@@ -38716,7 +38715,6 @@
 				viewMode: 'days',
 				inputProps: {},
 				input: true,
-				onFocus: nof,
 				onBlur: nof,
 				onChange: nof,
 				timeFormat: true,
@@ -38928,10 +38926,7 @@
 		},
 
 		openCalendar: function() {
-			if (!this.state.open) {
-				this.props.onFocus();
-				this.setState({ open: true });
-			}
+			this.setState({ open: true });
 		},
 
 		closeCalendar: function() {
@@ -39144,7 +39139,7 @@
 				else if( ( prevMonth.year() == currentYear && prevMonth.month() > currentMonth ) || ( prevMonth.year() > currentYear ) )
 					classes += ' rdtNew';
 
-				if( selected && prevMonth.isSame(selected, 'day') )
+				if( selected && prevMonth.isSame( {y: selected.year(), M: selected.month(), d: selected.date()} ) )
 					classes += ' rdtActive';
 
 				if (prevMonth.isSame(moment(), 'day') )
@@ -52239,7 +52234,7 @@
 		},
 		renderHeader: function(){
 			if( !this.props.dateFormat )
-				return null;
+				return '';
 
 			var date = this.props.selectedDate || this.props.viewDate;
 			return DOM.thead({ key: 'h'}, DOM.tr({},
@@ -53334,7 +53329,7 @@
 	exports.default = EditForm;
 
 /***/ },
-/* 312 */
+/* 316 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53357,7 +53352,7 @@
 
 	var _reactMixin2 = _interopRequireDefault(_reactMixin);
 
-	var _organizerStore = __webpack_require__(313);
+	var _organizerStore = __webpack_require__(317);
 
 	var _organizerStore2 = _interopRequireDefault(_organizerStore);
 
@@ -53365,7 +53360,7 @@
 
 	var _alertMessages2 = _interopRequireDefault(_alertMessages);
 
-	var _organizerActions = __webpack_require__(315);
+	var _organizerActions = __webpack_require__(319);
 
 	var _organizerActions2 = _interopRequireDefault(_organizerActions);
 
@@ -53373,7 +53368,7 @@
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
-	var _appConstant = __webpack_require__(316);
+	var _appConstant = __webpack_require__(320);
 
 	var _appConstant2 = _interopRequireDefault(_appConstant);
 
@@ -53469,7 +53464,7 @@
 	              _react2.default.createElement(
 	                'label',
 	                { htmlFor: 'email' },
-	                t('backend.authentication.email')
+	                t('backend.organizers.email')
 	              ),
 	              _react2.default.createElement(
 	                'h2',
@@ -53483,11 +53478,11 @@
 	              _react2.default.createElement(
 	                'label',
 	                { htmlFor: 'name' },
-	                t('backend.events.name')
+	                t('backend.organizers.name')
 	              ),
 	              _react2.default.createElement('input', {
 	                value: this.state.organizer.name,
-	                name: t('backend.events.name'),
+	                name: t('backend.organizers.name'),
 	                className: 'form-control',
 	                onChange: this.handleNameChange.bind(this) })
 	            ),
@@ -53511,10 +53506,10 @@
 	              _react2.default.createElement(
 	                'label',
 	                { htmlFor: 'current_password' },
-	                t('backend.authentication.current_password')
+	                t('backend.organizers.current_password')
 	              ),
 	              _react2.default.createElement('input', {
-	                name: t('backend.authentication.current_password'),
+	                name: 'current_password',
 	                className: 'form-control',
 	                type: 'password',
 	                onChange: this.handleCurrentPasswordChange.bind(this) })
@@ -53522,7 +53517,7 @@
 	            _react2.default.createElement(
 	              'header',
 	              null,
-	              t('backend.authentication.change_password')
+	              t('backend.organizers.change_password')
 	            ),
 	            _react2.default.createElement(
 	              'div',
@@ -53530,10 +53525,10 @@
 	              _react2.default.createElement(
 	                'label',
 	                { htmlFor: 'password' },
-	                t('backend.authentication.new_password')
+	                t('backend.organizers.new_password')
 	              ),
 	              _react2.default.createElement('input', {
-	                name: t('backend.authentication.new_password'),
+	                name: 'password',
 	                className: 'form-control',
 	                type: 'password',
 	                onChange: this.handlePasswordChange.bind(this) })
@@ -53544,10 +53539,10 @@
 	              _react2.default.createElement(
 	                'label',
 	                { htmlFor: 'password_confirmation' },
-	                t('backend.authentication.password_confirmation')
+	                t('backend.organizers.confirm_password')
 	              ),
 	              _react2.default.createElement('input', {
-	                name: t('backend.authentication.password_confirmation'),
+	                name: 'password_confirmation',
 	                className: 'form-control',
 	                type: 'password',
 	                onChange: this.handlePasswordConfirmChange.bind(this) })
@@ -53558,7 +53553,7 @@
 	                type: 'submit',
 	                className: 'btn btn-primary',
 	                onClick: this.handleSubmit.bind(this) },
-	              t('backend.organizers.update')
+	              t('backend.organizers.save_changes')
 	            )
 	          )
 	        )
@@ -53574,7 +53569,7 @@
 	exports.default = SettingContainer;
 
 /***/ },
-/* 313 */
+/* 317 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53597,7 +53592,7 @@
 
 	var _emitter2 = _interopRequireDefault(_emitter);
 
-	var _organizerConstants = __webpack_require__(314);
+	var _organizerConstants = __webpack_require__(318);
 
 	var _organizerConstants2 = _interopRequireDefault(_organizerConstants);
 
@@ -53676,7 +53671,7 @@
 	exports.default = new Organizer();
 
 /***/ },
-/* 314 */
+/* 318 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -53689,7 +53684,7 @@
 	};
 
 /***/ },
-/* 315 */
+/* 319 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53702,7 +53697,7 @@
 
 	var _dispatch2 = _interopRequireDefault(_dispatch);
 
-	var _organizerConstants = __webpack_require__(314);
+	var _organizerConstants = __webpack_require__(318);
 
 	var _organizerConstants2 = _interopRequireDefault(_organizerConstants);
 
@@ -53715,7 +53710,7 @@
 	};
 
 /***/ },
-/* 316 */
+/* 320 */
 /***/ function(module, exports) {
 
 	'use strict';
