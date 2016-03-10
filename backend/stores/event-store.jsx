@@ -61,13 +61,13 @@ class EventCollection extends Store.Collection {
                         contentType: false
                       });
 
-        jqXHR.done(() => {
+        jqXHR.done((data) => {
           this.getAll();
-          Backbone.history.navigate('/app/events', true);
+          Backbone.history.navigate(`/app/events/${data.event.id}`, true);
         });
 
         jqXHR.fail((jqXHR, textStatus, errorThrown) => {
-          emitter.emit('error', errorThrown);
+          emitter.emit('error', jqXHR.responseJSON.errors[0]);
         });
         break;
       }
