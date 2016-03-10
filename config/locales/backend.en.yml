@@ -10,6 +10,7 @@ en:
       sign_up: Sign up
       register: Register
       email: E-mail address
+      name: name
       password: Password
       new_password: New Password
       password_confirmation: Confirm Password
