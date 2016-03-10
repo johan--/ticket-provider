@@ -11,7 +11,7 @@
 
   li:last-child {
     float: right;
-    box-shadow: $box-shadow;
+    box-shadow: 0 .25rem .25rem -2px rgba(0, 0, 0, .5);
   }
 
   .navbar-nav {
@@ -72,6 +72,11 @@
     }
   }
 
+  .navbar-nav .nav-item + .nav-item {
+    margin: 0;
+    border-top: 1px solid rgba(0, 0, 0, .1);
+  }
+
   @include media-breakpoint-up(md) {
     height: 2.75rem;
     font-size: 2.5em !important;
@@ -121,6 +126,11 @@
       &:last-of-type .nav-link {
         margin-right: 2rem;
       }
+    }
+
+    .navbar-nav .nav-item + .nav-item {
+      margin-top: $grid-gutter-width/3;
+      border-top: none;
     }
   }
 }

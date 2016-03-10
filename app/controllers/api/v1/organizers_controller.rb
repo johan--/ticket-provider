@@ -1,5 +1,5 @@
 class Api::V1::OrganizersController < Api::V1::ApiController
-  before_action :authenticate_organizer!, only: [:me]
+  before_action :authenticate_organizer!
 
   load_and_authorize_resource find_by: :uid
 

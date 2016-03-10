@@ -30,6 +30,9 @@ class Navbar extends React.Component {
               <a className="nav-link" onClick={this.handleClick} href="/app/events">{t('backend.navbar.event')}</a>
             </li>
             <li className="nav-item">
+              <a className="nav-link" onClick={this.handleClick} href="/app/organizers/settings">{t('backend.navbar.setting')}</a>
+            </li>
+            <li className="nav-item">
               <a className="nav-link" href="/organizers/sign_out">{t('backend.authentication.logout')}</a>
             </li>
           </ul>

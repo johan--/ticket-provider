@@ -3,6 +3,7 @@ en:
     navbar:
       event: Event
       brand: SQUARE
+      setting: Setting
     authentication:
       login: Login
       logout: Logout
@@ -10,9 +11,10 @@ en:
       register: Register
       email: E-mail address
       password: Password
-      new_password: Password(minimum 8 characters)
+      new_password: New Password
       password_confirmation: Confirm Password
-      name: Name
+      current_password: Current Password
+      change_password: Change Password
       organizer_name: Organizer Name
       redirect_to_login: Already have an account?
       headers:
@@ -50,6 +52,17 @@ en:
       new_ticket: New Ticket
       cannot_destroy: purchased ticket can not be destroy
       cannot_transition_to: can't transition to %{state}
+    organizers:
+      header: Organizer information
+      role: role
+      save_changes: Save changes
+      change_password: change password
+      confirm_password: confirm password
+      current_password: current password
+      new_password: new password
+      name: name
+      email: email
+      success_update: Successfully update settings.
     modal:
       confirm:
         cancel: Cancel

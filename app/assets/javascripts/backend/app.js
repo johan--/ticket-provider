@@ -32995,6 +32995,7 @@
 	    'app/events/new': 'newEvent',
 	    'app/events/(:id)': 'showEvent',
 	    'app/events/(:id)/edit': 'editEvent',
+	    'app/organizers/settings': 'organizersSettings',
 
 	    // fallback path
 	    'app': 'events',
@@ -33017,6 +33018,10 @@
 	  editEvent: function editEvent(id) {
 	    this.current = 'events/edit';
 	    this.params = { _id: id };
+	  },
+
+	  organizersSettings: function organizersSettings() {
+	    this.current = 'organizers/settings';
 	  }
 	});
 
@@ -33057,6 +33062,10 @@
 	var _editContainer = __webpack_require__(314);
 
 	var _editContainer2 = _interopRequireDefault(_editContainer);
+
+	var _settingContainer = __webpack_require__(316);
+
+	var _settingContainer2 = _interopRequireDefault(_settingContainer);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33134,6 +33143,15 @@
 	          null,
 	          _react2.default.createElement(_navbar2.default, null),
 	          _react2.default.createElement(_editContainer2.default, { id: this.props.router.params._id })
+	        );
+	      }
+
+	      if (this.props.router.current === 'organizers/settings') {
+	        return _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(_navbar2.default, null),
+	          _react2.default.createElement(_settingContainer2.default, null)
 	        );
 	      }
 	      return _react2.default.createElement('div', null);
@@ -33233,6 +33251,15 @@
 	                'a',
 	                { className: 'nav-link', onClick: this.handleClick, href: '/app/events' },
 	                t('backend.navbar.event')
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'li',
+	              { className: 'nav-item' },
+	              _react2.default.createElement(
+	                'a',
+	                { className: 'nav-link', onClick: this.handleClick, href: '/app/organizers/settings' },
+	                t('backend.navbar.setting')
 	              )
 	            ),
 	            _react2.default.createElement(
@@ -53300,6 +53327,405 @@
 	(0, _reactMixin2.default)(EditForm.prototype, _reactI18n2.default);
 
 	exports.default = EditForm;
+
+/***/ },
+/* 316 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactI18n = __webpack_require__(165);
+
+	var _reactI18n2 = _interopRequireDefault(_reactI18n);
+
+	var _reactMixin = __webpack_require__(170);
+
+	var _reactMixin2 = _interopRequireDefault(_reactMixin);
+
+	var _organizerStore = __webpack_require__(317);
+
+	var _organizerStore2 = _interopRequireDefault(_organizerStore);
+
+	var _alertMessages = __webpack_require__(195);
+
+	var _alertMessages2 = _interopRequireDefault(_alertMessages);
+
+	var _organizerActions = __webpack_require__(319);
+
+	var _organizerActions2 = _interopRequireDefault(_organizerActions);
+
+	var _underscore = __webpack_require__(191);
+
+	var _underscore2 = _interopRequireDefault(_underscore);
+
+	var _appConstant = __webpack_require__(320);
+
+	var _appConstant2 = _interopRequireDefault(_appConstant);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var SettingContainer = function (_React$Component) {
+	  _inherits(SettingContainer, _React$Component);
+
+	  function SettingContainer() {
+	    _classCallCheck(this, SettingContainer);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SettingContainer).call(this));
+
+	    _this.model = _organizerStore2.default.getModel();
+	    _this.state = { organizer: _this.model.attributes };
+	    return _this;
+	  }
+
+	  _createClass(SettingContainer, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.model.on('add remove reset change', function () {
+	        this.forceUpdate();
+	      }, this);
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      this.model.off(null, null, this);
+	    }
+	  }, {
+	    key: 'handleNameChange',
+	    value: function handleNameChange(e) {
+	      var updateState = this.state;
+	      updateState.organizer.name = e.target.value;
+	      this.setState(updateState);
+	    }
+	  }, {
+	    key: 'handlePasswordChange',
+	    value: function handlePasswordChange(e) {
+	      var updateState = this.state;
+	      updateState.organizer.password = e.target.value;
+	      this.setState(updateState);
+	    }
+	  }, {
+	    key: 'handlePasswordConfirmChange',
+	    value: function handlePasswordConfirmChange(e) {
+	      var updateState = this.state;
+	      updateState.organizer.password_confirmation = e.target.value;
+	      this.setState(updateState);
+	    }
+	  }, {
+	    key: 'handleCurrentPasswordChange',
+	    value: function handleCurrentPasswordChange(e) {
+	      var updateState = this.state;
+	      updateState.organizer.current_password = e.target.value;
+	      this.setState(updateState);
+	    }
+	  }, {
+	    key: 'handleSubmit',
+	    value: function handleSubmit(e) {
+	      e.preventDefault();
+	      _organizerActions2.default.edit(_underscore2.default.pick(this.state.organizer, 'id', 'name', 'current_password', 'password', 'password_confirmation'));
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var t = this.getIntlMessage;
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'organizer-settings-container' },
+	        _react2.default.createElement(
+	          'header',
+	          null,
+	          t('backend.organizers.header')
+	        ),
+	        _react2.default.createElement(
+	          'form',
+	          { className: 'form-horizontal' },
+	          _react2.default.createElement(_alertMessages2.default, { event: 'error', alertType: 'danger' }),
+	          _react2.default.createElement(_alertMessages2.default, { event: 'success', alertType: 'success' }),
+	          _react2.default.createElement(
+	            'fieldset',
+	            null,
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'form-group' },
+	              _react2.default.createElement(
+	                'label',
+	                { htmlFor: 'email' },
+	                t('backend.organizers.email')
+	              ),
+	              _react2.default.createElement(
+	                'h2',
+	                null,
+	                this.state.organizer.email
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'form-group' },
+	              _react2.default.createElement(
+	                'label',
+	                { htmlFor: 'name' },
+	                t('backend.organizers.name')
+	              ),
+	              _react2.default.createElement('input', {
+	                value: this.state.organizer.name,
+	                name: t('backend.organizers.name'),
+	                className: 'form-control',
+	                onChange: this.handleNameChange.bind(this) })
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'form-group' },
+	              _react2.default.createElement(
+	                'label',
+	                { htmlFor: 'role' },
+	                t('backend.organizers.role')
+	              ),
+	              _react2.default.createElement(
+	                'h2',
+	                null,
+	                _appConstant2.default.roles[this.state.organizer.role]
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'form-group' },
+	              _react2.default.createElement(
+	                'label',
+	                { htmlFor: 'current_password' },
+	                t('backend.organizers.current_password')
+	              ),
+	              _react2.default.createElement('input', {
+	                name: 'current_password',
+	                className: 'form-control',
+	                type: 'password',
+	                onChange: this.handleCurrentPasswordChange.bind(this) })
+	            ),
+	            _react2.default.createElement(
+	              'header',
+	              null,
+	              t('backend.organizers.change_password')
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'form-group' },
+	              _react2.default.createElement(
+	                'label',
+	                { htmlFor: 'password' },
+	                t('backend.organizers.new_password')
+	              ),
+	              _react2.default.createElement('input', {
+	                name: 'password',
+	                className: 'form-control',
+	                type: 'password',
+	                onChange: this.handlePasswordChange.bind(this) })
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'form-group' },
+	              _react2.default.createElement(
+	                'label',
+	                { htmlFor: 'password_confirmation' },
+	                t('backend.organizers.confirm_password')
+	              ),
+	              _react2.default.createElement('input', {
+	                name: 'password_confirmation',
+	                className: 'form-control',
+	                type: 'password',
+	                onChange: this.handlePasswordConfirmChange.bind(this) })
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              {
+	                type: 'submit',
+	                className: 'btn btn-primary',
+	                onClick: this.handleSubmit.bind(this) },
+	              t('backend.organizers.save_changes')
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return SettingContainer;
+	}(_react2.default.Component);
+
+	(0, _reactMixin2.default)(SettingContainer.prototype, _reactI18n2.default);
+
+	exports.default = SettingContainer;
+
+/***/ },
+/* 317 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _backbone = __webpack_require__(159);
+
+	var _backbone2 = _interopRequireDefault(_backbone);
+
+	var _store = __webpack_require__(198);
+
+	var _store2 = _interopRequireDefault(_store);
+
+	var _emitter = __webpack_require__(183);
+
+	var _emitter2 = _interopRequireDefault(_emitter);
+
+	var _organizerConstants = __webpack_require__(318);
+
+	var _organizerConstants2 = _interopRequireDefault(_organizerConstants);
+
+	var _jquery = __webpack_require__(161);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Organizer = function (_Store$Model) {
+	  _inherits(Organizer, _Store$Model);
+
+	  function Organizer() {
+	    _classCallCheck(this, Organizer);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Organizer).apply(this, arguments));
+	  }
+
+	  _createClass(Organizer, [{
+	    key: 'url',
+	    value: function url() {
+	      return '/api/v1/organizers/me';
+	    }
+	  }, {
+	    key: 'parse',
+	    value: function parse(resp, xhr) {
+	      return resp.organizer;
+	    }
+	  }, {
+	    key: 'getModel',
+	    value: function getModel() {
+	      var jqXHR = this.fetch();
+	      return this;
+	    }
+	  }, {
+	    key: 'handleDispatch',
+	    value: function handleDispatch(payload) {
+	      var formData = new FormData();
+
+	      // Add CSRF-TOKEN to form data.
+	      formData.append('authenticity_token', '' + (0, _jquery2.default)('meta[name="csrf-token"]').attr('content'));
+	      // Iterate through event object and add it to form data.
+	      _jquery2.default.each(payload.organizer, function (key) {
+	        formData.append('organizer[' + key + ']', payload.organizer[key]);
+	      });
+
+	      var jqXHR = this.fetch({
+	        url: '/api/v1/organizers/' + payload.organizer.id,
+	        data: formData,
+	        type: 'PUT',
+	        processData: false,
+	        contentType: false
+	      });
+
+	      jqXHR.done(function () {
+	        _emitter2.default.emit('success', I18n.t('backend.organizers.success_update'));
+	      });
+
+	      jqXHR.fail(function (jqXHR, textStatus, errorThrown) {
+	        _emitter2.default.emit('error', jqXHR.responseJSON.errors[0]);
+	      });
+	    }
+	  }]);
+
+	  return Organizer;
+	}(_store2.default.Model);
+
+	;
+
+	exports.default = new Organizer();
+
+/***/ },
+/* 318 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	  UPDATE_ORGANIZER: 'UPDATE_ORGANIZER'
+	};
+
+/***/ },
+/* 319 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _dispatch = __webpack_require__(177);
+
+	var _dispatch2 = _interopRequireDefault(_dispatch);
+
+	var _organizerConstants = __webpack_require__(318);
+
+	var _organizerConstants2 = _interopRequireDefault(_organizerConstants);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = {
+	  edit: function edit(organizer) {
+	    (0, _dispatch2.default)(_organizerConstants2.default.UPDATE_ORGANIZER, { organizer: organizer });
+	  }
+	};
+
+/***/ },
+/* 320 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	  roles: {
+	    'god': 'God',
+	    'account_owner': 'Account owner',
+	    'team_member': 'Team member'
+	  }
+	};
 
 /***/ }
 /******/ ]);
