@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Organizer see particular event' do
+feature 'Organizer see particular event', js: true do
   let!(:account) { Fabricate(:account) }
   let!(:organizer) { Fabricate(:account_owner, account: account) }
   let!(:event) { Fabricate(:event, account: account) }

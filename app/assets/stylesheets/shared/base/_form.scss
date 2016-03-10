@@ -18,3 +18,33 @@ form textarea.form-control {
 form textarea.form-control {
   height: 7.5rem;
 }
+
+form input[type="checkbox"] {
+  opacity: 0;
+
+  ~ div {
+    content: '';
+    width: $grid-gutter-width/2;
+    height: $grid-gutter-width/2;
+    border: 1px solid $brand-primary;
+    position: absolute;
+    top: 7px;
+  }
+
+  &:checked ~ div:before {
+    content: '\2713';
+    font-size: .875em;
+    position: absolute;
+    top: -1px;
+    color: $brand-primary;
+  }
+}
+
+form .form-group.is-checkbox {
+  position: relative;
+
+  label {
+    margin-left: $grid-gutter-width;
+    text-transform: capitalize;
+  }
+}

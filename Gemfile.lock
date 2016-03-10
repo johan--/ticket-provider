@@ -263,6 +263,8 @@ GEM
       rspec-expectations (~> 3.4.0)
       rspec-mocks (~> 3.4.0)
       rspec-support (~> 3.4.0)
+    rspec-retry (0.4.5)
+      rspec-core
     rspec-support (3.4.1)
     safe_yaml (1.0.4)
     sass (3.4.21)
@@ -347,6 +349,7 @@ DEPENDENCIES
   rails_admin!
   roadie-rails
   rspec-rails
+  rspec-retry
   sass-rails
   shoulda-matchers
   slim (>= 3.0.6)

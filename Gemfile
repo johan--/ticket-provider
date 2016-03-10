@@ -57,6 +57,7 @@ group :development, :test do
   gem 'poltergeist'            # Headless browser
   gem 'database_cleaner'       # Use Database Cleaner
   gem 'json_matchers'          # Validate the json returned from the API
+  gem 'rspec-retry'            # Add :retry option for intermittently failing spec
 
   gem 'byebug'                 # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'spring'                 # Spring speeds up development by keeping your application running in the background.
