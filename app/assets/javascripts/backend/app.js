@@ -53459,7 +53459,7 @@
 	        _react2.default.createElement(
 	          'form',
 	          { className: 'form-horizontal' },
-	          _react2.default.createElement(_alertMessages2.default, { alertType: 'danger' }),
+	          _react2.default.createElement(_alertMessages2.default, { event: 'error', alertType: 'danger' }),
 	          _react2.default.createElement(
 	            'fieldset',
 	            null,
