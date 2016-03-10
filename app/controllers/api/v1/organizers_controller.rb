@@ -23,6 +23,7 @@ class Api::V1::OrganizersController < Api::V1::ApiController
         .permit(:name,
                 :current_password,
                 :password,
-                :password_confirmation)
+                :password_confirmation,
+                :account)
   end
 end

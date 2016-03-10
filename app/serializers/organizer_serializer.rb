@@ -4,6 +4,8 @@ class OrganizerSerializer < ActiveModel::Serializer
              :name,
              :role
 
+  has_one :account
+
   def id
     object.uid
   end
