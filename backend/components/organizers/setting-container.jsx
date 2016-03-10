@@ -57,7 +57,7 @@ class SettingContainer extends React.Component {
     let t = this.getIntlMessage;
     return (
       <div className="organizer-settings-container">
-        <header>>> {t('backend.organizers.header')}</header>
+        <header>{t('backend.organizers.header')}</header>
         <form className="form-horizontal">
           <AlertMessages alertType="danger"/>
           <fieldset>

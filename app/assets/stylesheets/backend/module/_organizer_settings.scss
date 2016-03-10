@@ -2,12 +2,11 @@
   margin-top: $grid-gutter-width;
 
   header {
-    display: none;
     margin: 0 $grid-gutter-width/2 $grid-gutter-width/3;
     border-bottom: 1px solid map_get($brand-warm-grey, 'lighter');
     text-transform: uppercase;
     color: $brand-primary;
-    font-size: 2em;
+    font-size: 1.75em;
     letter-spacing: .25rem;
   }
 
@@ -15,7 +14,7 @@
     margin: 0 1.25rem;
 
     header {
-      margin-bottom: 1.5rem;
+      margin: $grid-gutter-width 0 $grid-gutter-width/3;
     }
 
     button {
@@ -32,23 +31,17 @@
 
     header {
       display: block;
+      font-size: 2em;
+    }
+
+    header:before {
+      content: '>>';
     }
 
     form {
 
-      h2 {
-        display: inline-block;
-      }
-
       label {
-        text-align: right;
         padding-right: $grid-gutter-width;
-        width: 20%;
-      }
-
-      .form-control {
-        display: inline-block;
-        width: 75%
       }
     }
   }
