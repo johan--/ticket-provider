@@ -77,3 +77,8 @@ en:
       header: Organizer information
       role: Organizer role
       update: Update profile
+    accounts:
+      header: Account information
+      name: Name
+      description: Description
+      update: Update account
