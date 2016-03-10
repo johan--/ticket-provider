@@ -53455,6 +53455,7 @@
 	          'form',
 	          { className: 'form-horizontal' },
 	          _react2.default.createElement(_alertMessages2.default, { event: 'error', alertType: 'danger' }),
+	          _react2.default.createElement(_alertMessages2.default, { event: 'success', alertType: 'success' }),
 	          _react2.default.createElement(
 	            'fieldset',
 	            null,
@@ -53654,7 +53655,7 @@
 	      });
 
 	      jqXHR.done(function () {
-	        window.location.href = '/organizers/sign_in';
+	        _emitter2.default.emit('success', I18n.t('backend.organizers.success_update'));
 	      });
 
 	      jqXHR.fail(function (jqXHR, textStatus, errorThrown) {

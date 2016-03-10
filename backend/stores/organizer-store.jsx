@@ -38,7 +38,7 @@ class Organizer extends Store.Model {
       });
 
     jqXHR.done(() => {
-      window.location.href = '/organizers/sign_in'
+      emitter.emit('success', I18n.t('backend.organizers.success_update'));
     });
 
     jqXHR.fail((jqXHR, textStatus, errorThrown) => {

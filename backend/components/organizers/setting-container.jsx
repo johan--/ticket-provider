@@ -60,6 +60,7 @@ class SettingContainer extends React.Component {
         <header>{t('backend.organizers.header')}</header>
         <form className="form-horizontal">
           <AlertMessages event="error" alertType="danger"/>
+          <AlertMessages event="success" alertType="success"/>
           <fieldset>
             <div className="form-group">
               <label htmlFor="email">{t('backend.organizers.email')}</label>

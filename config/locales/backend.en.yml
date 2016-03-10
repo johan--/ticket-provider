@@ -62,6 +62,7 @@ en:
       new_password: new password
       name: name
       email: email
+      success_update: Successfully update settings.
     modal:
       confirm:
         cancel: Cancel
