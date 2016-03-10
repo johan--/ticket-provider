@@ -15,7 +15,8 @@ class CreateModal extends React.Component {
         event_id: props.event_id,
         name: '',
         current_price: 0,
-        description: ''
+        description: '',
+        seat_type: 'non_fix_seat'
       }
     };
 
@@ -64,6 +65,16 @@ class CreateModal extends React.Component {
   handleDescChange(e) {
     let updateState = this.state;
     updateState.ticket_type.description = e.target.value;
+    this.setState(updateState);
+  }
+
+  handleSeatTypeChange(e) {
+    let updateState = this.state;
+    if (e.target.checked) {
+      updateState.ticket_type.seat_type = 'fix_seat';
+    } else {
+      updateState.ticket_type.seat_type = 'non_fix_seat';
+    }
     this.setState(updateState);
   }
 
@@ -120,6 +131,14 @@ class CreateModal extends React.Component {
                         onChange={this.handleDescChange.bind(this)}
                         name={t('backend.ticket_types.description')}
                         className="form-control"/>
+                    </div>
+                    <div className="form-group is-checkbox">
+                      <label htmlFor="seat_type">Fixed Seat</label>
+                      <input
+                        type="checkbox"
+                        name="seat_type" id="seat_type"
+                        onChange={this.handleSeatTypeChange.bind(this)} />
+                      <div className="checkbox"></div>
                     </div>
                   </fieldset>
                   <button
