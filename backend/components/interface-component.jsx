@@ -4,7 +4,8 @@ import EventListContainer from './events/list-container.jsx';
 import EventCreateContainer from './events/create-container.jsx';
 import EventShowContainer from './events/show-container.jsx';
 import EventEditContainer from './events/edit-container.jsx';
-import SettingContainer from './organizers/setting-container.jsx';
+import OrganizerSettingContainer from './organizers/setting-container.jsx';
+import AccountSettingContainer from './accounts/setting-container.jsx';
 
 class InterfaceComponent extends React.Component {
 
@@ -70,7 +71,8 @@ class InterfaceComponent extends React.Component {
       return (
         <div>
           <Navbar />
-          <SettingContainer />
+          <OrganizerSettingContainer />
+          <AccountSettingContainer />
         </div>
       );
     }
