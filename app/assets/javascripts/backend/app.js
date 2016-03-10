@@ -53677,10 +53677,10 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	exports.default = {
-	    UPDATE_ORGANIZER: 'UPDATE_ORGANIZER'
+	  UPDATE_ORGANIZER: 'UPDATE_ORGANIZER'
 	};
 
 /***/ },
@@ -53716,14 +53716,14 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	exports.default = {
-	    roles: {
-	        'god': 'God',
-	        'account_owner': 'Account owner',
-	        'team_member': 'Team member'
-	    }
+	  roles: {
+	    'god': 'God',
+	    'account_owner': 'Account owner',
+	    'team_member': 'Team member'
+	  }
 	};
 
 /***/ }

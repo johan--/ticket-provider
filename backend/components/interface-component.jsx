@@ -68,10 +68,10 @@ class InterfaceComponent extends React.Component {
 
     if(this.props.router.current === 'organizers/settings') {
       return (
-          <div>
-            <Navbar />
-            <SettingContainer />
-          </div>
+        <div>
+          <Navbar />
+          <SettingContainer />
+        </div>
       );
     }
     return (<div />);
