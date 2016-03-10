@@ -3,7 +3,7 @@ import ReactI18n from 'react-i18n';
 import ReactMixin from 'react-mixin';
 import Store from '../../stores/organizer-store.jsx';
 import AlertMessages from '../shared/alert-messages.jsx';
-import OrganizerAction from '../../actions/organizer-actions.jsx';
+import Action from '../../actions/organizer-actions.jsx';
 import _ from 'underscore';
 import AppConst from '../../app-constant.jsx'
 
@@ -48,9 +48,9 @@ class SettingContainer extends React.Component {
     this.setState(updateState);
   }
 
-  handleSubmit(e) {
+  handleProfileSubmit(e) {
     e.preventDefault();
-    OrganizerAction.edit(_.pick(this.state.organizer, 'id', 'name', 'current_password', 'password', 'password_confirmation'));
+    Action.editProfile(_.pick(this.state.organizer, 'id', 'name', 'current_password', 'password', 'password_confirmation'));
   }
 
   render() {
@@ -63,8 +63,8 @@ class SettingContainer extends React.Component {
           <AlertMessages event="success" alertType="success"/>
           <fieldset>
             <div className="form-group">
-              <label htmlFor="email">{t('backend.organizers.email')}</label>
-              <h2>{this.state.organizer.email}</h2>
+              <label htmlFor="email">{t('backend.authentication.email')}</label>
+              <h4>{this.state.organizer.email}</h4>
             </div>
             <div className="form-group">
               <label htmlFor="name">{t('backend.organizers.name')}</label>
@@ -107,7 +107,7 @@ class SettingContainer extends React.Component {
             <button
               type="submit"
               className="btn btn-primary"
-              onClick={this.handleSubmit.bind(this)}>{t('backend.organizers.save_changes')}</button>
+              onClick={this.handleProfileSubmit.bind(this)}>{t('backend.organizers.update')}</button>
           </fieldset>
         </form>
       </div>
