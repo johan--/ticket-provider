@@ -24,8 +24,6 @@ feature 'Organizer create ticket type', js: true do
 
     all('.btn.btn-primary').last.click
 
-    expect(page).to have_css('.modal')
-
     within('.modal') do
       fill_in 'name', with: ticket_type_params[:name]
       find('.btn-primary').click
@@ -39,8 +37,6 @@ feature 'Organizer create ticket type', js: true do
     visit "/app/events/#{event.uid}"
 
     all('.btn.btn-primary').last.click
-
-    expect(page).to have_css('.modal')
 
     within('.modal') do
       find('.btn-primary').click
