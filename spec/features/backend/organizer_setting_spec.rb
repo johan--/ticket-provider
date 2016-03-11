@@ -11,10 +11,10 @@ feature 'Organizer can update profile' do
   scenario 'Organizer fill in all required information', js: true do
     visit "/app/organizers/settings"
 
-    fill_in I18n.t('backend.events.name'), with: organizer.name
-    fill_in I18n.t('backend.authentication.new_password'), with: '1q2w3e4r'
-    fill_in I18n.t('backend.authentication.password_confirmation'), with: '1q2w3e4r'
-    fill_in I18n.t('backend.authentication.current_password'), with: organizer.password
+    fill_in "organizer_name", with: organizer.name
+    fill_in "password", with: '1q2w3e4r'
+    fill_in "password_confirmation", with: '1q2w3e4r'
+    fill_in "current_password", with: organizer.password
     click_button I18n.t('backend.organizers.update')
     wait_for_async_request
 
@@ -24,9 +24,9 @@ feature 'Organizer can update profile' do
   scenario 'Organizer missed some required information', js: true do
     visit "/app/organizers/settings"
 
-    fill_in I18n.t('backend.events.name'), with: organizer.name
-    fill_in I18n.t('backend.authentication.new_password'), with: '1q2w3e4r'
-    fill_in I18n.t('backend.authentication.password_confirmation'), with: '1q2w3e4r'
+    fill_in "organizer_name", with: organizer.name
+    fill_in "password", with: '1q2w3e4r'
+    fill_in "password_confirmation", with: '1q2w3e4r'
     click_button I18n.t('backend.organizers.update')
     wait_for_async_request
 

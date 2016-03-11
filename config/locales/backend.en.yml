@@ -56,12 +56,13 @@ en:
       cannot_transition_to: can't transition to %{state}
     organizers:
       header: Organizer information
-      role: role
       save_changes: Save changes
       change_password: change password
       confirm_password: confirm password
       current_password: current password
       new_password: new password
+      role: Organizer role
+      update: Update profile
       name: name
       email: email
       success_update: Successfully update settings.
@@ -73,10 +74,6 @@ en:
           delete_event: Confirm deletion
         description:
           delete_event: Are your sure to delete this event?
-    organizers:
-      header: Organizer information
-      role: Organizer role
-      update: Update profile
     accounts:
       header: Account information
       name: Name

@@ -70,13 +70,12 @@ class SettingContainer extends React.Component {
               <label htmlFor="name">{t('backend.organizers.name')}</label>
               <input
                 value={this.state.organizer.name}
-                name={t('backend.organizers.name')}
+                name="organizer_name"
                 className="form-control"
                 onChange={this.handleNameChange.bind(this)}/>
             </div>
             <div className="form-group">
               <label htmlFor="role">{t('backend.organizers.role')}</label>
-
               <h4>{AppConst.roles[this.state.organizer.role]}</h4>
             </div>
             <div className="form-group">

@@ -53510,7 +53510,7 @@
 	              ),
 	              _react2.default.createElement('input', {
 	                value: this.state.organizer.name,
-	                name: t('backend.organizers.name'),
+	                name: 'organizer_name',
 	                className: 'form-control',
 	                onChange: this.handleNameChange.bind(this) })
 	            ),
@@ -53891,7 +53891,7 @@
 	              ),
 	              _react2.default.createElement('input', {
 	                value: this.state.organizer.account ? this.state.organizer.account.name : '',
-	                name: t('backend.events.name'),
+	                name: 'account_name',
 	                className: 'form-control',
 	                onChange: this.handleAccountNameChange.bind(this) })
 	            ),
@@ -53905,7 +53905,7 @@
 	              ),
 	              _react2.default.createElement('textarea', {
 	                value: this.state.organizer.account ? this.state.organizer.account.description : '',
-	                name: t('backend.events.description'),
+	                name: 'description',
 	                className: 'form-control',
 	                onChange: this.handleAccountDescriptionChange.bind(this) })
 	            ),
