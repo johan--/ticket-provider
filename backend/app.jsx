@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Backbone from 'backbone';
+import Backbone from 'backbone.jsx';
 import Router from './router.jsx';
 import InterfaceComponent from './components/interface-component.jsx';
 

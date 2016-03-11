@@ -2,7 +2,7 @@ import React from 'react';
 import ReactI18n from 'react-i18n';
 import ReactMixin from 'react-mixin';
 import $ from 'jquery';
-import Backbone from 'backbone';
+import Backbone from '../backbone.jsx';
 
 class Navbar extends React.Component {
 

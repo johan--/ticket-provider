@@ -1,4 +1,4 @@
-import Backbone from 'backbone';
+import Backbone from '../backbone.jsx';
 import Store from './store.jsx';
 import constant from '../constants/ticket-type-constants.jsx';
 import emitter from '../emitter.jsx';
@@ -50,10 +50,7 @@ class TicketTypeCollection extends Store.Collection {
 
         let jqXHR = this
           .fetch({
-            data: $.param({
-              authenticity_token: $('meta[name="csrf-token"]').attr('content'),
-              ticket_type: payload.ticket_type
-            }),
+            data: $.param({ ticket_type: payload.ticket_type }),
             type: 'POST'
           });
 
