@@ -76,7 +76,7 @@ class EditForm extends React.Component {
     return (
       <div className="event-form-container">
         <form className="form-horizontal">
-          <AlertMessages alertType="danger" />
+          <AlertMessages event="error" alertType="danger"/>
           <fieldset>
             <div className="form-group">
               <label htmlFor="name">{t('backend.events.name')}</label>

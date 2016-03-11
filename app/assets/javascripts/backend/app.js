@@ -38001,7 +38001,7 @@
 	              });
 
 	              jqXHR.fail(function (jqXHR, textStatus, errorThrown) {
-	                _emitter2.default.emit('error', errorThrown);
+	                _emitter2.default.emit('error', jqXHR.responseJSON.errors[0]);
 	              });
 	              return 'break';
 	            }();
@@ -53261,7 +53261,7 @@
 	        _react2.default.createElement(
 	          'form',
 	          { className: 'form-horizontal' },
-	          _react2.default.createElement(_alertMessages2.default, { alertType: 'danger' }),
+	          _react2.default.createElement(_alertMessages2.default, { event: 'error', alertType: 'danger' }),
 	          _react2.default.createElement(
 	            'fieldset',
 	            null,

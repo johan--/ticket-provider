@@ -93,7 +93,7 @@ class EventCollection extends Store.Collection {
         });
 
         jqXHR.fail((jqXHR, textStatus, errorThrown) => {
-          emitter.emit('error', errorThrown);
+          emitter.emit('error', jqXHR.responseJSON.errors[0]);
         });
         break;
       }
