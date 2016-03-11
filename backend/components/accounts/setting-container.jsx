@@ -53,7 +53,7 @@ class ContentContainer extends React.Component {
               <label htmlFor="name">{t('backend.events.name')}</label>
               <input
                 value={this.state.organizer.account ? this.state.organizer.account.name : ''}
-                name={t('backend.events.name')}
+                name="account_name"
                 className="form-control"
                 onChange={this.handleAccountNameChange.bind(this)}/>
             </div>
@@ -61,7 +61,7 @@ class ContentContainer extends React.Component {
               <label htmlFor="description">{t('backend.events.description')}</label>
               <textarea
                 value={this.state.organizer.account ? this.state.organizer.account.description : ''}
-                name={t('backend.events.description')}
+                name="description"
                 className="form-control"
                 onChange={this.handleAccountDescriptionChange.bind(this)}/>
             </div>
