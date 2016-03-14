@@ -53461,8 +53461,8 @@
 	      this.setState(updateState);
 	    }
 	  }, {
-	    key: 'handleProfileSubmit',
-	    value: function handleProfileSubmit(e) {
+	    key: 'handleSubmit',
+	    value: function handleSubmit(e) {
 	      e.preventDefault();
 	      _organizerActions2.default.editProfile(_underscore2.default.pick(this.state.organizer, 'id', 'name', 'current_password', 'password', 'password_confirmation'));
 	    }
@@ -53580,8 +53580,8 @@
 	              {
 	                type: 'submit',
 	                className: 'btn btn-primary',
-	                onClick: this.handleProfileSubmit.bind(this) },
-	              t('backend.organizers.update')
+	                onClick: this.handleSubmit.bind(this) },
+	              t('backend.organizers.save_changes')
 	            )
 	          )
 	        )
@@ -53664,39 +53664,22 @@
 	  }, {
 	    key: 'handleDispatch',
 	    value: function handleDispatch(payload) {
-	      var _this2 = this;
-
 	      switch (payload.actionType) {
-	        case _organizerConstants2.default.UPDATE_ORGANIZER:
+	        case _organizerConstants2.default.EDIT_ORGANIZER:
 	          {
-	            var _ret = function () {
-	              var formData = new FormData();
-	              // Add CSRF-TOKEN to form data.
-	              formData.append('authenticity_token', '' + (0, _jquery2.default)('meta[name="csrf-token"]').attr('content'));
-	              // Iterate through event object and add it to form data.
-	              _jquery2.default.each(payload.organizer, function (key) {
-	                formData.append('organizer[' + key + ']', payload.organizer[key]);
-	              });
+	            var jqXHR = this.fetch({
+	              url: '/api/v1/organizers/' + payload.organizer.id,
+	              data: _jquery2.default.param({ organizer: payload.organizer }),
+	              type: 'PUT'
+	            });
 
-	              var jqXHR = _this2.fetch({
-	                url: '/api/v1/organizers/' + payload.organizer.id,
-	                data: formData,
-	                type: 'PUT',
-	                processData: false,
-	                contentType: false
-	              });
+	            jqXHR.done(function () {
+	              _emitter2.default.emit('success', I18n.t('backend.organizers.success_update'));
+	            });
 
-	              jqXHR.done(function () {
-	                window.location.href = '/organizers/sign_in';
-	              });
-
-	              jqXHR.fail(function (jqXHR, textStatus, errorThrown) {
-	                _emitter2.default.emit('error', jqXHR.responseJSON.errors[0]);
-	              });
-	              return 'break';
-	            }();
-
-	            if (_ret === 'break') break;
+	            jqXHR.fail(function (jqXHR, textStatus, errorThrown) {
+	              _emitter2.default.emit('error', jqXHR.responseJSON.errors[0]);
+	            });
 	          }
 	      }
 	    }
@@ -53719,7 +53702,7 @@
 	  value: true
 	});
 	exports.default = {
-	  UPDATE_ORGANIZER: 'UPDATE_ORGANIZER'
+	  EDIT_ORGANIZER: 'EDIT_ORGANIZER'
 	};
 
 /***/ },
@@ -53744,7 +53727,7 @@
 
 	exports.default = {
 	  editProfile: function editProfile(organizer) {
-	    (0, _dispatch2.default)(_organizerConstants2.default.UPDATE_ORGANIZER, { organizer: organizer });
+	    (0, _dispatch2.default)(_organizerConstants2.default.EDIT_ORGANIZER, { organizer: organizer });
 	  }
 	};
 
@@ -53857,8 +53840,8 @@
 	      this.setState(updateState);
 	    }
 	  }, {
-	    key: 'handleAccountSubmit',
-	    value: function handleAccountSubmit(e) {
+	    key: 'handleSubmit',
+	    value: function handleSubmit(e) {
 	      e.preventDefault();
 	      _accountActions2.default.editAccount(_underscore2.default.pick(this.state.organizer.account, 'id', 'name', 'description'));
 	    }
@@ -53914,8 +53897,8 @@
 	              {
 	                type: 'submit',
 	                className: 'btn btn-primary',
-	                onClick: this.handleAccountSubmit.bind(this) },
-	              t('backend.accounts.update')
+	                onClick: this.handleSubmit.bind(this) },
+	              t('backend.accounts.save_changes')
 	            )
 	          )
 	        )
@@ -53999,39 +53982,22 @@
 	  }, {
 	    key: 'handleDispatch',
 	    value: function handleDispatch(payload) {
-	      var _this2 = this;
-
 	      switch (payload.actionType) {
-	        case _accountConstants2.default.UPDATE_ACCOUNT:
+	        case _accountConstants2.default.EDIT_ACCOUNT:
 	          {
-	            var _ret = function () {
-	              var formData = new FormData();
-	              // Add CSRF-TOKEN to form data.
-	              formData.append('authenticity_token', '' + (0, _jquery2.default)('meta[name="csrf-token"]').attr('content'));
-	              // Iterate through event object and add it to form data.
-	              _jquery2.default.each(payload.account, function (key) {
-	                formData.append('account[' + key + ']', payload.account[key]);
-	              });
+	            var jqXHR = this.fetch({
+	              url: '/api/v1/accounts/' + payload.account.id,
+	              data: _jquery2.default.param({ account: payload.account }),
+	              type: 'PUT'
+	            });
 
-	              var jqXHR = _this2.fetch({
-	                url: '/api/v1/accounts/' + payload.account.id,
-	                data: formData,
-	                type: 'PUT',
-	                processData: false,
-	                contentType: false
-	              });
+	            jqXHR.done(function () {
+	              _emitter2.default.emit('success', I18n.t('backend.organizers.success_update'));
+	            });
 
-	              jqXHR.done(function () {
-	                window.location.href = '/organizers/sign_in';
-	              });
-
-	              jqXHR.fail(function (jqXHR, textStatus, errorThrown) {
-	                _emitter2.default.emit('error', jqXHR.responseJSON.errors[0]);
-	              });
-	              return 'break';
-	            }();
-
-	            if (_ret === 'break') break;
+	            jqXHR.fail(function (jqXHR, textStatus, errorThrown) {
+	              _emitter2.default.emit('error', jqXHR.responseJSON.errors[0]);
+	            });
 	          }
 	      }
 	    }
@@ -54039,6 +54005,8 @@
 
 	  return Account;
 	}(_store2.default.Model);
+
+	;
 
 	exports.default = new Account();
 
@@ -54052,7 +54020,7 @@
 	  value: true
 	});
 	exports.default = {
-	  UPDATE_ACCOUNT: 'UPDATE_ACCOUNT'
+	  EDIT_ACCOUNT: 'EDIT_ACCOUNT'
 	};
 
 /***/ },
@@ -54077,7 +54045,7 @@
 
 	exports.default = {
 	  editAccount: function editAccount(account) {
-	    (0, _dispatch2.default)(_accountConstants2.default.UPDATE_ACCOUNT, { account: account });
+	    (0, _dispatch2.default)(_accountConstants2.default.EDIT_ACCOUNT, { account: account });
 	  }
 	};
 

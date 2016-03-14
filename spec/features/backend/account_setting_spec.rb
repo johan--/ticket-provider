@@ -12,17 +12,17 @@ feature 'Organizer can update Account' do
     visit "/app/organizers/settings"
 
     fill_in "account_name", with: "hehe"
-    click_button I18n.t('backend.accounts.update')
+    click_button I18n.t('backend.accounts.save_changes')
     wait_for_async_request
 
-    expect(page).to have_content 'EVENT'
+    expect(page).to have_content I18n.t('backend.organizers.success_update');
   end
 
   scenario 'Organizer missed name', js: true do
     visit "/app/organizers/settings"
 
     fill_in "account_name", with: ''
-    click_button I18n.t('backend.accounts.update')
+    click_button I18n.t('backend.accounts.save_changes')
     wait_for_async_request
 
     expect(page).to have_content 'Name can\'t be blank'

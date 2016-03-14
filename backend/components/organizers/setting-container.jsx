@@ -3,7 +3,7 @@ import ReactI18n from 'react-i18n';
 import ReactMixin from 'react-mixin';
 import Store from '../../stores/organizer-store.jsx';
 import AlertMessages from '../shared/alert-messages.jsx';
-import Action from '../../actions/organizer-actions.jsx';
+import OrganizerAction from '../../actions/organizer-actions.jsx';
 import _ from 'underscore';
 import AppConst from '../../app-constant.jsx'
 
@@ -48,9 +48,9 @@ class SettingContainer extends React.Component {
     this.setState(updateState);
   }
 
-  handleProfileSubmit(e) {
+  handleSubmit(e) {
     e.preventDefault();
-    Action.editProfile(_.pick(this.state.organizer, 'id', 'name', 'current_password', 'password', 'password_confirmation'));
+    OrganizerAction.editProfile(_.pick(this.state.organizer, 'id', 'name', 'current_password', 'password', 'password_confirmation'));
   }
 
   render() {
@@ -106,7 +106,7 @@ class SettingContainer extends React.Component {
             <button
               type="submit"
               className="btn btn-primary"
-              onClick={this.handleProfileSubmit.bind(this)}>{t('backend.organizers.update')}</button>
+              onClick={this.handleSubmit.bind(this)}>{t('backend.organizers.save_changes')}</button>
           </fieldset>
         </form>
       </div>

@@ -61,8 +61,8 @@ en:
       confirm_password: confirm password
       current_password: current password
       new_password: new password
-      role: Organizer role
-      update: Update profile
+      role: role
+      save_changes: Update profile
       name: name
       email: email
       success_update: Successfully update settings.
@@ -78,4 +78,4 @@ en:
       header: Account information
       name: Name
       description: Description
-      update: Update account
+      save_changes: Update account

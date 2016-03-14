@@ -3,6 +3,6 @@ import constant from '../constants/account-constants.jsx';
 
 export default {
   editAccount: function (account) {
-    dispatch(constant.UPDATE_ACCOUNT, {account: account});
+    dispatch(constant.EDIT_ACCOUNT, {account: account});
   }
 };

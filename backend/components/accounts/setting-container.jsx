@@ -4,7 +4,7 @@ import ReactMixin from 'react-mixin';
 import OrganizerStore from '../../stores/organizer-store.jsx';
 import AccountStore from '../../stores/account-store.jsx';
 import AlertMessages from '../shared/alert-messages.jsx';
-import Action from '../../actions/account-actions.jsx';
+import AccountAction from '../../actions/account-actions.jsx';
 import _ from 'underscore';
 
 class ContentContainer extends React.Component {
@@ -36,9 +36,9 @@ class ContentContainer extends React.Component {
     this.setState(updateState);
   }
 
-  handleAccountSubmit(e) {
+  handleSubmit(e) {
     e.preventDefault();
-    Action.editAccount(_.pick(this.state.organizer.account, 'id', 'name', 'description'));
+    AccountAction.editAccount(_.pick(this.state.organizer.account, 'id', 'name', 'description'));
   }
 
   render() {
@@ -68,7 +68,7 @@ class ContentContainer extends React.Component {
             <button
               type="submit"
               className="btn btn-primary"
-              onClick={this.handleAccountSubmit.bind(this)}>{t('backend.accounts.update')}</button>
+              onClick={this.handleSubmit.bind(this)}>{t('backend.accounts.save_changes')}</button>
           </fieldset>
         </form>
       </div>

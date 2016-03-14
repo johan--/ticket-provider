@@ -1,3 +1,3 @@
 export default {
-  UPDATE_ACCOUNT: 'UPDATE_ACCOUNT'
+  EDIT_ACCOUNT: 'EDIT_ACCOUNT'
 };

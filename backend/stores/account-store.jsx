@@ -20,36 +20,26 @@ class Account extends Store.Model {
   }
 
   handleDispatch(payload) {
-    switch(payload.actionType) {
-      case constant.UPDATE_ACCOUNT: {
-        let formData = new FormData();
-        // Add CSRF-TOKEN to form data.
-        formData.append('authenticity_token', `${$('meta[name="csrf-token"]').attr('content')}`);
-        // Iterate through event object and add it to form data.
-        $.each(payload.account, function (key) {
-          formData.append(`account[${key}]`, payload.account[key]);
-        });
-
+    switch (payload.actionType) {
+      case constant.EDIT_ACCOUNT:
+      {
         let jqXHR = this
           .fetch({
             url: `/api/v1/accounts/${payload.account.id}`,
-            data: formData,
-            type: 'PUT',
-            processData: false,
-            contentType: false
+            data: $.param({account: payload.account}),
+            type: 'PUT'
           });
 
         jqXHR.done(() => {
-          window.location.href = '/organizers/sign_in'
+          emitter.emit('success', I18n.t('backend.organizers.success_update'));
         });
 
         jqXHR.fail((jqXHR, textStatus, errorThrown) => {
           emitter.emit('error', jqXHR.responseJSON.errors[0]);
         });
-        break;
       }
     }
   }
-}
+};
 
 export default new Account();
