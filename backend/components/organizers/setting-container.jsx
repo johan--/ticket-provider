@@ -11,7 +11,7 @@ class SettingContainer extends React.Component {
   constructor() {
     super();
     this.model = Store.getModel();
-    this.state = {organizer: this.model.attributes};
+    this.state = { organizer: this.model.attributes };
   }
 
   componentDidMount() {
@@ -59,8 +59,8 @@ class SettingContainer extends React.Component {
       <div className="organizer-settings-container">
         <header>{t('backend.organizers.header')}</header>
         <form className="form-horizontal">
-          <AlertMessages event="error" alertType="danger"/>
-          <AlertMessages event="success" alertType="success"/>
+          <AlertMessages event="errorOrganizer" alertType="danger"/>
+          <AlertMessages event="successOrganizer" alertType="success"/>
           <fieldset>
             <div className="form-group">
               <label htmlFor="email">{t('backend.authentication.email')}</label>
@@ -70,7 +70,7 @@ class SettingContainer extends React.Component {
               <label htmlFor="name">{t('backend.organizers.name')}</label>
               <input
                 value={this.state.organizer.name}
-                name="organizer_name"
+                name="name"
                 className="form-control"
                 onChange={this.handleNameChange.bind(this)}/>
             </div>

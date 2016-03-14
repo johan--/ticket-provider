@@ -29,11 +29,11 @@ class Account extends Store.Model {
           });
 
         jqXHR.done(() => {
-          emitter.emit('success', I18n.t('backend.organizers.success_update'));
+          emitter.emit('successAccount', I18n.t('backend.organizers.success_update'));
         });
 
         jqXHR.fail((jqXHR, textStatus, errorThrown) => {
-          emitter.emit('error', jqXHR.responseJSON.errors[0]);
+          emitter.emit('errorAccount', jqXHR.responseJSON.errors[0]);
         });
       }
     }

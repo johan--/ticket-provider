@@ -29,11 +29,11 @@ class Organizer extends Store.Model {
           });
 
         jqXHR.done(() => {
-          emitter.emit('success', I18n.t('backend.organizers.success_update'));
+          emitter.emit('successOrganizer', I18n.t('backend.organizers.success_update'));
         });
 
         jqXHR.fail((jqXHR, textStatus, errorThrown) => {
-          emitter.emit('error', jqXHR.responseJSON.errors[0]);
+          emitter.emit('errorOrganizer', jqXHR.responseJSON.errors[0]);
         });
       }
     }

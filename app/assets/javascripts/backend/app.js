@@ -53476,8 +53476,8 @@
 	        _react2.default.createElement(
 	          'form',
 	          { className: 'form-horizontal' },
-	          _react2.default.createElement(_alertMessages2.default, { event: 'error', alertType: 'danger' }),
-	          _react2.default.createElement(_alertMessages2.default, { event: 'success', alertType: 'success' }),
+	          _react2.default.createElement(_alertMessages2.default, { event: 'errorOrganizer', alertType: 'danger' }),
+	          _react2.default.createElement(_alertMessages2.default, { event: 'successOrganizer', alertType: 'success' }),
 	          _react2.default.createElement(
 	            'fieldset',
 	            null,
@@ -53505,7 +53505,7 @@
 	              ),
 	              _react2.default.createElement('input', {
 	                value: this.state.organizer.name,
-	                name: 'organizer_name',
+	                name: 'name',
 	                className: 'form-control',
 	                onChange: this.handleNameChange.bind(this) })
 	            ),
@@ -53669,11 +53669,11 @@
 	            });
 
 	            jqXHR.done(function () {
-	              _emitter2.default.emit('success', I18n.t('backend.organizers.success_update'));
+	              _emitter2.default.emit('successOrganizer', I18n.t('backend.organizers.success_update'));
 	            });
 
 	            jqXHR.fail(function (jqXHR, textStatus, errorThrown) {
-	              _emitter2.default.emit('error', jqXHR.responseJSON.errors[0]);
+	              _emitter2.default.emit('errorOrganizer', jqXHR.responseJSON.errors[0]);
 	            });
 	          }
 	      }
@@ -53853,7 +53853,8 @@
 	        _react2.default.createElement(
 	          'form',
 	          { className: 'form-horizontal' },
-	          _react2.default.createElement(_alertMessages2.default, { alertType: 'danger' }),
+	          _react2.default.createElement(_alertMessages2.default, { event: 'errorAccount', alertType: 'danger' }),
+	          _react2.default.createElement(_alertMessages2.default, { event: 'successAccount', alertType: 'success' }),
 	          _react2.default.createElement(
 	            'fieldset',
 	            null,
@@ -53867,7 +53868,7 @@
 	              ),
 	              _react2.default.createElement('input', {
 	                value: this.state.organizer.account ? this.state.organizer.account.name : '',
-	                name: 'account_name',
+	                name: 'name',
 	                className: 'form-control',
 	                onChange: this.handleAccountNameChange.bind(this) })
 	            ),
@@ -53984,11 +53985,11 @@
 	            });
 
 	            jqXHR.done(function () {
-	              _emitter2.default.emit('success', I18n.t('backend.organizers.success_update'));
+	              _emitter2.default.emit('successAccount', I18n.t('backend.organizers.success_update'));
 	            });
 
 	            jqXHR.fail(function (jqXHR, textStatus, errorThrown) {
-	              _emitter2.default.emit('error', jqXHR.responseJSON.errors[0]);
+	              _emitter2.default.emit('errorAccount', jqXHR.responseJSON.errors[0]);
 	            });
 	          }
 	      }

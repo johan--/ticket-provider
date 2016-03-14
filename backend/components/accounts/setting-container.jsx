@@ -47,13 +47,14 @@ class ContentContainer extends React.Component {
       <div className="organizer-settings-container">
         <header>{t('backend.accounts.header')}</header>
         <form className="form-horizontal">
-          <AlertMessages alertType="danger"/>
+          <AlertMessages event="errorAccount" alertType="danger"/>
+          <AlertMessages event="successAccount" alertType="success"/>
           <fieldset>
             <div className="form-group">
               <label htmlFor="name">{t('backend.events.name')}</label>
               <input
                 value={this.state.organizer.account ? this.state.organizer.account.name : ''}
-                name="account_name"
+                name="name"
                 className="form-control"
                 onChange={this.handleAccountNameChange.bind(this)}/>
             </div>

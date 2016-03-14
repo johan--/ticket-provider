@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Organizer can update Account' do
+feature 'Organizer can update their account' do
   let!(:account) { Fabricate(:account) }
   let!(:organizer) { Fabricate(:account_owner, account: account) }
 
@@ -12,22 +12,23 @@ feature 'Organizer can update Account' do
     visit "/app/organizers/settings"
 
     within all('.organizer-settings-container form').last do
-      fill_in "account_name", with: "hehe"
+      fill_in "name", with: "hehe"
       click_button I18n.t('backend.accounts.save_changes')
       wait_for_async_request
+
+      expect(page).to have_content I18n.t('backend.organizers.success_update')
     end
-    expect(page).to have_content I18n.t('backend.organizers.success_update');
   end
 
-  scenario 'Organizer missed name', js: true do
+  scenario 'Organizer missed some required information', js: true do
     visit "/app/organizers/settings"
 
     within all('.organizer-settings-container form').last do
-      fill_in "account_name", with: ''
+      fill_in "name", with: ''
       click_button I18n.t('backend.accounts.save_changes')
       wait_for_async_request
-    end
 
-    expect(page).to have_content 'Name can\'t be blank'
+      expect(page).to have_content 'Name can\'t be blank'
+    end
   end
 end
