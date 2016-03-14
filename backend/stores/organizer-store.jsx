@@ -14,7 +14,7 @@ class Organizer extends Store.Model {
   }
 
   getModel() {
-    let jqXHR = this.fetch();
+    this.fetch();
     return this;
   }
 
@@ -38,6 +38,6 @@ class Organizer extends Store.Model {
       }
     }
   }
-};
+}
 
 export default new Organizer();

@@ -53653,7 +53653,7 @@
 	  }, {
 	    key: 'getModel',
 	    value: function getModel() {
-	      var jqXHR = this.fetch();
+	      this.fetch();
 	      return this;
 	    }
 	  }, {
@@ -53682,8 +53682,6 @@
 
 	  return Organizer;
 	}(_store2.default.Model);
-
-	;
 
 	exports.default = new Organizer();
 
@@ -53970,7 +53968,7 @@
 	  }, {
 	    key: 'getModel',
 	    value: function getModel() {
-	      var jqXHR = this.fetch();
+	      this.fetch();
 	      return this;
 	    }
 	  }, {
@@ -53999,8 +53997,6 @@
 
 	  return Account;
 	}(_store2.default.Model);
-
-	;
 
 	exports.default = new Account();
 
