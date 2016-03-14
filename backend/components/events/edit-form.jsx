@@ -75,8 +75,8 @@ class EditForm extends React.Component {
     let t = this.getIntlMessage;
     return (
       <div className="event-form-container">
-        <form className="form-horizontal" ref="eventForm">
-          <AlertMessages event="error" alertType="danger" />
+        <form className="form-horizontal">
+          <AlertMessages event="error" alertType="danger"/>
           <fieldset>
             <div className="form-group">
               <label htmlFor="name">{t('backend.events.name')}</label>

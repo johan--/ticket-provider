@@ -14,25 +14,29 @@ class Organizer extends Store.Model {
   }
 
   getModel() {
-    let jqXHR = this.fetch();
+    this.fetch();
     return this;
   }
 
   handleDispatch(payload) {
-    let jqXHR = this
-      .fetch({
-        url: `/api/v1/organizers/${payload.organizer.id}`,
-        data: $.param({ organizer: payload.organizer }),
-        type: 'PUT'
-      });
+    switch (payload.actionType) {
+      case constant.EDIT_ORGANIZER: {
+        let jqXHR = this
+          .fetch({
+            url: `/api/v1/organizers/${payload.organizer.id}`,
+            data: $.param({organizer: payload.organizer}),
+            type: 'PUT'
+          });
 
-    jqXHR.done(() => {
-      emitter.emit('success', I18n.t('backend.organizers.success_update'));
-    });
+        jqXHR.done(() => {
+          emitter.emit('successOrganizer', I18n.t('backend.organizers.success_update'));
+        });
 
-    jqXHR.fail((jqXHR, textStatus, errorThrown) => {
-      emitter.emit('error', jqXHR.responseJSON.errors[0]);
-    });
+        jqXHR.fail((jqXHR, textStatus, errorThrown) => {
+          emitter.emit('errorOrganizer', jqXHR.responseJSON.errors[0]);
+        });
+      }
+    }
   }
 }
 

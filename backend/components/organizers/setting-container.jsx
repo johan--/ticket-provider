@@ -11,7 +11,7 @@ class SettingContainer extends React.Component {
   constructor() {
     super();
     this.model = Store.getModel();
-    this.state = {organizer: this.model.attributes};
+    this.state = { organizer: this.model.attributes };
   }
 
   componentDidMount() {
@@ -59,26 +59,24 @@ class SettingContainer extends React.Component {
       <div className="organizer-settings-container">
         <header>{t('backend.organizers.header')}</header>
         <form className="form-horizontal">
-          <AlertMessages event="error" alertType="danger"/>
-          <AlertMessages event="success" alertType="success"/>
+          <AlertMessages event="errorOrganizer" alertType="danger"/>
+          <AlertMessages event="successOrganizer" alertType="success"/>
           <fieldset>
             <div className="form-group">
-              <label htmlFor="email">{t('backend.organizers.email')}</label>
-
-              <h2>{this.state.organizer.email}</h2>
+              <label htmlFor="email">{t('backend.authentication.email')}</label>
+              <h4>{this.state.organizer.email}</h4>
             </div>
             <div className="form-group">
               <label htmlFor="name">{t('backend.organizers.name')}</label>
               <input
                 value={this.state.organizer.name}
-                name={t('backend.organizers.name')}
+                name="name"
                 className="form-control"
                 onChange={this.handleNameChange.bind(this)}/>
             </div>
             <div className="form-group">
               <label htmlFor="role">{t('backend.organizers.role')}</label>
-
-              <h2>{AppConst.roles[this.state.organizer.role]}</h2>
+              <h4>{AppConst.roles[this.state.organizer.role]}</h4>
             </div>
             <div className="form-group">
               <label htmlFor="current_password">{t('backend.organizers.current_password')}</label>

@@ -4,6 +4,7 @@ en:
       event: Event
       brand: SQUARE
       setting: Setting
+      organizer: Organizer
     authentication:
       login: Login
       logout: Logout
@@ -55,12 +56,13 @@ en:
       cannot_transition_to: can't transition to %{state}
     organizers:
       header: Organizer information
-      role: role
       save_changes: Save changes
       change_password: change password
       confirm_password: confirm password
       current_password: current password
       new_password: new password
+      role: role
+      save_changes: Save changes
       name: name
       email: email
       success_update: Successfully update settings.
@@ -72,3 +74,8 @@ en:
           delete_event: Confirm deletion
         description:
           delete_event: Are your sure to delete this event?
+    accounts:
+      header: Account information
+      name: Name
+      description: Description
+      save_changes: Save changes
