@@ -6,7 +6,6 @@ import $ from 'jquery'
 
 class Account extends Store.Model {
   url() {
-    console.log(this);
     return `/api/v1/accounts/${this.get('id')}`;
   }
 
