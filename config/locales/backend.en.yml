@@ -62,7 +62,7 @@ en:
       current_password: current password
       new_password: new password
       role: role
-      save_changes: Update profile
+      save_changes: Save changes
       name: name
       email: email
       success_update: Successfully update settings.
