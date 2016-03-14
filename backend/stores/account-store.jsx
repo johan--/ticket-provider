@@ -1,4 +1,4 @@
-import Backbone from 'backbone';
+import Backbone from '../backbone.jsx';
 import Store from './store.jsx'
 import emitter from '../emitter.jsx'
 import constant from '../constants/account-constants.jsx';
@@ -21,8 +21,7 @@ class Account extends Store.Model {
 
   handleDispatch(payload) {
     switch (payload.actionType) {
-      case constant.EDIT_ACCOUNT:
-      {
+      case constant.EDIT_ACCOUNT: {
         let jqXHR = this
           .fetch({
             url: `/api/v1/accounts/${payload.account.id}`,

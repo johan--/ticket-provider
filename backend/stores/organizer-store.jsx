@@ -20,8 +20,7 @@ class Organizer extends Store.Model {
 
   handleDispatch(payload) {
     switch (payload.actionType) {
-      case constant.EDIT_ORGANIZER:
-      {
+      case constant.EDIT_ORGANIZER: {
         let jqXHR = this
           .fetch({
             url: `/api/v1/organizers/${payload.organizer.id}`,

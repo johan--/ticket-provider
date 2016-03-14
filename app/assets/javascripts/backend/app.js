@@ -53464,7 +53464,7 @@
 	    key: 'handleSubmit',
 	    value: function handleSubmit(e) {
 	      e.preventDefault();
-	      _organizerActions2.default.editProfile(_underscore2.default.pick(this.state.organizer, 'id', 'name', 'current_password', 'password', 'password_confirmation'));
+	      _organizerActions2.default.edit(_underscore2.default.pick(this.state.organizer, 'id', 'name', 'current_password', 'password', 'password_confirmation'));
 	    }
 	  }, {
 	    key: 'render',
@@ -53726,7 +53726,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = {
-	  editProfile: function editProfile(organizer) {
+	  edit: function edit(organizer) {
 	    (0, _dispatch2.default)(_organizerConstants2.default.EDIT_ORGANIZER, { organizer: organizer });
 	  }
 	};
@@ -53843,7 +53843,7 @@
 	    key: 'handleSubmit',
 	    value: function handleSubmit(e) {
 	      e.preventDefault();
-	      _accountActions2.default.editAccount(_underscore2.default.pick(this.state.organizer.account, 'id', 'name', 'description'));
+	      _accountActions2.default.edit(_underscore2.default.pick(this.state.organizer.account, 'id', 'name', 'description'));
 	    }
 	  }, {
 	    key: 'render',
@@ -53925,7 +53925,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _backbone = __webpack_require__(160);
+	var _backbone = __webpack_require__(159);
 
 	var _backbone2 = _interopRequireDefault(_backbone);
 
@@ -54044,7 +54044,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = {
-	  editAccount: function editAccount(account) {
+	  edit: function edit(account) {
 	    (0, _dispatch2.default)(_accountConstants2.default.EDIT_ACCOUNT, { account: account });
 	  }
 	};

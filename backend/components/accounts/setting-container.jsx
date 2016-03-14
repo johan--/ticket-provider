@@ -38,7 +38,7 @@ class ContentContainer extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    AccountAction.editAccount(_.pick(this.state.organizer.account, 'id', 'name', 'description'));
+    AccountAction.edit(_.pick(this.state.organizer.account, 'id', 'name', 'description'));
   }
 
   render() {

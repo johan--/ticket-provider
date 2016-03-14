@@ -50,7 +50,7 @@ class SettingContainer extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    OrganizerAction.editProfile(_.pick(this.state.organizer, 'id', 'name', 'current_password', 'password', 'password_confirmation'));
+    OrganizerAction.edit(_.pick(this.state.organizer, 'id', 'name', 'current_password', 'password', 'password_confirmation'));
   }
 
   render() {
