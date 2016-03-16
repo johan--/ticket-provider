@@ -89,9 +89,7 @@ class EventCollection extends Store.Collection {
 
         jqXHR.done(() => {
           this.getAll();
-          emitter.emit('success', I18n.t('backend.events.success_create'));
           Backbone.history.navigate('/app/events', true);
-
         });
 
         jqXHR.fail((jqXHR, textStatus, errorThrown) => {
