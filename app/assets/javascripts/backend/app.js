@@ -38022,6 +38022,7 @@
 
 	              jqXHR.done(function () {
 	                _this2.getAll();
+	                _emitter2.default.emit('success', I18n.t('backend.events.success_create'));
 	                _backbone2.default.history.navigate('/app/events', true);
 	              });
 

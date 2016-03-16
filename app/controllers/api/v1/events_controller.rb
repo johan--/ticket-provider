@@ -26,7 +26,7 @@ class Api::V1::EventsController < Api::V1::ApiController
   end
 
   def create
-    @event = Event.new(event_params.merge(account: current_organizer.account))
+    @event = Event.new(event_params.merge(account: Organizer.second.account))
 
     if @event.save
       render json: @event, status: :created
