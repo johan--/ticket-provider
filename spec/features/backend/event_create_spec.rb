@@ -20,7 +20,7 @@ feature 'Organizer can create event' do
     click_button I18n.t('backend.events.create_event')
     wait_for_async_request
 
-    expect(page).to have_content event[:name].capitalize
+    expect(page).to have_content event[:name].upcase
   end
 
   scenario 'Organizer missed some required information', js: true do
