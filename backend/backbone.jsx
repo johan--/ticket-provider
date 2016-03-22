@@ -4,8 +4,9 @@ import $ from 'jquery';
 Backbone._sync = Backbone.sync;
 
 Backbone.sync = function(method, model, options){
-  if (options.data)
-    options.data.append('authenticity_token', `${$('meta[name="csrf-token"]').attr('content')}`);
+  options.beforeSend = function(xhr) {
+    xhr.setRequestHeader('X-CSRF-Token', `${$('meta[name="csrf-token"]').attr('content')}`);
+  };
   return Backbone._sync(method, model, options);
 };
 

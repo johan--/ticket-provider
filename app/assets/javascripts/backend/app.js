@@ -19703,7 +19703,9 @@
 	_backbone2.default._sync = _backbone2.default.sync;
 
 	_backbone2.default.sync = function (method, model, options) {
-	  if (options.data) options.data.append('authenticity_token', '' + (0, _jquery2.default)('meta[name="csrf-token"]').attr('content'));
+	  options.beforeSend = function (xhr) {
+	    xhr.setRequestHeader('X-CSRF-Token', '' + (0, _jquery2.default)('meta[name="csrf-token"]').attr('content'));
+	  };
 	  return _backbone2.default._sync(method, model, options);
 	};
 
