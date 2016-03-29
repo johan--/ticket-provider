@@ -52,6 +52,7 @@ class Api::V1::TicketTypesController < Api::V1::ApiController
       .require(:ticket_type)
       .permit(:name,
               :description,
-              :current_price)
+              :current_price,
+              :usage_type)
   end
 end

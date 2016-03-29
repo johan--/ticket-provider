@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160329105935) do
+ActiveRecord::Schema.define(version: 20160329133429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,13 +118,13 @@ ActiveRecord::Schema.define(version: 20160329105935) do
 
   create_table "ticket_types", force: :cascade do |t|
     t.integer  "activity_id"
-    t.string   "name",          null: false
-    t.string   "uid",           null: false
+    t.string   "name",                      null: false
+    t.string   "uid",                       null: false
     t.text     "description"
     t.decimal  "current_price"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "seat_type",     null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "usage_type",    default: 0
   end
 
   add_index "ticket_types", ["activity_id"], name: "index_ticket_types_on_activity_id", using: :btree
@@ -138,6 +138,7 @@ ActiveRecord::Schema.define(version: 20160329105935) do
     t.decimal  "price"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "usage_quantity"
   end
 
   add_index "tickets", ["ticket_type_id"], name: "index_tickets_on_ticket_type_id", using: :btree

@@ -4,7 +4,8 @@ class TicketSerializer < ActiveModel::Serializer
              :row,
              :column,
              :price,
-             :state
+             :state,
+             :usage_quantity
 
   def id
     object.uid

@@ -8,12 +8,13 @@
         "type": "object",
         "required": ["id", "ticket_type_id"],
         "properties": {
-          "id": { "type": "string"},
+          "id": { "type": "string" },
           "ticket_type_id": { "type": "string" },
           "row": { "type": ["null", "string"] },
           "column": { "type": ["null", "string"] },
           "price": { "type": ["null", "string"] },
-          "state": { "type": ["null", "string"] }
+          "state": { "type": ["null", "string"] },
+          "usage_quantity": { "type": ["null", "string"] }
         }
       }
     }

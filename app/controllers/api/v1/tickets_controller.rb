@@ -50,7 +50,8 @@ class Api::V1::TicketsController < Api::V1::ApiController
       .require(:ticket)
       .permit(:row,
               :column,
-              :price)
+              :price,
+              :usage_quantity)
   end
 
 
