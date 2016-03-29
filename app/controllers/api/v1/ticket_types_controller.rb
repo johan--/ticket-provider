@@ -7,7 +7,7 @@ class Api::V1::TicketTypesController < Api::V1::ApiController
 
   def index
     @ticket_types = TicketType
-                      .includes(:tickets, :event)
+                      .includes(:tickets, :activity)
                       .where(activity: Activity.find_by_uid(params[:activity_id]))
                       .page(@page)
                       .per(@per_page)

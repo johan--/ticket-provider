@@ -13,7 +13,7 @@ class EditForm extends React.Component {
 
   constructor(props) {
     super();
-    this.store = Store.getAll({ data: $.param({ event_id: props.id}), reset: true });
+    this.store = Store.getAll({ data: $.param({ activity_id: props.id}), reset: true });
   }
 
   componentDidMount() {
@@ -50,6 +50,7 @@ class EditForm extends React.Component {
   }
 
   render() {
+    console.log(this.store);
     let t = this.getIntlMessage;
     if(this.state) console.log(this.state);
     return (

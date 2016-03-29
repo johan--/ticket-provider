@@ -34,7 +34,7 @@ var Router = Backbone.Router.extend({
   },
 
   editTicket: function(id) {
-    this.current = 'events/ticket_types';
+    this.current = 'activities/ticket_types';
     this.params = { _id: id };
   },
 

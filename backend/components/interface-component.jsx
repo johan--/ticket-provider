@@ -68,7 +68,7 @@ class InterfaceComponent extends React.Component {
       );
     }
 
-    if (this.props.router.current === 'events/ticket_types') {
+    if (this.props.router.current === 'activities/ticket_types') {
       return (
         <div>
           <Navbar />

@@ -34,6 +34,7 @@ class TicketTypeCollection extends Store.Collection {
 
   getAll(params) {
     this.fetch(params);
+    console.log(this);
     return this;
   }
 
