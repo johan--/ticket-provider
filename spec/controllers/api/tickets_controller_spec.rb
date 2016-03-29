@@ -12,14 +12,14 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
     let(:ticket) { Fabricate(:ticket, ticket_type: ticket_type, user: user) }
     let(:access_token) { Fabricate(:access_token, resource_owner_id: user.id, application: application) }
 
-    before { ticket.transition_to(:sold) }
+    before { ticket.transition_to(:enable) }
 
     context 'when user get all purchased ticket' do
       before { get :index, format: :json, access_token: access_token.token }
 
       it { expect(response).to have_http_status(:ok) }
       it { expect(response).to match_response_schema('tickets') }
-      it { expect(JSON.parse(response.body)['tickets'].first['state']).to eq 'sold' }
+      it { expect(JSON.parse(response.body)['tickets'].first['state']).to eq 'enable' }
     end
   end
 
@@ -57,11 +57,11 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
     before { sign_in :organizer, organizer }
 
     context 'when ticket params is valid' do
-      before { put :update, id: ticket.uid, ticket: { state: 'sold', user_id: user.uid } }
+      before { put :update, id: ticket.uid, ticket: { state: 'enable', user_id: user.uid } }
 
       it { expect(response).to have_http_status(:ok) }
       it { expect(response).to match_response_schema('ticket') }
-      it { expect(JSON.parse(response.body)['ticket']['state']).to eq 'sold' }
+      it { expect(JSON.parse(response.body)['ticket']['state']).to eq 'enable' }
     end
 
     context 'when ticket param is not valid' do
