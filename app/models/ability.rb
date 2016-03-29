@@ -12,18 +12,18 @@ class Ability
         elsif user.role == 'account_owner'
           can :manage, Organizer, id: user.id
           can :manage, Account, id: user.account_id
-          can :manage, Event, account: user.account
-          can :manage, TicketType, event_id: user.account.event_ids
-          can :manage, Ticket, ticket_type: { event_id: user.account.event_ids }
+          can :manage, Activity, account: user.account
+          can :manage, TicketType, activity_id: user.account.activity_ids
+          can :manage, Ticket, ticket_type: { activity_id: user.account.activity_ids }
         elsif user.role == 'team_member'
           can [:read, :create, :update], Account, id: user.account_id
-          can [:read, :create, :update], Event, account: user.account
-          can [:read, :create, :update], TicketType, event_id: user.account.event_ids
-          can :manage, Ticket, ticket_Type: { event_id: user.account.event_ids }
+          can [:read, :create, :update], Activity, account: user.account
+          can [:read, :create, :update], TicketType, activity_id: user.account.activity_ids
+          can :manage, Ticket, ticket_Type: { activity_id: user.account.activity_ids }
         end
       else
         can :manage, User, id: user.id
-        can :read, Event
+        can :read, Activity
         can :read, TicketType
         can [:read, :update], Ticket, user: user
     end

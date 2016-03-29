@@ -3,32 +3,32 @@ import Backbone from './backbone.jsx';
 var Router = Backbone.Router.extend({
 
   routes: {
-    'app/events': 'events',
-    'app/events/new': 'newEvent',
-    'app/events/(:id)': 'showEvent',
-    'app/events/(:id)/edit': 'editEvent',
+    'app/activities': 'activities',
+    'app/activities/new': 'newActivity',
+    'app/activities/(:id)': 'showActivity',
+    'app/activities/(:id)/edit': 'editActivity',
     'app/organizers/settings': 'organizersSettings',
 
     // fallback path
-    'app': 'events',
-    'app/*path': 'events'
+    'app': 'activities',
+    'app/*path': 'activities'
   },
 
-  events: function() {
-    this.current = 'events';
+  activities: function() {
+    this.current = 'activities';
   },
 
-  newEvent: function() {
-    this.current = 'events/new';
+  newActivity: function() {
+    this.current = 'activities/new';
   },
 
-  showEvent: function(id) {
-    this.current = 'events/show';
+  showActivity: function(id) {
+    this.current = 'activities/show';
     this.params = { _id: id };
   },
 
-  editEvent: function(id) {
-    this.current = 'events/edit';
+  editActivity: function(id) {
+    this.current = 'activities/edit';
     this.params = { _id: id };
   },
 

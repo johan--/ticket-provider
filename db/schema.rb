@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160220081744) do
+ActiveRecord::Schema.define(version: 20160329105935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,20 +26,7 @@ ActiveRecord::Schema.define(version: 20160220081744) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "event_transitions", force: :cascade do |t|
-    t.string   "to_state",                   null: false
-    t.text     "metadata",    default: "{}"
-    t.integer  "sort_key",                   null: false
-    t.integer  "event_id",                   null: false
-    t.boolean  "most_recent",                null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-  end
-
-  add_index "event_transitions", ["event_id", "most_recent"], name: "index_event_transitions_parent_most_recent", unique: true, where: "most_recent", using: :btree
-  add_index "event_transitions", ["event_id", "sort_key"], name: "index_event_transitions_parent_sort", unique: true, using: :btree
-
-  create_table "events", force: :cascade do |t|
+  create_table "activities", force: :cascade do |t|
     t.integer  "account_id"
     t.string   "name",                     null: false
     t.string   "uid",                      null: false
@@ -51,7 +38,7 @@ ActiveRecord::Schema.define(version: 20160220081744) do
     t.datetime "date"
   end
 
-  add_index "events", ["account_id"], name: "index_events_on_account_id", using: :btree
+  add_index "activities", ["account_id"], name: "index_activities_on_account_id", using: :btree
 
   create_table "oauth_access_grants", force: :cascade do |t|
     t.integer  "resource_owner_id", null: false
@@ -130,7 +117,7 @@ ActiveRecord::Schema.define(version: 20160220081744) do
   add_index "ticket_transitions", ["ticket_id", "sort_key"], name: "index_ticket_transitions_parent_sort", unique: true, using: :btree
 
   create_table "ticket_types", force: :cascade do |t|
-    t.integer  "event_id"
+    t.integer  "activity_id"
     t.string   "name",          null: false
     t.string   "uid",           null: false
     t.text     "description"
@@ -140,7 +127,7 @@ ActiveRecord::Schema.define(version: 20160220081744) do
     t.integer  "seat_type",     null: false
   end
 
-  add_index "ticket_types", ["event_id"], name: "index_ticket_types_on_event_id", using: :btree
+  add_index "ticket_types", ["activity_id"], name: "index_ticket_types_on_activity_id", using: :btree
 
   create_table "tickets", force: :cascade do |t|
     t.integer  "ticket_type_id"
@@ -176,8 +163,8 @@ ActiveRecord::Schema.define(version: 20160220081744) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "events", "accounts"
+  add_foreign_key "activities", "accounts"
   add_foreign_key "organizers", "accounts"
-  add_foreign_key "ticket_types", "events"
+  add_foreign_key "ticket_types", "activities"
   add_foreign_key "tickets", "ticket_types"
 end

@@ -10,7 +10,7 @@ feature 'Organizer can login to their account', js: true do
     fill_in 'organizer[password]', with: organizer.password
     click_button I18n.t('backend.authentication.login')
 
-    expect(page).to have_content('Event')
+    expect(page).to have_content('Activity')
   end
 end
 
@@ -27,7 +27,7 @@ feature 'Organizer can register to their account', js: true do
     fill_in 'organizer[password_confirmation]', with: organizer[:password]
     click_button I18n.t('backend.authentication.register')
 
-    expect(page).to have_content('Event')
+    expect(page).to have_content('Activity')
     expect(Organizer.first.email).to eq organizer[:email]
     expect(Account.first.name).to eq account[:name]
   end

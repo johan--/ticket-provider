@@ -1,6 +1,6 @@
 class TicketTypeSerializer < ActiveModel::Serializer
   attributes :id,
-             :event_id,
+             :activity_id,
              :name,
              :description,
              :current_price,
@@ -13,7 +13,7 @@ class TicketTypeSerializer < ActiveModel::Serializer
     object.uid
   end
 
-  def event_id
-    object.event.uid
+  def activity_id
+    object.activity.uid
   end
 end

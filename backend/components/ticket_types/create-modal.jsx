@@ -12,7 +12,7 @@ class CreateModal extends React.Component {
     super(props);
     this.state = {
       ticket_type: {
-        event_id: props.event_id,
+        activity_id: props.activity_id,
         name: '',
         current_price: 0,
         description: '',

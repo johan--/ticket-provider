@@ -1,7 +1,7 @@
 en:
   backend:
     navbar:
-      event: Event
+      activity: activity
       brand: SQUARE
       setting: Setting
       organizer: Organizer
@@ -23,25 +23,25 @@ en:
         registration: Organizer Register
         forgot_password: Forgot your password?
         change_password: Change password
-    events:
+    activities:
       available: available
-      create_event: Create Event
-      create_new_event: Create New Event
+      create_activity: Create Activity
+      create_new_activity: Create New Activity
       date: date
       description: description
       headers:
-        event: Event
-        new_event: New Event
+        activity: Activity
+        new_activity: New Activity
       image: Image
       image_upload:
         delete: Delete
         dropzone_title: Try dropping an image here, or click to select image to upload.
       name: name
-      search: Search events
-      header: Event
+      search: Search Activities
+      header: Activity
       save_changes: Save Changes
       cannot_transition_to: can't transition to %{state}
-      success_delete: Successfully delete event.
+      success_delete: Successfully delete activity.
     ticket_types:
       headers:
         add_ticket: Add Ticket
@@ -71,9 +71,9 @@ en:
         cancel: Cancel
         delete: Delete
         title:
-          delete_event: Confirm deletion
+          delete_activity: Confirm deletion
         description:
-          delete_event: Are your sure to delete this event?
+          delete_activity: Are your sure to delete this activity?
     accounts:
       header: Account information
       name: Name

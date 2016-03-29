@@ -51,7 +51,7 @@ class ContentContainer extends React.Component {
           <AlertMessages event="successAccount" alertType="success"/>
           <fieldset>
             <div className="form-group">
-              <label htmlFor="name">{t('backend.events.name')}</label>
+              <label htmlFor="name">{t('backend.accounts.name')}</label>
               <input
                 value={this.state.organizer.account ? this.state.organizer.account.name : ''}
                 name="name"
@@ -59,7 +59,7 @@ class ContentContainer extends React.Component {
                 onChange={this.handleAccountNameChange.bind(this)}/>
             </div>
             <div className="form-group">
-              <label htmlFor="description">{t('backend.events.description')}</label>
+              <label htmlFor="description">{t('backend.accounts.description')}</label>
               <textarea
                 value={this.state.organizer.account ? this.state.organizer.account.description : ''}
                 name="description"

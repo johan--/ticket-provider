@@ -6,7 +6,7 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "event_id", "name"],
+        "required": ["id", "activity_id", "name"],
         "properties": {
           "id": { "type": "string" },
           "event_id": { "type": "string" },

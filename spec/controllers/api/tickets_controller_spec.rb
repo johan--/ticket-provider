@@ -6,8 +6,8 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
     let(:application) { Fabricate(:origin_application) }
     let(:account) { Fabricate(:account) }
     let(:organizer) { Fabricate(:account_owner, account: account) }
-    let(:event) { Fabricate(:event, account: account) }
-    let(:ticket_type) { Fabricate(:ticket_type, event: event) }
+    let(:activity) { Fabricate(:activity, account: account) }
+    let(:ticket_type) { Fabricate(:ticket_type, activity: activity) }
     let(:user) { Fabricate(:user) }
     let(:ticket) { Fabricate(:ticket, ticket_type: ticket_type, user: user) }
     let(:access_token) { Fabricate(:access_token, resource_owner_id: user.id, application: application) }
@@ -25,8 +25,8 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
 
   describe 'POST #create' do
     let(:account) { Fabricate(:account) }
-    let(:event) { Fabricate(:event, account: account) }
-    let(:ticket_type) { Fabricate(:ticket_type, event: event) }
+    let(:activity) { Fabricate(:activity, account: account) }
+    let(:ticket_type) { Fabricate(:ticket_type, activity: activity) }
     let(:organizer) { Fabricate(:account_owner, account: account) }
 
     before { sign_in :organizer, organizer }
@@ -48,8 +48,8 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
 
   describe 'PUT #update' do
     let(:account) { Fabricate(:account) }
-    let(:event) { Fabricate(:event, account: account) }
-    let(:ticket_type) { Fabricate(:ticket_type, event: event) }
+    let(:activity) { Fabricate(:activity, account: account) }
+    let(:ticket_type) { Fabricate(:ticket_type, activity: activity) }
     let(:ticket) { Fabricate(:ticket, ticket_type: ticket_type) }
     let(:organizer) { Fabricate(:account_owner, account: account) }
     let(:user) { Fabricate(:user) }
@@ -75,8 +75,8 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
 
   describe 'DELETE #destroy' do
     let(:account) { Fabricate(:account) }
-    let(:event) { Fabricate(:event, account: account) }
-    let(:ticket_type) { Fabricate(:ticket_type, event: event) }
+    let(:activity) { Fabricate(:activity, account: account) }
+    let(:ticket_type) { Fabricate(:ticket_type, activity: activity) }
     let(:organizer) { Fabricate(:account_owner, account: account) }
     let(:user) { Fabricate(:user) }
 

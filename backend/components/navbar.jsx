@@ -27,7 +27,7 @@ class Navbar extends React.Component {
           </a>
           <ul className="nav navbar-nav">
             <li className="nav-item">
-              <a className="nav-link" onClick={this.handleClick} href="/app/events">{t('backend.navbar.event')}</a>
+              <a className="nav-link" onClick={this.handleClick} href="/app/activities">{t('backend.navbar.activity')}</a>
             </li>
             <li className="nav-item">
               <a className="nav-link" onClick={this.handleClick} href="/app/organizers/settings">{t('backend.navbar.setting')}</a>

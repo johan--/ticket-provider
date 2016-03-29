@@ -4,7 +4,7 @@
   "properties": {
     "ticket_type": {
       "type": "object",
-      "required": ["id", "event_id", "name", "tickets"],
+      "required": ["id", "activity_id", "name", "tickets"],
       "properties": {
         "id": { "type": "string" },
         "event_id": { "type": "string" },
