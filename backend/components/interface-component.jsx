@@ -4,6 +4,7 @@ import ActivityListContainer from './activities/list-container.jsx';
 import ActivityCreateContainer from './activities/create-container.jsx';
 import ActivityShowContainer from './activities/show-container.jsx';
 import ActivityEditContainer from './activities/edit-container.jsx';
+import TicketTypeEditContainer from './ticket_types/edit-container.jsx';
 import OrganizerSettingContainer from './organizers/setting-container.jsx';
 import AccountSettingContainer from './accounts/setting-container.jsx';
 
@@ -63,6 +64,15 @@ class InterfaceComponent extends React.Component {
         <div>
           <Navbar />
           <ActivityEditContainer id={this.props.router.params._id} />
+        </div>
+      );
+    }
+
+    if (this.props.router.current === 'events/ticket_types') {
+      return (
+        <div>
+          <Navbar />
+          <TicketTypeEditContainer id={this.props.router.params._id} />
         </div>
       );
     }
