@@ -1,0 +1,19 @@
+.tickets-list-container {
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+
+  .ticket-table {
+    display: table;
+
+    .ticket-list {
+      display: table-row;
+      border-bottom: #000;
+    }
+
+    .ticket-cell {
+      display: table-cell;
+      padding: 0;
+    }
+  }
+}
