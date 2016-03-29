@@ -1,9 +1,9 @@
 import React from 'react';
 import Navbar from './navbar.jsx';
-import EventListContainer from './events/list-container.jsx';
-import EventCreateContainer from './events/create-container.jsx';
-import EventShowContainer from './events/show-container.jsx';
-import EventEditContainer from './events/edit-container.jsx';
+import ActivityListContainer from './activities/list-container.jsx';
+import ActivityCreateContainer from './activities/create-container.jsx';
+import ActivityShowContainer from './activities/show-container.jsx';
+import ActivityEditContainer from './activities/edit-container.jsx';
 import OrganizerSettingContainer from './organizers/setting-container.jsx';
 import AccountSettingContainer from './accounts/setting-container.jsx';
 
@@ -25,44 +25,44 @@ class InterfaceComponent extends React.Component {
     /*
      * TODO: Implement routes according to this example.
      *
-     * if (this.props.router.current === 'events') {
-     *   return (<Event />);
+     * if (this.props.router.current === 'activities') {
+     *   return (<Activity />);
      * }
      *
      */
 
-    if (this.props.router.current === 'events') {
+    if (this.props.router.current === 'activities') {
       return (
         <div>
           <Navbar />
-          <EventListContainer />
+          <ActivityListContainer />
         </div>
       );
     }
 
-    if (this.props.router.current === 'events/new') {
+    if (this.props.router.current === 'activities/new') {
       return (
         <div>
           <Navbar />
-          <EventCreateContainer />
+          <ActivityCreateContainer />
         </div>
       );
     }
 
-    if (this.props.router.current === 'events/show') {
+    if (this.props.router.current === 'activities/show') {
       return (
         <div>
           <Navbar />
-          <EventShowContainer id={this.props.router.params._id} />
+          <ActivityShowContainer id={this.props.router.params._id} />
         </div>
       );
     }
 
-    if (this.props.router.current === 'events/edit') {
+    if (this.props.router.current === 'activities/edit') {
       return (
         <div>
           <Navbar />
-          <EventEditContainer id={this.props.router.params._id} />
+          <ActivityEditContainer id={this.props.router.params._id} />
         </div>
       );
     }

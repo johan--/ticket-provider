@@ -8,7 +8,7 @@ class Api::V1::TicketTypesController < Api::V1::ApiController
 
   def index
     @ticket_types = TicketType
-                      .where(event: Event.find_by_uid(params[:event_id]))
+                      .where(activity: Activity.find_by_uid(params[:activity_id]))
                       .page(@page)
                       .per(@per_page)
 
@@ -20,7 +20,7 @@ class Api::V1::TicketTypesController < Api::V1::ApiController
   end
 
   def create
-    @ticket_type = TicketType.new(ticket_type_params.merge(event: Event.find_by_uid(params[:ticket_type][:event_id])))
+    @ticket_type = TicketType.new(ticket_type_params.merge(activity: Activity.find_by_uid(params[:ticket_type][:activity_id])))
 
     if @ticket_type.save
       render json: @ticket_type, status: :created

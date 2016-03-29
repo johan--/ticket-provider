@@ -9,18 +9,18 @@ RSpec.describe TicketType, type: :model do
   end
 
   describe 'relationships' do
-    it { should belong_to(:event) }
+    it { should belong_to(:activity) }
     it { should have_many(:tickets) }
   end
 
   describe 'validation' do
     let(:account) { Fabricate(:account) }
-    let(:event) { Fabricate(:event, account: account) }
-    let(:ticket_type) { Fabricate.build(:ticket_type, event: event) }
+    let(:activity) { Fabricate(:activity, account: account) }
+    let(:ticket_type) { Fabricate.build(:ticket_type, activity: activity) }
 
     subject { ticket_type }
 
     it { is_expected.to validate_presence_of(:name) }
-    it { is_expected.to validate_presence_of(:event) }
+    it { is_expected.to validate_presence_of(:activity) }
   end
 end

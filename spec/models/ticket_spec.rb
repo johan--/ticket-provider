@@ -9,8 +9,8 @@ RSpec.describe Ticket, type: :model do
 
   describe 'validation' do
     let(:account) { Fabricate(:account) }
-    let(:event) { Fabricate(:event, account: account) }
-    let(:ticket_type) { Fabricate(:ticket_type, event: event) }
+    let(:activity) { Fabricate(:activity, account: account) }
+    let(:ticket_type) { Fabricate(:ticket_type, activity: activity) }
     let(:ticket) { Fabricate.build(:ticket, ticket_type: ticket_type) }
 
     subject { ticket }
@@ -20,8 +20,8 @@ RSpec.describe Ticket, type: :model do
 
   describe 'state' do
     let(:account) { Fabricate(:account) }
-    let(:event) { Fabricate(:event, account: account) }
-    let(:ticket_type) { Fabricate(:ticket_type, event: event) }
+    let(:activity) { Fabricate(:activity, account: account) }
+    let(:ticket_type) { Fabricate(:ticket_type, activity: activity) }
     let(:ticket) { Fabricate(:ticket, ticket_type: ticket_type) }
 
     context 'initial state' do

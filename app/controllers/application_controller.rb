@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   layout 'authenticate'
 
   def after_sign_in_path_for(resource)
-    '/app/events'
+    '/app/activities'
   end
 
   protected

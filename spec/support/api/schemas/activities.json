@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "required": ["activities"],
+  "properties": {
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "account_id", "name"],
+        "properties": {
+          "id": { "type": "string" },
+          "account_id": { "type": "string" },
+          "name": { "type": "string" },
+          "description": { "type": ["null", "string"] },
+          "cover_photo_url": { "type": ["null", "string"] },
+          "created_at": { "type": "string" },
+          "updated_at": { "type": "string" },
+          "state": { "type": "string" }
+        }
+      }
+    }
+  }
+}

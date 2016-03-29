@@ -4,8 +4,8 @@ RSpec.describe Api::V1::TicketTypesController, type: :controller do
 
   describe 'GET #show' do
     let(:account) { Fabricate(:account) }
-    let(:event) { Fabricate(:event, account: account) }
-    let(:ticket_type) { Fabricate(:ticket_type, event: event) }
+    let(:activity) { Fabricate(:activity, account: account) }
+    let(:ticket_type) { Fabricate(:ticket_type, activity: activity) }
     let(:organizer) { Fabricate(:account_owner, account: account) }
 
     before { sign_in :organizer, organizer }
@@ -24,16 +24,16 @@ RSpec.describe Api::V1::TicketTypesController, type: :controller do
 
   describe 'GET #index' do
     let(:account) { Fabricate(:account) }
-    let(:event) { Fabricate(:event, account: account) }
+    let(:activity) { Fabricate(:activity, account: account) }
 
-    before { Fabricate.times(5, :ticket_type, event: event) }
+    before { Fabricate.times(5, :ticket_type, activity: activity) }
 
     context 'when request is created by user' do
       let(:application) { Fabricate(:origin_application) }
       let(:user) { Fabricate(:user) }
       let(:access_token) { Fabricate(:access_token, resource_owner_id: user.id, application: application) }
 
-      before { get :index, event_id: event.uid, format: :json, access_token: access_token.token }
+      before { get :index, activity_id: activity.uid, format: :json, access_token: access_token.token }
 
       it { expect(response).to have_http_status(:ok) }
       it { expect(response).to match_response_schema('ticket_types') }
@@ -43,13 +43,13 @@ RSpec.describe Api::V1::TicketTypesController, type: :controller do
 
   describe 'POST #create' do
     let(:account) { Fabricate(:account) }
-    let(:event) { Fabricate(:event, account: account) }
+    let(:activity) { Fabricate(:activity, account: account) }
     let(:organizer) { Fabricate(:account_owner, account: account) }
 
     before { sign_in :organizer, organizer }
 
     context 'when ticket type params is valid' do
-      before { post :create, ticket_type: Fabricate.attributes_for(:ticket_type, event_id: event.uid) }
+      before { post :create, ticket_type: Fabricate.attributes_for(:ticket_type, activity_id: activity.uid) }
 
       it { expect(response).to have_http_status(:created) }
       it { expect(response).to match_response_schema('ticket_type') }
@@ -65,8 +65,8 @@ RSpec.describe Api::V1::TicketTypesController, type: :controller do
 
   describe 'PUT #update' do
     let(:account) { Fabricate(:account) }
-    let(:event) { Fabricate(:event, account: account) }
-    let(:ticket_type) { Fabricate(:ticket_type, event: event) }
+    let(:activity) { Fabricate(:activity, account: account) }
+    let(:ticket_type) { Fabricate(:ticket_type, activity: activity) }
     let(:organizer) { Fabricate(:account_owner, account: account) }
 
     before { sign_in :organizer, organizer }
@@ -89,8 +89,8 @@ RSpec.describe Api::V1::TicketTypesController, type: :controller do
 
   describe 'DELETE #destroy' do
     let(:account) { Fabricate(:account) }
-    let(:event) { Fabricate(:event, account: account) }
-    let(:ticket_type) { Fabricate(:ticket_type, event: event) }
+    let(:activity) { Fabricate(:activity, account: account) }
+    let(:ticket_type) { Fabricate(:ticket_type, activity: activity) }
 
     context 'when request is created by account_owner' do
       before do

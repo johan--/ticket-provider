@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Account, type: :model do
+RSpec.describe Activity, type: :model do
 
   describe 'db' do
     context 'columns' do
@@ -9,15 +9,16 @@ RSpec.describe Account, type: :model do
   end
 
   describe 'relationships' do
-    it { should have_many(:organizers) }
-    it { should have_many(:activities) }
+    it { should belong_to(:account) }
   end
 
   describe 'validation' do
-    let(:account) { Fabricate.build(:account) }
+    let(:account) { Fabricate(:account) }
+    let(:activity) { Fabricate.build(:activity, account: account) }
 
-    subject { account }
+    subject { activity }
 
     it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:account) }
   end
 end

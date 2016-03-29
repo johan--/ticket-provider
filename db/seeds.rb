@@ -9,14 +9,14 @@ accounts = [ account, Fabricate(:account) ]
 Fabricate(:account_owner, account: account)
 Fabricate(:team_member, account: account)
 
-# Event
-events = Fabricate.times(4, :event_with_cover_photo) do
+# Activity
+activities = Fabricate.times(4, :activity_with_cover_photo) do
   account accounts.sample
 end
 
 # Ticket Type
 ticket_types = Fabricate.times(5, :ticket_type) do
-  event events.sample
+  activity activities.sample
 end
 
 # User

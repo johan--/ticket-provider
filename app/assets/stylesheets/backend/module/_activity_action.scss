@@ -1,0 +1,42 @@
+.activities-actions {
+  margin: 0 auto;
+  height: $grid-gutter-width*2;
+
+  @include media-breakpoint-up(md) {
+    width: $grid-gutter-width*22;
+  }
+
+  @include media-breakpoint-up(lg) {
+    width: $grid-gutter-width*33;
+  }
+}
+
+.activities-action-container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 3rem;
+  background-color: #fff;
+  z-index: 1;
+  box-shadow: 0 -5px 43px rgba(0, 0, 0, 0.5);
+
+  a {
+    display: block;
+    width: $grid-gutter-width * 10;
+    margin: .5rem auto;
+  }
+
+  @include media-breakpoint-up(md) {
+    position: static;
+    box-shadow: none;
+    background-color: transparent;
+    height: auto;
+    width: $grid-gutter-width*11;
+    float: right;
+
+    a {
+      margin: $grid-gutter-width/2;
+    }
+  }
+}
+

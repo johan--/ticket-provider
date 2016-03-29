@@ -1,9 +1,9 @@
 class TicketType < ActiveRecord::Base
-  belongs_to :event
+  belongs_to :activity
   has_many :tickets, dependent: :destroy
 
   validates :name, presence: true
-  validates :event, presence: true
+  validates :activity, presence: true
 
   before_create :set_uid, :set_default_seat_type
 
