@@ -32,21 +32,22 @@ RSpec.describe Ticket, type: :model do
     end
 
     context 'transition to enable without user' do
-      subject { ticket.transition_to(:enable) }
+      subject { ticket.transition_to(:enter) }
 
       it { is_expected.to be_falsey }
     end
 
-    context 'transition to disable when usage_quantity change to zero' do
+    context 'transition to enter when usage_quantity is zero' do
       before do
         ticket.update_attributes({ user: user })
-        ticket.transition_to(:enable)
+        ticket.transition_to(:enter)
+        ticket.transition_to(:exit)
         ticket.update_attributes({ usage_quantity: 0 })
       end
 
-      subject { ticket.reload.current_state }
+      subject { ticket.transition_to(:enter) }
 
-      it { is_expected.to eq 'disable' }
+      it { is_expected.to be_falsey }
     end
   end
 end
