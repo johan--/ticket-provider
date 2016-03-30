@@ -7,7 +7,7 @@ class Activity < ActiveRecord::Base
   validates :name, presence: true
   validates :account, presence: true
 
-  before_create :set_uid
+  before_create :set_uid, :set_api_token
 
   default_scope { order('date DESC') }
 
@@ -17,5 +17,11 @@ class Activity < ActiveRecord::Base
     begin
       self.uid = SecureRandom.hex(4)
     end while (self.class.exists?(uid: self.uid))
+  end
+
+  def set_api_token
+    begin
+      self.api_token = SecureRandom.urlsafe_base64
+    end while (self.class.exists?(api_token: api_token))
   end
 end
