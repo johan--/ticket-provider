@@ -21,7 +21,7 @@ en:
       redirect_to_login: Already have an account?
       headers:
         registration: Organizer Register
-        forgot_password: Forgot your password?
+        forgot_password: Forgot password?
         change_password: Change password
     activities:
       available: available
