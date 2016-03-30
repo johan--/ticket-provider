@@ -46,6 +46,7 @@ en:
       headers:
         add_ticket: Add Ticket
         edit_ticket: Edit Ticket
+        ticket: Ticket
       name: name
       description: description
       price: price
