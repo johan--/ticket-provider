@@ -11,7 +11,8 @@
         "row": { "type": ["null", "string"] },
         "column": { "type": ["null", "string"] },
         "price": { "type": ["null", "string"] },
-        "state": { "type": ["null", "string"] }
+        "state": { "type": ["null", "string"] },
+        "usage_quantity": { "type": ["null", "string"] }
       }
     }
   }

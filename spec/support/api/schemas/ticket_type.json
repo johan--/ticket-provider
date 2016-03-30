@@ -11,7 +11,7 @@
         "name": { "type": "string" },
         "description": { "type": ["null", "string"] },
         "current_price": { "type": ["null", "string"] },
-        "seat_type": { "type": "string" },
+        "usage_type": { "type": "string" },
         "tickets": {
           "type": "array",
           "items": {
