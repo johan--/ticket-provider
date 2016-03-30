@@ -5,6 +5,7 @@
 
   .ticket-table {
     display: table;
+    width: 100%;
 
     .ticket-list {
       display: table-row;
@@ -13,7 +14,9 @@
 
     .ticket-cell {
       display: table-cell;
+      width: 20%;
       padding: 0;
+      text-align: center;
     }
   }
 }
