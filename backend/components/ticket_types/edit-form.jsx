@@ -4,7 +4,7 @@ import ReactMixin from 'react-mixin';
 import Store from '../../stores/ticket-type-store.jsx';
 import AlertMessages from '../shared/alert-messages.jsx';
 import TicketTypeAction from '../../actions/ticket-type-actions.jsx';
-//import ListContainer from './list-container.jsx';
+import ListContainer from './list-container.jsx';
 import moment from 'moment';
 import _ from 'underscore';
 import $ from 'jquery';
@@ -46,13 +46,11 @@ class EditForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    TicketTypeAction.edit(_.pick(this.state, 'id', 'price', 'description'));
+    TicketTypeAction.edit(_.pick(this.state.attributes, 'id', 'activity_id', 'current_price', 'description'));
   }
 
   render() {
-    console.log(this.store);
     let t = this.getIntlMessage;
-    if(this.state) console.log(this.state);
     return (
       <div className="ticket-type-form-container">
         <select value={this.state ? this.state.attributes.id : ''}
@@ -94,6 +92,7 @@ class EditForm extends React.Component {
           <label>Available</label>
           <label>500</label>
         </div>
+        <ListContainer ticket={this.state ? this.state.attributes.tickets : []}/>
       </div>
     );
   }

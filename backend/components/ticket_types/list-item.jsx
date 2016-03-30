@@ -19,24 +19,24 @@ class ListItem extends React.Component {
     let t = this.getIntlMessage;
     return (
       <div className="ticket-list">
-        <div className="ticket-name ticket-cell col-xs-3">
+        <div className="ticket-name ticket-cell">
           {this.props.ticket.id}
         </div>
-        <div className="ticket-seat ticket-cell col-xs-3">
+        <div className="ticket-seat ticket-cell">
           {this.props.ticket.row}-{this.props.ticket.column}
         </div>
-        <div className="ticket-state ticket-cell col-xs-3">
+        <div className="ticket-state ticket-cell">
           {this.props.ticket.state}
         </div>
-        <div className="ticket-action ticket-cell col-xs-3">
-          <div className="">
-            <a href={`/app/events/${this.props.ticket.id}/edit`} className="action-container"  onClick={this.handleClick}>
-              Update
-            </a>
-            <a className="action-container" href="#" onClick={this.handleDelete.bind(this)}>
-              Delete
-            </a>
-          </div>
+        <div className="ticket-action ticket-cell">
+          <a href={`/app/events/${this.props.ticket.id}/edit`} className="action-container"  onClick={this.handleClick}>
+            Update
+          </a>
+        </div>
+        <div className="ticket-action ticket-cell">
+          <a className="action-container" href="#" onClick={this.handleDelete.bind(this)}>
+            Delete
+          </a>
         </div>
       </div>
     );

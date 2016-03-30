@@ -34,7 +34,6 @@ class TicketTypeCollection extends Store.Collection {
 
   getAll(params) {
     this.fetch(params);
-    console.log(this);
     return this;
   }
 
@@ -65,13 +64,10 @@ class TicketTypeCollection extends Store.Collection {
       }
       case constant.EDIT_TICKET_TYPE: {
         let formData = new FormData();
-
         $.each(payload.ticket_type, function (key) {
           formData.append(`ticket_type[${key}]`, payload.ticket_type[key]);
         });
-
-        let jqXHR = this.get(payload.ticket_type.id)
-          .fetch({
+        let jqXHR = this.get(payload.ticket_type.id).fetch({
             data: formData,
             type: 'PUT',
             processData: false,
@@ -80,7 +76,7 @@ class TicketTypeCollection extends Store.Collection {
 
         jqXHR.done(() => {
           this.getAll();
-          Backbone.history.navigate(`/app/events/${payload.ticket_type.id}/ticket_types`, true);
+          Backbone.history.navigate('/app/activities', true);
         });
 
         jqXHR.fail((jqXHR, textStatus, errorThrown) => {

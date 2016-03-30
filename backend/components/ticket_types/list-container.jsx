@@ -6,22 +6,8 @@ import Store from '../../stores/ticket-type-store.jsx';
 
 class ListContainer extends React.Component {
 
-  constructor(props) {
+  constructor() {
     super();
-    console.log(props);
-    this.state = {
-      tickets: props.ticket
-    };
-  }
-
-  componentDidMount() {
-    this.state.on('add remove reset change', function() {
-      this.forceUpdate();
-    }, this);
-  }
-
-  componentWillUnmount() {
-    this.state.off(null, null, this);
   }
 
   render() {
@@ -29,7 +15,7 @@ class ListContainer extends React.Component {
     return (
       <div className="tickets-panel">
         <header>>> {t('backend.ticket_types.headers.ticket')}</header>
-        <List store={this.state} />
+        <List tickets={this.props.ticket} />
       </div>
     );
   }

@@ -9,9 +9,11 @@ class List extends React.Component {
       <div className="container-fluid tickets-list-container">
         <AlertMessages event="success" alertType="success" />
         <h2>Ticket</h2>
-        {this.props.store.tickets.map(ticket =>
-            <ListItem key={ticket.id} ticket={ticket} />
-        )}
+        <div className="ticket-table">
+          {this.props.tickets.map(ticket =>
+              <ListItem key={ticket.id} ticket={ticket} />
+          )}
+        </div>
       </div>
     );
   }
