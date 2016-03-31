@@ -1,6 +1,5 @@
 class Api::V1::UsersController < Api::V1::ApiController
-
-  before_action 'authenticate_user!', only: [:me]
+  before_action :authenticate_user!, except: :create
 
   load_and_authorize_resource find_by: :uid
 

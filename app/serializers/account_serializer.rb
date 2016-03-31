@@ -1,7 +1,8 @@
 class AccountSerializer < ActiveModel::Serializer
   attributes :id,
              :name,
-             :description
+             :description,
+             :api_token
 
   def id
     object.uid
