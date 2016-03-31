@@ -53,7 +53,8 @@ class EditForm extends React.Component {
     let t = this.getIntlMessage;
     return (
       <div className="ticket-type-form-container">
-        <select value={this.state ? this.state.attributes.id : ''}
+        <select className="ticket-types-name"
+          value={this.state ? this.state.attributes.id : ''}
           onChange={this.handleTicketTypeChange.bind(this)}>
           {this.store.map(ticket_type =>
               <option key={ticket_type.id}
@@ -62,6 +63,7 @@ class EditForm extends React.Component {
               </option>
           )}
         </select>
+        <AlertMessages event="success" alertType="success" />
         <div className="form-group">
           <label>{t('backend.ticket_types.price')}</label>
           <input
@@ -75,7 +77,7 @@ class EditForm extends React.Component {
           <label>{t('backend.ticket_types.description')}</label>
           <textarea
             value={this.state ? this.state.attributes.description : ''}
-            name='current_price'
+            name='description'
             className="form-control"
             onChange={this.handleTicketTypeDescriptionChange.bind(this)}
             />

@@ -51,6 +51,7 @@ en:
       description: description
       price: price
       save_changes: Save Changes
+      success_edit: Successfully edit ticket type
     tickets:
       edit_ticket: Edit Ticket
       new_ticket: New Ticket

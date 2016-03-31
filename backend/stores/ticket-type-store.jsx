@@ -75,8 +75,7 @@ class TicketTypeCollection extends Store.Collection {
           });
 
         jqXHR.done(() => {
-          this.getAll();
-          Backbone.history.navigate('/app/activities', true);
+          emitter.emit('success', I18n.t('backend.ticket_types.success_edit'));
         });
 
         jqXHR.fail((jqXHR, textStatus, errorThrown) => {
