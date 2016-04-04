@@ -3,4 +3,8 @@ class UserSerializer < ActiveModel::Serializer
              :email,
              :name,
              :birthdate
+
+  def id
+    object.uid
+  end
 end
