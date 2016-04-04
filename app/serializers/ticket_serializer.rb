@@ -1,6 +1,7 @@
 class TicketSerializer < ActiveModel::Serializer
   attributes :id,
-             :ticket_type_id,
+             :ticket_type_name,
+             :ticket_type_image_url,
              :row,
              :column,
              :price,
@@ -11,8 +12,12 @@ class TicketSerializer < ActiveModel::Serializer
     object.uid
   end
 
-  def ticket_type_id
-    object.ticket_type.uid
+  def ticket_type_name
+    object.ticket_type.name
+  end
+
+  def ticket_type_image_url
+    object.ticket_type.activity.cover_photo.url
   end
 
   def state

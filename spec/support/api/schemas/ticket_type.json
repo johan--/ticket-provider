@@ -16,10 +16,11 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["id", "ticket_type_id"],
-            "properties":{
+            "required": ["id", "ticket_type_name"],
+            "properties": {
               "id": { "type": "string" },
-              "ticket_type_id": { "type": "string" },
+              "ticket_type_name": { "type": "string" },
+              "ticket_type_image_url": { "type": ["null", "string"] },
               "row": { "type": ["null", "string"] },
               "column": { "type": ["null", "string"] },
               "price": { "type": ["null", "string"] },
