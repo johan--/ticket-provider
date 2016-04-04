@@ -24,6 +24,7 @@ class ShowContainer extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
+    console.log(e);
     Backbone.history.navigate($(e.currentTarget).attr('href'), true);
   }
 
@@ -55,7 +56,7 @@ class ShowContainer extends React.Component {
                 <div>128/1000</div>
               </div>
               <div className="activity-action">
-                <a onClick={this.handleClick} className="btn btn-primary">
+                <a href={`app/activities/${this.state.get('id')}/ticket_types`} onClick={this.handleClick} className="btn btn-primary">
                   {t('backend.tickets.edit_ticket')}
                 </a>
                 <a onClick={this.showCreateTicketTypeModal.bind(this)} className="btn btn-primary">

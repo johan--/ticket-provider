@@ -7,6 +7,7 @@ var Router = Backbone.Router.extend({
     'app/activities/new': 'newActivity',
     'app/activities/(:id)': 'showActivity',
     'app/activities/(:id)/edit': 'editActivity',
+    'app/activities/(:id)/ticket_types': 'editTicket',
     'app/organizers/settings': 'organizersSettings',
 
     // fallback path
@@ -29,6 +30,11 @@ var Router = Backbone.Router.extend({
 
   editActivity: function(id) {
     this.current = 'activities/edit';
+    this.params = { _id: id };
+  },
+
+  editTicket: function(id) {
+    this.current = 'activities/ticket_types';
     this.params = { _id: id };
   },
 
