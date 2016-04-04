@@ -1,6 +1,6 @@
 class Api::V1::TicketsController < Api::V1::ApiController
   before_action :authenticate_organizer!, except: :index
-  before_action :authenticate!, only: :index
+  before_action :authenticate_user!, only: :index
   before_action :page_params, only: :index
 
   load_resource find_by: :uid, except: [:index, :create]

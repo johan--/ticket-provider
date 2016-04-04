@@ -1,6 +1,5 @@
 class Api::V1::ActivitiesController < Api::V1::ApiController
-  before_action :authenticate_organizer!, except: :index
-  before_action :authenticate!, only: :index
+  before_action :authenticate_organizer!
   before_action :page_params, only: :index
 
   load_resource find_by: :uid, except: [:index, :destroy]
@@ -13,11 +12,6 @@ class Api::V1::ActivitiesController < Api::V1::ApiController
                 .page(@page)
                 .per(@per_page)
 
-    case current_user
-      when User
-        @activities = @activities.order('random()')
-    end
-
     render json: @activities, status: :ok
   end
 
@@ -26,7 +20,7 @@ class Api::V1::ActivitiesController < Api::V1::ApiController
   end
 
   def create
-    @activity = Activity.new(activity_params.merge(account: current_organizer.account))
+    @activity = Activity.new(activity_params.merge(account: activity_account))
 
     if @activity.save
       render json: @activity, status: :created
@@ -57,6 +51,14 @@ class Api::V1::ActivitiesController < Api::V1::ApiController
   end
 
   private
+
+  def activity_account
+    if params[:api_token]
+      current_account
+    else
+      current_organizer.account
+    end
+  end
 
   def activity_params
     params

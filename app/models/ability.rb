@@ -19,13 +19,15 @@ class Ability
           can [:read, :create, :update], Account, id: user.account_id
           can [:read, :create, :update], Activity, account: user.account
           can [:read, :create, :update], TicketType, activity_id: user.account.activity_ids
-          can :manage, Ticket, ticket_Type: { activity_id: user.account.activity_ids }
+          can :manage, Ticket, ticket_type: { activity_id: user.account.activity_ids }
         end
+      when Account
+        can :manage, Activity, account: user
+        can :manage, TicketType, activity_id: user.activity_ids
+        can :manage, Ticket, ticket_type: { activity_id: user.activity_ids }
       else
         can :manage, User, id: user.id
-        can :read, Activity
-        can :read, TicketType
-        can [:read, :update], Ticket, user: user
+        can :read, Ticket, user: user
     end
   end
 end

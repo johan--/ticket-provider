@@ -11,17 +11,19 @@ class Api::V1::ApiController < ActionController::Base
     head :unauthorized unless current_user
   end
 
-  def authenticate!
-    if doorkeeper_token
-      authenticate_user!
+  def authenticate_organizer!
+    if params[:api_token]
+      head :unauthorized unless current_account
     else
-      authenticate_organizer!
+      super
     end
   end
 
   def current_ability
     if organizer_signed_in?
       @current_ability ||= Ability.new(current_organizer)
+    elsif params[:api_token]
+      @current_ability ||= Ability.new(current_account)
     else
       @current_ability ||= Ability.new(current_user)
     end
@@ -30,6 +32,11 @@ class Api::V1::ApiController < ActionController::Base
   def current_user
     return unless doorkeeper_token
     @current_user ||= User.where(id: doorkeeper_token.resource_owner_id).first
+  end
+
+  def current_account
+    return unless params[:api_token]
+    @current_account ||= Account.where(api_token: params[:api_token]).first
   end
 
   def page_params

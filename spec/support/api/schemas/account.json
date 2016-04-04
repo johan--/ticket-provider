@@ -10,7 +10,8 @@
         "name": { "type": "string" },
         "description": { "type": ["null", "string"] },
         "logo_url": { "type": ["null", "string"] },
-        "cover_photo_url": { "type": ["null", "string"] }
+        "cover_photo_url": { "type": ["null", "string"] },
+        "api_token": { "type": "string" }
       }
     }
   }
