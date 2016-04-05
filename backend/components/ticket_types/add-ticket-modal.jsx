@@ -86,7 +86,7 @@ class AddTicketModal extends React.Component {
                     </label>
                     <input
                       onChange={this.handleQuantityChange.bind(this)}
-                      name={t('backend.tickets.quantity')}
+                      name="ticket_quantity"
                       value={this.state.quantity}
                       className="form-control" />
                   </div>

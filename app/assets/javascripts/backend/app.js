@@ -53700,9 +53700,13 @@
 	        ),
 	        _react2.default.createElement(_listContainer2.default, { ticket: this.state ? this.state.attributes.tickets : [] }),
 	        _react2.default.createElement(
-	          'a',
-	          { onClick: this.showAddTicketModal.bind(this), className: 'btn btn-primary' },
-	          t('backend.tickets.new_ticket')
+	          'div',
+	          { className: 'ticket-types-container' },
+	          _react2.default.createElement(
+	            'a',
+	            { onClick: this.showAddTicketModal.bind(this), className: 'btn btn-primary' },
+	            t('backend.tickets.new_ticket')
+	          )
 	        )
 	      );
 	    }
@@ -54131,7 +54135,7 @@
 	                    ),
 	                    _react2.default.createElement('input', {
 	                      onChange: this.handleQuantityChange.bind(this),
-	                      name: t('backend.tickets.quantity'),
+	                      name: 'ticket_quantity',
 	                      value: this.state.quantity,
 	                      className: 'form-control' })
 	                  ),

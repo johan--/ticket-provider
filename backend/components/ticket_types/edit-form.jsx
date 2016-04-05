@@ -105,9 +105,11 @@ class EditForm extends React.Component {
           <label>500</label>
         </div>
         <ListContainer ticket={this.state ? this.state.attributes.tickets : []}/>
-        <a onClick={this.showAddTicketModal.bind(this)} className="btn btn-primary">
-          {t('backend.tickets.new_ticket')}
-        </a>
+        <div className="ticket-types-container">
+          <a onClick={this.showAddTicketModal.bind(this)} className="btn btn-primary">
+            {t('backend.tickets.new_ticket')}
+          </a>
+        </div>
       </div>
     );
   }
