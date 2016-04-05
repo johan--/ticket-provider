@@ -52,11 +52,13 @@ en:
       price: price
       save_changes: Save Changes
       success_edit: Successfully edit ticket type
+      usage_quantity: Usage Quantity
     tickets:
       edit_ticket: Edit Ticket
       new_ticket: New Ticket
       cannot_destroy: purchased ticket can not be destroy
       cannot_transition_to: can't transition to %{state}
+      quantity: Ticket Quantity
     organizers:
       header: Organizer information
       save_changes: Save changes
