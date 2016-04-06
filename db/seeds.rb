@@ -20,11 +20,13 @@ ticket_types = Fabricate.times(5, :ticket_type) do
 end
 
 # User
-users = Fabricate.times(60, :user)
+users = Fabricate.times(50, :user)
 users << nil
 
 # Ticket
-Fabricate.times(100, :ticket) do
-  ticket_type ticket_types.sample
-  user users.sample
+users.each do |user|
+  Fabricate(:ticket) do
+    user user
+    ticket_type ticket_types.sample
+  end
 end
