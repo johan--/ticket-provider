@@ -18,6 +18,28 @@ RSpec.describe Ticket, type: :model do
     it { is_expected.to validate_presence_of(:ticket_type) }
   end
 
+  describe 'ticket user validation' do
+    let(:account) { Fabricate(:account) }
+    let(:activity) { Fabricate(:activity, account: account) }
+    let(:ticket_type_1) { Fabricate(:ticket_type, activity: activity) }
+    let(:ticket_type_2) { Fabricate(:ticket_type, activity: activity) }
+    let(:user) { Fabricate(:user) }
+    let!(:ticket_1) { Fabricate(:ticket, ticket_type: ticket_type_1, user: user) }
+    let(:ticket_2) { Fabricate.build(:ticket, ticket_type: ticket_type_2, user: user) }
+
+    subject { ticket_2.save }
+
+    it { is_expected.to be_falsey }
+
+    context 'error messages' do
+      before { ticket_2.save }
+
+      subject { ticket_2.errors.messages[:user] }
+
+      it { is_expected.to match_array(I18n.t('backend.tickets.ticket_user_error')) }
+    end
+  end
+
   describe 'state' do
     let(:account) { Fabricate(:account) }
     let(:activity) { Fabricate(:activity, account: account) }

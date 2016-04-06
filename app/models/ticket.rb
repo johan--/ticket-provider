@@ -6,6 +6,7 @@ class Ticket < ActiveRecord::Base
   has_many :ticket_transitions, autosave: false
 
   validates :ticket_type, presence: true
+  validate :ticket_user, if: :user
 
   before_create :set_uid
   before_destroy -> { false }, if: :user_id?
@@ -31,5 +32,11 @@ class Ticket < ActiveRecord::Base
 
   def self.initial_state
     :new
+  end
+
+  def ticket_user
+    unless Activity.includes(ticket_types: [:tickets]).where({ tickets: { user_id: self.user_id } }).blank?
+      errors.add(:user, I18n.t('backend.tickets.ticket_user_error'))
+    end
   end
 end
