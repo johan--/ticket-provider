@@ -7,7 +7,6 @@ class List extends React.Component {
   render() {
     return (
       <div className="container-fluid tickets-list-container">
-        <AlertMessages event="success" alertType="success" />
         <h2>Ticket</h2>
         <div className="ticket-table">
           {this.props.tickets.map(ticket =>

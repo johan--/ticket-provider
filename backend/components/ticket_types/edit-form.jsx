@@ -5,6 +5,8 @@ import Store from '../../stores/ticket-type-store.jsx';
 import AlertMessages from '../shared/alert-messages.jsx';
 import TicketTypeAction from '../../actions/ticket-type-actions.jsx';
 import ListContainer from './list-container.jsx';
+import AddTicketTypeModal from '../ticket_types/add-ticket-modal.jsx';
+import emitter from '../../emitter.jsx';
 import moment from 'moment';
 import _ from 'underscore';
 import $ from 'jquery';
@@ -21,6 +23,8 @@ class EditForm extends React.Component {
       this.forceUpdate();
       this.setState(this.store.models[0]);
     }, this);
+
+    this.$modal = $('.modal');
   }
 
   componentWillUnmount() {
@@ -44,6 +48,11 @@ class EditForm extends React.Component {
     this.setState(updateState);
   }
 
+  showAddTicketModal(e) {
+    e.preventDefault();
+    emitter.emit('showCreateTicketModal', this.state.attributes);
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     TicketTypeAction.edit(_.pick(this.state.attributes, 'id', 'activity_id', 'current_price', 'description'));
@@ -53,7 +62,9 @@ class EditForm extends React.Component {
     let t = this.getIntlMessage;
     return (
       <div className="ticket-type-form-container">
-        <select value={this.state ? this.state.attributes.id : ''}
+        <AddTicketTypeModal ticket_type_id={this.state ? this.state.attributes.id : ''}/>
+        <select className="ticket-types-name"
+          value={this.state ? this.state.attributes.id : ''}
           onChange={this.handleTicketTypeChange.bind(this)}>
           {this.store.map(ticket_type =>
               <option key={ticket_type.id}
@@ -62,6 +73,7 @@ class EditForm extends React.Component {
               </option>
           )}
         </select>
+        <AlertMessages event="success" alertType="success" />
         <div className="form-group">
           <label>{t('backend.ticket_types.price')}</label>
           <input
@@ -75,7 +87,7 @@ class EditForm extends React.Component {
           <label>{t('backend.ticket_types.description')}</label>
           <textarea
             value={this.state ? this.state.attributes.description : ''}
-            name='current_price'
+            name='description'
             className="form-control"
             onChange={this.handleTicketTypeDescriptionChange.bind(this)}
             />
@@ -93,6 +105,11 @@ class EditForm extends React.Component {
           <label>500</label>
         </div>
         <ListContainer ticket={this.state ? this.state.attributes.tickets : []}/>
+        <div className="ticket-types-container">
+          <a onClick={this.showAddTicketModal.bind(this)} className="btn btn-primary">
+            {t('backend.tickets.new_ticket')}
+          </a>
+        </div>
       </div>
     );
   }

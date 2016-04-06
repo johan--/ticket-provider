@@ -15,14 +15,16 @@ class Api::V1::TicketsController < Api::V1::ApiController
 
     render json: @tickets, status: :ok
   end
-
+  # Ticket.create(quantity.map { |m| ticket_params })
   def create
-    @ticket = Ticket.new(ticket_params.merge(ticket_type: TicketType.find_by_uid(params[:ticket][:ticket_type_id])))
+    @tickets = Ticket.create((0...params[:ticket][:quantity].to_i).map { ticket_params.merge(ticket_type: TicketType.find_by_uid(params[:ticket_type_id])) })
 
-    if @ticket.save
-      render json: @ticket, status: :created
+    @errors = @tickets.map { |m| m.errors.messages }.reduce({}, :merge)
+
+    if @errors.blank?
+      render json: @tickets, status: :created
     else
-      render json: { errors: [@ticket.errors.full_messages.to_sentence] }, status: :unprocessable_entity
+      render json: { errors: [@errors.to_a.flatten.to_sentence.humanize] }, status: :unprocessable_entity
     end
   end
 
