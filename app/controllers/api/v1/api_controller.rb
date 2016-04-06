@@ -7,6 +7,10 @@ class Api::V1::ApiController < ActionController::Base
     render json: { errors: [t('authorization.unauthorized')] }, status: :unauthorized
   end
 
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    head :not_found
+  end
+
   def authenticate_user!
     head :unauthorized unless current_user
   end
