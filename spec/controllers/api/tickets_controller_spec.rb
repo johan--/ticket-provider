@@ -74,6 +74,43 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
     end
   end
 
+  describe 'PUT #enter' do
+    let(:account) { Fabricate(:account) }
+    let(:activity) { Fabricate(:activity, account: account) }
+    let(:ticket_type) { Fabricate(:ticket_type, activity: activity) }
+    let(:user) { Fabricate(:user) }
+    let(:ticket) { Fabricate(:ticket, ticket_type: ticket_type) }
+
+    context 'when ticket can transition to enter state' do
+      before do
+        ticket.update_attributes({ user: user })
+        put :enter, activity_id: activity.uid, user_id: user.uid, api_token: account.api_token
+      end
+
+      it { expect(response).to have_http_status(:ok) }
+      it { expect(response).to match_response_schema('ticket') }
+    end
+  end
+
+  describe 'PUT #exit' do
+    let(:account) { Fabricate(:account) }
+    let(:activity) { Fabricate(:activity, account: account) }
+    let(:ticket_type) { Fabricate(:ticket_type, activity: activity) }
+    let(:user) { Fabricate(:user) }
+    let(:ticket) { Fabricate(:ticket, ticket_type: ticket_type) }
+
+    context 'when ticket can transition to enter state' do
+      before do
+        ticket.update_attributes({ user: user })
+        ticket.transition_to(:enter)
+        put :exit, activity_id: activity.uid, user_id: user.uid, api_token: account.api_token
+      end
+
+      it { expect(response).to have_http_status(:ok) }
+      it { expect(response).to match_response_schema('ticket') }
+    end
+  end
+
   describe 'DELETE #destroy' do
     let(:account) { Fabricate(:account) }
     let(:activity) { Fabricate(:activity, account: account) }
