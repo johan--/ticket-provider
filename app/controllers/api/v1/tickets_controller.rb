@@ -1,9 +1,10 @@
 class Api::V1::TicketsController < Api::V1::ApiController
   before_action :authenticate_organizer!, except: :index
   before_action :authenticate_user!, only: :index
+  before_action :set_ticket, only: [:enter, :exit]
   before_action :page_params, only: :index
 
-  load_resource find_by: :uid, except: [:index, :create]
+  load_resource find_by: :uid, except: [:index, :create, :state]
   authorize_resource
 
   def index
@@ -37,6 +38,22 @@ class Api::V1::TicketsController < Api::V1::ApiController
     end
   end
 
+  def enter
+    if @ticket.transition_to(:enter)
+      render json: @ticket, status: :ok
+    else
+      render json: { errors: [I18n.t('backend.tickets.cannot_transition_to', state: :enter)] }, status: :unprocessable_entity
+    end
+  end
+
+  def exit
+    if @ticket.transition_to(:exit)
+      render json: @ticket, status: :ok
+    else
+      render json: { errors: [I18n.t('backend.tickets.cannot_transition_to', state: :exit)] }, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     if @ticket.destroy
       head :no_content
@@ -46,6 +63,15 @@ class Api::V1::TicketsController < Api::V1::ApiController
   end
 
   private
+
+  def set_ticket
+    @ticket ||= Ticket
+                  .includes({ ticket_type: [:activity] }, :user)
+                  .where({ activities: { uid: params[:activity_id] }, users: { uid: params[:user_id] } })
+                  .first
+
+    raise ActiveRecord::RecordNotFound unless @ticket
+  end
 
   def ticket_params
     params

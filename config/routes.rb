@@ -25,7 +25,12 @@ Rails.application.routes.draw do
 
     resources :ticket_types, only: [:index, :show, :create, :update, :destroy]
 
-    resources :tickets, only: [:index, :create, :update, :destroy]
+    resources :tickets, only: [:index, :create, :update, :destroy] do
+      collection do
+        put 'enter'
+        put 'exit'
+      end
+    end
   end
 
   scope 'app' do
