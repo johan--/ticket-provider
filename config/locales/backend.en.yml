@@ -32,6 +32,7 @@ en:
       headers:
         activity: Activity
         new_activity: New Activity
+      id: id
       image: Image
       image_upload:
         delete: Delete

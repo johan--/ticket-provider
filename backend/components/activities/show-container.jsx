@@ -52,6 +52,10 @@ class ShowContainer extends React.Component {
                 <div>{this.state.get('date')}</div>
               </div>
               <div className="activity-info">
+                <label htmlFor="id">{t('backend.activities.id')}</label>
+                <div>{this.state.get('id')}</div>
+              </div>
+              <div className="activity-info">
                 <label htmlFor="available">{t('backend.activities.available')}</label>
                 <div>128/1000</div>
               </div>

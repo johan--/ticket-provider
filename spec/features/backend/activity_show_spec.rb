@@ -14,6 +14,7 @@ feature 'Organizer see particular activity', js: true do
 
     expect(page).to have_content activity.name.upcase
     expect(page).to have_content activity.description
+    expect(page).to have_content activity.uid
     expect(page).to have_content I18n.t('backend.tickets.edit_ticket')
     expect(page).to have_content I18n.t('backend.tickets.new_ticket')
   end
