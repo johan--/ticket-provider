@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
   has_many :tickets
 
   validates :name, presence: true
-  validates :birthdate, presence: true
 
   before_create :set_uid
 
