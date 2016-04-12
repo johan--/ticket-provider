@@ -51,6 +51,10 @@ class ContentContainer extends React.Component {
           <AlertMessages event="successAccount" alertType="success"/>
           <fieldset>
             <div className="form-group">
+              <label htmlFor="api-token">{t('backend.accounts.token')}</label>
+              <h4>{this.state.organizer.account ? this.state.organizer.account.api_token : ''}</h4>
+            </div>
+            <div className="form-group">
               <label htmlFor="name">{t('backend.accounts.name')}</label>
               <input
                 value={this.state.organizer.account ? this.state.organizer.account.name : ''}

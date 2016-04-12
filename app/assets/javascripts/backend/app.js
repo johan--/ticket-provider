@@ -54863,6 +54863,20 @@
 	              { className: 'form-group' },
 	              _react2.default.createElement(
 	                'label',
+	                { htmlFor: 'api-token' },
+	                t('backend.accounts.token')
+	              ),
+	              _react2.default.createElement(
+	                'h4',
+	                null,
+	                this.state.organizer.account ? this.state.organizer.account.api_token : ''
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'form-group' },
+	              _react2.default.createElement(
+	                'label',
 	                { htmlFor: 'name' },
 	                t('backend.accounts.name')
 	              ),

@@ -86,3 +86,4 @@ en:
       name: Name
       description: Description
       save_changes: Save changes
+      token: API-TOKEN
