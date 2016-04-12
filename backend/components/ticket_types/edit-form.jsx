@@ -70,7 +70,6 @@ class EditForm extends React.Component {
 
   render() {
     let t = this.getIntlMessage;
-
     return (
       <div className="ticket-type-form-container">
         <AddTicketTypeModal ticket_type_id={this.state ? this.state.attributes.id : ''}/>
@@ -109,11 +108,7 @@ class EditForm extends React.Component {
           onClick={this.handleSubmit.bind(this)}>{t('backend.accounts.save_changes')}</button>
         <div className="form-group">
           <label>Available</label>
-          <label>500</label>
-        </div>
-        <div className="form-group">
-          <label>Available</label>
-          <label>500</label>
+          <h4>{this.state ? this.state.attributes.available_tickets : 'Na'} / {this.state ? this.state.attributes.all_tickets : 'Na'}</h4>
         </div>
         <ListContainer ticket={this.state ? this.state.attributes.tickets : []}/>
         <div className="ticket-types-container">
