@@ -9,6 +9,10 @@ class TicketType < ActiveRecord::Base
 
   enum usage_type: %w(uncountable countable)
 
+  def available_tickets
+    self.tickets.where(user: nil).count
+  end
+
   private
 
   def set_uid

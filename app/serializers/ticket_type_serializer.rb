@@ -2,6 +2,7 @@ class TicketTypeSerializer < ActiveModel::Serializer
   attributes :id,
              :activity_id,
              :name,
+             :available_tickets,
              :description,
              :current_price,
              :usage_type,
