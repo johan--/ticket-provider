@@ -22,10 +22,10 @@ class EditForm extends React.Component {
   componentDidMount() {
     this.store.on('reset', function() {
       this.forceUpdate();
-      this.setState(this.store.models[0]);
       if(this.store.models.length == 0){
         Backbone.history.navigate(`/app/activities/${this.activity_id}`, true);
       }
+      this.setState(this.store.models[0]);
     }, this);
 
     this.$modal = $('.modal');
