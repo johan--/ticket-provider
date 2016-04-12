@@ -13,6 +13,10 @@ class TicketType < ActiveRecord::Base
     self.tickets.where(user: nil).count
   end
 
+  def all_tickets
+    self.tickets.count
+  end
+
   private
 
   def set_uid

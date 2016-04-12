@@ -3,6 +3,7 @@ class ActivitySerializer < ActiveModel::Serializer
              :account_id,
              :name,
              :available_tickets,
+             :all_tickets,
              :description,
              :cover_photo_url,
              :date,
