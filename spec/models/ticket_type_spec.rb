@@ -23,4 +23,18 @@ RSpec.describe TicketType, type: :model do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:activity) }
   end
+
+  describe '#available_tickets' do
+    let!(:account) { Fabricate(:account) }
+    let!(:activity) { Fabricate(:activity, account: account) }
+    let!(:ticket_type) { Fabricate.build(:ticket_type, activity: activity) }
+
+    before do
+      Fabricate.times(3, :ticket, ticket_type: ticket_type)
+    end
+
+    subject { activity.available_tickets() }
+
+    it { is_expected.to eq(3) }
+  end
 end
