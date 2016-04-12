@@ -54,6 +54,7 @@ en:
       save_changes: Save Changes
       success_edit: Successfully edit ticket type
       usage_quantity: Usage Quantity
+      error_no_ticket: No ticket in activity
     tickets:
       edit_ticket: Edit Ticket
       new_ticket: New Ticket

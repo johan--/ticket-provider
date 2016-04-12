@@ -56,7 +56,6 @@ class AddTicketModal extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    //console.log(this.state);
     TicketAction.add(this.state);
   }
 

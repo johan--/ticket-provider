@@ -23171,7 +23171,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-	 * jQuery JavaScript Library v2.2.1
+	 * jQuery JavaScript Library v2.2.0
 	 * http://jquery.com/
 	 *
 	 * Includes Sizzle.js
@@ -23181,7 +23181,7 @@
 	 * Released under the MIT license
 	 * http://jquery.org/license
 	 *
-	 * Date: 2016-02-22T19:11Z
+	 * Date: 2016-01-08T20:02Z
 	 */
 
 	(function( global, factory ) {
@@ -23237,7 +23237,7 @@
 
 
 	var
-		version = "2.2.1",
+		version = "2.2.0",
 
 		// Define a local copy of jQuery
 		jQuery = function( selector, context ) {
@@ -27651,7 +27651,7 @@
 		if ( fn === false ) {
 			fn = returnFalse;
 		} else if ( !fn ) {
-			return elem;
+			return this;
 		}
 
 		if ( one === 1 ) {
@@ -28300,14 +28300,14 @@
 		rscriptTypeMasked = /^true\/(.*)/,
 		rcleanScript = /^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g;
 
-	// Manipulating tables requires a tbody
 	function manipulationTarget( elem, content ) {
-		return jQuery.nodeName( elem, "table" ) &&
-			jQuery.nodeName( content.nodeType !== 11 ? content : content.firstChild, "tr" ) ?
+		if ( jQuery.nodeName( elem, "table" ) &&
+			jQuery.nodeName( content.nodeType !== 11 ? content : content.firstChild, "tr" ) ) {
 
-			elem.getElementsByTagName( "tbody" )[ 0 ] ||
-				elem.appendChild( elem.ownerDocument.createElement( "tbody" ) ) :
-			elem;
+			return elem.getElementsByTagName( "tbody" )[ 0 ] || elem;
+		}
+
+		return elem;
 	}
 
 	// Replace/restore the type attribute of script elements for safe DOM manipulation
@@ -28814,7 +28814,7 @@
 			// FF meanwhile throws on frame elements through "defaultView.getComputedStyle"
 			var view = elem.ownerDocument.defaultView;
 
-			if ( !view || !view.opener ) {
+			if ( !view.opener ) {
 				view = window;
 			}
 
@@ -28963,18 +28963,15 @@
 			style = elem.style;
 
 		computed = computed || getStyles( elem );
-		ret = computed ? computed.getPropertyValue( name ) || computed[ name ] : undefined;
-
-		// Support: Opera 12.1x only
-		// Fall back to style even without computed
-		// computed is undefined for elems on document fragments
-		if ( ( ret === "" || ret === undefined ) && !jQuery.contains( elem.ownerDocument, elem ) ) {
-			ret = jQuery.style( elem, name );
-		}
 
 		// Support: IE9
 		// getPropertyValue is only needed for .css('filter') (#12537)
 		if ( computed ) {
+			ret = computed.getPropertyValue( name ) || computed[ name ];
+
+			if ( ret === "" && !jQuery.contains( elem.ownerDocument, elem ) ) {
+				ret = jQuery.style( elem, name );
+			}
 
 			// A tribute to the "awesome hack by Dean Edwards"
 			// Android Browser returns percentage for some values,
@@ -31024,7 +31021,7 @@
 					// But now, this "simulate" function is used only for events
 					// for which stopPropagation() is noop, so there is no need for that anymore.
 					//
-					// For the 1.x branch though, guard for "click" and "submit"
+					// For the compat branch though, guard for "click" and "submit"
 					// events is still used, but was moved to jQuery.event.stopPropagation function
 					// because `originalEvent` should point to the original event for the constancy
 					// with other events and for more focused logic
@@ -32794,8 +32791,11 @@
 				}
 
 				// Add offsetParent borders
-				parentOffset.top += jQuery.css( offsetParent[ 0 ], "borderTopWidth", true );
-				parentOffset.left += jQuery.css( offsetParent[ 0 ], "borderLeftWidth", true );
+				// Subtract offsetParent scroll positions
+				parentOffset.top += jQuery.css( offsetParent[ 0 ], "borderTopWidth", true ) -
+					offsetParent.scrollTop();
+				parentOffset.left += jQuery.css( offsetParent[ 0 ], "borderLeftWidth", true ) -
+					offsetParent.scrollLeft();
 			}
 
 			// Subtract parent offsets and element margins
@@ -38738,6 +38738,7 @@
 			// value: TYPES.object | TYPES.string,
 			// defaultValue: TYPES.object | TYPES.string,
 			closeOnSelect: TYPES.bool,
+			onFocus: TYPES.func,
 			onBlur: TYPES.func,
 			onChange: TYPES.func,
 			locale: TYPES.string,
@@ -38759,6 +38760,7 @@
 				viewMode: 'days',
 				inputProps: {},
 				input: true,
+				onFocus: nof,
 				onBlur: nof,
 				onChange: nof,
 				timeFormat: true,
@@ -38970,7 +38972,10 @@
 		},
 
 		openCalendar: function() {
-			this.setState({ open: true });
+			if (!this.state.open) {
+				this.props.onFocus();
+				this.setState({ open: true });
+			}
 		},
 
 		closeCalendar: function() {
@@ -39183,7 +39188,7 @@
 				else if( ( prevMonth.year() == currentYear && prevMonth.month() > currentMonth ) || ( prevMonth.year() > currentYear ) )
 					classes += ' rdtNew';
 
-				if( selected && prevMonth.isSame( {y: selected.year(), M: selected.month(), d: selected.date()} ) )
+				if( selected && prevMonth.isSame(selected, 'day') )
 					classes += ' rdtActive';
 
 				if (prevMonth.isSame(moment(), 'day') )
@@ -52278,7 +52283,7 @@
 		},
 		renderHeader: function(){
 			if( !this.props.dateFormat )
-				return '';
+				return null;
 
 			var date = this.props.selectedDate || this.props.viewDate;
 			return DOM.thead({ key: 'h'}, DOM.tr({},
@@ -52489,6 +52494,14 @@
 
 	var _activityStore2 = _interopRequireDefault(_activityStore);
 
+	var _ticketTypeStore = __webpack_require__(314);
+
+	var _ticketTypeStore2 = _interopRequireDefault(_ticketTypeStore);
+
+	var _alertMessages = __webpack_require__(196);
+
+	var _alertMessages2 = _interopRequireDefault(_alertMessages);
+
 	var _emitter = __webpack_require__(184);
 
 	var _emitter2 = _interopRequireDefault(_emitter);
@@ -52507,17 +52520,27 @@
 	  function ShowContainer(props) {
 	    _classCallCheck(this, ShowContainer);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ShowContainer).call(this, props));
+	    var _this2 = _possibleConstructorReturn(this, Object.getPrototypeOf(ShowContainer).call(this, props));
 
-	    _this.state = _activityStore2.default.getModel(props.id);
-	    return _this;
+	    _this2.state = _activityStore2.default.getModel(props.id);
+	    _this2.store = _ticketTypeStore2.default.getAll({ data: $.param({ activity_id: props.id }), reset: true });
+	    _this2.disableEditTicket = true;
+	    _this2.enableTicketEdit = _emitter2.default.addListener('enableEditTicket', _this2.enableEditTicket.bind(_this2));
+	    return _this2;
 	  }
 
 	  _createClass(ShowContainer, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
+	      var _this = this;
 	      this.state.on('add remove reset change', function () {
 	        this.forceUpdate();
+	      }, this);
+	      this.store.on('reset', function () {
+	        if (_this.store.models.length > 0) {
+	          _this.disableEditTicket = false;
+	          this.forceUpdate();
+	        }
 	      }, this);
 	      this.$modal = $('.modal');
 	    }
@@ -52525,6 +52548,8 @@
 	    key: 'componentWillUnmount',
 	    value: function componentWillUnmount() {
 	      this.state.off(null, null, this);
+	      this.store.off(null, null, this);
+	      this.enableTicketEdit.remove();
 	    }
 	  }, {
 	    key: 'handleClick',
@@ -52540,6 +52565,12 @@
 	      _emitter2.default.emit('showCreateTicketTypeModal', this.props.activity);
 	    }
 	  }, {
+	    key: 'enableEditTicket',
+	    value: function enableEditTicket() {
+	      this.disableEditTicket = false;
+	      this.forceUpdate();
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var t = this.getIntlMessage;
@@ -52547,6 +52578,7 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(_createModal2.default, { activity_id: this.state.get('id') }),
+	        _react2.default.createElement(_alertMessages2.default, { event: 'no-ticket', alertType: 'danger' }),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'activity-panel is-show' },
@@ -52623,12 +52655,12 @@
 	                'div',
 	                { className: 'activity-action' },
 	                _react2.default.createElement(
-	                  'a',
-	                  { href: 'app/activities/' + this.state.get('id') + '/ticket_types', onClick: this.handleClick, className: 'btn btn-primary' },
+	                  'button',
+	                  { disabled: this.disableEditTicket, href: 'app/activities/' + this.state.get('id') + '/ticket_types', onClick: this.handleClick.bind(this), id: 'edit-ticket', className: 'btn btn-primary' },
 	                  t('backend.tickets.edit_ticket')
 	                ),
 	                _react2.default.createElement(
-	                  'a',
+	                  'button',
 	                  { onClick: this.showCreateTicketTypeModal.bind(this), className: 'btn btn-primary' },
 	                  t('backend.tickets.new_ticket')
 	                )
@@ -52742,6 +52774,7 @@
 	  }, {
 	    key: 'hideModal',
 	    value: function hideModal() {
+	      _emitter2.default.emit('enableEditTicket');
 	      this.$modal.modal('hide');
 	    }
 
@@ -53568,6 +53601,7 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(EditForm).call(this));
 
 	    _this.store = _ticketTypeStore2.default.getAll({ data: _jquery2.default.param({ activity_id: props.id }), reset: true });
+	    _this.activity_id = props.id;
 	    return _this;
 	  }
 
@@ -53578,7 +53612,11 @@
 	        this.forceUpdate();
 	        this.setState(this.store.models[0]);
 	      }, this);
-
+	      if (this.store.models.length == 0) {
+	        _emitter2.default.emit('no-ticket', I18n.t('backend.ticket_types.error_no_ticket'));
+	        Backbone.history.navigate('/app/activities/' + this.activity_id, true);
+	        //Backbone.history.navigate('activities/show', { trigger: true })
+	      }
 	      this.$modal = (0, _jquery2.default)('.modal');
 	    }
 	  }, {
@@ -53622,6 +53660,7 @@
 	    key: 'render',
 	    value: function render() {
 	      var t = this.getIntlMessage;
+
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'ticket-type-form-container' },
@@ -54094,7 +54133,6 @@
 	    key: 'handleSubmit',
 	    value: function handleSubmit(e) {
 	      e.preventDefault();
-	      //console.log(this.state);
 	      _ticketActions2.default.add(this.state);
 	    }
 	  }, {

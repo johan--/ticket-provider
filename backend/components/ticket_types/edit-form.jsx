@@ -16,6 +16,7 @@ class EditForm extends React.Component {
   constructor(props) {
     super();
     this.store = Store.getAll({ data: $.param({ activity_id: props.id}), reset: true });
+    this.activity_id = props.id;
   }
 
   componentDidMount() {
@@ -23,7 +24,11 @@ class EditForm extends React.Component {
       this.forceUpdate();
       this.setState(this.store.models[0]);
     }, this);
-
+    if(this.store.models.length == 0){
+      emitter.emit('no-ticket',  I18n.t('backend.ticket_types.error_no_ticket'));
+      Backbone.history.navigate(`/app/activities/${this.activity_id}`, true);
+      //Backbone.history.navigate('activities/show', { trigger: true })
+    }
     this.$modal = $('.modal');
   }
 
@@ -60,6 +65,7 @@ class EditForm extends React.Component {
 
   render() {
     let t = this.getIntlMessage;
+
     return (
       <div className="ticket-type-form-container">
         <AddTicketTypeModal ticket_type_id={this.state ? this.state.attributes.id : ''}/>
