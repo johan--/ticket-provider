@@ -37,4 +37,18 @@ RSpec.describe TicketType, type: :model do
 
     it { is_expected.to eq(3) }
   end
+
+  describe '#all_tickets' do
+    let!(:account) { Fabricate(:account) }
+    let!(:activity) { Fabricate(:activity, account: account) }
+    let!(:ticket_type) { Fabricate.build(:ticket_type, activity: activity) }
+
+    before do
+      Fabricate.times(3, :ticket, ticket_type: ticket_type)
+    end
+
+    subject { activity.all_tickets() }
+
+    it { is_expected.to eq(3) }
+  end
 end
