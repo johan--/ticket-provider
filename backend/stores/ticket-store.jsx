@@ -39,7 +39,9 @@ class TicketCollection extends Store.Collection {
           });
 
         jqXHR.done(() => {
+          emitter.emit('updateTable');
           emitter.emit('hideCreateTicketModal');
+
         });
 
         jqXHR.fail((jqXHR, textStatus, errorThrown) => {
