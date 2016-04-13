@@ -37816,7 +37816,7 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var t = this.getIntlMessage;
+	      var t = this.getIntlMessage;console.log(this.props);
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'activity-item col-md-4' },
@@ -37844,7 +37844,8 @@
 	            _react2.default.createElement(
 	              'div',
 	              { className: 'activity-info-item activity-tickets' },
-	              '53%',
+	              this.props.activity.attributes.available_tickets / this.props.activity.attributes.all_tickets * 100,
+	              '%',
 	              _react2.default.createElement(
 	                'small',
 	                null,
@@ -52569,6 +52570,7 @@
 	    key: 'render',
 	    value: function render() {
 	      var t = this.getIntlMessage;
+	      console.log(this.state);
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -52643,7 +52645,9 @@
 	                _react2.default.createElement(
 	                  'div',
 	                  null,
-	                  '128/1000'
+	                  this.state.attributes.available_tickets,
+	                  ' / ',
+	                  this.state.attributes.all_tickets
 	                )
 	              ),
 	              _react2.default.createElement(

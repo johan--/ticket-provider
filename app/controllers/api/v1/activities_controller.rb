@@ -7,7 +7,7 @@ class Api::V1::ActivitiesController < Api::V1::ApiController
 
   def index
     @activities = Activity
-                .includes(:account)
+                .includes(:account, :ticket_types)
                 .accessible_by(@current_ability)
                 .page(@page)
                 .per(@per_page)

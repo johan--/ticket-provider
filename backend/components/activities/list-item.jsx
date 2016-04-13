@@ -16,7 +16,7 @@ class ListItem extends React.Component {
   }
 
   render() {
-    let t = this.getIntlMessage;
+    let t = this.getIntlMessage;console.log(this.props);
     return (
       <div className="activity-item col-md-4">
         <a href={`/app/activities/${this.props.activity.id}`} onClick={this.handleClick}>
@@ -29,7 +29,7 @@ class ListItem extends React.Component {
               {this.props.activity.get('date')}
             </div>
             <div className="activity-info-item activity-tickets">
-              53%
+              {(this.props.activity.attributes.available_tickets/this.props.activity.attributes.all_tickets)*100}%
               <small>{t('backend.activities.available')}</small>
             </div>
           </div>
