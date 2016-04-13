@@ -37816,7 +37816,7 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var t = this.getIntlMessage;console.log(this.props);
+	      var t = this.getIntlMessage;
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'activity-item col-md-4' },
@@ -52570,7 +52570,6 @@
 	    key: 'render',
 	    value: function render() {
 	      var t = this.getIntlMessage;
-	      console.log(this.state);
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -53720,7 +53719,7 @@
 	            type: 'submit',
 	            className: 'btn btn-primary',
 	            onClick: this.handleSubmit.bind(this) },
-	          t('backend.accounts.save_changes')
+	          t('backend.ticket_types.save_changes')
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -53733,9 +53732,9 @@
 	          _react2.default.createElement(
 	            'h4',
 	            null,
-	            this.state ? this.state.attributes.available_tickets : 'Na',
+	            this.state ? this.state.attributes.available_tickets : t('backend.ticket_types.na'),
 	            ' / ',
-	            this.state ? this.state.attributes.all_tickets : 'Na'
+	            this.state ? this.state.attributes.all_tickets : t('backend.ticket_types.na')
 	          )
 	        ),
 	        _react2.default.createElement(_listContainer2.default, { ticket: this.state ? this.state.attributes.tickets : [] }),

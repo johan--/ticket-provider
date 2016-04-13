@@ -16,7 +16,7 @@ class ListItem extends React.Component {
   }
 
   render() {
-    let t = this.getIntlMessage;console.log(this.props);
+    let t = this.getIntlMessage;
     return (
       <div className="activity-item col-md-4">
         <a href={`/app/activities/${this.props.activity.id}`} onClick={this.handleClick}>

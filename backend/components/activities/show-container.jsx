@@ -55,7 +55,6 @@ class ShowContainer extends React.Component {
 
   render() {
     let t = this.getIntlMessage;
-    console.log(this.state);
     return (
       <div>
         <CreateTicketTypeModal activity_id={this.state.get('id')}/>
