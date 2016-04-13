@@ -18,7 +18,7 @@ feature 'Organizer create ticket type', js: true do
     within('.ticket-type-form-container') do
       fill_in 'current_price', with: ticket_type_params[:current_price]
       fill_in 'description', with: ticket_type_params[:description]
-      click_button('Save changes')
+      click_button('Save Changes')
     end
 
     wait_for_async_request
