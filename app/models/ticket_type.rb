@@ -6,6 +6,7 @@ class TicketType < ActiveRecord::Base
   validates :activity, presence: true
 
   before_create :set_uid
+  after_update :set_ticket_price, if: :current_price_changed?
 
   enum usage_type: %w(uncountable countable)
 
@@ -23,5 +24,9 @@ class TicketType < ActiveRecord::Base
     begin
       self.uid = SecureRandom.hex(4)
     end while (self.class.exists?(uid: self.uid))
+  end
+
+  def set_ticket_price
+    self.tickets.where(user: nil).map(&:update_price)
   end
 end

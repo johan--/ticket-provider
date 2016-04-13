@@ -72,4 +72,15 @@ RSpec.describe Ticket, type: :model do
       it { is_expected.to be_falsey }
     end
   end
+
+  describe '#update_price' do
+    let!(:account) { Fabricate(:account) }
+    let!(:activity) { Fabricate(:activity, account: account) }
+    let!(:ticket_type) { Fabricate(:ticket_type, activity: activity) }
+    let!(:ticket) { Fabricate(:ticket, ticket_type: ticket_type) }
+
+    subject { ticket.reload.price }
+
+    it { is_expected.to eq(ticket_type.current_price)}
+  end
 end

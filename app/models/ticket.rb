@@ -10,6 +10,7 @@ class Ticket < ActiveRecord::Base
 
   before_create :set_uid
   before_destroy -> { false }, if: :user_id?
+  after_create :update_price
 
   def state_machine
     @state_machine ||= TicketStateMachine.new(self, transition_class: TicketTransition)
@@ -17,6 +18,11 @@ class Ticket < ActiveRecord::Base
 
   delegate :can_transition_to?, :transition_to!, :transition_to, :current_state, :allowed_transitions,
            to: :state_machine
+
+  def update_price
+    self.price = self.ticket_type.current_price
+    self.save
+  end
 
   private
 
