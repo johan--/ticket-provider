@@ -53722,8 +53722,8 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'ticket-type-form-container' },
-	        _react2.default.createElement(_addTicketModal2.default, { ticket_type_id: this.state ? this.state.attributes.id : '' }),
-	        _react2.default.createElement(_updateTicketModal2.default, null),
+	        _react2.default.createElement(_addTicketModal2.default, { ticket_type_id: this.state ? this.state.attributes.id : '', usage_type: this.state ? this.state.attributes.usage_type : '' }),
+	        _react2.default.createElement(_updateTicketModal2.default, { usage_type: this.state ? this.state.attributes.usage_type : '' }),
 	        _react2.default.createElement(
 	          'select',
 	          { className: 'ticket-types-name',
@@ -54258,8 +54258,10 @@
 
 	    _this.state = {
 	      ticket: { quantity: 0,
-	        price: 0 },
-	      ticket_type_id: props.ticket_type_id
+	        price: 0,
+	        usage_quantity: 0 },
+	      ticket_type_id: props.ticket_type_id,
+	      usage_type: props.usage_type
 	    };
 
 	    _this.showModalSubscription = _emitter2.default.addListener('showCreateTicketModal', _this.showModal.bind(_this));
@@ -54284,6 +54286,9 @@
 	      this.state.ticket_type_id = ticket.id;
 	      this.state.ticket.price = ticket.current_price;
 	      this.$modal.modal('show');
+	      if (this.state.usage_type == 'uncountable') {
+	        $('.usage_quantity').hide();
+	      }
 	    }
 	  }, {
 	    key: 'handleCancel',
@@ -54308,6 +54313,13 @@
 	    value: function handleQuantityChange(e) {
 	      var updateState = this.state;
 	      updateState.ticket.quantity = e.target.value;
+	      this.setState(updateState);
+	    }
+	  }, {
+	    key: 'handleUsageQuantityChange',
+	    value: function handleUsageQuantityChange(e) {
+	      var updateState = this.state;
+	      updateState.ticket.usage_quantity = e.target.value;
 	      this.setState(updateState);
 	    }
 	  }, {
@@ -54365,6 +54377,20 @@
 	                      onChange: this.handleQuantityChange.bind(this),
 	                      name: 'ticket_quantity',
 	                      value: this.state.quantity,
+	                      className: 'form-control' })
+	                  ),
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'form-group usage_quantity' },
+	                    _react2.default.createElement(
+	                      'label',
+	                      { htmlFor: t('backend.tickets.usage_quantity') },
+	                      t('backend.tickets.usage_quantity')
+	                    ),
+	                    _react2.default.createElement('input', {
+	                      onChange: this.handleUsageQuantityChange.bind(this),
+	                      name: 'ticket_quantity',
+	                      value: this.state.usage_quantity,
 	                      className: 'form-control' })
 	                  ),
 	                  _react2.default.createElement(
@@ -54485,7 +54511,8 @@
 	        quantity: 0,
 	        price: 0
 	      },
-	      ticket_type_id: props.ticket_type_id
+	      ticket_type_id: props.ticket_type_id,
+	      usage_type: props.usage_type
 	    };
 
 	    _this.showModalSubscription = _emitter2.default.addListener('showUpdateTicketModal', _this.showModal.bind(_this));
@@ -54509,6 +54536,9 @@
 	    value: function showModal(ticket) {
 	      this.setState(ticket);
 	      this.$modal.modal('show');
+	      if (this.state.usage_type == 'uncountable') {
+	        $('.usage_quantity').hide();
+	      }
 	    }
 	  }, {
 	    key: 'handleCancel',
@@ -54533,6 +54563,13 @@
 	    value: function handleTicketStateChange(e) {
 	      var updateState = this.state;
 	      updateState.ticket.state = e.target.value;
+	      this.setState(updateState);
+	    }
+	  }, {
+	    key: 'handleUsageQuantityChange',
+	    value: function handleUsageQuantityChange(e) {
+	      var updateState = this.state;
+	      updateState.ticket.usage_quantity = e.target.value;
 	      this.setState(updateState);
 	    }
 	  }, {
@@ -54599,6 +54636,20 @@
 	                          state.key
 	                        );
 	                      })
+	                    ),
+	                    _react2.default.createElement(
+	                      'div',
+	                      { className: 'form-group usage_quantity' },
+	                      _react2.default.createElement(
+	                        'label',
+	                        { htmlFor: t('backend.tickets.usage_quantity') },
+	                        t('backend.tickets.usage_quantity')
+	                      ),
+	                      _react2.default.createElement('input', {
+	                        onChange: this.handleUsageQuantityChange.bind(this),
+	                        name: 'ticket_quantity',
+	                        value: this.state.usage_quantity,
+	                        className: 'form-control' })
 	                    )
 	                  ),
 	                  _react2.default.createElement(

@@ -12,8 +12,10 @@ class AddTicketModal extends React.Component {
     super(props);
     this.state = {
       ticket: { quantity: 0,
-                price: 0},
-      ticket_type_id: props.ticket_type_id
+                price: 0,
+                usage_quantity: 0},
+      ticket_type_id: props.ticket_type_id,
+      usage_type: props.usage_type
     };
 
     this.showModalSubscription = emitter.addListener('showCreateTicketModal', this.showModal.bind(this));
@@ -33,6 +35,9 @@ class AddTicketModal extends React.Component {
     this.state.ticket_type_id = ticket.id;
     this.state.ticket.price = ticket.current_price;
     this.$modal.modal('show');
+    if(this.state.usage_type == 'uncountable') {
+      $('.usage_quantity').hide();
+    }
   }
 
   handleCancel() {
@@ -51,6 +56,12 @@ class AddTicketModal extends React.Component {
   handleQuantityChange(e) {
     let updateState = this.state;
     updateState.ticket.quantity = e.target.value;
+    this.setState(updateState);
+  }
+
+  handleUsageQuantityChange(e) {
+    let updateState = this.state;
+    updateState.ticket.usage_quantity = e.target.value;
     this.setState(updateState);
   }
 
@@ -87,6 +98,16 @@ class AddTicketModal extends React.Component {
                       onChange={this.handleQuantityChange.bind(this)}
                       name="ticket_quantity"
                       value={this.state.quantity}
+                      className="form-control" />
+                  </div>
+                  <div className="form-group usage_quantity">
+                    <label htmlFor={t('backend.tickets.usage_quantity')}>
+                      {t('backend.tickets.usage_quantity')}
+                    </label>
+                    <input
+                      onChange={this.handleUsageQuantityChange.bind(this)}
+                      name="ticket_quantity"
+                      value={this.state.usage_quantity}
                       className="form-control" />
                   </div>
                   <button
