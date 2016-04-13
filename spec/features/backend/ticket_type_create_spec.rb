@@ -46,4 +46,16 @@ feature 'Organizer create ticket type', js: true do
     expect(page).to have_content I18n.t('backend.ticket_types.headers.add_ticket').upcase
     expect(page).to have_content 'Name can\'t be blank'
   end
+
+  scenario 'Activity do not have ticket', js: true do
+    visit "/app/activities/#{activity.uid}"
+
+    expect(page).to have_button('Edit Ticket', disabled: true)
+  end
+
+  scenario 'The page is redirected due to no ticket', js: true do
+    visit "/app/activities/#{activity.uid}/ticket_types"
+
+    expect(page).to have_button('Edit Ticket', disabled: true)
+  end
 end

@@ -42,6 +42,7 @@ class CreateModal extends React.Component {
   }
 
   hideModal() {
+    emitter.emit('enableEditTicket');
     this.$modal.modal('hide');
   }
 
