@@ -26,11 +26,19 @@
     margin: $grid-gutter-width auto 1.25rem;
   }
 
-  .ticket-type-panel {
-    margin-top: $grid-gutter-width;
+  .tickets-panel{
+    border: 1px solid $brand-grey;
+    border-radius: $border-radius;
 
-    .ticket-list-container {
-      padding: 0;
+    h2 {
+      background-color: $brand-sunflower;
+      text-align: center;
+      color: #FFF;
+      border-radius: $border-radius $border-radius 0 0;
+    }
+
+    .container-fluid {
+      border-radius: $border-radius;
     }
   }
 
