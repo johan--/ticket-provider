@@ -34,6 +34,7 @@ feature 'Organizer new ticket to ticket type', js: true do
     end
 
     expect(page).not_to have_css('.modal.in')
+    expect(page).to have_css('.ticket-list', :count => 5)
     expect(page).not_to have_content I18n.t('backend.ticket_types.headers.add_ticket').upcase
   end
 end
