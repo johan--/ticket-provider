@@ -41,7 +41,23 @@ class TicketCollection extends Store.Collection {
         jqXHR.done(() => {
           emitter.emit('updateTicketList');
           emitter.emit('hideCreateTicketModal');
+        });
 
+        jqXHR.fail((jqXHR, textStatus, errorThrown) => {
+          emitter.emit('error', jqXHR.responseJSON.errors[0]);
+        });
+        break;
+      }
+      case constant.EDIT_TICKET: {
+        let jqXHR = this.get(payload.ticket.id)
+          .fetch({
+            data: $.param({ ticket: payload.ticket }),
+            type: 'PUT'
+          });
+
+        jqXHR.done(() => {
+          emitter.emit('updateTicketList');
+          emitter.emit('hideUpdateTicketModal');
         });
 
         jqXHR.fail((jqXHR, textStatus, errorThrown) => {

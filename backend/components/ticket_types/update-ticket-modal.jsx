@@ -3,25 +3,28 @@ import ReactI18n from 'react-i18n';
 import ReactMixin from 'react-mixin';
 import TicketAction from '../../actions/ticket-actions.jsx';
 import AlertMessages from '../shared/alert-messages.jsx';
+import AppConst from '../../app-constant.jsx'
 import Store from '../../stores/ticket-store.jsx';
 import emitter from '../../emitter.jsx';
 
-class AddTicketModal extends React.Component {
+class UpdateTicketModal extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      ticket: { quantity: 0,
-                price: 0},
+      ticket: {
+        quantity: 0,
+        price: 0
+      },
       ticket_type_id: props.ticket_type_id
     };
 
-    this.showModalSubscription = emitter.addListener('showCreateTicketModal', this.showModal.bind(this));
-    this.hideModelSubscription = emitter.addListener('hideCreateTicketModal', this.hideModal.bind(this));
+    this.showModalSubscription = emitter.addListener('showUpdateTicketModal', this.showModal.bind(this));
+    this.hideModelSubscription = emitter.addListener('hideUpdateTicketModal', this.hideModal.bind(this));
   }
 
   componentDidMount() {
-    this.$modal = $('.add-modal');
+    this.$modal = $('.update-modal');
   }
 
   componentWillUnmount() {
@@ -30,8 +33,7 @@ class AddTicketModal extends React.Component {
   }
 
   showModal(ticket) {
-    this.state.ticket_type_id = ticket.id;
-    this.state.ticket.price = ticket.current_price;
+    this.state = ticket;
     this.$modal.modal('show');
   }
 
@@ -48,21 +50,21 @@ class AddTicketModal extends React.Component {
     e.stopPropagation();
   }
 
-  handleQuantityChange(e) {
+  handleTicketStateChange(e) {
     let updateState = this.state;
-    updateState.ticket.quantity = e.target.value;
+    updateState.ticket.state = e.target.value;
     this.setState(updateState);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    TicketAction.add(this.state);
+    TicketAction.edit(this.state);
   }
 
   render() {
     let t = this.getIntlMessage;
     return (
-      <div className="add-modal modal fade is-create-modal"
+      <div className="update-modal modal fade is-create-modal"
            tabIndex="-1"
            role="dialog"
            aria-labelledby="title"
@@ -73,7 +75,7 @@ class AddTicketModal extends React.Component {
             <div className="modal-content" onClick={this.preventChildModalHide}>
               <div className="modal-header">
                 <h4 className="modal-title" id="title">
-                  {t('backend.ticket_types.headers.add_ticket')}
+                  pp
                 </h4>
               </div>
               <div className="modal-body">
@@ -81,13 +83,18 @@ class AddTicketModal extends React.Component {
                 <form className="form-horizontal">
                   <div className="form-group">
                     <label htmlFor={t('backend.tickets.quantity')}>
-                      {t('backend.tickets.quantity')}
+                      eat rice
                     </label>
-                    <input
-                      onChange={this.handleQuantityChange.bind(this)}
-                      name="ticket_quantity"
-                      value={this.state.quantity}
-                      className="form-control" />
+                    <select className="ticket-types-name"
+                            value={this.state ? this.state.ticket.state : ''}
+                            onChange={this.handleTicketStateChange.bind(this)}>
+                      {AppConst.ticket_state.map(state =>
+                          <option key={Math.random()}
+                                  value={state.value} >
+                            {state.key}
+                          </option>
+                      )}
+                    </select>
                   </div>
                   <button
                     onClick={this.handleSubmit.bind(this)}
@@ -105,6 +112,6 @@ class AddTicketModal extends React.Component {
   }
 }
 
-ReactMixin(AddTicketModal.prototype, ReactI18n);
+ReactMixin(UpdateTicketModal.prototype, ReactI18n);
 
-export default AddTicketModal;
+export default UpdateTicketModal;

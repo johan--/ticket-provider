@@ -7,7 +7,7 @@ class ListItem extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
-    Backbone.history.navigate($(e.currentTarget).attr('href'), true);
+    emitter.emit('showUpdateTicketModal', this.props);
   }
 
   handleDelete(e) {
@@ -29,7 +29,7 @@ class ListItem extends React.Component {
           {this.props.ticket.state}
         </div>
         <div className="ticket-action ticket-cell">
-          <a href={`/app/events/${this.props.ticket.id}/edit`} className="action-container"  onClick={this.handleClick}>
+          <a href={`/app/events/${this.props.ticket.id}/edit`} className="action-container"  onClick={this.handleClick.bind(this)}>
             Update
           </a>
         </div>

@@ -6,10 +6,6 @@ import Store from '../../stores/ticket-type-store.jsx';
 
 class ListContainer extends React.Component {
 
-  constructor() {
-    super();
-  }
-
   render() {
     let t = this.getIntlMessage;
     return (

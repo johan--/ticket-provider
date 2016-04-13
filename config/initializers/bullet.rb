@@ -6,4 +6,6 @@ if defined? Bullet
   Bullet.add_footer = true
   Bullet.rails_logger = true
   Bullet.raise = true
+
+  Bullet.add_whitelist type: :unused_eager_loading, class_name: 'TicketType', association: :activity
 end

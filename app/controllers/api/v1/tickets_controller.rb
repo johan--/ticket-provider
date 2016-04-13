@@ -4,7 +4,7 @@ class Api::V1::TicketsController < Api::V1::ApiController
   before_action :set_ticket, only: [:enter, :exit]
   before_action :page_params, only: :index
 
-  load_resource find_by: :uid, except: [:index, :create, :state]
+  load_resource find_by: :uid, except: [:index, :create, :state, :update]
   authorize_resource
 
   def index
@@ -30,6 +30,10 @@ class Api::V1::TicketsController < Api::V1::ApiController
   end
 
   def update
+    @ticket = Ticket
+                  .includes(ticket_type: [:activity])
+                  .where(uid: params[:id]).first
+
     @ticket.user = User.find_by_uid(params[:ticket][:user_id]) if params[:ticket][:user_id]
     if @ticket.transition_to(ticket_state_params[:state])
       render json: @ticket, status: :ok
