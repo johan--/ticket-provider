@@ -24,7 +24,7 @@ export default {
     },
     {
       key: 'Discarded',
-      value: 'Discarded'
-    },
+      value: 'discarded'
+    }
   ]
 }

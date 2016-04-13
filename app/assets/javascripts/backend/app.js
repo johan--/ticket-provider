@@ -54781,7 +54781,7 @@
 	    value: 'refunded'
 	  }, {
 	    key: 'Discarded',
-	    value: 'Discarded'
+	    value: 'discarded'
 	  }]
 	};
 
@@ -55186,7 +55186,7 @@
 	  }, {
 	    key: 'showModal',
 	    value: function showModal(ticket) {
-	      this.state = ticket;
+	      this.setState(ticket);
 	      this.$modal.modal('show');
 	    }
 	  }, {
@@ -55268,7 +55268,7 @@
 	                    _react2.default.createElement(
 	                      'select',
 	                      { className: 'ticket-types-name',
-	                        value: this.state ? this.state.ticket.state : '',
+	                        value: this.state.ticket.state,
 	                        onChange: this.handleTicketStateChange.bind(this) },
 	                      _appConstant2.default.ticket_state.map(function (state) {
 	                        return _react2.default.createElement(

@@ -33,7 +33,7 @@ class UpdateTicketModal extends React.Component {
   }
 
   showModal(ticket) {
-    this.state = ticket;
+    this.setState(ticket);
     this.$modal.modal('show');
   }
 
@@ -86,8 +86,8 @@ class UpdateTicketModal extends React.Component {
                       {t('backend.tickets.state')}
                     </label>
                     <select className="ticket-types-name"
-                            value={this.state ? this.state.ticket.state : ''}
-                            onChange={this.handleTicketStateChange.bind(this)}>
+                            value={this.state.ticket.state}
+                            onChange={this.handleTicketStateChange.bind(this)} >
                       {AppConst.ticket_state.map(state =>
                           <option key={Math.random()}
                                   value={state.value} >
