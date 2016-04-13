@@ -75,7 +75,7 @@ class UpdateTicketModal extends React.Component {
             <div className="modal-content" onClick={this.preventChildModalHide}>
               <div className="modal-header">
                 <h4 className="modal-title" id="title">
-                  {t('backend.tickets.update')}
+                  {t('backend.tickets.update_state')}
                 </h4>
               </div>
               <div className="modal-body">

@@ -30,12 +30,12 @@ class ListItem extends React.Component {
         </div>
         <div className="ticket-action ticket-cell">
           <a href={`/app/events/${this.props.ticket.id}/edit`} className="action-container"  onClick={this.handleClick.bind(this)}>
-            Update
+            {t('backend.tickets.update')}
           </a>
         </div>
         <div className="ticket-action ticket-cell">
           <a className="action-container" href="#" onClick={this.handleDelete.bind(this)}>
-            Delete
+            {t('backend.tickets.delete')}
           </a>
         </div>
       </div>

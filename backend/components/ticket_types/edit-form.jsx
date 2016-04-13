@@ -109,7 +109,7 @@ class EditForm extends React.Component {
           className="btn btn-primary"
           onClick={this.handleSubmit.bind(this)}>{t('backend.ticket_types.save_changes')}</button>
         <div className="form-group">
-          <label>Available</label>
+          <label>{t('backend.tickets.available')}</label>
           <h4>{this.state ? this.state.attributes.available_tickets : t('backend.ticket_types.na')} / {this.state ? this.state.attributes.all_tickets : t('backend.ticket_types.na')}</h4>
         </div>
         <ListContainer ticket={this.state ? this.state.attributes.tickets : []}/>
