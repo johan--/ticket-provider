@@ -17,7 +17,7 @@ class EditForm extends React.Component {
     super();
     this.store = Store.getAll({ data: $.param({ activity_id: props.id}), reset: true });
     this.activity_id = props.id;
-    this.updateSubscription = emitter.addListener('updateTable', this.updateTable.bind(this));
+    this.updateSubscription = emitter.addListener('updateTicketList', this.updateTicketList.bind(this));
   }
 
   componentDidMount() {
@@ -64,8 +64,7 @@ class EditForm extends React.Component {
     TicketTypeAction.edit(_.pick(this.state.attributes, 'id', 'activity_id', 'current_price', 'description'));
   }
 
-  updateTable() {
-    console.log(this.store.models[0]);
+  updateTicketList() {
     this.store = Store.getAll({ data: $.param({ activity_id: this.props.id}), reset: true });
   }
 

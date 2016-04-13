@@ -53597,7 +53597,7 @@
 
 	    _this.store = _ticketTypeStore2.default.getAll({ data: _jquery2.default.param({ activity_id: props.id }), reset: true });
 	    _this.activity_id = props.id;
-	    _this.updateSubscription = _emitter2.default.addListener('updateTable', _this.updateTable.bind(_this));
+	    _this.updateSubscription = _emitter2.default.addListener('updateTicketList', _this.updateTicketList.bind(_this));
 	    return _this;
 	  }
 
@@ -53653,9 +53653,8 @@
 	      _ticketTypeActions2.default.edit(_underscore2.default.pick(this.state.attributes, 'id', 'activity_id', 'current_price', 'description'));
 	    }
 	  }, {
-	    key: 'updateTable',
-	    value: function updateTable() {
-	      console.log(this.store.models[0]);
+	    key: 'updateTicketList',
+	    value: function updateTicketList() {
 	      this.store = _ticketTypeStore2.default.getAll({ data: _jquery2.default.param({ activity_id: this.props.id }), reset: true });
 	    }
 	  }, {
@@ -54336,7 +54335,7 @@
 	            });
 
 	            jqXHR.done(function () {
-	              _emitter2.default.emit('updateTable');
+	              _emitter2.default.emit('updateTicketList');
 	              _emitter2.default.emit('hideCreateTicketModal');
 	            });
 
