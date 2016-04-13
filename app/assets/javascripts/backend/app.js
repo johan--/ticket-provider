@@ -33096,11 +33096,11 @@
 
 	var _showContainer2 = _interopRequireDefault(_showContainer);
 
-	var _editContainer = __webpack_require__(315);
+	var _editContainer = __webpack_require__(316);
 
 	var _editContainer2 = _interopRequireDefault(_editContainer);
 
-	var _editContainer3 = __webpack_require__(317);
+	var _editContainer3 = __webpack_require__(318);
 
 	var _editContainer4 = _interopRequireDefault(_editContainer3);
 
@@ -52495,7 +52495,7 @@
 
 	var _activityStore2 = _interopRequireDefault(_activityStore);
 
-	var _ticketTypeStore = __webpack_require__(314);
+	var _ticketTypeStore = __webpack_require__(315);
 
 	var _ticketTypeStore2 = _interopRequireDefault(_ticketTypeStore);
 
@@ -52714,7 +52714,11 @@
 
 	var _alertMessages2 = _interopRequireDefault(_alertMessages);
 
-	var _ticketTypeStore = __webpack_require__(314);
+	var _appConstant = __webpack_require__(314);
+
+	var _appConstant2 = _interopRequireDefault(_appConstant);
+
+	var _ticketTypeStore = __webpack_require__(315);
 
 	var _ticketTypeStore2 = _interopRequireDefault(_ticketTypeStore);
 
@@ -52744,7 +52748,7 @@
 	        name: '',
 	        current_price: 0,
 	        description: '',
-	        seat_type: 'non_fix_seat'
+	        usage_type: _appConstant2.default.usage_type.uncountable
 	      }
 	    };
 
@@ -52810,13 +52814,13 @@
 	      this.setState(updateState);
 	    }
 	  }, {
-	    key: 'handleSeatTypeChange',
-	    value: function handleSeatTypeChange(e) {
+	    key: 'handleUsageTypeChange',
+	    value: function handleUsageTypeChange(e) {
 	      var updateState = this.state;
 	      if (e.target.checked) {
-	        updateState.ticket_type.seat_type = 'fix_seat';
+	        updateState.ticket_type.usage_type = _appConstant2.default.usage_type.countable;
 	      } else {
-	        updateState.ticket_type.seat_type = 'non_fix_seat';
+	        updateState.ticket_type.usage_type = _appConstant2.default.usage_type.uncountable;
 	      }
 	      this.setState(updateState);
 	    }
@@ -52911,13 +52915,13 @@
 	                      { className: 'form-group is-checkbox' },
 	                      _react2.default.createElement(
 	                        'label',
-	                        { htmlFor: 'seat_type' },
-	                        'Fixed Seat'
+	                        { htmlFor: 'usage_type' },
+	                        t('backend.ticket_types.countable')
 	                      ),
 	                      _react2.default.createElement('input', {
 	                        type: 'checkbox',
-	                        name: 'seat_type', id: 'seat_type',
-	                        onChange: this.handleSeatTypeChange.bind(this) }),
+	                        name: 'usage_type', id: 'usage_type',
+	                        onChange: this.handleUsageTypeChange.bind(this) }),
 	                      _react2.default.createElement('div', { className: 'checkbox' })
 	                    )
 	                  ),
@@ -52991,6 +52995,45 @@
 
 /***/ },
 /* 314 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	  roles: {
+	    'god': 'God',
+	    'account_owner': 'Account owner',
+	    'team_member': 'Team member'
+	  },
+
+	  ticket_state: [{
+	    key: 'New',
+	    value: 'new'
+	  }, {
+	    key: 'Enter',
+	    value: 'enter'
+	  }, {
+	    key: 'Exit',
+	    value: 'exit'
+	  }, {
+	    key: 'Refunded',
+	    value: 'refunded'
+	  }, {
+	    key: 'Discarded',
+	    value: 'discarded'
+	  }],
+
+	  usage_type: {
+	    'countable': 'countable',
+	    'uncountable': 'uncountable'
+	  }
+	};
+
+/***/ },
+/* 315 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53136,7 +53179,7 @@
 	exports.default = new TicketTypeCollection();
 
 /***/ },
-/* 315 */
+/* 316 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53151,7 +53194,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _editForm = __webpack_require__(316);
+	var _editForm = __webpack_require__(317);
 
 	var _editForm2 = _interopRequireDefault(_editForm);
 
@@ -53218,7 +53261,7 @@
 	exports.default = EditContainer;
 
 /***/ },
-/* 316 */
+/* 317 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53454,7 +53497,7 @@
 	exports.default = EditForm;
 
 /***/ },
-/* 317 */
+/* 318 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53477,7 +53520,7 @@
 
 	var _reactMixin2 = _interopRequireDefault(_reactMixin);
 
-	var _editForm = __webpack_require__(318);
+	var _editForm = __webpack_require__(319);
 
 	var _editForm2 = _interopRequireDefault(_editForm);
 
@@ -53528,7 +53571,7 @@
 	exports.default = EditContainer;
 
 /***/ },
-/* 318 */
+/* 319 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53551,11 +53594,11 @@
 
 	var _reactMixin2 = _interopRequireDefault(_reactMixin);
 
-	var _ticketTypeStore = __webpack_require__(314);
+	var _ticketTypeStore = __webpack_require__(315);
 
 	var _ticketTypeStore2 = _interopRequireDefault(_ticketTypeStore);
 
-	var _ticketStore = __webpack_require__(319);
+	var _ticketStore = __webpack_require__(320);
 
 	var _ticketStore2 = _interopRequireDefault(_ticketStore);
 
@@ -53567,15 +53610,15 @@
 
 	var _ticketTypeActions2 = _interopRequireDefault(_ticketTypeActions);
 
-	var _listContainer = __webpack_require__(321);
+	var _listContainer = __webpack_require__(322);
 
 	var _listContainer2 = _interopRequireDefault(_listContainer);
 
-	var _addTicketModal = __webpack_require__(324);
+	var _addTicketModal = __webpack_require__(325);
 
 	var _addTicketModal2 = _interopRequireDefault(_addTicketModal);
 
-	var _updateTicketModal = __webpack_require__(326);
+	var _updateTicketModal = __webpack_require__(327);
 
 	var _updateTicketModal2 = _interopRequireDefault(_updateTicketModal);
 
@@ -53772,7 +53815,7 @@
 	exports.default = EditForm;
 
 /***/ },
-/* 319 */
+/* 320 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53791,7 +53834,7 @@
 
 	var _store2 = _interopRequireDefault(_store);
 
-	var _ticketConstants = __webpack_require__(320);
+	var _ticketConstants = __webpack_require__(321);
 
 	var _ticketConstants2 = _interopRequireDefault(_ticketConstants);
 
@@ -53892,7 +53935,7 @@
 	exports.default = new TicketCollection();
 
 /***/ },
-/* 320 */
+/* 321 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -53906,7 +53949,7 @@
 	};
 
 /***/ },
-/* 321 */
+/* 322 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53929,11 +53972,11 @@
 
 	var _reactMixin2 = _interopRequireDefault(_reactMixin);
 
-	var _list = __webpack_require__(322);
+	var _list = __webpack_require__(323);
 
 	var _list2 = _interopRequireDefault(_list);
 
-	var _ticketTypeStore = __webpack_require__(314);
+	var _ticketTypeStore = __webpack_require__(315);
 
 	var _ticketTypeStore2 = _interopRequireDefault(_ticketTypeStore);
 
@@ -53980,7 +54023,7 @@
 	exports.default = ListContainer;
 
 /***/ },
-/* 322 */
+/* 323 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53999,7 +54042,7 @@
 
 	var _alertMessages2 = _interopRequireDefault(_alertMessages);
 
-	var _listItem = __webpack_require__(323);
+	var _listItem = __webpack_require__(324);
 
 	var _listItem2 = _interopRequireDefault(_listItem);
 
@@ -54048,7 +54091,7 @@
 	exports.default = List;
 
 /***/ },
-/* 323 */
+/* 324 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54158,7 +54201,7 @@
 	exports.default = ListItem;
 
 /***/ },
-/* 324 */
+/* 325 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54181,7 +54224,7 @@
 
 	var _reactMixin2 = _interopRequireDefault(_reactMixin);
 
-	var _ticketActions = __webpack_require__(325);
+	var _ticketActions = __webpack_require__(326);
 
 	var _ticketActions2 = _interopRequireDefault(_ticketActions);
 
@@ -54189,7 +54232,7 @@
 
 	var _alertMessages2 = _interopRequireDefault(_alertMessages);
 
-	var _ticketStore = __webpack_require__(319);
+	var _ticketStore = __webpack_require__(320);
 
 	var _ticketStore2 = _interopRequireDefault(_ticketStore);
 
@@ -54349,7 +54392,7 @@
 	exports.default = AddTicketModal;
 
 /***/ },
-/* 325 */
+/* 326 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54362,7 +54405,7 @@
 
 	var _dispatch2 = _interopRequireDefault(_dispatch);
 
-	var _ticketConstants = __webpack_require__(320);
+	var _ticketConstants = __webpack_require__(321);
 
 	var _ticketConstants2 = _interopRequireDefault(_ticketConstants);
 
@@ -54378,7 +54421,7 @@
 	};
 
 /***/ },
-/* 326 */
+/* 327 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54401,7 +54444,7 @@
 
 	var _reactMixin2 = _interopRequireDefault(_reactMixin);
 
-	var _ticketActions = __webpack_require__(325);
+	var _ticketActions = __webpack_require__(326);
 
 	var _ticketActions2 = _interopRequireDefault(_ticketActions);
 
@@ -54409,11 +54452,11 @@
 
 	var _alertMessages2 = _interopRequireDefault(_alertMessages);
 
-	var _appConstant = __webpack_require__(327);
+	var _appConstant = __webpack_require__(314);
 
 	var _appConstant2 = _interopRequireDefault(_appConstant);
 
-	var _ticketStore = __webpack_require__(319);
+	var _ticketStore = __webpack_require__(320);
 
 	var _ticketStore2 = _interopRequireDefault(_ticketStore);
 
@@ -54583,40 +54626,6 @@
 	exports.default = UpdateTicketModal;
 
 /***/ },
-/* 327 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {
-	  roles: {
-	    'god': 'God',
-	    'account_owner': 'Account owner',
-	    'team_member': 'Team member'
-	  },
-
-	  ticket_state: [{
-	    key: 'New',
-	    value: 'new'
-	  }, {
-	    key: 'Enter',
-	    value: 'enter'
-	  }, {
-	    key: 'Exit',
-	    value: 'exit'
-	  }, {
-	    key: 'Refunded',
-	    value: 'refunded'
-	  }, {
-	    key: 'Discarded',
-	    value: 'discarded'
-	  }]
-	};
-
-/***/ },
 /* 328 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -54656,7 +54665,7 @@
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
-	var _appConstant = __webpack_require__(327);
+	var _appConstant = __webpack_require__(314);
 
 	var _appConstant2 = _interopRequireDefault(_appConstant);
 

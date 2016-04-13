@@ -3,6 +3,7 @@ import ReactI18n from 'react-i18n';
 import ReactMixin from 'react-mixin';
 import TicketTypeAction from '../../actions/ticket-type-actions.jsx';
 import AlertMessages from '../shared/alert-messages.jsx';
+import AppConst from '../../app-constant.jsx'
 import Store from '../../stores/ticket-type-store.jsx';
 import emitter from '../../emitter.jsx';
 
@@ -16,7 +17,7 @@ class CreateModal extends React.Component {
         name: '',
         current_price: 0,
         description: '',
-        seat_type: 'non_fix_seat'
+        usage_type: AppConst.usage_type.uncountable
       }
     };
 
@@ -69,12 +70,12 @@ class CreateModal extends React.Component {
     this.setState(updateState);
   }
 
-  handleSeatTypeChange(e) {
+  handleUsageTypeChange(e) {
     let updateState = this.state;
     if (e.target.checked) {
-      updateState.ticket_type.seat_type = 'fix_seat';
+      updateState.ticket_type.usage_type = AppConst.usage_type.countable;
     } else {
-      updateState.ticket_type.seat_type = 'non_fix_seat';
+      updateState.ticket_type.usage_type = AppConst.usage_type.uncountable;
     }
     this.setState(updateState);
   }
@@ -134,11 +135,11 @@ class CreateModal extends React.Component {
                         className="form-control"/>
                     </div>
                     <div className="form-group is-checkbox">
-                      <label htmlFor="seat_type">Fixed Seat</label>
+                      <label htmlFor="usage_type">{t('backend.ticket_types.countable')}</label>
                       <input
                         type="checkbox"
-                        name="seat_type" id="seat_type"
-                        onChange={this.handleSeatTypeChange.bind(this)} />
+                        name="usage_type" id="usage_type"
+                        onChange={this.handleUsageTypeChange.bind(this)} />
                       <div className="checkbox"></div>
                     </div>
                   </fieldset>

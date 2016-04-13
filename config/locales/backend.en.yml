@@ -55,6 +55,7 @@ en:
       save_changes: Save Changes
       success_edit: Successfully edit ticket type
       usage_quantity: Usage Quantity
+      countable: Countable
     tickets:
       edit_ticket: Edit Ticket
       new_ticket: New Ticket
@@ -68,6 +69,7 @@ en:
       update: Update
       delete: Delete
       available: Available
+      usage_quantity: Usage quantity
     organizers:
       header: Organizer information
       save_changes: Save changes
