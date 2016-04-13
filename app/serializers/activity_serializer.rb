@@ -2,6 +2,8 @@ class ActivitySerializer < ActiveModel::Serializer
   attributes :id,
              :account_id,
              :name,
+             :available_tickets,
+             :all_tickets,
              :description,
              :cover_photo_url,
              :date,

@@ -11,6 +11,14 @@ class Activity < ActiveRecord::Base
 
   default_scope { order('date DESC') }
 
+  def available_tickets
+    self.ticket_types.map(&:available_tickets).inject(0, :+)
+  end
+
+  def all_tickets
+    self.ticket_types.map(&:all_tickets).inject(0, :+)
+  end
+
   private
 
   def set_uid

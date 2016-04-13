@@ -49,6 +49,7 @@ en:
         edit_ticket: Edit Ticket
         ticket: Ticket
       name: name
+      na: N/A
       description: description
       price: price
       save_changes: Save Changes

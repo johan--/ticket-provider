@@ -78,7 +78,7 @@ class ShowContainer extends React.Component {
               </div>
               <div className="activity-info">
                 <label htmlFor="available">{t('backend.activities.available')}</label>
-                <div>128/1000</div>
+                <div>{this.state.attributes.available_tickets} / {this.state.attributes.all_tickets}</div>
               </div>
               <div className="activity-action">
                 <button disabled={this.disableEditTicket} href={`app/activities/${this.state.get('id')}/ticket_types`} onClick={this.handleClick.bind(this)} id="edit-ticket" className="btn btn-primary">

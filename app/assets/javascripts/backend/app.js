@@ -37844,7 +37844,8 @@
 	            _react2.default.createElement(
 	              'div',
 	              { className: 'activity-info-item activity-tickets' },
-	              '53%',
+	              this.props.activity.attributes.available_tickets / this.props.activity.attributes.all_tickets * 100,
+	              '%',
 	              _react2.default.createElement(
 	                'small',
 	                null,
@@ -52643,7 +52644,9 @@
 	                _react2.default.createElement(
 	                  'div',
 	                  null,
-	                  '128/1000'
+	                  this.state.attributes.available_tickets,
+	                  ' / ',
+	                  this.state.attributes.all_tickets
 	                )
 	              ),
 	              _react2.default.createElement(
@@ -53661,7 +53664,6 @@
 	    key: 'render',
 	    value: function render() {
 	      var t = this.getIntlMessage;
-
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'ticket-type-form-container' },
@@ -53728,23 +53730,11 @@
 	            'Available'
 	          ),
 	          _react2.default.createElement(
-	            'label',
+	            'h4',
 	            null,
-	            '500'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'form-group' },
-	          _react2.default.createElement(
-	            'label',
-	            null,
-	            'Available'
-	          ),
-	          _react2.default.createElement(
-	            'label',
-	            null,
-	            '500'
+	            this.state ? this.state.attributes.available_tickets : t('backend.ticket_types.na'),
+	            ' / ',
+	            this.state ? this.state.attributes.all_tickets : t('backend.ticket_types.na')
 	          )
 	        ),
 	        _react2.default.createElement(_listContainer2.default, { ticket: this.state ? this.state.attributes.tickets : [] }),
