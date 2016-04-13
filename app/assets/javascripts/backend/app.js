@@ -53719,7 +53719,7 @@
 	            type: 'submit',
 	            className: 'btn btn-primary',
 	            onClick: this.handleSubmit.bind(this) },
-	          t('backend.ticket_types.save_changes')
+	          t('backend.accounts.save_changes')
 	        ),
 	        _react2.default.createElement(
 	          'div',
