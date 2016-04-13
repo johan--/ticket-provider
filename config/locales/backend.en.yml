@@ -62,6 +62,8 @@ en:
       cannot_transition_to: can't transition to %{state}
       quantity: Ticket Quantity
       ticket_user_error: cannot have more than one ticket per activity
+      state: Ticket state
+      update: Update ticket state
     organizers:
       header: Organizer information
       save_changes: Save changes

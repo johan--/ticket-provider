@@ -75,15 +75,15 @@ class UpdateTicketModal extends React.Component {
             <div className="modal-content" onClick={this.preventChildModalHide}>
               <div className="modal-header">
                 <h4 className="modal-title" id="title">
-                  pp
+                  {t('backend.tickets.update')}
                 </h4>
               </div>
               <div className="modal-body">
                 <AlertMessages event="error" alertType="danger" />
                 <form className="form-horizontal">
                   <div className="form-group">
-                    <label htmlFor={t('backend.tickets.quantity')}>
-                      eat rice
+                    <label htmlFor={t('backend.tickets.state')}>
+                      {t('backend.tickets.state')}
                     </label>
                     <select className="ticket-types-name"
                             value={this.state ? this.state.ticket.state : ''}

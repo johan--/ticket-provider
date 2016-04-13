@@ -55247,7 +55247,7 @@
 	                _react2.default.createElement(
 	                  'h4',
 	                  { className: 'modal-title', id: 'title' },
-	                  'pp'
+	                  t('backend.tickets.update')
 	                )
 	              ),
 	              _react2.default.createElement(
@@ -55262,8 +55262,8 @@
 	                    { className: 'form-group' },
 	                    _react2.default.createElement(
 	                      'label',
-	                      { htmlFor: t('backend.tickets.quantity') },
-	                      'eat rice'
+	                      { htmlFor: t('backend.tickets.state') },
+	                      t('backend.tickets.state')
 	                    ),
 	                    _react2.default.createElement(
 	                      'select',
