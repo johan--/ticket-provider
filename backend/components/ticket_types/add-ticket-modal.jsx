@@ -106,7 +106,7 @@ class AddTicketModal extends React.Component {
                     </label>
                     <input
                       onChange={this.handleUsageQuantityChange.bind(this)}
-                      name="ticket_quantity"
+                      name="usage_quantity"
                       value={this.state.usage_quantity}
                       className="form-control" />
                   </div>

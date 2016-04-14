@@ -54389,7 +54389,7 @@
 	                    ),
 	                    _react2.default.createElement('input', {
 	                      onChange: this.handleUsageQuantityChange.bind(this),
-	                      name: 'ticket_quantity',
+	                      name: 'usage_quantity',
 	                      value: this.state.usage_quantity,
 	                      className: 'form-control' })
 	                  ),
@@ -54647,7 +54647,7 @@
 	                      ),
 	                      _react2.default.createElement('input', {
 	                        onChange: this.handleUsageQuantityChange.bind(this),
-	                        name: 'ticket_quantity',
+	                        name: 'usage_quantity',
 	                        value: this.state.usage_quantity,
 	                        className: 'form-control' })
 	                    )
