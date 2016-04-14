@@ -53999,12 +53999,6 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'tickets-panel' },
-	        _react2.default.createElement(
-	          'header',
-	          null,
-	          '>> ',
-	          t('backend.ticket_types.headers.ticket')
-	        ),
 	        _react2.default.createElement(_list2.default, { tickets: this.props.ticket })
 	      );
 	    }
