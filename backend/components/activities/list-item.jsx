@@ -29,7 +29,7 @@ class ListItem extends React.Component {
               {this.props.activity.get('date')}
             </div>
             <div className="activity-info-item activity-tickets">
-              {(this.props.activity.attributes.available_tickets/this.props.activity.attributes.all_tickets)*100}%
+              {parseInt(this.props.activity.attributes.available_tickets/this.props.activity.attributes.all_tickets*100)}%
               <small>{t('backend.activities.available')}</small>
             </div>
           </div>
