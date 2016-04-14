@@ -53674,8 +53674,8 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'ticket-type-form-container' },
-	        _react2.default.createElement(_addTicketModal2.default, { key: Math.random(), ticket_type_id: this.state ? this.state.attributes.id : '' }),
-	        _react2.default.createElement(_updateTicketModal2.default, { key: Math.random() }),
+	        _react2.default.createElement(_addTicketModal2.default, { ticket_type_id: this.state ? this.state.attributes.id : '' }),
+	        _react2.default.createElement(_updateTicketModal2.default, null),
 	        _react2.default.createElement(
 	          'select',
 	          { className: 'ticket-types-name',
