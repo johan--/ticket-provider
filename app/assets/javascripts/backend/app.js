@@ -54171,17 +54171,8 @@
 	          { className: 'ticket-action ticket-cell' },
 	          _react2.default.createElement(
 	            'a',
-	            { href: '/app/events/' + this.props.ticket.id + '/edit', className: 'action-container', onClick: this.handleClick.bind(this) },
+	            { className: 'action-container', onClick: this.handleClick.bind(this) },
 	            t('backend.tickets.update')
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'ticket-action ticket-cell' },
-	          _react2.default.createElement(
-	            'a',
-	            { className: 'action-container', href: '#', onClick: this.handleDelete.bind(this) },
-	            t('backend.tickets.delete')
 	          )
 	        )
 	      );
