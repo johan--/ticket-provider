@@ -23171,7 +23171,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-	 * jQuery JavaScript Library v2.2.0
+	 * jQuery JavaScript Library v2.2.1
 	 * http://jquery.com/
 	 *
 	 * Includes Sizzle.js
@@ -23181,7 +23181,7 @@
 	 * Released under the MIT license
 	 * http://jquery.org/license
 	 *
-	 * Date: 2016-01-08T20:02Z
+	 * Date: 2016-02-22T19:11Z
 	 */
 
 	(function( global, factory ) {
@@ -23237,7 +23237,7 @@
 
 
 	var
-		version = "2.2.0",
+		version = "2.2.1",
 
 		// Define a local copy of jQuery
 		jQuery = function( selector, context ) {
@@ -27651,7 +27651,7 @@
 		if ( fn === false ) {
 			fn = returnFalse;
 		} else if ( !fn ) {
-			return this;
+			return elem;
 		}
 
 		if ( one === 1 ) {
@@ -28300,14 +28300,14 @@
 		rscriptTypeMasked = /^true\/(.*)/,
 		rcleanScript = /^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g;
 
+	// Manipulating tables requires a tbody
 	function manipulationTarget( elem, content ) {
-		if ( jQuery.nodeName( elem, "table" ) &&
-			jQuery.nodeName( content.nodeType !== 11 ? content : content.firstChild, "tr" ) ) {
+		return jQuery.nodeName( elem, "table" ) &&
+			jQuery.nodeName( content.nodeType !== 11 ? content : content.firstChild, "tr" ) ?
 
-			return elem.getElementsByTagName( "tbody" )[ 0 ] || elem;
-		}
-
-		return elem;
+			elem.getElementsByTagName( "tbody" )[ 0 ] ||
+				elem.appendChild( elem.ownerDocument.createElement( "tbody" ) ) :
+			elem;
 	}
 
 	// Replace/restore the type attribute of script elements for safe DOM manipulation
@@ -28814,7 +28814,7 @@
 			// FF meanwhile throws on frame elements through "defaultView.getComputedStyle"
 			var view = elem.ownerDocument.defaultView;
 
-			if ( !view.opener ) {
+			if ( !view || !view.opener ) {
 				view = window;
 			}
 
@@ -28963,15 +28963,18 @@
 			style = elem.style;
 
 		computed = computed || getStyles( elem );
+		ret = computed ? computed.getPropertyValue( name ) || computed[ name ] : undefined;
+
+		// Support: Opera 12.1x only
+		// Fall back to style even without computed
+		// computed is undefined for elems on document fragments
+		if ( ( ret === "" || ret === undefined ) && !jQuery.contains( elem.ownerDocument, elem ) ) {
+			ret = jQuery.style( elem, name );
+		}
 
 		// Support: IE9
 		// getPropertyValue is only needed for .css('filter') (#12537)
 		if ( computed ) {
-			ret = computed.getPropertyValue( name ) || computed[ name ];
-
-			if ( ret === "" && !jQuery.contains( elem.ownerDocument, elem ) ) {
-				ret = jQuery.style( elem, name );
-			}
 
 			// A tribute to the "awesome hack by Dean Edwards"
 			// Android Browser returns percentage for some values,
@@ -31021,7 +31024,7 @@
 					// But now, this "simulate" function is used only for events
 					// for which stopPropagation() is noop, so there is no need for that anymore.
 					//
-					// For the compat branch though, guard for "click" and "submit"
+					// For the 1.x branch though, guard for "click" and "submit"
 					// events is still used, but was moved to jQuery.event.stopPropagation function
 					// because `originalEvent` should point to the original event for the constancy
 					// with other events and for more focused logic
@@ -32791,11 +32794,8 @@
 				}
 
 				// Add offsetParent borders
-				// Subtract offsetParent scroll positions
-				parentOffset.top += jQuery.css( offsetParent[ 0 ], "borderTopWidth", true ) -
-					offsetParent.scrollTop();
-				parentOffset.left += jQuery.css( offsetParent[ 0 ], "borderLeftWidth", true ) -
-					offsetParent.scrollLeft();
+				parentOffset.top += jQuery.css( offsetParent[ 0 ], "borderTopWidth", true );
+				parentOffset.left += jQuery.css( offsetParent[ 0 ], "borderLeftWidth", true );
 			}
 
 			// Subtract parent offsets and element margins
@@ -33096,11 +33096,11 @@
 
 	var _showContainer2 = _interopRequireDefault(_showContainer);
 
-	var _editContainer = __webpack_require__(315);
+	var _editContainer = __webpack_require__(316);
 
 	var _editContainer2 = _interopRequireDefault(_editContainer);
 
-	var _editContainer3 = __webpack_require__(317);
+	var _editContainer3 = __webpack_require__(318);
 
 	var _editContainer4 = _interopRequireDefault(_editContainer3);
 
@@ -38739,7 +38739,6 @@
 			// value: TYPES.object | TYPES.string,
 			// defaultValue: TYPES.object | TYPES.string,
 			closeOnSelect: TYPES.bool,
-			onFocus: TYPES.func,
 			onBlur: TYPES.func,
 			onChange: TYPES.func,
 			locale: TYPES.string,
@@ -38761,7 +38760,6 @@
 				viewMode: 'days',
 				inputProps: {},
 				input: true,
-				onFocus: nof,
 				onBlur: nof,
 				onChange: nof,
 				timeFormat: true,
@@ -38973,10 +38971,7 @@
 		},
 
 		openCalendar: function() {
-			if (!this.state.open) {
-				this.props.onFocus();
-				this.setState({ open: true });
-			}
+			this.setState({ open: true });
 		},
 
 		closeCalendar: function() {
@@ -39189,7 +39184,7 @@
 				else if( ( prevMonth.year() == currentYear && prevMonth.month() > currentMonth ) || ( prevMonth.year() > currentYear ) )
 					classes += ' rdtNew';
 
-				if( selected && prevMonth.isSame(selected, 'day') )
+				if( selected && prevMonth.isSame( {y: selected.year(), M: selected.month(), d: selected.date()} ) )
 					classes += ' rdtActive';
 
 				if (prevMonth.isSame(moment(), 'day') )
@@ -52284,7 +52279,7 @@
 		},
 		renderHeader: function(){
 			if( !this.props.dateFormat )
-				return null;
+				return '';
 
 			var date = this.props.selectedDate || this.props.viewDate;
 			return DOM.thead({ key: 'h'}, DOM.tr({},
@@ -52495,7 +52490,7 @@
 
 	var _activityStore2 = _interopRequireDefault(_activityStore);
 
-	var _ticketTypeStore = __webpack_require__(314);
+	var _ticketTypeStore = __webpack_require__(315);
 
 	var _ticketTypeStore2 = _interopRequireDefault(_ticketTypeStore);
 
@@ -52714,7 +52709,11 @@
 
 	var _alertMessages2 = _interopRequireDefault(_alertMessages);
 
-	var _ticketTypeStore = __webpack_require__(314);
+	var _appConstant = __webpack_require__(314);
+
+	var _appConstant2 = _interopRequireDefault(_appConstant);
+
+	var _ticketTypeStore = __webpack_require__(315);
 
 	var _ticketTypeStore2 = _interopRequireDefault(_ticketTypeStore);
 
@@ -52744,7 +52743,7 @@
 	        name: '',
 	        current_price: 0,
 	        description: '',
-	        seat_type: 'non_fix_seat'
+	        usage_type: _appConstant2.default.usage_type.uncountable
 	      }
 	    };
 
@@ -52810,13 +52809,13 @@
 	      this.setState(updateState);
 	    }
 	  }, {
-	    key: 'handleSeatTypeChange',
-	    value: function handleSeatTypeChange(e) {
+	    key: 'handleUsageTypeChange',
+	    value: function handleUsageTypeChange(e) {
 	      var updateState = this.state;
 	      if (e.target.checked) {
-	        updateState.ticket_type.seat_type = 'fix_seat';
+	        updateState.ticket_type.usage_type = _appConstant2.default.usage_type.countable;
 	      } else {
-	        updateState.ticket_type.seat_type = 'non_fix_seat';
+	        updateState.ticket_type.usage_type = _appConstant2.default.usage_type.uncountable;
 	      }
 	      this.setState(updateState);
 	    }
@@ -52911,13 +52910,13 @@
 	                      { className: 'form-group is-checkbox' },
 	                      _react2.default.createElement(
 	                        'label',
-	                        { htmlFor: 'seat_type' },
-	                        'Fixed Seat'
+	                        { htmlFor: 'usage_type' },
+	                        t('backend.ticket_types.countable')
 	                      ),
 	                      _react2.default.createElement('input', {
 	                        type: 'checkbox',
-	                        name: 'seat_type', id: 'seat_type',
-	                        onChange: this.handleSeatTypeChange.bind(this) }),
+	                        name: 'usage_type', id: 'usage_type',
+	                        onChange: this.handleUsageTypeChange.bind(this) }),
 	                      _react2.default.createElement('div', { className: 'checkbox' })
 	                    )
 	                  ),
@@ -52991,6 +52990,45 @@
 
 /***/ },
 /* 314 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	  roles: {
+	    'god': 'God',
+	    'account_owner': 'Account owner',
+	    'team_member': 'Team member'
+	  },
+
+	  ticket_state: [{
+	    key: 'New',
+	    value: 'new'
+	  }, {
+	    key: 'Enter',
+	    value: 'enter'
+	  }, {
+	    key: 'Exit',
+	    value: 'exit'
+	  }, {
+	    key: 'Refunded',
+	    value: 'refunded'
+	  }, {
+	    key: 'Discarded',
+	    value: 'discarded'
+	  }],
+
+	  usage_type: {
+	    'countable': 'countable',
+	    'uncountable': 'uncountable'
+	  }
+	};
+
+/***/ },
+/* 315 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53136,7 +53174,7 @@
 	exports.default = new TicketTypeCollection();
 
 /***/ },
-/* 315 */
+/* 316 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53151,7 +53189,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _editForm = __webpack_require__(316);
+	var _editForm = __webpack_require__(317);
 
 	var _editForm2 = _interopRequireDefault(_editForm);
 
@@ -53218,7 +53256,7 @@
 	exports.default = EditContainer;
 
 /***/ },
-/* 316 */
+/* 317 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53454,7 +53492,7 @@
 	exports.default = EditForm;
 
 /***/ },
-/* 317 */
+/* 318 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53477,7 +53515,7 @@
 
 	var _reactMixin2 = _interopRequireDefault(_reactMixin);
 
-	var _editForm = __webpack_require__(318);
+	var _editForm = __webpack_require__(319);
 
 	var _editForm2 = _interopRequireDefault(_editForm);
 
@@ -53528,7 +53566,7 @@
 	exports.default = EditContainer;
 
 /***/ },
-/* 318 */
+/* 319 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53551,11 +53589,11 @@
 
 	var _reactMixin2 = _interopRequireDefault(_reactMixin);
 
-	var _ticketTypeStore = __webpack_require__(314);
+	var _ticketTypeStore = __webpack_require__(315);
 
 	var _ticketTypeStore2 = _interopRequireDefault(_ticketTypeStore);
 
-	var _ticketStore = __webpack_require__(319);
+	var _ticketStore = __webpack_require__(320);
 
 	var _ticketStore2 = _interopRequireDefault(_ticketStore);
 
@@ -53567,15 +53605,15 @@
 
 	var _ticketTypeActions2 = _interopRequireDefault(_ticketTypeActions);
 
-	var _listContainer = __webpack_require__(321);
+	var _listContainer = __webpack_require__(322);
 
 	var _listContainer2 = _interopRequireDefault(_listContainer);
 
-	var _addTicketModal = __webpack_require__(324);
+	var _addTicketModal = __webpack_require__(325);
 
 	var _addTicketModal2 = _interopRequireDefault(_addTicketModal);
 
-	var _updateTicketModal = __webpack_require__(326);
+	var _updateTicketModal = __webpack_require__(327);
 
 	var _updateTicketModal2 = _interopRequireDefault(_updateTicketModal);
 
@@ -53679,8 +53717,8 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'ticket-type-form-container' },
-	        _react2.default.createElement(_addTicketModal2.default, { ticket_type_id: this.state ? this.state.attributes.id : '' }),
-	        _react2.default.createElement(_updateTicketModal2.default, null),
+	        _react2.default.createElement(_addTicketModal2.default, { ticket_type_id: this.state ? this.state.attributes.id : '', usage_type: this.state ? this.state.attributes.usage_type : '' }),
+	        _react2.default.createElement(_updateTicketModal2.default, { usage_type: this.state ? this.state.attributes.usage_type : '' }),
 	        _react2.default.createElement(
 	          'select',
 	          { className: 'ticket-types-name',
@@ -53772,7 +53810,7 @@
 	exports.default = EditForm;
 
 /***/ },
-/* 319 */
+/* 320 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53791,7 +53829,7 @@
 
 	var _store2 = _interopRequireDefault(_store);
 
-	var _ticketConstants = __webpack_require__(320);
+	var _ticketConstants = __webpack_require__(321);
 
 	var _ticketConstants2 = _interopRequireDefault(_ticketConstants);
 
@@ -53892,7 +53930,7 @@
 	exports.default = new TicketCollection();
 
 /***/ },
-/* 320 */
+/* 321 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -53906,7 +53944,7 @@
 	};
 
 /***/ },
-/* 321 */
+/* 322 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53929,11 +53967,11 @@
 
 	var _reactMixin2 = _interopRequireDefault(_reactMixin);
 
-	var _list = __webpack_require__(322);
+	var _list = __webpack_require__(323);
 
 	var _list2 = _interopRequireDefault(_list);
 
-	var _ticketTypeStore = __webpack_require__(314);
+	var _ticketTypeStore = __webpack_require__(315);
 
 	var _ticketTypeStore2 = _interopRequireDefault(_ticketTypeStore);
 
@@ -53980,7 +54018,7 @@
 	exports.default = ListContainer;
 
 /***/ },
-/* 322 */
+/* 323 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53999,7 +54037,7 @@
 
 	var _alertMessages2 = _interopRequireDefault(_alertMessages);
 
-	var _listItem = __webpack_require__(323);
+	var _listItem = __webpack_require__(324);
 
 	var _listItem2 = _interopRequireDefault(_listItem);
 
@@ -54048,7 +54086,7 @@
 	exports.default = List;
 
 /***/ },
-/* 323 */
+/* 324 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54158,7 +54196,7 @@
 	exports.default = ListItem;
 
 /***/ },
-/* 324 */
+/* 325 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54181,7 +54219,7 @@
 
 	var _reactMixin2 = _interopRequireDefault(_reactMixin);
 
-	var _ticketActions = __webpack_require__(325);
+	var _ticketActions = __webpack_require__(326);
 
 	var _ticketActions2 = _interopRequireDefault(_ticketActions);
 
@@ -54189,7 +54227,7 @@
 
 	var _alertMessages2 = _interopRequireDefault(_alertMessages);
 
-	var _ticketStore = __webpack_require__(319);
+	var _ticketStore = __webpack_require__(320);
 
 	var _ticketStore2 = _interopRequireDefault(_ticketStore);
 
@@ -54215,8 +54253,10 @@
 
 	    _this.state = {
 	      ticket: { quantity: 0,
-	        price: 0 },
-	      ticket_type_id: props.ticket_type_id
+	        price: 0,
+	        usage_quantity: 0 },
+	      ticket_type_id: props.ticket_type_id,
+	      usage_type: props.usage_type
 	    };
 
 	    _this.showModalSubscription = _emitter2.default.addListener('showCreateTicketModal', _this.showModal.bind(_this));
@@ -54241,6 +54281,9 @@
 	      this.state.ticket_type_id = ticket.id;
 	      this.state.ticket.price = ticket.current_price;
 	      this.$modal.modal('show');
+	      if (this.state.usage_type == 'uncountable') {
+	        $('.usage_quantity').hide();
+	      }
 	    }
 	  }, {
 	    key: 'handleCancel',
@@ -54265,6 +54308,13 @@
 	    value: function handleQuantityChange(e) {
 	      var updateState = this.state;
 	      updateState.ticket.quantity = e.target.value;
+	      this.setState(updateState);
+	    }
+	  }, {
+	    key: 'handleUsageQuantityChange',
+	    value: function handleUsageQuantityChange(e) {
+	      var updateState = this.state;
+	      updateState.ticket.usage_quantity = e.target.value;
 	      this.setState(updateState);
 	    }
 	  }, {
@@ -54325,6 +54375,20 @@
 	                      className: 'form-control' })
 	                  ),
 	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'form-group usage_quantity' },
+	                    _react2.default.createElement(
+	                      'label',
+	                      { htmlFor: t('backend.tickets.usage_quantity') },
+	                      t('backend.tickets.usage_quantity')
+	                    ),
+	                    _react2.default.createElement('input', {
+	                      onChange: this.handleUsageQuantityChange.bind(this),
+	                      name: 'usage_quantity',
+	                      value: this.state.usage_quantity,
+	                      className: 'form-control' })
+	                  ),
+	                  _react2.default.createElement(
 	                    'button',
 	                    {
 	                      onClick: this.handleSubmit.bind(this),
@@ -54349,7 +54413,7 @@
 	exports.default = AddTicketModal;
 
 /***/ },
-/* 325 */
+/* 326 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54362,7 +54426,7 @@
 
 	var _dispatch2 = _interopRequireDefault(_dispatch);
 
-	var _ticketConstants = __webpack_require__(320);
+	var _ticketConstants = __webpack_require__(321);
 
 	var _ticketConstants2 = _interopRequireDefault(_ticketConstants);
 
@@ -54378,7 +54442,7 @@
 	};
 
 /***/ },
-/* 326 */
+/* 327 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54401,7 +54465,7 @@
 
 	var _reactMixin2 = _interopRequireDefault(_reactMixin);
 
-	var _ticketActions = __webpack_require__(325);
+	var _ticketActions = __webpack_require__(326);
 
 	var _ticketActions2 = _interopRequireDefault(_ticketActions);
 
@@ -54409,11 +54473,11 @@
 
 	var _alertMessages2 = _interopRequireDefault(_alertMessages);
 
-	var _appConstant = __webpack_require__(327);
+	var _appConstant = __webpack_require__(314);
 
 	var _appConstant2 = _interopRequireDefault(_appConstant);
 
-	var _ticketStore = __webpack_require__(319);
+	var _ticketStore = __webpack_require__(320);
 
 	var _ticketStore2 = _interopRequireDefault(_ticketStore);
 
@@ -54442,7 +54506,8 @@
 	        quantity: 0,
 	        price: 0
 	      },
-	      ticket_type_id: props.ticket_type_id
+	      ticket_type_id: props.ticket_type_id,
+	      usage_type: props.usage_type
 	    };
 
 	    _this.showModalSubscription = _emitter2.default.addListener('showUpdateTicketModal', _this.showModal.bind(_this));
@@ -54466,6 +54531,9 @@
 	    value: function showModal(ticket) {
 	      this.setState(ticket);
 	      this.$modal.modal('show');
+	      if (this.state.usage_type == 'uncountable') {
+	        $('.usage_quantity').hide();
+	      }
 	    }
 	  }, {
 	    key: 'handleCancel',
@@ -54490,6 +54558,13 @@
 	    value: function handleTicketStateChange(e) {
 	      var updateState = this.state;
 	      updateState.ticket.state = e.target.value;
+	      this.setState(updateState);
+	    }
+	  }, {
+	    key: 'handleUsageQuantityChange',
+	    value: function handleUsageQuantityChange(e) {
+	      var updateState = this.state;
+	      updateState.ticket.usage_quantity = e.target.value;
 	      this.setState(updateState);
 	    }
 	  }, {
@@ -54556,6 +54631,20 @@
 	                          state.key
 	                        );
 	                      })
+	                    ),
+	                    _react2.default.createElement(
+	                      'div',
+	                      { className: 'form-group usage_quantity' },
+	                      _react2.default.createElement(
+	                        'label',
+	                        { htmlFor: t('backend.tickets.usage_quantity') },
+	                        t('backend.tickets.usage_quantity')
+	                      ),
+	                      _react2.default.createElement('input', {
+	                        onChange: this.handleUsageQuantityChange.bind(this),
+	                        name: 'usage_quantity',
+	                        value: this.state.usage_quantity,
+	                        className: 'form-control' })
 	                    )
 	                  ),
 	                  _react2.default.createElement(
@@ -54581,40 +54670,6 @@
 	(0, _reactMixin2.default)(UpdateTicketModal.prototype, _reactI18n2.default);
 
 	exports.default = UpdateTicketModal;
-
-/***/ },
-/* 327 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {
-	  roles: {
-	    'god': 'God',
-	    'account_owner': 'Account owner',
-	    'team_member': 'Team member'
-	  },
-
-	  ticket_state: [{
-	    key: 'New',
-	    value: 'new'
-	  }, {
-	    key: 'Enter',
-	    value: 'enter'
-	  }, {
-	    key: 'Exit',
-	    value: 'exit'
-	  }, {
-	    key: 'Refunded',
-	    value: 'refunded'
-	  }, {
-	    key: 'Discarded',
-	    value: 'discarded'
-	  }]
-	};
 
 /***/ },
 /* 328 */
@@ -54656,7 +54711,7 @@
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
-	var _appConstant = __webpack_require__(327);
+	var _appConstant = __webpack_require__(314);
 
 	var _appConstant2 = _interopRequireDefault(_appConstant);
 

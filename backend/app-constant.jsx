@@ -26,5 +26,10 @@ export default {
       key: 'Discarded',
       value: 'discarded'
     }
-  ]
+  ],
+
+  usage_type: {
+    'countable': 'countable',
+    'uncountable': 'uncountable'
+  }
 }

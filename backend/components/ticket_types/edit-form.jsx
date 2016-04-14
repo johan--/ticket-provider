@@ -73,8 +73,8 @@ class EditForm extends React.Component {
     let t = this.getIntlMessage;
     return (
       <div className="ticket-type-form-container">
-        <AddTicketTypeModal ticket_type_id={this.state ? this.state.attributes.id : ''}/>
-        <UpdateTicketModal />
+        <AddTicketTypeModal ticket_type_id={this.state ? this.state.attributes.id : ''} usage_type={this.state ? this.state.attributes.usage_type : ''}/>
+        <UpdateTicketModal usage_type={this.state ? this.state.attributes.usage_type : ''} />
         <select className="ticket-types-name"
           value={this.state ? this.state.attributes.id : ''}
           onChange={this.handleTicketTypeChange.bind(this)}>

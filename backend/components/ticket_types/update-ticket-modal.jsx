@@ -16,7 +16,8 @@ class UpdateTicketModal extends React.Component {
         quantity: 0,
         price: 0
       },
-      ticket_type_id: props.ticket_type_id
+      ticket_type_id: props.ticket_type_id,
+      usage_type: props.usage_type
     };
 
     this.showModalSubscription = emitter.addListener('showUpdateTicketModal', this.showModal.bind(this));
@@ -35,6 +36,9 @@ class UpdateTicketModal extends React.Component {
   showModal(ticket) {
     this.setState(ticket);
     this.$modal.modal('show');
+    if(this.state.usage_type == 'uncountable') {
+      $('.usage_quantity').hide();
+    }
   }
 
   handleCancel() {
@@ -53,6 +57,12 @@ class UpdateTicketModal extends React.Component {
   handleTicketStateChange(e) {
     let updateState = this.state;
     updateState.ticket.state = e.target.value;
+    this.setState(updateState);
+  }
+
+  handleUsageQuantityChange(e) {
+    let updateState = this.state;
+    updateState.ticket.usage_quantity = e.target.value;
     this.setState(updateState);
   }
 
@@ -95,6 +105,16 @@ class UpdateTicketModal extends React.Component {
                           </option>
                       )}
                     </select>
+                    <div className="form-group usage_quantity">
+                      <label htmlFor={t('backend.tickets.usage_quantity')}>
+                        {t('backend.tickets.usage_quantity')}
+                      </label>
+                      <input
+                        onChange={this.handleUsageQuantityChange.bind(this)}
+                        name="usage_quantity"
+                        value={this.state.usage_quantity}
+                        className="form-control" />
+                    </div>
                   </div>
                   <button
                     onClick={this.handleSubmit.bind(this)}
