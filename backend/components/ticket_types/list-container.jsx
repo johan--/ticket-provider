@@ -10,7 +10,6 @@ class ListContainer extends React.Component {
     let t = this.getIntlMessage;
     return (
       <div className="tickets-panel">
-        <header>>> {t('backend.ticket_types.headers.ticket')}</header>
         <List tickets={this.props.ticket} />
       </div>
     );
