@@ -24,7 +24,7 @@ class Api::V1::UsersController < Api::V1::ApiController
   end
 
   def update
-    if @user.update_attributes(user_params)
+    if @user.update_with_password(user_params)
       render json: @user, status: :ok
     else
       render json: { errors: [@user.errors.full_messages.to_sentence] }, status: :unprocessable_entity
@@ -45,7 +45,9 @@ class Api::V1::UsersController < Api::V1::ApiController
     params
       .require(:user)
       .permit(:email,
+              :current_password,
               :password,
+              :password_confirmation,
               :name,
               :birthdate)
   end
