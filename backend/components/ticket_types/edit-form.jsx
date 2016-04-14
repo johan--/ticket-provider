@@ -2,10 +2,12 @@ import React from 'react';
 import ReactI18n from 'react-i18n';
 import ReactMixin from 'react-mixin';
 import Store from '../../stores/ticket-type-store.jsx';
+import TicketStore from '../../stores/ticket-store.jsx';
 import AlertMessages from '../shared/alert-messages.jsx';
 import TicketTypeAction from '../../actions/ticket-type-actions.jsx';
 import ListContainer from './list-container.jsx';
 import AddTicketTypeModal from '../ticket_types/add-ticket-modal.jsx';
+import UpdateTicketModal from '../ticket_types/update-ticket-modal.jsx';
 import emitter from '../../emitter.jsx';
 import moment from 'moment';
 import _ from 'underscore';
@@ -27,9 +29,8 @@ class EditForm extends React.Component {
         Backbone.history.navigate(`/app/activities/${this.activity_id}`, true);
       }
       this.setState(this.store.models[0]);
+      TicketStore.set(this.store.models[0].get('tickets'));
     }, this);
-
-    this.$modal = $('.modal');
   }
 
   componentWillUnmount() {
@@ -73,6 +74,7 @@ class EditForm extends React.Component {
     return (
       <div className="ticket-type-form-container">
         <AddTicketTypeModal ticket_type_id={this.state ? this.state.attributes.id : ''}/>
+        <UpdateTicketModal />
         <select className="ticket-types-name"
           value={this.state ? this.state.attributes.id : ''}
           onChange={this.handleTicketTypeChange.bind(this)}>
@@ -107,7 +109,7 @@ class EditForm extends React.Component {
           className="btn btn-primary"
           onClick={this.handleSubmit.bind(this)}>{t('backend.ticket_types.save_changes')}</button>
         <div className="form-group">
-          <label>Available</label>
+          <label>{t('backend.tickets.available')}</label>
           <h4>{this.state ? this.state.attributes.available_tickets : t('backend.ticket_types.na')} / {this.state ? this.state.attributes.all_tickets : t('backend.ticket_types.na')}</h4>
         </div>
         <ListContainer ticket={this.state ? this.state.attributes.tickets : []}/>

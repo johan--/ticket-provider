@@ -33104,11 +33104,11 @@
 
 	var _editContainer4 = _interopRequireDefault(_editContainer3);
 
-	var _settingContainer = __webpack_require__(326);
+	var _settingContainer = __webpack_require__(328);
 
 	var _settingContainer2 = _interopRequireDefault(_settingContainer);
 
-	var _settingContainer3 = __webpack_require__(331);
+	var _settingContainer3 = __webpack_require__(332);
 
 	var _settingContainer4 = _interopRequireDefault(_settingContainer3);
 
@@ -53550,6 +53550,10 @@
 
 	var _ticketTypeStore2 = _interopRequireDefault(_ticketTypeStore);
 
+	var _ticketStore = __webpack_require__(319);
+
+	var _ticketStore2 = _interopRequireDefault(_ticketStore);
+
 	var _alertMessages = __webpack_require__(196);
 
 	var _alertMessages2 = _interopRequireDefault(_alertMessages);
@@ -53558,13 +53562,17 @@
 
 	var _ticketTypeActions2 = _interopRequireDefault(_ticketTypeActions);
 
-	var _listContainer = __webpack_require__(319);
+	var _listContainer = __webpack_require__(321);
 
 	var _listContainer2 = _interopRequireDefault(_listContainer);
 
-	var _addTicketModal = __webpack_require__(322);
+	var _addTicketModal = __webpack_require__(324);
 
 	var _addTicketModal2 = _interopRequireDefault(_addTicketModal);
+
+	var _updateTicketModal = __webpack_require__(326);
+
+	var _updateTicketModal2 = _interopRequireDefault(_updateTicketModal);
 
 	var _emitter = __webpack_require__(184);
 
@@ -53613,9 +53621,8 @@
 	          Backbone.history.navigate('/app/activities/' + this.activity_id, true);
 	        }
 	        this.setState(this.store.models[0]);
+	        _ticketStore2.default.set(this.store.models[0].get('tickets'));
 	      }, this);
-
-	      this.$modal = (0, _jquery2.default)('.modal');
 	    }
 	  }, {
 	    key: 'componentWillUnmount',
@@ -53668,6 +53675,7 @@
 	        'div',
 	        { className: 'ticket-type-form-container' },
 	        _react2.default.createElement(_addTicketModal2.default, { ticket_type_id: this.state ? this.state.attributes.id : '' }),
+	        _react2.default.createElement(_updateTicketModal2.default, null),
 	        _react2.default.createElement(
 	          'select',
 	          { className: 'ticket-types-name',
@@ -53727,7 +53735,7 @@
 	          _react2.default.createElement(
 	            'label',
 	            null,
-	            'Available'
+	            t('backend.tickets.available')
 	          ),
 	          _react2.default.createElement(
 	            'h4',
@@ -53770,488 +53778,6 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactI18n = __webpack_require__(166);
-
-	var _reactI18n2 = _interopRequireDefault(_reactI18n);
-
-	var _reactMixin = __webpack_require__(171);
-
-	var _reactMixin2 = _interopRequireDefault(_reactMixin);
-
-	var _list = __webpack_require__(320);
-
-	var _list2 = _interopRequireDefault(_list);
-
-	var _ticketTypeStore = __webpack_require__(314);
-
-	var _ticketTypeStore2 = _interopRequireDefault(_ticketTypeStore);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var ListContainer = function (_React$Component) {
-	  _inherits(ListContainer, _React$Component);
-
-	  function ListContainer() {
-	    _classCallCheck(this, ListContainer);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ListContainer).call(this));
-	  }
-
-	  _createClass(ListContainer, [{
-	    key: 'render',
-	    value: function render() {
-	      var t = this.getIntlMessage;
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'tickets-panel' },
-	        _react2.default.createElement(
-	          'header',
-	          null,
-	          '>> ',
-	          t('backend.ticket_types.headers.ticket')
-	        ),
-	        _react2.default.createElement(_list2.default, { tickets: this.props.ticket })
-	      );
-	    }
-	  }]);
-
-	  return ListContainer;
-	}(_react2.default.Component);
-
-	(0, _reactMixin2.default)(ListContainer.prototype, _reactI18n2.default);
-
-	exports.default = ListContainer;
-
-/***/ },
-/* 320 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _alertMessages = __webpack_require__(196);
-
-	var _alertMessages2 = _interopRequireDefault(_alertMessages);
-
-	var _listItem = __webpack_require__(321);
-
-	var _listItem2 = _interopRequireDefault(_listItem);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var List = function (_React$Component) {
-	  _inherits(List, _React$Component);
-
-	  function List() {
-	    _classCallCheck(this, List);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(List).apply(this, arguments));
-	  }
-
-	  _createClass(List, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'container-fluid tickets-list-container' },
-	        _react2.default.createElement(
-	          'h2',
-	          null,
-	          'Ticket'
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'ticket-table' },
-	          this.props.tickets.map(function (ticket) {
-	            return _react2.default.createElement(_listItem2.default, { key: ticket.id, ticket: ticket });
-	          })
-	        )
-	      );
-	    }
-	  }]);
-
-	  return List;
-	}(_react2.default.Component);
-
-	exports.default = List;
-
-/***/ },
-/* 321 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactI18n = __webpack_require__(166);
-
-	var _reactI18n2 = _interopRequireDefault(_reactI18n);
-
-	var _reactMixin = __webpack_require__(171);
-
-	var _reactMixin2 = _interopRequireDefault(_reactMixin);
-
-	var _emitter = __webpack_require__(184);
-
-	var _emitter2 = _interopRequireDefault(_emitter);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var ListItem = function (_React$Component) {
-	  _inherits(ListItem, _React$Component);
-
-	  function ListItem() {
-	    _classCallCheck(this, ListItem);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ListItem).apply(this, arguments));
-	  }
-
-	  _createClass(ListItem, [{
-	    key: 'handleClick',
-	    value: function handleClick(e) {
-	      e.preventDefault();
-	      Backbone.history.navigate($(e.currentTarget).attr('href'), true);
-	    }
-	  }, {
-	    key: 'handleDelete',
-	    value: function handleDelete(e) {
-	      e.preventDefault();
-	      _emitter2.default.emit('showDeleteModal', this.props.event);
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var t = this.getIntlMessage;
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'ticket-list' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'ticket-name ticket-cell' },
-	          this.props.ticket.id
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'ticket-seat ticket-cell' },
-	          this.props.ticket.row,
-	          '-',
-	          this.props.ticket.column
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'ticket-state ticket-cell' },
-	          this.props.ticket.state
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'ticket-action ticket-cell' },
-	          _react2.default.createElement(
-	            'a',
-	            { href: '/app/events/' + this.props.ticket.id + '/edit', className: 'action-container', onClick: this.handleClick },
-	            'Update'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'ticket-action ticket-cell' },
-	          _react2.default.createElement(
-	            'a',
-	            { className: 'action-container', href: '#', onClick: this.handleDelete.bind(this) },
-	            'Delete'
-	          )
-	        )
-	      );
-	    }
-	  }]);
-
-	  return ListItem;
-	}(_react2.default.Component);
-
-	(0, _reactMixin2.default)(ListItem.prototype, _reactI18n2.default);
-
-	exports.default = ListItem;
-
-/***/ },
-/* 322 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactI18n = __webpack_require__(166);
-
-	var _reactI18n2 = _interopRequireDefault(_reactI18n);
-
-	var _reactMixin = __webpack_require__(171);
-
-	var _reactMixin2 = _interopRequireDefault(_reactMixin);
-
-	var _ticketActions = __webpack_require__(323);
-
-	var _ticketActions2 = _interopRequireDefault(_ticketActions);
-
-	var _alertMessages = __webpack_require__(196);
-
-	var _alertMessages2 = _interopRequireDefault(_alertMessages);
-
-	var _ticketStore = __webpack_require__(325);
-
-	var _ticketStore2 = _interopRequireDefault(_ticketStore);
-
-	var _emitter = __webpack_require__(184);
-
-	var _emitter2 = _interopRequireDefault(_emitter);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var AddTicketModal = function (_React$Component) {
-	  _inherits(AddTicketModal, _React$Component);
-
-	  function AddTicketModal(props) {
-	    _classCallCheck(this, AddTicketModal);
-
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AddTicketModal).call(this, props));
-
-	    _this.state = {
-	      ticket: { quantity: 0,
-	        price: 0 },
-	      ticket_type_id: props.ticket_type_id
-	    };
-
-	    _this.showModalSubscription = _emitter2.default.addListener('showCreateTicketModal', _this.showModal.bind(_this));
-	    _this.hideModelSubscription = _emitter2.default.addListener('hideCreateTicketModal', _this.hideModal.bind(_this));
-	    return _this;
-	  }
-
-	  _createClass(AddTicketModal, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      this.$modal = $('.modal');
-	    }
-	  }, {
-	    key: 'componentWillUnmount',
-	    value: function componentWillUnmount() {
-	      this.showModalSubscription.remove();
-	      this.hideModelSubscription.remove();
-	    }
-	  }, {
-	    key: 'showModal',
-	    value: function showModal(ticket) {
-	      this.state.ticket_type_id = ticket.id;
-	      this.state.ticket.price = ticket.current_price;
-	      this.$modal.modal('show');
-	    }
-	  }, {
-	    key: 'handleCancel',
-	    value: function handleCancel() {
-	      this.$modal.modal('hide');
-	    }
-	  }, {
-	    key: 'hideModal',
-	    value: function hideModal() {
-	      this.$modal.modal('hide');
-	    }
-
-	    // Prevent child modal from trigger hideModal on it's click event.
-
-	  }, {
-	    key: 'preventChildModalHide',
-	    value: function preventChildModalHide(e) {
-	      e.stopPropagation();
-	    }
-	  }, {
-	    key: 'handleQuantityChange',
-	    value: function handleQuantityChange(e) {
-	      var updateState = this.state;
-	      updateState.ticket.quantity = e.target.value;
-	      this.setState(updateState);
-	    }
-	  }, {
-	    key: 'handleSubmit',
-	    value: function handleSubmit(e) {
-	      e.preventDefault();
-	      _ticketActions2.default.add(this.state);
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var t = this.getIntlMessage;
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'modal fade is-create-modal',
-	          tabIndex: '-1',
-	          role: 'dialog',
-	          'aria-labelledby': 'title',
-	          'aria-hidden': 'true',
-	          onClick: this.hideModal.bind(this) },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'modal-internal-wrapper' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'modal-dialog modal-small-content', role: 'document' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'modal-content', onClick: this.preventChildModalHide },
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'modal-header' },
-	                _react2.default.createElement(
-	                  'h4',
-	                  { className: 'modal-title', id: 'title' },
-	                  t('backend.ticket_types.headers.add_ticket')
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'div',
-	                { className: 'modal-body' },
-	                _react2.default.createElement(_alertMessages2.default, { event: 'error', alertType: 'danger' }),
-	                _react2.default.createElement(
-	                  'form',
-	                  { className: 'form-horizontal' },
-	                  _react2.default.createElement(
-	                    'div',
-	                    { className: 'form-group' },
-	                    _react2.default.createElement(
-	                      'label',
-	                      { htmlFor: t('backend.tickets.quantity') },
-	                      t('backend.tickets.quantity')
-	                    ),
-	                    _react2.default.createElement('input', {
-	                      onChange: this.handleQuantityChange.bind(this),
-	                      name: 'ticket_quantity',
-	                      value: this.state.quantity,
-	                      className: 'form-control' })
-	                  ),
-	                  _react2.default.createElement(
-	                    'button',
-	                    {
-	                      onClick: this.handleSubmit.bind(this),
-	                      type: 'submit',
-	                      className: 'btn btn-primary' },
-	                    t('backend.ticket_types.save_changes')
-	                  )
-	                )
-	              )
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-
-	  return AddTicketModal;
-	}(_react2.default.Component);
-
-	(0, _reactMixin2.default)(AddTicketModal.prototype, _reactI18n2.default);
-
-	exports.default = AddTicketModal;
-
-/***/ },
-/* 323 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _dispatch = __webpack_require__(178);
-
-	var _dispatch2 = _interopRequireDefault(_dispatch);
-
-	var _ticketConstants = __webpack_require__(324);
-
-	var _ticketConstants2 = _interopRequireDefault(_ticketConstants);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = {
-	  add: function add(state) {
-	    (0, _dispatch2.default)(_ticketConstants2.default.CREATE_TICKET, { ticket: state.ticket, ticket_type_id: state.ticket_type_id });
-	  }
-	};
-
-/***/ },
-/* 324 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {
-	  CREATE_TICKET: 'CREATE_TICKET'
-	};
-
-/***/ },
-/* 325 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	var _backbone = __webpack_require__(159);
 
 	var _backbone2 = _interopRequireDefault(_backbone);
@@ -54260,7 +53786,7 @@
 
 	var _store2 = _interopRequireDefault(_store);
 
-	var _ticketConstants = __webpack_require__(324);
+	var _ticketConstants = __webpack_require__(320);
 
 	var _ticketConstants2 = _interopRequireDefault(_ticketConstants);
 
@@ -54334,6 +53860,23 @@
 	            });
 	            break;
 	          }
+	        case _ticketConstants2.default.EDIT_TICKET:
+	          {
+	            var jqXHR = this.get(payload.ticket.id).fetch({
+	              data: _jquery2.default.param({ ticket: payload.ticket }),
+	              type: 'PUT'
+	            });
+
+	            jqXHR.done(function () {
+	              _emitter2.default.emit('updateTicketList');
+	              _emitter2.default.emit('hideUpdateTicketModal');
+	            });
+
+	            jqXHR.fail(function (jqXHR, textStatus, errorThrown) {
+	              _emitter2.default.emit('error', jqXHR.responseJSON.errors[0]);
+	            });
+	            break;
+	          }
 	      }
 	    }
 	  }]);
@@ -54342,6 +53885,492 @@
 	}(_store2.default.Collection);
 
 	exports.default = new TicketCollection();
+
+/***/ },
+/* 320 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	  CREATE_TICKET: 'CREATE_TICKET',
+	  EDIT_TICKET: 'EDIT_TICKET'
+	};
+
+/***/ },
+/* 321 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactI18n = __webpack_require__(166);
+
+	var _reactI18n2 = _interopRequireDefault(_reactI18n);
+
+	var _reactMixin = __webpack_require__(171);
+
+	var _reactMixin2 = _interopRequireDefault(_reactMixin);
+
+	var _list = __webpack_require__(322);
+
+	var _list2 = _interopRequireDefault(_list);
+
+	var _ticketTypeStore = __webpack_require__(314);
+
+	var _ticketTypeStore2 = _interopRequireDefault(_ticketTypeStore);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ListContainer = function (_React$Component) {
+	  _inherits(ListContainer, _React$Component);
+
+	  function ListContainer() {
+	    _classCallCheck(this, ListContainer);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ListContainer).apply(this, arguments));
+	  }
+
+	  _createClass(ListContainer, [{
+	    key: 'render',
+	    value: function render() {
+	      var t = this.getIntlMessage;
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'tickets-panel' },
+	        _react2.default.createElement(
+	          'header',
+	          null,
+	          '>> ',
+	          t('backend.ticket_types.headers.ticket')
+	        ),
+	        _react2.default.createElement(_list2.default, { tickets: this.props.ticket })
+	      );
+	    }
+	  }]);
+
+	  return ListContainer;
+	}(_react2.default.Component);
+
+	(0, _reactMixin2.default)(ListContainer.prototype, _reactI18n2.default);
+
+	exports.default = ListContainer;
+
+/***/ },
+/* 322 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _alertMessages = __webpack_require__(196);
+
+	var _alertMessages2 = _interopRequireDefault(_alertMessages);
+
+	var _listItem = __webpack_require__(323);
+
+	var _listItem2 = _interopRequireDefault(_listItem);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var List = function (_React$Component) {
+	  _inherits(List, _React$Component);
+
+	  function List() {
+	    _classCallCheck(this, List);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(List).apply(this, arguments));
+	  }
+
+	  _createClass(List, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'container-fluid tickets-list-container' },
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          'Ticket'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'ticket-table' },
+	          this.props.tickets.map(function (ticket) {
+	            return _react2.default.createElement(_listItem2.default, { key: ticket.id, ticket: ticket });
+	          })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return List;
+	}(_react2.default.Component);
+
+	exports.default = List;
+
+/***/ },
+/* 323 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactI18n = __webpack_require__(166);
+
+	var _reactI18n2 = _interopRequireDefault(_reactI18n);
+
+	var _reactMixin = __webpack_require__(171);
+
+	var _reactMixin2 = _interopRequireDefault(_reactMixin);
+
+	var _emitter = __webpack_require__(184);
+
+	var _emitter2 = _interopRequireDefault(_emitter);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ListItem = function (_React$Component) {
+	  _inherits(ListItem, _React$Component);
+
+	  function ListItem() {
+	    _classCallCheck(this, ListItem);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ListItem).apply(this, arguments));
+	  }
+
+	  _createClass(ListItem, [{
+	    key: 'handleClick',
+	    value: function handleClick(e) {
+	      e.preventDefault();
+	      _emitter2.default.emit('showUpdateTicketModal', this.props);
+	    }
+	  }, {
+	    key: 'handleDelete',
+	    value: function handleDelete(e) {
+	      e.preventDefault();
+	      _emitter2.default.emit('showDeleteModal', this.props.event);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var t = this.getIntlMessage;
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'ticket-list' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'ticket-name ticket-cell' },
+	          this.props.ticket.id
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'ticket-seat ticket-cell' },
+	          this.props.ticket.row,
+	          '-',
+	          this.props.ticket.column
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'ticket-state ticket-cell' },
+	          this.props.ticket.state
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'ticket-action ticket-cell' },
+	          _react2.default.createElement(
+	            'a',
+	            { href: '/app/events/' + this.props.ticket.id + '/edit', className: 'action-container', onClick: this.handleClick.bind(this) },
+	            t('backend.tickets.update')
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'ticket-action ticket-cell' },
+	          _react2.default.createElement(
+	            'a',
+	            { className: 'action-container', href: '#', onClick: this.handleDelete.bind(this) },
+	            t('backend.tickets.delete')
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return ListItem;
+	}(_react2.default.Component);
+
+	(0, _reactMixin2.default)(ListItem.prototype, _reactI18n2.default);
+
+	exports.default = ListItem;
+
+/***/ },
+/* 324 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactI18n = __webpack_require__(166);
+
+	var _reactI18n2 = _interopRequireDefault(_reactI18n);
+
+	var _reactMixin = __webpack_require__(171);
+
+	var _reactMixin2 = _interopRequireDefault(_reactMixin);
+
+	var _ticketActions = __webpack_require__(325);
+
+	var _ticketActions2 = _interopRequireDefault(_ticketActions);
+
+	var _alertMessages = __webpack_require__(196);
+
+	var _alertMessages2 = _interopRequireDefault(_alertMessages);
+
+	var _ticketStore = __webpack_require__(319);
+
+	var _ticketStore2 = _interopRequireDefault(_ticketStore);
+
+	var _emitter = __webpack_require__(184);
+
+	var _emitter2 = _interopRequireDefault(_emitter);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var AddTicketModal = function (_React$Component) {
+	  _inherits(AddTicketModal, _React$Component);
+
+	  function AddTicketModal(props) {
+	    _classCallCheck(this, AddTicketModal);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AddTicketModal).call(this, props));
+
+	    _this.state = {
+	      ticket: { quantity: 0,
+	        price: 0 },
+	      ticket_type_id: props.ticket_type_id
+	    };
+
+	    _this.showModalSubscription = _emitter2.default.addListener('showCreateTicketModal', _this.showModal.bind(_this));
+	    _this.hideModelSubscription = _emitter2.default.addListener('hideCreateTicketModal', _this.hideModal.bind(_this));
+	    return _this;
+	  }
+
+	  _createClass(AddTicketModal, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.$modal = $('.add-modal');
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      this.showModalSubscription.remove();
+	      this.hideModelSubscription.remove();
+	    }
+	  }, {
+	    key: 'showModal',
+	    value: function showModal(ticket) {
+	      this.state.ticket_type_id = ticket.id;
+	      this.state.ticket.price = ticket.current_price;
+	      this.$modal.modal('show');
+	    }
+	  }, {
+	    key: 'handleCancel',
+	    value: function handleCancel() {
+	      this.$modal.modal('hide');
+	    }
+	  }, {
+	    key: 'hideModal',
+	    value: function hideModal() {
+	      this.$modal.modal('hide');
+	    }
+
+	    // Prevent child modal from trigger hideModal on it's click event.
+
+	  }, {
+	    key: 'preventChildModalHide',
+	    value: function preventChildModalHide(e) {
+	      e.stopPropagation();
+	    }
+	  }, {
+	    key: 'handleQuantityChange',
+	    value: function handleQuantityChange(e) {
+	      var updateState = this.state;
+	      updateState.ticket.quantity = e.target.value;
+	      this.setState(updateState);
+	    }
+	  }, {
+	    key: 'handleSubmit',
+	    value: function handleSubmit(e) {
+	      e.preventDefault();
+	      _ticketActions2.default.add(this.state);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var t = this.getIntlMessage;
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'add-modal modal fade is-create-modal',
+	          tabIndex: '-1',
+	          role: 'dialog',
+	          'aria-labelledby': 'title',
+	          'aria-hidden': 'true',
+	          onClick: this.hideModal.bind(this) },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'modal-internal-wrapper' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'modal-dialog modal-small-content', role: 'document' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'modal-content', onClick: this.preventChildModalHide },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'modal-header' },
+	                _react2.default.createElement(
+	                  'h4',
+	                  { className: 'modal-title', id: 'title' },
+	                  t('backend.ticket_types.headers.add_ticket')
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'modal-body' },
+	                _react2.default.createElement(_alertMessages2.default, { event: 'error', alertType: 'danger' }),
+	                _react2.default.createElement(
+	                  'form',
+	                  { className: 'form-horizontal' },
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'form-group' },
+	                    _react2.default.createElement(
+	                      'label',
+	                      { htmlFor: t('backend.tickets.quantity') },
+	                      t('backend.tickets.quantity')
+	                    ),
+	                    _react2.default.createElement('input', {
+	                      onChange: this.handleQuantityChange.bind(this),
+	                      name: 'ticket_quantity',
+	                      value: this.state.quantity,
+	                      className: 'form-control' })
+	                  ),
+	                  _react2.default.createElement(
+	                    'button',
+	                    {
+	                      onClick: this.handleSubmit.bind(this),
+	                      type: 'submit',
+	                      className: 'btn btn-primary' },
+	                    t('backend.ticket_types.save_changes')
+	                  )
+	                )
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return AddTicketModal;
+	}(_react2.default.Component);
+
+	(0, _reactMixin2.default)(AddTicketModal.prototype, _reactI18n2.default);
+
+	exports.default = AddTicketModal;
+
+/***/ },
+/* 325 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _dispatch = __webpack_require__(178);
+
+	var _dispatch2 = _interopRequireDefault(_dispatch);
+
+	var _ticketConstants = __webpack_require__(320);
+
+	var _ticketConstants2 = _interopRequireDefault(_ticketConstants);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = {
+	  add: function add(state) {
+	    (0, _dispatch2.default)(_ticketConstants2.default.CREATE_TICKET, { ticket: state.ticket, ticket_type_id: state.ticket_type_id });
+	  },
+	  edit: function edit(state) {
+	    (0, _dispatch2.default)(_ticketConstants2.default.EDIT_TICKET, { ticket: state.ticket });
+	  }
+	};
 
 /***/ },
 /* 326 */
@@ -54367,7 +54396,246 @@
 
 	var _reactMixin2 = _interopRequireDefault(_reactMixin);
 
-	var _organizerStore = __webpack_require__(327);
+	var _ticketActions = __webpack_require__(325);
+
+	var _ticketActions2 = _interopRequireDefault(_ticketActions);
+
+	var _alertMessages = __webpack_require__(196);
+
+	var _alertMessages2 = _interopRequireDefault(_alertMessages);
+
+	var _appConstant = __webpack_require__(327);
+
+	var _appConstant2 = _interopRequireDefault(_appConstant);
+
+	var _ticketStore = __webpack_require__(319);
+
+	var _ticketStore2 = _interopRequireDefault(_ticketStore);
+
+	var _emitter = __webpack_require__(184);
+
+	var _emitter2 = _interopRequireDefault(_emitter);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var UpdateTicketModal = function (_React$Component) {
+	  _inherits(UpdateTicketModal, _React$Component);
+
+	  function UpdateTicketModal(props) {
+	    _classCallCheck(this, UpdateTicketModal);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(UpdateTicketModal).call(this, props));
+
+	    _this.state = {
+	      ticket: {
+	        quantity: 0,
+	        price: 0
+	      },
+	      ticket_type_id: props.ticket_type_id
+	    };
+
+	    _this.showModalSubscription = _emitter2.default.addListener('showUpdateTicketModal', _this.showModal.bind(_this));
+	    _this.hideModelSubscription = _emitter2.default.addListener('hideUpdateTicketModal', _this.hideModal.bind(_this));
+	    return _this;
+	  }
+
+	  _createClass(UpdateTicketModal, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.$modal = $('.update-modal');
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      this.showModalSubscription.remove();
+	      this.hideModelSubscription.remove();
+	    }
+	  }, {
+	    key: 'showModal',
+	    value: function showModal(ticket) {
+	      this.setState(ticket);
+	      this.$modal.modal('show');
+	    }
+	  }, {
+	    key: 'handleCancel',
+	    value: function handleCancel() {
+	      this.$modal.modal('hide');
+	    }
+	  }, {
+	    key: 'hideModal',
+	    value: function hideModal() {
+	      this.$modal.modal('hide');
+	    }
+
+	    // Prevent child modal from trigger hideModal on it's click event.
+
+	  }, {
+	    key: 'preventChildModalHide',
+	    value: function preventChildModalHide(e) {
+	      e.stopPropagation();
+	    }
+	  }, {
+	    key: 'handleTicketStateChange',
+	    value: function handleTicketStateChange(e) {
+	      var updateState = this.state;
+	      updateState.ticket.state = e.target.value;
+	      this.setState(updateState);
+	    }
+	  }, {
+	    key: 'handleSubmit',
+	    value: function handleSubmit(e) {
+	      e.preventDefault();
+	      _ticketActions2.default.edit(this.state);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var t = this.getIntlMessage;
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'update-modal modal fade is-create-modal',
+	          tabIndex: '-1',
+	          role: 'dialog',
+	          'aria-labelledby': 'title',
+	          'aria-hidden': 'true',
+	          onClick: this.hideModal.bind(this) },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'modal-internal-wrapper' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'modal-dialog modal-small-content', role: 'document' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'modal-content', onClick: this.preventChildModalHide },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'modal-header' },
+	                _react2.default.createElement(
+	                  'h4',
+	                  { className: 'modal-title', id: 'title' },
+	                  t('backend.tickets.update_state')
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'modal-body' },
+	                _react2.default.createElement(_alertMessages2.default, { event: 'error', alertType: 'danger' }),
+	                _react2.default.createElement(
+	                  'form',
+	                  { className: 'form-horizontal' },
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'form-group' },
+	                    _react2.default.createElement(
+	                      'label',
+	                      { htmlFor: t('backend.tickets.state') },
+	                      t('backend.tickets.state')
+	                    ),
+	                    _react2.default.createElement(
+	                      'select',
+	                      { className: 'ticket-types-name',
+	                        value: this.state.ticket.state,
+	                        onChange: this.handleTicketStateChange.bind(this) },
+	                      _appConstant2.default.ticket_state.map(function (state) {
+	                        return _react2.default.createElement(
+	                          'option',
+	                          { key: Math.random(),
+	                            value: state.value },
+	                          state.key
+	                        );
+	                      })
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    'button',
+	                    {
+	                      onClick: this.handleSubmit.bind(this),
+	                      type: 'submit',
+	                      className: 'btn btn-primary' },
+	                    t('backend.ticket_types.save_changes')
+	                  )
+	                )
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return UpdateTicketModal;
+	}(_react2.default.Component);
+
+	(0, _reactMixin2.default)(UpdateTicketModal.prototype, _reactI18n2.default);
+
+	exports.default = UpdateTicketModal;
+
+/***/ },
+/* 327 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	  roles: {
+	    'god': 'God',
+	    'account_owner': 'Account owner',
+	    'team_member': 'Team member'
+	  },
+
+	  ticket_state: [{
+	    key: 'New',
+	    value: 'new'
+	  }, {
+	    key: 'Enter',
+	    value: 'enter'
+	  }, {
+	    key: 'Exit',
+	    value: 'exit'
+	  }, {
+	    key: 'Refunded',
+	    value: 'refunded'
+	  }, {
+	    key: 'Discarded',
+	    value: 'discarded'
+	  }]
+	};
+
+/***/ },
+/* 328 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactI18n = __webpack_require__(166);
+
+	var _reactI18n2 = _interopRequireDefault(_reactI18n);
+
+	var _reactMixin = __webpack_require__(171);
+
+	var _reactMixin2 = _interopRequireDefault(_reactMixin);
+
+	var _organizerStore = __webpack_require__(329);
 
 	var _organizerStore2 = _interopRequireDefault(_organizerStore);
 
@@ -54375,7 +54643,7 @@
 
 	var _alertMessages2 = _interopRequireDefault(_alertMessages);
 
-	var _organizerActions = __webpack_require__(329);
+	var _organizerActions = __webpack_require__(331);
 
 	var _organizerActions2 = _interopRequireDefault(_organizerActions);
 
@@ -54383,7 +54651,7 @@
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
-	var _appConstant = __webpack_require__(330);
+	var _appConstant = __webpack_require__(327);
 
 	var _appConstant2 = _interopRequireDefault(_appConstant);
 
@@ -54585,7 +54853,7 @@
 	exports.default = SettingContainer;
 
 /***/ },
-/* 327 */
+/* 329 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54608,7 +54876,7 @@
 
 	var _emitter2 = _interopRequireDefault(_emitter);
 
-	var _organizerConstants = __webpack_require__(328);
+	var _organizerConstants = __webpack_require__(330);
 
 	var _organizerConstants2 = _interopRequireDefault(_organizerConstants);
 
@@ -54679,7 +54947,7 @@
 	exports.default = new Organizer();
 
 /***/ },
-/* 328 */
+/* 330 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -54692,7 +54960,7 @@
 	};
 
 /***/ },
-/* 329 */
+/* 331 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54705,7 +54973,7 @@
 
 	var _dispatch2 = _interopRequireDefault(_dispatch);
 
-	var _organizerConstants = __webpack_require__(328);
+	var _organizerConstants = __webpack_require__(330);
 
 	var _organizerConstants2 = _interopRequireDefault(_organizerConstants);
 
@@ -54718,24 +54986,7 @@
 	};
 
 /***/ },
-/* 330 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {
-	  roles: {
-	    'god': 'God',
-	    'account_owner': 'Account owner',
-	    'team_member': 'Team member'
-	  }
-	};
-
-/***/ },
-/* 331 */
+/* 332 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54758,11 +55009,11 @@
 
 	var _reactMixin2 = _interopRequireDefault(_reactMixin);
 
-	var _organizerStore = __webpack_require__(327);
+	var _organizerStore = __webpack_require__(329);
 
 	var _organizerStore2 = _interopRequireDefault(_organizerStore);
 
-	var _accountStore = __webpack_require__(332);
+	var _accountStore = __webpack_require__(333);
 
 	var _accountStore2 = _interopRequireDefault(_accountStore);
 
@@ -54770,7 +55021,7 @@
 
 	var _alertMessages2 = _interopRequireDefault(_alertMessages);
 
-	var _accountActions = __webpack_require__(334);
+	var _accountActions = __webpack_require__(335);
 
 	var _accountActions2 = _interopRequireDefault(_accountActions);
 
@@ -54915,7 +55166,7 @@
 	exports.default = ContentContainer;
 
 /***/ },
-/* 332 */
+/* 333 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54938,7 +55189,7 @@
 
 	var _emitter2 = _interopRequireDefault(_emitter);
 
-	var _accountConstants = __webpack_require__(333);
+	var _accountConstants = __webpack_require__(334);
 
 	var _accountConstants2 = _interopRequireDefault(_accountConstants);
 
@@ -55009,7 +55260,7 @@
 	exports.default = new Account();
 
 /***/ },
-/* 333 */
+/* 334 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -55022,7 +55273,7 @@
 	};
 
 /***/ },
-/* 334 */
+/* 335 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -55035,7 +55286,7 @@
 
 	var _dispatch2 = _interopRequireDefault(_dispatch);
 
-	var _accountConstants = __webpack_require__(333);
+	var _accountConstants = __webpack_require__(334);
 
 	var _accountConstants2 = _interopRequireDefault(_accountConstants);
 
