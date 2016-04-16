@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactI18n from 'react-i18n';
 import ReactMixin from 'react-mixin';
+import AlertMessages from './alert-messages.jsx';
 
 class ConfirmModal extends React.Component {
 
@@ -44,6 +45,7 @@ class ConfirmModal extends React.Component {
                 <h4 className="modal-title" id="title">{this.state.title}</h4>
               </div>
               <div className="modal-body">
+                <AlertMessages event={this.props.error} alertType={this.props.alertType} />
                 <p>{this.state.description}</p>
 
                 <button type="button"

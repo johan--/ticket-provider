@@ -34,7 +34,7 @@ class ListContainer extends React.Component {
           <Action />
         </div>
         <List store={this.state} />
-        <DeleteModal />
+        <DeleteModal error="errorDeleteActivity" alertType="danger" />
       </div>
     );
   }
