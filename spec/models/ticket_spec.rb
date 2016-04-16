@@ -19,13 +19,18 @@ RSpec.describe Ticket, type: :model do
   end
 
   describe 'ticket user validation' do
-    let(:account) { Fabricate(:account) }
-    let(:activity) { Fabricate(:activity, account: account) }
-    let(:ticket_type_1) { Fabricate(:ticket_type, activity: activity) }
-    let(:ticket_type_2) { Fabricate(:ticket_type, activity: activity) }
-    let(:user) { Fabricate(:user) }
-    let!(:ticket_1) { Fabricate(:ticket, ticket_type: ticket_type_1, user: user) }
-    let(:ticket_2) { Fabricate.build(:ticket, ticket_type: ticket_type_2, user: user) }
+    let!(:account) { Fabricate(:account) }
+    let!(:activity) { Fabricate(:activity, account: account) }
+    let!(:ticket_type_1) { Fabricate(:ticket_type, activity: activity) }
+    let!(:ticket_type_2) { Fabricate(:ticket_type, activity: activity) }
+    let!(:user) { Fabricate(:user) }
+    let!(:ticket_1) { Fabricate.build(:ticket, ticket_type: ticket_type_1, user: user) }
+    let!(:ticket_2) { Fabricate.build(:ticket, ticket_type: ticket_type_2, user: user) }
+
+    before do
+      ticket_1.save
+      user.reload
+    end
 
     subject { ticket_2.save }
 
