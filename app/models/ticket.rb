@@ -41,7 +41,7 @@ class Ticket < ActiveRecord::Base
   end
 
   def ticket_user
-    unless Activity.includes(ticket_types: [:tickets]).where({ tickets: { user_id: self.user_id } }).blank?
+    if self.user.tickets.map { |m| m.ticket_type.activity_id }.include? self.ticket_type.activity_id
       errors.add(:user, I18n.t('backend.tickets.ticket_user_error'))
     end
   end
