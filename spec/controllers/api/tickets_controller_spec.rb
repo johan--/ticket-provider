@@ -29,21 +29,40 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
     let(:ticket_type) { Fabricate(:ticket_type, activity: activity) }
     let(:organizer) { Fabricate(:account_owner, account: account) }
 
-    before { sign_in :organizer, organizer }
+    context 'when organizer signed in' do
+      before { sign_in :organizer, organizer }
 
-    context 'when ticket params is valid' do
-      before { post :create, ticket: { quantity: 5 }, ticket_type_id: ticket_type.uid }
+      context 'when ticket params is valid' do
+        before { post :create, ticket: { quantity: 5 }, ticket_type_id: ticket_type.uid }
 
-      it { expect(response).to have_http_status(:created) }
-      it { expect(response).to match_response_schema('tickets') }
-      it { expect(Ticket.count).to eq 5 }
+        it { expect(response).to have_http_status(:created) }
+        it { expect(response).to match_response_schema('tickets') }
+        it { expect(Ticket.count).to eq 5 }
+      end
+
+      context 'when ticket params is invalid' do
+        before { post :create, ticket: { quantity: 5 } }
+
+        it { expect(response).to have_http_status(:unprocessable_entity) }
+        it { expect(response).to match_response_schema('errors') }
+      end
     end
 
-    context 'when ticket params is invalid' do
-      before { post :create, ticket: { quantity: 5 } }
+    context 'when use api_token' do
+      context 'when ticket params is valid' do
+        before { post :create, ticket: { quantity: 5 }, ticket_type_id: ticket_type.uid, api_token: account.api_token }
 
-      it { expect(response).to have_http_status(:unprocessable_entity) }
-      it { expect(response).to match_response_schema('errors') }
+        it { expect(response).to have_http_status(:created) }
+        it { expect(response).to match_response_schema('tickets') }
+        it { expect(Ticket.count).to eq 5 }
+      end
+
+      context 'when ticket params is invalid' do
+        before { post :create, ticket: { quantity: 5 }, api_token: account.api_token }
+
+        it { expect(response).to have_http_status(:unprocessable_entity) }
+        it { expect(response).to match_response_schema('errors') }
+      end
     end
   end
 
@@ -55,22 +74,42 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
     let(:organizer) { Fabricate(:account_owner, account: account) }
     let(:user) { Fabricate(:user) }
 
-    before { sign_in :organizer, organizer }
+    context 'when organizer signed in' do
+      before { sign_in :organizer, organizer }
 
-    context 'when ticket params is valid' do
-      before { put :update, id: ticket.uid, ticket: { state: 'enter', user_id: user.uid } }
+      context 'when ticket params is valid' do
+        before { put :update, id: ticket.uid, ticket: { state: 'enter', user_id: user.uid } }
 
-      it { expect(response).to have_http_status(:ok) }
-      it { expect(response).to match_response_schema('ticket') }
-      it { expect(JSON.parse(response.body)['ticket']['state']).to eq 'enter' }
+        it { expect(response).to have_http_status(:ok) }
+        it { expect(response).to match_response_schema('ticket') }
+        it { expect(JSON.parse(response.body)['ticket']['state']).to eq 'enter' }
+      end
+
+      context 'when ticket param is not valid' do
+        before { put :update, id: ticket.uid, ticket: { state: 'refunded' } }
+
+        it { expect(response).to have_http_status(:unprocessable_entity) }
+        it { expect(response).to match_response_schema('errors') }
+        it { expect(JSON.parse(response.body)['errors']).to match_array(I18n.t('backend.tickets.cannot_transition_to', state: 'refunded')) }
+      end
     end
 
-    context 'when ticket param is not valid' do
-      before { put :update, id: ticket.uid, ticket: { state: 'refunded' } }
+    context 'when use api_token' do
+      context 'when ticket params is valid' do
+        before { put :update, id: ticket.uid, ticket: { state: 'enter', user_id: user.uid }, api_token: account.api_token }
 
-      it { expect(response).to have_http_status(:unprocessable_entity) }
-      it { expect(response).to match_response_schema('errors') }
-      it { expect(JSON.parse(response.body)['errors']).to match_array(I18n.t('backend.tickets.cannot_transition_to', state: 'refunded')) }
+        it { expect(response).to have_http_status(:ok) }
+        it { expect(response).to match_response_schema('ticket') }
+        it { expect(JSON.parse(response.body)['ticket']['state']).to eq 'enter' }
+      end
+
+      context 'when ticket param is not valid' do
+        before { put :update, id: ticket.uid, ticket: { state: 'refunded' }, api_token: account.api_token }
+
+        it { expect(response).to have_http_status(:unprocessable_entity) }
+        it { expect(response).to match_response_schema('errors') }
+        it { expect(JSON.parse(response.body)['errors']).to match_array(I18n.t('backend.tickets.cannot_transition_to', state: 'refunded')) }
+      end
     end
   end
 
@@ -118,24 +157,46 @@ RSpec.describe Api::V1::TicketsController, type: :controller do
     let(:organizer) { Fabricate(:account_owner, account: account) }
     let(:user) { Fabricate(:user) }
 
-    before { sign_in :organizer, organizer }
+    context 'when organizer signed in' do
+      before { sign_in :organizer, organizer }
 
-    context 'when ticket user does not exist' do
-      let (:ticket) { Fabricate(:ticket, ticket_type: ticket_type) }
-      before { delete :destroy, id: ticket.uid }
+      context 'when ticket user does not exist' do
+        let (:ticket) { Fabricate(:ticket, ticket_type: ticket_type) }
+        before { delete :destroy, id: ticket.uid }
 
-      it { expect(response).to have_http_status(:no_content) }
-      it { expect { Ticket.find(ticket.id) }.to raise_error(ActiveRecord::RecordNotFound) }
-    end
-
-    context 'when ticket user exists' do
-      before do
-        ticket = Fabricate(:ticket, ticket_type: ticket_type, user: user)
-        delete :destroy, id: ticket.uid
+        it { expect(response).to have_http_status(:no_content) }
+        it { expect { Ticket.find(ticket.id) }.to raise_error(ActiveRecord::RecordNotFound) }
       end
 
-      it { expect(response).to have_http_status(:unprocessable_entity) }
-      it { expect(response).to match_response_schema('errors') }
+      context 'when ticket user exists' do
+        before do
+          ticket = Fabricate(:ticket, ticket_type: ticket_type, user: user)
+          delete :destroy, id: ticket.uid
+        end
+
+        it { expect(response).to have_http_status(:unprocessable_entity) }
+        it { expect(response).to match_response_schema('errors') }
+      end
+    end
+
+    context 'when use api_token' do
+      context 'when ticket user does not exist' do
+        let (:ticket) { Fabricate(:ticket, ticket_type: ticket_type) }
+        before { delete :destroy, id: ticket.uid, api_token: account.api_token }
+
+        it { expect(response).to have_http_status(:no_content) }
+        it { expect { Ticket.find(ticket.id) }.to raise_error(ActiveRecord::RecordNotFound) }
+      end
+
+      context 'when ticket user exists' do
+        before do
+          ticket = Fabricate(:ticket, ticket_type: ticket_type, user: user)
+          delete :destroy, id: ticket.uid, api_token: account.api_token
+        end
+
+        it { expect(response).to have_http_status(:unprocessable_entity) }
+        it { expect(response).to match_response_schema('errors') }
+      end
     end
   end
 end
