@@ -18,5 +18,12 @@
       padding: 0;
       text-align: center;
     }
+
+    a.action-container {
+      &:active, &:hover, &:focus {
+        background: transparent;
+        text-decoration: initial;
+      }
+    }
   }
 }
