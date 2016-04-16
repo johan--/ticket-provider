@@ -42,6 +42,7 @@ en:
       header: Activity
       save_changes: Save Changes
       cannot_transition_to: can't transition to %{state}
+      cannot_destroy: Activity cannot be delete, because there is purchased ticket exist.
       success_delete: Successfully delete activity.
     ticket_types:
       headers:

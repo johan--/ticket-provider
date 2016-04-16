@@ -12,7 +12,7 @@ class Api::V1::ApiController < ActionController::Base
   end
 
   rescue_from ActiveRecord::RecordNotDestroyed do |exception|
-    render json: { errors: [t('backend.tickets.cannot_destroy')] }, status: :unprocessable_entity
+    render json: { errors: [t('backend.activities.cannot_destroy')] }, status: :unprocessable_entity
   end
 
   def authenticate_user!
