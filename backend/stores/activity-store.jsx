@@ -110,7 +110,9 @@ class ActivityCollection extends Store.Collection {
         });
 
         jqXHR.fail((jqXHR, textStatus, errorThrown) => {
-          emitter.emit('error', errorThrown);
+          this.reset();
+          this.getAll();
+          emitter.emit('errorDeleteActivity', jqXHR.responseJSON.errors[0]);
         });
         break;
       }
