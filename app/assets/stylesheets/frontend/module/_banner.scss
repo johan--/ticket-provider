@@ -9,6 +9,13 @@
   box-shadow: 5px 0 7px rgba(0, 0, 0, 0.35);
   overflow: hidden;
 
+  h2 {
+    color: #ff034b;
+    position: absolute;
+    right: $grid-gutter-width/2;
+    top: $grid-gutter-width/2;
+  }
+
   h1 {
     font-size: 8em;
     letter-spacing: 4px;
