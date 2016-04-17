@@ -1,1 +1,45 @@
-= 'index'
+div class="banner"
+  h1 = t('frontend.index.banner_head')
+  h4 = t('frontend.index.banner_sub_head')
+  a href="/organizers/sign_up"
+    = t('frontend.index.register')
+div class="container-fluid feature-container"
+    div class="feature-item "
+      div class="icon-container img-circle"
+        div class="img-container"
+          = image_tag("barcode.png")
+      h4 class="feature-title" = t('frontend.index.qr_title')
+      h4 class="feature-content" = t('frontend.index.qr_content')
+    div class="feature-item "
+      div class="icon-container img-circle"
+        div class="img-container"
+          = image_tag("ticket.svg")
+        div class="cancel-container"
+          = image_tag("cancel.svg")
+      h4 class="feature-title" = t('frontend.index.ticket_title')
+      h4 class="feature-content" = t('frontend.index.ticket_content')
+    div class="feature-item "
+      div class="icon-container img-circle"
+        div class="img-container"
+          = image_tag("lock.svg")
+        div class="star-container"
+          = image_tag("star.svg")
+      h4 class="feature-title" = t('frontend.index.lock_title')
+      h4 class="feature-content" = t('frontend.index.lock_content')
+    div class="feature-item "
+      div class="icon-container img-circle"
+        div class="img-container"
+          = image_tag("api.svg")
+      h4 class="feature-title" = t('frontend.index.api_title')
+      h4 class="feature-content" = t('frontend.index.api_content')
+    div class="feature-item "
+      div class="icon-container img-circle"
+        div class="img-container"
+          = image_tag("free.svg")
+      h4 class="feature-title" = t('frontend.index.free_title')
+      h4 class="feature-content" = simple_format(t('frontend.index.free_content'))
+div class="store container-fluid"
+  div class="img-container"
+    = image_tag("google.png")
+  div class="img-container"
+    = image_tag("appstore.png")
