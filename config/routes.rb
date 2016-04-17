@@ -38,5 +38,6 @@ Rails.application.routes.draw do
     get '/*path', to: 'backend#index'
   end
 
-  root 'backend#index'
+  get 'documentation', to: 'static_pages#documentation'
+  root 'static_pages#index'
 end
