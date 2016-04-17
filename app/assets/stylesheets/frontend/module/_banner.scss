@@ -3,9 +3,9 @@
   position: relative;
   background-position: center center;
   background-size: cover;
-  padding: 1.875rem 0 ;
+  padding: 2.5rem 0 ;
   text-align: center;
-  min-height: 8rem;
+  min-height: 18rem;
   box-shadow: 5px 0 7px rgba(0, 0, 0, 0.35);
   overflow: hidden;
 
@@ -15,6 +15,7 @@
     text-shadow: $text-shadow;
     line-height: 0.75;
     color: #fff;
+    margin-bottom: 2rem;
   }
 
   h4 {
