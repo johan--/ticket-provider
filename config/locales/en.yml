@@ -379,3 +379,10 @@ en:
           RESPONSE
 
           204 No Content
+    navbar:
+      login: Login
+      logout: Logout
+      sign_up: Sign up
+      how_it_work: How it work
+      documentation: Documentation
+    index:
