@@ -4,6 +4,7 @@ en:
   authorization:
     unauthorized: unauthorized
   frontend:
+<<<<<<< 8fdb98645a3ed0f427423fc8df78a8c0ac006d24
     documentation:
       header: ">> SQUARE API SPECIFICATION"
       create_activity:
@@ -386,3 +387,18 @@ en:
       how_it_work: How it work
       documentation: Documentation
     index:
+      banner_head: This is Square
+      banner_sub_head: ALL ACTIVITY IN YOUR PHONE
+      register: Become an origanizer!
+      qr_title: ALL-IN-ONE QR CODE
+      qr_content: Scan and enter any activities in a single QR Code.
+      ticket_title: NO PAPER REQUIRED
+      ticket_content: Get rid of traditional paper ticket, boarding pass and etc.
+      lock_title: RELIABLE SECURITY
+      lock_content: Secure by default,
+                    operates under security standard.
+      api_title: BECOME AN ORGANIZER
+      api_content: Easily integrate your system with our API
+      free_title: FREE OF CHARGE
+      free_content: Currently free for every user and organizer!
+
