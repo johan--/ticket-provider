@@ -52558,7 +52558,6 @@
 	    key: 'handleClick',
 	    value: function handleClick(e) {
 	      e.preventDefault();
-	      console.log(e);
 	      Backbone.history.navigate($(e.currentTarget).attr('href'), true);
 	    }
 	  }, {
@@ -53699,6 +53698,7 @@
 	    value: function handleTicketTypeChange(e) {
 	      var updateState = this.store.get(e.target.value);
 	      this.setState(updateState);
+	      _ticketStore2.default.set(this.store.get(e.target.value).get('tickets'));
 	    }
 	  }, {
 	    key: 'showAddTicketModal',
