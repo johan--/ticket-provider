@@ -1,23 +1,404 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  application:
+    name: ticket provider
+  authorization:
+    unauthorized: unauthorized
+  frontend:
+    documentation:
+      header: ">> SQUARE API SPECIFICATION"
+      create_activity:
+        id: create-activity
+        header: CREATE ACTIVITY
+        description: |+
+          Activity is the term we use for everythings that use ticket to attend such as concert, bus, etc. To use this service you need to register and receive your api_token from your account, and then create activity with this API.
+        content: |+
+          REQUEST
+
+          POST /api/v1/activities?api_token=<YOUR-API-TOKEN>
+
+          {
+            "activity": {
+              "name": <required>,
+              "description": <optional>,
+              "cover_photo": <optional>,
+              "date": <optional>
+            }
+          }
+
+          RESPONSE
+
+          201 Created
+
+          {
+            "activity": {
+              "id": <ACTIVITY-ID>,
+              "account_id": <YOUR-ACCOUNT-ID>,
+              "name": <ACTIVITY-NAME>,
+              "available_tickets": <NUMBER-OF-TICKET-AVAILABLE>,
+              "all_tickets": <NUMBER-OF-TICKET>,
+              "description": <ACTIVITY-DESCRIPTION>,
+              "cover_photo_url": <ACTIVITY-PHOTO-URL>,
+              "date": <ACTIVITY-DATE>
+              }
+          }
+      show_activity:
+        id: retrieve-particular-activity
+        header: RETRIEVE PARTICULAR ACTIVITY
+        description: |+
+          Retrieve particular activity information by id.
+        content: |+
+          REQUEST
+
+          GET /api/v1/activities/(:id)?api_token=<YOUR-API-TOKEN>
+
+          RESPONSE
+
+          200 OK
+
+          {
+            "activity": {
+              "id": <ACTIVITY-ID>,
+              "account_id": <YOUR-ACCOUNT-ID>,
+              "name": <ACTIVITY-NAME>,
+              "available_tickets": <NUMBER-OF-TICKET-AVAILABLE>,
+              "all_tickets": <NUMBER-OF-TICKET>,
+              "description": <ACTIVITY-DESCRIPTION>,
+              "cover_photo_url": <ACTIVITY-PHOTO-URL>,
+              "date": <ACTIVITY-DATE>
+              }
+          }
+      update_activity:
+        id: update-particular-activity
+        header: UPDATE PARTICULAR ACTIVITY
+        description: |+
+          Update particular activity information by id.
+        content: |+
+          REQUEST
+
+          PUT /api/v1/activities/(:id)?api_token=<YOUR-API-TOKEN>
+
+          {
+            "activity": {
+              "name": <required>,
+              "description": <optional>,
+              "cover_photo": <optional>,
+              "date": <optional>
+            }
+          }
+
+          RESPONSE
+
+          200 OK
+
+          {
+            "activity": {
+              "id": <ACTIVITY-ID>,
+              "account_id": <YOUR-ACCOUNT-ID>,
+              "name": <ACTIVITY-NAME>,
+              "available_tickets": <NUMBER-OF-TICKET-AVAILABLE>,
+              "all_tickets": <NUMBER-OF-TICKET>,
+              "description": <ACTIVITY-DESCRIPTION>,
+              "cover_photo_url": <ACTIVITY-PHOTO-URL>,
+              "date": <ACTIVITY-DATE>
+              }
+          }
+      delete_activity:
+        id: delete-particular-activity
+        header: DELETE PARTICULAR ACTIVITY
+        description: |+
+          Delete particular activity using id.
+        content: |+
+          REQUEST
+
+          DELETE /api/v1/activities/(:id)?api_token=<YOUR-API-TOKEN>
+
+          RESPONSE
+
+          204 No Content
+      create_ticket_type:
+        id: create-ticket-type
+        header: CREATE TICKET TYPE
+        description: |+
+          Create ticket type.
+        content: |+
+          REQUEST
+
+          POST /api/v1/ticket_types?api_token=<YOUR-API-TOKEN>
+
+          {
+            "ticket_type": {
+              "name": <TICKET-TYPE-NAME>,
+              "activity_id: <ACTIVITY-ID>,
+              "description": <TICKET-TYPE-DESCRIPTION>,
+              "current_price": <TICKET-TYPE-PRICE>,
+              "usage_type": <TICKET-TYPE-USAGE-TYPE>
+            }
+          }
+
+          RESPONSE
+
+          201 Created
+
+          {
+            "ticket_types": [
+              {
+                "id": <TICKET-TYPE-ID>,
+                "activity_id": <ACTIVITY-ID>,
+                "name": <TICKET-TYPE-NAME>,
+                "available_tickets": <NUMBER-OF-TICKET-AVAILABLE>,
+                "all_tickets": <NUMBER-OF-TICKET>,
+                "description": <TICKET-TYPE-DESCRIPTION>,
+                "current_price": <TICKET-TYPE-PRICE>,
+                "usage_type": <TICKET-TYPE-USAGE-TYPE>
+              }
+            ]
+          }
+      index_ticket_type:
+        id: retrieve-all-ticket-types
+        header: RETRIEVE ALL TICKET TYPES
+        description: |+
+          Retrieve all ticket types information belongs to particular activity id.
+        content: |+
+          REQUEST
+
+          GET /api/v1/ticket_types?activity_id=<YOUR-ACTIVITY-ID>&api_token=<YOUR-API-TOKEN>
+
+          RESPONSE
+
+          200 OK
+
+          {
+            "ticket_types": [
+              {
+                "id": <TICKET-TYPE-ID>,
+                "activity_id": <ACTIVITY-ID>,
+                "name": <TICKET-TYPE-NAME>,
+                "available_tickets": <NUMBER-OF-TICKET-AVAILABLE>,
+                "all_tickets": <NUMBER-OF-TICKET>,
+                "description": <TICKET-TYPE-DESCRIPTION>,
+                "current_price": <TICKET-TYPE-PRICE>,
+                "usage_type": <TICKET-TYPE-USAGE-TYPE>,
+                "tickets": [
+                  // list of tickets
+                ]
+              }
+            ]
+          }
+      show_ticket_type:
+        id: retrieve-particular-ticket-type
+        header: RETRIEVE PARTICULAR TICKET TYPE
+        description: |+
+          Retrieve particular ticket type information by id.
+        content: |+
+          REQUEST
+
+          GET /api/v1/ticket_types/(:id)?api_token=<YOUR-API-TOKEN>
+
+          RESPONSE
+
+          200 OK
+
+          {
+              "ticket_type": {
+                "id": <TICKET-TYPE-ID>,
+                "activity_id": <ACTIVITY-ID>,
+                "name": <TICKET-TYPE-NAME>,
+                "available_tickets": <NUMBER-OF-TICKET-AVAILABLE>,
+                "all_tickets": <NUMBER-OF-TICKET>,
+                "description": <TICKET-TYPE-DESCRIPTION>,
+                "current_price": <TICKET-TYPE-PRICE>,
+                "usage_type": <TICKET-TYPE-USAGE-TYPE>,
+                "tickets": [
+                  // list of tickets
+                ]
+              }
+          }
+      update_ticket_type:
+        id: update-particular-ticket-type
+        header: UPDATE PARTICULAR TICKET TYPE
+        description: |+
+          Update particular ticket type information by id.
+        content: |+
+          REQUEST
+
+          PUT /api/v1/ticket_types/(:id)?api_token=<YOUR-API-TOKEN>
+
+          {
+            "ticket_type": {
+              "name": <TICKET-TYPE-NAME>,
+              "description": <TICKET-TYPE-DESCRIPTION>,
+              "current_price": <TICKET-TYPE-PRICE>,
+              "usage_type": <TICKET-TYPE-USAGE-TYPE>
+            }
+          }
+
+          RESPONSE
+
+          200 OK
+
+          {
+              "ticket_type": {
+                "id": <TICKET-TYPE-ID>,
+                "activity_id": <ACTIVITY-ID>,
+                "name": <TICKET-TYPE-NAME>,
+                "available_tickets": <NUMBER-OF-TICKET-AVAILABLE>,
+                "all_tickets": <NUMBER-OF-TICKET>,
+                "description": <TICKET-TYPE-DESCRIPTION>,
+                "current_price": <TICKET-TYPE-PRICE>,
+                "usage_type": <TICKET-TYPE-USAGE-TYPE>,
+                "tickets": [
+                  // list of tickets
+                ]
+              }
+          }
+      delete_ticket_type:
+        id: delete-particular-ticket-type
+        header: DELETE PARTICULAR TICKET TYPE
+        description: |+
+          Delete particular ticket type.
+        content: |+
+          REQUEST
+
+          DELETE /api/v1/ticket_types/(:id)?api_token=<YOUR-API-TOKEN>
+
+          RESPONSE
+
+          204 No Content
+      create_ticket:
+        id: create-ticket
+        header: CREATE TICKET
+        description: |+
+          Create tickets belongs to particular ticket type.
+        content: |+
+          REQUEST
+
+          POST /api/v1/tickets?ticket_type_id=<YOUR-TICKET-TYPE-ID>&api_token=<YOUR-API-TOKEN>
+
+          {
+            "ticket": {
+              "quantity": <NUMBER-OF-TICKET-YOUR-WANT-TO-CREATE
+            }
+          }
+
+          RESPONSE
+
+          201 Created
+
+          {
+            "tickets": [
+              {
+                "id": <TICKET-ID>,
+                "ticket_type_name": <TICKET-TYPE-NAME>,
+                "ticket_type_image_url": <TICKET-IMAGE-URL>,
+                "activity_name": <ACTIVITY-NAME>,
+                "activity_date": <ACTIVITY-DATE>,
+                "row": <TICKET-ROW>,
+                "column": <TICKET-COLUMN>,
+                "price": <TICKET-PRICE>,
+                "state": <TICKET-STATE>,
+                "usage_quantity": <TICKET-USAGE-QUANTITY>
+              }
+            ]
+          }
+      update_ticket:
+        id: update-particular-ticket
+        header: UPDATE PARTICULAR TICKET
+        description: |+
+          Update particular ticket information by id.
+        content: |+
+          REQUEST
+
+          PUT /api/v1/tickets/(id)?api_token=<YOUR-API-TOKEN>
+
+          {
+            "ticket": {
+              "row": <TICKET-ROW>,
+              "column": <TICKET-COLUMN>,
+              "price": <TICKET-PRICE>,
+              "usage_quantity": <TICKET-USAGE-QUANTITY>,
+              "state": <TICKET-STATE>
+            }
+          }
+
+          RESPONSE
+
+          200 OK
+
+          {
+            "ticket": {
+              "id": <TICKET-ID>,
+              "ticket_type_name": <TICKET-TYPE-NAME>,
+              "ticket_type_image_url": <TICKET-IMAGE-URL>,
+              "activity_name": <ACTIVITY-NAME>,
+              "activity_date": <ACTIVITY-DATE>,
+              "row": <TICKET-ROW>,
+              "column": <TICKET-COLUMN>,
+              "price": <TICKET-PRICE>,
+              "state": <TICKET-STATE>,
+              "usage_quantity": <TICKET-USAGE-QUANTITY>
+            }
+          }
+      enter_and_exit:
+        id: enter-and-exit-activity
+        header: ENTER & EXIT ATIVITY
+        description: |+
+          Use enter to change ticket state to enter and exit to change state to exit. Enter state means user is inside activity area. Exit state means user is outside activity area.
+        content: |+
+          REQUEST
+
+          PUT /api/v1/tickets/(:id)/(enter|exit)?api_token=<YOUR-API-TOKEN>&activity_id=<YOUR-API-TOKEN>&user_id=<YOUR-API-TOKEN>
+
+          RESPONSE
+
+          200 OK
+
+          {
+            "ticket": {
+              "id": <TICKET-ID>,
+              "ticket_type_name": <TICKET-TYPE-NAME>,
+              "ticket_type_image_url": <TICKET-IMAGE-URL>,
+              "activity_name": <ACTIVITY-NAME>,
+              "activity_date": <ACTIVITY-DATE>,
+              "row": <TICKET-ROW>,
+              "column": <TICKET-COLUMN>,
+              "price": <TICKET-PRICE>,
+              "state": <TICKET-STATE>,
+              "usage_quantity": <TICKET-USAGE-QUANTITY>
+            }
+          }
+      delete_ticket:
+        id: delete-particular-ticket
+        header: DELETE PARTICULAR TICKET
+        description: |+
+          Delete particular ticket by id
+        content: |+
+          REQUEST
+
+          DELETE /api/v1/tickets/(:id)?api_token=<YOUR-API-TOKEN>
+
+          RESPONSE
+
+          204 No Content
+    navbar:
+      login: Login
+      logout: Logout
+      sign_up: Sign up
+      how_it_work: How it works
+      documentation: Documentation
+    index:
+      beta: Beta
+      banner_head: This is Square
+      banner_sub_head: ALL ACTIVITY IN YOUR PHONE
+      register: Become an origanizer!
+      qr_title: ALL-IN-ONE QR CODE
+      qr_content: Scan and enter any activities in a single QR Code.
+      ticket_title: NO PAPER REQUIRED
+      ticket_content: Get rid of traditional paper ticket, boarding pass and etc.
+      lock_title: RELIABLE SECURITY
+      lock_content: Secure by default,
+                    operates under security standard.
+      api_title: BECOME AN ORGANIZER
+      api_content: Easily integrate your system with our API
+      free_title: FREE OF CHARGE
+      free_content: Currently free for every user and organizer!
+

@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "required": ["ticket"],
+  "properties": {
+    "ticket": {
+      "type": "object",
+      "required": ["id", "ticket_type_name"],
+      "properties": {
+        "id": { "type": "string" },
+        "ticket_type_name": { "type": "string" },
+        "ticket_type_image_url": { "type": ["null", "string"] },
+        "activity_name": { "type": "string" },
+        "activity_date": { "type": ["null", "string"] },
+        "row": { "type": ["null", "string"] },
+        "column": { "type": ["null", "string"] },
+        "price": { "type": ["null", "string"] },
+        "state": { "type": ["null", "string"] },
+        "usage_quantity": { "type": ["null", "string"] }
+      }
+    }
+  }
+}

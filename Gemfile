@@ -4,6 +4,7 @@ ruby '2.3.0'
 
 # Backend
 gem 'rails', '4.2.5'           # Latest Stable
+gem 'puma'                     # Web server
 gem 'pg', '~> 0.15'            # Use PostgreSQL as database
 gem 'active_model_serializers' # ActiveModel::Serializer implementation and Rails hooks
 gem 'carrierwave'              # Classier solution for file uploads for Rails
@@ -14,6 +15,7 @@ gem 'paranoia', '>= 2.1.5'     # Paranoia is a re-implementation of acts_as_para
 gem 'ffaker'                   # A library for generating fake data such as names, addresses, and phone numbers.
 gem 'fabrication'              # Fabrication generates objects in Ruby. Fabricators are schematics for your objects, and can be created as needed anywhere in your app or specs.
 gem 'slim', '>= 3.0.6'         # Slim is a template language whose goal is reduce the syntax to the essential parts without becoming cryptic
+gem 'statesman', '~> 2.0'      # An opinionated state machine library
 
 # Admin
 gem 'rails_admin',             # RailsAdmin is a Rails engine that provides an easy-to-use interface for managing your data.
@@ -31,6 +33,8 @@ gem 'sass-rails'               # SASS
 gem 'i18n-js',                 # Bring the Rails I18n translations to Javascript
     git: 'git://github.com/fnando/i18n-js'
 gem 'uglifier'                 # Use Uglifier as compressor for JavaScript assets
+gem 'bootstrap',               # Bootstrap 4
+    '~> 4.0.0.alpha3'
 
 # Localization
 gem 'phrase'
@@ -53,6 +57,7 @@ group :development, :test do
   gem 'poltergeist'            # Headless browser
   gem 'database_cleaner'       # Use Database Cleaner
   gem 'json_matchers'          # Validate the json returned from the API
+  gem 'rspec-retry'            # Add :retry option for intermittently failing spec
 
   gem 'byebug'                 # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'spring'                 # Spring speeds up development by keeping your application running in the background.

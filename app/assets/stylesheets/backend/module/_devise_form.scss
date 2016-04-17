@@ -1,0 +1,75 @@
+.devise-form-container {
+  border-radius: $border-radius;
+  background-color: #fff;
+  box-shadow: $box-shadow;
+  width: 18.75rem;
+  margin:  2rem auto;
+
+  header {
+    background-color: $brand-primary;
+    text-align: center;
+    color: #fff;
+    letter-spacing: 2px;
+    font-size: 1.75em;
+    padding: 0 $grid-gutter-width/3;
+    text-transform: uppercase;
+    border-top-right-radius: $border-radius;
+    border-top-left-radius: $border-radius;
+    height: 2.25rem;
+  }
+
+  form {
+    padding: 1.25rem 1.75rem 0;
+
+    .field {
+      position: relative;
+
+      .form-control {
+        background-color: $brand-white-grey;
+        margin-bottom: $grid-gutter-width/3;
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        padding-left: 2rem;
+
+        @include input-placeholder() {
+          color: $input-color-placeholder;
+          text-transform: none;
+        }
+      }
+
+      i {
+        position: absolute;
+        margin: 0.5rem 0 0 0.5rem;
+      }
+    }
+
+    .btn {
+      font-size: 1.25em;
+      box-shadow: none;
+      margin: $grid-gutter-width/3 0;
+      width: 100%;
+      height: 2rem;
+    }
+  }
+
+  .link-components {
+    text-align: right;
+    padding: 0 1.75rem 1.25rem;
+
+    a {
+      font-size: 1.25em;
+      line-height: 1.25rem;
+
+      &:hover, &:active {
+        background-color: transparent;
+        border-radius: 0;
+      }
+    }
+  }
+
+
+  @include  media-breakpoint-up(md) {
+    width: 20.5rem;
+  }
+}

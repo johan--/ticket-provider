@@ -1,0 +1,56 @@
+.organizer-settings-container {
+  margin-top: $grid-gutter-width;
+
+  header {
+    margin: 0 $grid-gutter-width/2 $grid-gutter-width/3;
+    border-bottom: 1px solid map_get($brand-warm-grey, 'lighter');
+    text-transform: uppercase;
+    color: $brand-primary;
+    font-size: 1.75em;
+    letter-spacing: .25rem;
+  }
+
+  form {
+    margin: 0 1.25rem;
+
+    header {
+      margin: $grid-gutter-width 0 $grid-gutter-width/3;
+    }
+
+    button {
+      margin-top: $grid-gutter-width;
+    }
+
+    input {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+
+  @include media-breakpoint-up(md) {
+    width: $grid-gutter-width*24;
+    padding: $grid-gutter-width;
+    margin: $grid-gutter-width auto 0;
+    background-color: rgba(255, 255, 255, 0.5);
+
+    header {
+      display: block;
+      font-size: 2em;
+    }
+
+    header:before {
+      content: '>>';
+    }
+
+    form {
+
+      label {
+        padding-right: $grid-gutter-width;
+      }
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    width: $grid-gutter-width*35;
+  }
+}

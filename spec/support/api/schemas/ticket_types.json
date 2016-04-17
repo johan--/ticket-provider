@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "required": ["ticket_types"],
+  "properties": {
+    "ticket_types": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "activity_id", "name"],
+        "properties": {
+          "id": { "type": "string" },
+          "event_id": { "type": "string" },
+          "name": { "type": "string" },
+          "available_tickets": { "type": "number"},
+          "all_tickets": { "type": "number"},
+          "description": { "type": ["null", "string"] },
+          "current_price": { "type": ["null", "string"] },
+          "usage_type": { "type": "string" }
+        }
+      }
+    }
+  }
+}

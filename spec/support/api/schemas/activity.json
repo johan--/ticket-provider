@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "required": ["activity"],
+  "properties": {
+    "event": {
+      "type": "object",
+      "required": ["id", "account_id", "name"],
+      "properties": {
+        "id": { "type": "string" },
+        "account_id": { "type": "string" },
+        "name": { "type": "string" },
+        "available_tickets": { "type": "number"},
+        "all_tickets": { "type": "number"},
+        "description": { "type": ["null", "string"] },
+        "cover_photo": { "type": ["null", "string"] },
+        "created_at": { "type": "string" },
+        "updated_at": { "type": "string" },
+        "state": { "type": "string" }
+      }
+    }
+  }
+}

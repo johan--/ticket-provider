@@ -1,0 +1,26 @@
+.icon {
+  width: 1rem;
+  height: 1rem;
+  background: image_url('icon.svg') no-repeat;
+  background-size: cover;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+$position-of-icons: 100%/3; //number of icons minus 1
+
+.icon-calendar {
+  background-position: 50% 0;
+}
+
+.icon-close {
+  background-position: 50% $position-of-icons*1;
+}
+
+.icon-pencil {
+  background-position: 50% $position-of-icons*2;
+}
+
+.icon-ticket {
+  background-position: 50% $position-of-icons*3;
+}

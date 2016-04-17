@@ -1,0 +1,55 @@
+.banner {
+  background-image: image-url("banner.png");
+  position: relative;
+  background-position: center center;
+  background-size: cover;
+  padding: 2.5rem 0 ;
+  text-align: center;
+  min-height: 18rem;
+  box-shadow: 5px 0 7px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+
+  h2 {
+    color: #ff034b;
+    position: absolute;
+    right: $grid-gutter-width/2;
+    top: $grid-gutter-width/2;
+  }
+
+  h1 {
+    font-size: 8em;
+    letter-spacing: 4px;
+    text-shadow: $text-shadow;
+    line-height: 0.75;
+    color: #fff;
+    margin-bottom: 2rem;
+  }
+
+  h4 {
+    color: #fff;
+    text-shadow: $text-shadow;
+    margin-bottom: 0.75rem;
+  }
+
+  a {
+    color: #fff;
+    padding: 0.25rem 1.25rem;
+    border: 1px solid $brand-golden;
+    border-radius: $border-radius;
+    background-color: $brand-golden;
+    text-decoration: none;
+    display: block;
+    margin: 0 auto;
+    width: 12rem;
+
+    &:hover {
+      background-color: $link-hover-color;
+      border-radius: $border-radius;
+    }
+
+    &:active {
+      background-color: $brand-dark-gold;
+      border-radius: $border-radius;
+    }
+  }
+}

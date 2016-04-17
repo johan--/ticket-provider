@@ -1,0 +1,22 @@
+doctype html
+| <html class="layout-backend"
+== yield :html_classes
+| ">
+head
+  title = t('application.name')
+  meta name="viewport" content="width=device-width, initial-scale=1"
+  == render partial: 'application/font'
+  == stylesheet_link_tag 'backend/application', media: 'all'
+  == csrf_meta_tags
+
+body
+  main id="app"
+    == yield
+
+  javascript:
+    // Use to set javascipt locale when initialize react app
+    window.locale = "#{I18n.locale}";
+  == javascript_include_tag 'backend/application', async: Rails.env.production?
+| </html>
+
+

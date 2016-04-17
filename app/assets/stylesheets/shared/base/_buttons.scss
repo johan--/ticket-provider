@@ -1,0 +1,39 @@
+.btn {
+  display: block;
+  font-size: 1.25em;
+  height: 2rem;
+  box-shadow: $btn-box-shadow;
+  padding: 0;
+
+  &:focus {
+    outline: 0 !important;
+  }
+
+  &[type='submit'] {
+    text-transform: capitalize;
+  }
+}
+
+.btn-primary {
+  width: 100%;
+  text-align: center;
+
+  @include media-breakpoint-up(sm) {
+    width: 22.5rem;
+    margin: 0 auto;
+  }
+}
+
+.btn-danger {
+  width: 100%;
+}
+
+.btn-info {
+  width: 100%;
+  background-color: $brand-grey;
+  border: none;
+
+  &:active, &:hover, &:focus, &:active:hover, &:active:focus {
+    background-color: darken($brand-grey, 10%);
+  }
+}

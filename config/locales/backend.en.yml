@@ -1,0 +1,99 @@
+en:
+  backend:
+    navbar:
+      activity: activity
+      brand: SQUARE
+      setting: Setting
+      organizer: Organizer
+    authentication:
+      login: Login
+      logout: Logout
+      sign_up: Sign up
+      register: Register
+      email: E-mail address
+      name: Name
+      password: Password
+      new_password: New Password
+      password_confirmation: Confirm Password
+      current_password: Current Password
+      change_password: Change Password
+      organizer_name: Organizer Name
+      redirect_to_login: Already have an account?
+      headers:
+        registration: Organizer Register
+        forgot_password: Forgot password?
+        change_password: Change password
+    activities:
+      available: available
+      create_activity: Create Activity
+      create_new_activity: Create New Activity
+      date: date
+      description: description
+      headers:
+        activity: Activity
+        new_activity: New Activity
+      id: id
+      image: Image
+      image_upload:
+        delete: Delete
+        dropzone_title: Try dropping an image here, or click to select image to upload.
+      name: name
+      search: Search Activities
+      header: Activity
+      save_changes: Save Changes
+      cannot_transition_to: can't transition to %{state}
+      cannot_destroy: Activity cannot be delete, because there is purchased ticket exist.
+      success_delete: Successfully delete activity.
+    ticket_types:
+      headers:
+        add_ticket: Add Ticket
+        edit_ticket: Edit Ticket
+        ticket: Ticket
+      name: name
+      na: N/A
+      description: description
+      price: price
+      save_changes: Save Changes
+      success_edit: Successfully edit ticket type
+      usage_quantity: Usage Quantity
+      countable: Countable
+    tickets:
+      edit_ticket: Edit Ticket
+      new_ticket: New Ticket
+      cannot_destroy: purchased ticket can not be destroy
+      cannot_transition_to: can't transition to %{state}
+      quantity: Ticket Quantity
+      ticket_user_error: cannot have more than one ticket per activity
+      state: Ticket state
+      update_state: Update ticket state
+      ticket: Ticket
+      update: Update
+      delete: Delete
+      available: Available
+      usage_quantity: Usage quantity
+    organizers:
+      header: Organizer information
+      save_changes: Save changes
+      change_password: change password
+      confirm_password: confirm password
+      current_password: current password
+      new_password: new password
+      role: role
+      save_changes: Save changes
+      name: name
+      email: email
+      success_update: Successfully update settings.
+    modal:
+      confirm:
+        cancel: Cancel
+        delete: Delete
+        title:
+          delete_activity: Confirm deletion
+        description:
+          delete_activity: Are your sure to delete this activity?
+    accounts:
+      header: Account information
+      name: Name
+      description: Description
+      save_changes: Save changes
+      token: API-TOKEN

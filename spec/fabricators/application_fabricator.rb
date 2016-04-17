@@ -1,0 +1,6 @@
+Fabricator(:origin_application, class_name: Doorkeeper::Application) do
+  name 'origin'
+  uid 'f5ac8f70c5ec80c00ecf52d502ac2c92df8b2e8c8e7a1b069c193cec02cf87b2c6d3e4c0005b0c669c7197170edde0272b938c29822b1a97619f6159998fa2d1'
+  secret '3cb3f7c9c1a87211fa61043ab74b016196dbbb0f1bb5d5dd63796c72cdd6b7a8fd6cbac8cc5e3c6ec6dff92ad3e6e460a5ede47e81b02785629298b1f5725238'
+  redirect_uri 'https://localhost:3000/callback'
+end

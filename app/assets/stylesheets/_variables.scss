@@ -1,0 +1,51 @@
+// Fonts
+$font-family-sans-serif: 'THSarabunNewBold', Helvetica, sans-serif;
+
+// Colors
+$brand-sunflower: #ffca0a;
+$brand-golden: #f4bf00;
+$brand-black-gold: #221b00;
+$brand-dark-gold: #3a2e00;
+$brand-border-grey: #a2a7a5;
+$brand-light-grey: #eff3f1;
+$brand-pale-peach: #ffeeb1;
+$brand-white-grey: #f6f6f6;
+$brand-pale-grey: rgba(223, 229, 226, .6);
+$brand-black-banner: #0c0a00;
+
+$brand-warm-grey: (
+  primary: #9b9b9b,
+  light: #979797,
+  lighter: #e8e9e9
+);
+
+$brand-grey: #d7d7d7;
+
+
+$body-color: map_get($brand-warm-grey, 'primary');
+
+$brand-primary: $brand-sunflower;
+
+// Base
+$border-radius: 0.3125rem;
+$border-radius-lg: $border-radius;
+$border-radius-sm: $border-radius;
+
+$box-shadow: 0 2px 0.25rem rgba(0, 0, 0, 0.5);
+$text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+
+// Form inputs
+$input-height: 1.875rem;
+$input-color: map_get($brand-warm-grey, 'primary');
+$input-color-placeholder: map_get($brand-warm-grey, 'primary');
+$input-box-shadow: $box-shadow;
+
+// Buttons
+$btn-font-height: 1em;
+$btn-primary-border: transparent;
+$btn-box-shadow: $box-shadow;
+
+// Links
+$link-color: map_get($brand-warm-grey, 'primary');
+$link-hover-color: $brand-golden;
+$link-active-color: $brand-golden;

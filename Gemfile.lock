@@ -66,6 +66,9 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.4.0)
     arel (6.0.3)
+    autoprefixer-rails (6.3.1)
+      execjs
+      json
     awesome_print (1.6.1)
     aws-sdk (2.2.13)
       aws-sdk-resources (= 2.2.13)
@@ -80,6 +83,9 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap (4.0.0.alpha3)
+      autoprefixer-rails (>= 6.0.3)
+      sass (>= 3.4.19)
     builder (3.2.2)
     bullet (5.0.0)
       activesupport (>= 3.0.0)
@@ -191,6 +197,7 @@ GEM
       cliver (~> 0.3.1)
       multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
+    puma (2.16.0)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.4)
@@ -256,6 +263,8 @@ GEM
       rspec-expectations (~> 3.4.0)
       rspec-mocks (~> 3.4.0)
       rspec-support (~> 3.4.0)
+    rspec-retry (0.4.5)
+      rspec-core
     rspec-support (3.4.1)
     safe_yaml (1.0.4)
     sass (3.4.21)
@@ -278,6 +287,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    statesman (2.0.0)
     temple (0.7.6)
     thor (0.19.1)
     thread_safe (0.3.5)
@@ -304,6 +314,7 @@ DEPENDENCIES
   awesome_print
   better_errors
   binding_of_caller
+  bootstrap (~> 4.0.0.alpha3)
   bullet
   byebug
   cancancan (>= 1.13.1)
@@ -330,6 +341,7 @@ DEPENDENCIES
   pg (~> 0.15)
   phrase
   poltergeist
+  puma
   quiet_assets
   rack-timeout
   rails (= 4.2.5)
@@ -337,10 +349,12 @@ DEPENDENCIES
   rails_admin!
   roadie-rails
   rspec-rails
+  rspec-retry
   sass-rails
   shoulda-matchers
   slim (>= 3.0.6)
   spring
+  statesman (~> 2.0)
   uglifier
 
 BUNDLED WITH

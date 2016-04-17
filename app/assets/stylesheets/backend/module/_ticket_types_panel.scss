@@ -1,0 +1,58 @@
+.ticket-type-panel {
+  margin: 3rem 2.5rem;
+  padding-bottom: $grid-gutter-width;
+
+  header {
+    display: none;
+    margin: 0 $grid-gutter-width/2 $grid-gutter-width/3;
+    border-bottom: 1px solid map_get($brand-warm-grey, 'lighter');
+    text-transform: uppercase;
+    color: $brand-primary;
+    font-size: 2.25em;
+    letter-spacing: .25rem;
+  }
+
+  select {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+
+  button[type="submit"] {
+    margin: $grid-gutter-width auto 1.25rem;
+  }
+
+  .tickets-panel {
+    border-radius: $border-radius;
+
+    h2 {
+      background-color: $brand-sunflower;
+      text-align: center;
+      color: #FFF;
+      border-radius: $border-radius $border-radius 0 0;
+    }
+
+    .container-fluid {
+      border-radius: $border-radius;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    width: $grid-gutter-width*24;
+    padding: 0 $grid-gutter-width;
+    margin: $grid-gutter-width auto 0;
+    background-color: rgba(255, 255, 255, 0.5);
+
+    header {
+      display: block;
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    width: $grid-gutter-width*35;
+  }
+}

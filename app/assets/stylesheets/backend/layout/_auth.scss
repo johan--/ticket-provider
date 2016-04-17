@@ -1,0 +1,11 @@
+.layout-auth {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+
+.layout-auth body {
+  background-color: $brand-light-grey;
+  display: table-cell;
+  vertical-align: middle;
+}

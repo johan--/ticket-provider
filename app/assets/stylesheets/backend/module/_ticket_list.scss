@@ -1,0 +1,30 @@
+.tickets-list-container {
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+
+  .ticket-table {
+    display: table;
+    width: 100%;
+
+    .ticket-list {
+      display: table-row;
+      border-bottom: #000;
+    }
+
+    .ticket-cell {
+      display: table-cell;
+      width: 20%;
+      padding: 0;
+      text-align: center;
+    }
+
+    a.action-container {
+      &:active, &:hover, &:focus {
+        background: transparent;
+        text-decoration: initial;
+        cursor: pointer;
+      }
+    }
+  }
+}
