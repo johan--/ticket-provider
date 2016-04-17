@@ -1,0 +1,18 @@
+doctype html
+| <html class="layout-frontend"
+== yield :html_classes
+| ">
+head
+  title = t('application.name')
+  meta name="viewport" content="width=device-width, initial-scale=1"
+  == render partial: 'application/font'
+  == stylesheet_link_tag 'frontend/application', media: 'all'
+  == csrf_meta_tags
+
+body
+  main id="app"
+    == yield
+  == javascript_include_tag 'frontend/application', async: Rails.env.production?
+| </html>
+
+
