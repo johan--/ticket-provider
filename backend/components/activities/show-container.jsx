@@ -38,7 +38,6 @@ class ShowContainer extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
-    console.log(e);
     Backbone.history.navigate($(e.currentTarget).attr('href'), true);
 
   }

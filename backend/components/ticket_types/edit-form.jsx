@@ -53,6 +53,7 @@ class EditForm extends React.Component {
   handleTicketTypeChange(e) {
     let updateState = this.store.get(e.target.value);
     this.setState(updateState);
+    TicketStore.set(this.store.get(e.target.value).get('tickets'));
   }
 
   showAddTicketModal(e) {
