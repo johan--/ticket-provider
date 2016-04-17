@@ -1,0 +1,14 @@
+.layout-frontend body {
+  min-height: 100%;
+  min-width: 100%;
+}
+body {
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: cover;
+}
+
+@include media-breakpoint-up(md) {
+  body { background-size: auto; }
+}
