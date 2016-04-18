@@ -11,3 +11,4 @@ development:
 
 test:
   DEFAULT_HOST: "http://localhost:3000"
+  MAILER_SENDER: no-reply@squareapp-test.co
