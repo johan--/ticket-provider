@@ -7,6 +7,8 @@ development:
   S3_HOST_ALIAS: https://d171m6wnqwtjdj.cloudfront.net
   S3_REGION: ap-southeast-1
   S3_SECRET_ACCESS_KEY: FVECR1FZMdGduun5nI6XWFY6JlS+ovoS317JExZ9
+  MAILER_SENDER: no-reply@squareapp-development.co
 
 test:
   DEFAULT_HOST: "http://localhost:3000"
+  MAILER_SENDER: no-reply@squareapp-test.co
