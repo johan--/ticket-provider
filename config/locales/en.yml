@@ -1,6 +1,6 @@
 en:
   application:
-    name: ticket provider
+    name: SQUARE
   authorization:
     unauthorized: unauthorized
   frontend:
