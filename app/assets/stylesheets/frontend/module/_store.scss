@@ -2,6 +2,14 @@
   display: block;
   text-align: center;
 
+  .store-icon {
+    display: block;
+
+    &:active, &:hover, &:focus {
+      background: transparent;
+    }
+  }
+
   .img-container {
     display: inline-block;
 
