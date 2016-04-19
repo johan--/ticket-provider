@@ -41,6 +41,7 @@ div class="container-fluid feature-container"
       h4 class="feature-content" = simple_format(t('frontend.index.free_content'))
 div class="store container-fluid"
   div class="img-container"
-    = image_tag("google.png")
+    a class="store-icon" href="#{t('frontend.index.play_store_link')}"
+      = image_tag("google.png")
   div class="img-container"
     = image_tag("appstore.png")
